@@ -33,6 +33,7 @@ angular.module('dashboard')
         var contentEl = $element.find('div.panel-body');
         contentEl.html(dashboard.loadingTemplate);
 
+        // create new scope for widget & controller
         var templateScope = $scope.$new();
 
         // local injections
@@ -42,6 +43,7 @@ angular.module('dashboard')
           config: config,
         };
 
+        // get resolve promises from widget
         var resolvers = {};
         resolvers['$tpl'] = dashboard.getTemplate(widget);
         if (widget.resolve){
