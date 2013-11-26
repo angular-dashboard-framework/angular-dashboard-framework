@@ -1,0 +1,17 @@
+<div class="widget panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+    {{widget.title}}
+      <span class="pull-right" ng-if="editMode">
+        <a href=""><i class="fa fa-arrows"></i></a>
+        <a href=""><i class="fa fa-cog"></i></a>
+        <a href="" ng-click="close()">
+          <i class="fa fa-times"></i>
+        </a>
+      </span>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <!-- content will be rendered here -->
+  </div>
+</div>

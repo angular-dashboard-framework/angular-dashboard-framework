@@ -1,0 +1,23 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+body {
+  padding-top: 60px;
+}
+
+.edit .column {
+  min-height: 120px;
+  border: 1px #ccc dashed;
+  padding-top: 15px;
+}
+
+pre.edit {
+  margin-top: 15px;
+}
+
+.column .placeholder {
+  background: #E8E8E8;
+  border: 1px dashed #505050;
+  margin-bottom: 15px;
+}
