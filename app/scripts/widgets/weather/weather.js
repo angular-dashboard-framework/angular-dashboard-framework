@@ -32,6 +32,9 @@ angular.module('dashboard.widgets.weather', ['dashboard.provider'])
           data: function(weatcherService, config){
             return weatcherService.get(config.location);
           }
+        },
+        edit: {
+          templateUrl: 'scripts/widgets/weather/edit.html'
         }
       });
   })

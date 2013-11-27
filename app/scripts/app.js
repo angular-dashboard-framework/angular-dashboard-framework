@@ -62,7 +62,7 @@ angular.module('dashboard', [
       column: 0,
       widget: 'weather',
       config: {
-        location: 'Dublin'
+        location: 'Dublin,IE'
       }
     },{
       column: 0,
