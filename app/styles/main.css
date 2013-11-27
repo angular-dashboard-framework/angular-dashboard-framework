@@ -6,6 +6,10 @@ body {
   padding-top: 60px;
 }
 
+.modal {
+  display: block;
+}
+
 .edit .column {
   min-height: 120px;
   border: 1px #ccc dashed;

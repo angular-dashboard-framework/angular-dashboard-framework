@@ -3,8 +3,15 @@
     <h3 class="panel-title">
     {{widget.title}}
       <span class="pull-right" ng-if="editMode">
-        <a href=""><i class="fa fa-arrows"></i></a>
-        <a href=""><i class="fa fa-cog"></i></a>
+        <!-- change widget location -->
+        <a href="">
+          <i class="fa fa-arrows"></i>
+        </a>
+        <!-- open edit mode -->
+        <a href="" ng-if="widget.edit" ng-click="edit()">
+          <i class="fa fa-cog"></i>
+        </a>
+        <!-- remove widget -->
         <a href="" ng-click="close()">
           <i class="fa fa-times"></i>
         </a>

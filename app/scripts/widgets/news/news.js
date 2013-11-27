@@ -32,9 +32,16 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
           entries: function(newsService, config){
             return newsService.get(config.url);
           }
+        },
+        edit: {
+          templateUrl: 'scripts/widgets/news/edit.html',
+          controller: 'newsEditCtrl'
         }
       });
   })
   .controller('newsCtrl', function($scope, entries){
     $scope.entries = entries;
+  })
+  .controller('newsEditCtrl', function($scope, config){
+    $scope.config = config;
   });

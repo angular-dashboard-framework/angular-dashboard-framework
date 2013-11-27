@@ -3,7 +3,7 @@
 angular.module('dashboard', [
     'dashboard.provider', 'dashboard.widgets.news', 
     'dashboard.widgets.weather', 'ngRoute', 'ngSanitize', 
-    'ngAnimate', 'ui.sortable'
+    'ngAnimate', 'ui.bootstrap', 'ui.sortable'
   ])
   .config(function(dashboardProvider){
 
