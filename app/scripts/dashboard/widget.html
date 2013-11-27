@@ -4,15 +4,15 @@
     {{widget.title}}
       <span class="pull-right" ng-if="editMode">
         <!-- change widget location -->
-        <a href="">
+        <a href="" title="change widget location">
           <i class="fa fa-arrows"></i>
         </a>
         <!-- open edit mode -->
-        <a href="" ng-if="widget.edit" ng-click="edit()">
+        <a href="" title="edit widget configuration" ng-if="widget.edit" ng-click="edit()">
           <i class="fa fa-cog"></i>
         </a>
         <!-- remove widget -->
-        <a href="" ng-click="close()">
+        <a href="" title="remove widget" ng-click="close()">
           <i class="fa fa-times"></i>
         </a>
       </span>

@@ -3,10 +3,10 @@
   <h1>
     Dashboard {{structure}}
     <span style="font-size: 16px" class="pull-right">
-      <a href="" ng-if="editMode" ng-click="addWidgetDialog()">
+      <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
         <i class="fa fa-plus-circle"></i>
       </a>
-      <a href="" title="Edit Dashboard" ng-click="toggleEditMode()">
+      <a href="" title="{{editMode ? 'disable edit mode' : 'enable edit mode'}}" ng-click="toggleEditMode()">
         <i class="fa fa-cog"></i>
       </a>
     </span>
