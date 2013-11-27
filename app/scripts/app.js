@@ -56,7 +56,7 @@ angular.module('dashboard', [
       column: 0,
       widget: 'markdown',
       config: {
-        content: '**Markdown** content'
+        content: '[Markdown](http://en.wikipedia.org/wiki/Markdown) content'
       }
     },{
       column: 0,
