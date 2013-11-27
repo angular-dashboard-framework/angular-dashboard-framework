@@ -81,10 +81,17 @@ angular.module('dashboard')
         $scope.edit = function(){
           var editScope = $scope.$new();
           editScope.config = config;
-          var instance = $modal.open({
+
+          var opts = {
             scope: editScope,
-            templateUrl: 'scripts/dashboard/widget-edit.html'
-          });
+            templateUrl: 'scripts/dashboard/widget-edit.html'            
+          };
+
+          if (widget.edit.controller){
+            opts.controller = widget.edit.controller;
+          }
+
+          var instance = $modal.open(opts);
           editScope.closeDialog = function(){
             instance.close();
             // recompile widget

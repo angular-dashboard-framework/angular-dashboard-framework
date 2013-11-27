@@ -34,14 +34,10 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
           }
         },
         edit: {
-          templateUrl: 'scripts/widgets/news/edit.html',
-          controller: 'newsEditCtrl'
+          templateUrl: 'scripts/widgets/news/edit.html'
         }
       });
   })
   .controller('newsCtrl', function($scope, entries){
     $scope.entries = entries;
-  })
-  .controller('newsEditCtrl', function($scope, config){
-    $scope.config = config;
   });
