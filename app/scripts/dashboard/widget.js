@@ -40,9 +40,11 @@ angular.module('dashboard')
 
         // compile & render template
         var template = locals['$tpl'];
-        var templateCtrl = $controller(widget.controller, locals);
         contentEl.html(template);
-        contentEl.children().data('$ngControllerController', templateCtrl);
+        if (widget.controller){
+          var templateCtrl = $controller(widget.controller, locals);
+          contentEl.children().data('$ngControllerController', templateCtrl);
+        }
         $compile( contentEl.contents() )( templateScope );
       }, function(reason){
         // handle promise rejection
