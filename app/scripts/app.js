@@ -32,6 +32,15 @@ angular.module('dashboard', [
   .config(function(dashboardProvider){
 
     dashboardProvider
+      .structure('6-6', {
+        rows: [{
+          columns: [{
+            class: 'col-md-6'
+          },{
+            class: 'col-md-6'
+          }]
+        }]
+      })
       .structure('4-8', {
         rows: [{
           columns: [{
@@ -80,7 +89,7 @@ angular.module('dashboard', [
       column: 0,
       widget: 'markdown',
       config: {
-        content: '[Markdown](http://en.wikipedia.org/wiki/Markdown) content'
+        content: 'This is [Markdown](http://en.wikipedia.org/wiki/Markdown) content'
       }
     },{
       column: 0,
