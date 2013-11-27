@@ -24,4 +24,7 @@ pre.edit {
   background: #E8E8E8;
   border: 1px dashed #505050;
   margin-bottom: 15px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
