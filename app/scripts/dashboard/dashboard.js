@@ -4,7 +4,7 @@ angular.module('dashboard')
   .directive('dashboard', function($log, dashboard, $compile, $controller){
 
     // fill structure with widgets from model
-    var fillStructure = function(scope, structure, model){
+    var fillStructure = function(structure, model){
       var index = -1;
       angular.forEach(structure.rows, function(row){
         angular.forEach(row.columns, function(column){
@@ -48,7 +48,7 @@ angular.module('dashboard')
         if (structure){
           $scope.$watch('ngModel', function(newValue){
             structure = angular.copy(structure);
-            fillStructure($scope, structure, newValue);
+            fillStructure(structure, newValue);
             $scope.rows = structure.rows;
           });
         } else {
