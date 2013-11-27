@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dashboard')
-  .directive('dashboard', function($log, dashboard, $compile, $controller){
+  .directive('dashboard', function($log, dashboard, $compile, $controller, $modal){
 
     // fill structure with widgets from model
     var fillStructure = function(structure, model){
@@ -68,6 +68,24 @@ angular.module('dashboard')
           }
           if (!$scope.editMode){
             // dashboardService.set(dashboard.id, $scope.rows);
+          }
+        }
+
+        // add widget dialog
+        $scope.addWidgetDialog = function(){
+          var addScope = $scope.$new();
+          addScope.widgets = dashboard.widgets;
+          var opts = {
+            scope: addScope,
+            templateUrl: 'scripts/dashboard/widget-add.html'
+          };
+          var instance = $modal.open(opts);
+          addScope.addWidget = function(widget){
+            // add widget to structure
+            instance.close();
+          }
+          addScope.closeDialog = function(){
+            instance.close();
           }
         }
 
