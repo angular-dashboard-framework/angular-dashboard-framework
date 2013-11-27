@@ -7,9 +7,17 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
       get: function(url){
         var deferred = $q.defer();
         var url =  newsServiceUrl + encodeURIComponent(url) ;
-        $http.jsonp(url).success(function(data){
-          deferred.resolve(data.responseData.feed.entries);
-        });
+        $http.jsonp(url)
+          .success(function(data){
+            if (data && data.responseData && data.responseData.feed && data.responseData.feed.entries){
+              deferred.resolve(data.responseData.feed.entries);
+            } else {
+              deferred.reject();
+            }
+          })
+          .error(function(){
+            deferred.reject();
+          });
         return deferred.promise;
       }
     };

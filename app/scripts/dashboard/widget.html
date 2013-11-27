@@ -12,6 +12,11 @@
     </h3>
   </div>
   <div class="panel-body">
-    <!-- content will be rendered here -->
+    <div class="alert alert-danger" ng-if="error">
+      {{error}}
+    </div>
+    <div class="panel-content">
+      <!-- content will be rendered here -->
+    </div>
   </div>
 </div>

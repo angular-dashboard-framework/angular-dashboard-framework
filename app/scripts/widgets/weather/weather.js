@@ -7,9 +7,17 @@ angular.module('dashboard.widgets.weather', ['dashboard.provider'])
       get: function(location){
         var deferred = $q.defer();
         var url = weatherServiceUrl + location;
-        $http.jsonp(url).success(function(data){
-          deferred.resolve(data);
-        });
+        $http.jsonp(url)
+          .success(function(data){
+            if (data){
+              deferred.resolve(data);
+            } else {
+              deferred.reject();
+            }
+          })
+          .error(function(){
+            deferred.reject();
+          });
         return deferred.promise;
       }
     };

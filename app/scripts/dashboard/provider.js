@@ -10,9 +10,13 @@ angular.module('dashboard.provider', [])
         deferred.resolve(widget.template);
       } else if (widget.templateUrl) {
         var url = $sce.getTrustedResourceUrl(widget.templateUrl);
-        $http.get(url, {cache: $templateCache}).success(function(response){
-          deferred.resolve(response);
-        });
+        $http.get(url, {cache: $templateCache})
+          .success(function(response){
+            deferred.resolve(response);
+          })
+          .error(function(){
+            deferred.reject('could not load template');
+          });
       }
 
       return deferred.promise;

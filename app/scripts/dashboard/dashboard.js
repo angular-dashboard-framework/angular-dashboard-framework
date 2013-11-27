@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dashboard')
-  .directive('dashboard', function($log, dashboard, $compile,  $controller){
+  .directive('dashboard', function($log, dashboard, $compile, $controller){
 
     // fill structure with widgets from model
     var fillStructure = function(scope, structure, model){

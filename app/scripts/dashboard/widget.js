@@ -30,7 +30,7 @@ angular.module('dashboard')
         }
 
         // render copy of widget
-        var contentEl = $element.find('div.panel-body');
+        var contentEl = $element.find('div.panel-content');
         contentEl.html(dashboard.loadingTemplate);
 
         // create new scope for widget & controller
@@ -48,7 +48,11 @@ angular.module('dashboard')
         resolvers['$tpl'] = dashboard.getTemplate(widget);
         if (widget.resolve){
           angular.forEach(widget.resolve, function(promise, key){
-            resolvers[key] = $injector.invoke(promise, promise, base);
+            if (angular.isString(promise)){
+              resolvers[key] = $injector.get(promise);
+            } else {
+              resolvers[key] = $injector.invoke(promise, promise, base);
+            }
           });
         }
 
@@ -62,6 +66,13 @@ angular.module('dashboard')
           contentEl.html(template);
           contentEl.children().data('$ngControllerController', templateCtrl);
           $compile( contentEl.contents() )( templateScope );
+        }, function(reason){
+          // handle promise rejection
+          contentEl.empty();
+          $scope.error = 'Could not resolve all promises';
+          if (reason){
+            $scope.error += ': ' + reason;
+          }
         });
       } else {
         $log.warn('could not find widget ' + type);
