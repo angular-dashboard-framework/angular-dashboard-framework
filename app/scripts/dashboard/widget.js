@@ -4,6 +4,9 @@ angular.module('dashboard')
   .directive('widget', function($q, $log, $compile, $controller, $injector, $modal, dashboard){
 
     var compileWidget = function($scope, $element, widget, config){
+      // clear errors
+      $scope.error = "";
+
       // render copy of widget
       var contentEl = $element.find('div.panel-content');
       contentEl.html(dashboard.loadingTemplate);
