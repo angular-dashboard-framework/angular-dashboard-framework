@@ -2,8 +2,8 @@
 
 angular.module('dashboard', [
     'dashboard.provider', 'dashboard.widgets.news', 
-    'dashboard.widgets.weather', 'ngRoute', 'ngSanitize', 
-    'ngAnimate', 'ui.bootstrap', 'ui.sortable'
+    'dashboard.widgets.weather', 'dashboard.widgets.markdown',
+    'ngRoute', 'ngSanitize', 'ngAnimate', 'ui.bootstrap', 'ui.sortable'
   ])
   .config(function(dashboardProvider){
 
@@ -53,6 +53,12 @@ angular.module('dashboard', [
   })
   .controller('dashboardCtrl', function($scope){
     $scope.widgets = [{
+      column: 0,
+      widget: 'markdown',
+      config: {
+        content: '**Markdown** content'
+      }
+    },{
       column: 0,
       widget: 'weather',
       config: {
