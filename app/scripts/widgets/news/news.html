@@ -1,6 +1,11 @@
 <div class="news">
+  <h4>
+    <a ng-href="{{feed.url}}" target="_blank">
+      {{feed.title}}
+    </a>
+  </h4>
   <ul>
-    <li ng-repeat="entry in entries">
+    <li ng-repeat="entry in feed.entries">
       <a ng-href="{{entry.link}}" target="_blank">
         {{entry.title}}
       </a>

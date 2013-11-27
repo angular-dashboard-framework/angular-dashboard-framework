@@ -9,8 +9,8 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
         var url =  newsServiceUrl + encodeURIComponent(url) ;
         $http.jsonp(url)
           .success(function(data){
-            if (data && data.responseData && data.responseData.feed && data.responseData.feed.entries){
-              deferred.resolve(data.responseData.feed.entries);
+            if (data && data.responseData && data.responseData.feed){
+              deferred.resolve(data.responseData.feed);
             } else {
               deferred.reject();
             }
@@ -29,7 +29,7 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
         templateUrl: 'scripts/widgets/news/news.html',
         controller: 'newsCtrl',
         resolve: {
-          entries: function(newsService, config){
+          feed: function(newsService, config){
             return newsService.get(config.url);
           }
         },
@@ -38,6 +38,6 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
         }
       });
   })
-  .controller('newsCtrl', function($scope, entries){
-    $scope.entries = entries;
+  .controller('newsCtrl', function($scope, feed){
+    $scope.feed = feed;
   });
