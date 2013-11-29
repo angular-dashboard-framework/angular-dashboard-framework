@@ -83,7 +83,8 @@ angular.module('dashboard')
       });
     };
 
-    var renderWidget = function ($scope, $element, type, config, editMode){
+    var renderWidget = function ($scope, $element, definition, column, editMode){
+      var type = definition.type;
       var w = dashboard.widgets[type];
       if (w){
         // create a copy
@@ -96,6 +97,7 @@ angular.module('dashboard')
         $scope.widget = widget;
 
         // create config object
+        var config = definition.config;
         if (config){
           if (angular.isString(config)){
             config = angular.fromJson(config);
@@ -106,7 +108,12 @@ angular.module('dashboard')
 
         // bind close function
         $scope.close = function(){
-          $element.remove();
+          if (column){
+            var index = column.widgets.indexOf(definition);
+            if (index >= 0){
+              column.widgets.splice(index, 1);
+            }
+          }
         };
 
         // bind edit function
@@ -146,14 +153,16 @@ angular.module('dashboard')
       templateUrl: 'scripts/dashboard/widget.html',
       scope: {
         definition: '=',
+        col: '=column',
         editMode: '@'
       },
       link: function ($scope, $element, $attr) {
-        var widget = $scope.definition;
-        if ( widget ){
-          renderWidget($scope, $element, widget.type, widget.config, $attr.editMode);
+        var definition = $scope.definition;
+        if ( definition ){
+          renderWidget($scope, $element, definition, $scope.col, $attr.editMode);
         } else {
-          $log.warn('definition not specified');
+          $log.debug('definition not specified, widget was probably removed');
+          $element.remove();
         }
       }
     };
