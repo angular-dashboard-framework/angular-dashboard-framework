@@ -32,7 +32,8 @@ angular.module('dashboard')
       restrict: 'EA',
       transclude : false,
       scope: {
-        structure: '@'
+        structure: '@',
+        name: '@'
       },
       controller: function($scope){
         // sortable options for drag and drop
@@ -101,7 +102,8 @@ angular.module('dashboard')
         };
       },
       link: function ($scope, $element, $attr) {
-        // pass structure attribute to scope
+        // pass attributes to scope
+        $scope.name = $attr.name;
         $scope.structure = $attr.structure;
       },
       templateUrl: 'scripts/dashboard/dashboard.html'
