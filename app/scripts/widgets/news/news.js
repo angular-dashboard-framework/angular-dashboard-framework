@@ -54,7 +54,9 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
         controller: 'newsCtrl',
         resolve: {
           feed: function(newsService, config){
-            return newsService.get(config.url);
+            if (config.url){
+              return newsService.get(config.url);
+            }
           }
         },
         edit: {

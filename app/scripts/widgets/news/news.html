@@ -1,4 +1,7 @@
 <div class="news">
+  <div class="alert alert-info" ng-if="!feed">
+    Please insert a feed url in the widget configuration
+  </div>
   <h4>
     <a ng-href="{{feed.link}}" target="_blank">
       {{feed.title}}
