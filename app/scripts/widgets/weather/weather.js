@@ -33,7 +33,7 @@ angular.module('dashboard.widgets.weather', ['dashboard.provider'])
         var url = weatherServiceUrl + location;
         $http.jsonp(url)
           .success(function(data){
-            if (data){
+            if (data && data.cod === 200){
               deferred.resolve(data);
             } else {
               deferred.reject();
@@ -54,7 +54,9 @@ angular.module('dashboard.widgets.weather', ['dashboard.provider'])
         controller: 'weatherCtrl',
         resolve: {
           data: function(weatcherService, config){
-            return weatcherService.get(config.location);
+            if (config.location){
+              return weatcherService.get(config.location);
+            }
           }
         },
         edit: {
