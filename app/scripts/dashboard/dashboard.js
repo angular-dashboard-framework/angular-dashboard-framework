@@ -94,7 +94,7 @@ angular.module('dashboard')
               type: widget,
               config: {}
             };
-            addScope.model.rows[0].columns[0].widgets.push(w);
+            addScope.model.rows[0].columns[0].widgets.unshift(w);
             instance.close();
 
             addScope.$destroy();
