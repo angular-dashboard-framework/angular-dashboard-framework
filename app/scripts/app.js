@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('dashboard', [
-    'dashboard.provider', 'dashboard.widgets.news', 
+    'dashboard.provider', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
     'dashboard.widgets.weather', 'dashboard.widgets.markdown',
     'ngRoute', 'ngSanitize', 'ngAnimate', 'ui.bootstrap', 'ui.sortable'
   ])
