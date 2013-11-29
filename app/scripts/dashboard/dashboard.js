@@ -46,13 +46,22 @@ angular.module('dashboard')
           forcePlaceholderSize: true,
           opacity: 0.4
         };
-
-        var structureName = $scope.structure;
-        var structure = dashboard.structures[structureName];
-        if (structure){
-          $scope.model = angular.copy(structure);
+        
+        var name = $scope.name;
+        var model = dashboard.store.get(name);
+        if ( ! model ){
+          var structureName = $scope.structure;
+          var structure = dashboard.structures[structureName];
+          if (structure){
+            model = angular.copy(structure);
+          } else {
+            $log.error( 'could not find structure ' + structureName);
+          }
+        } 
+        if (model) {
+          $scope.model = model;
         } else {
-          $log.error( 'could not find structure ' + structureName);
+          $log.error('could not find or create model');
         }
 
         // edit mode
@@ -67,7 +76,7 @@ angular.module('dashboard')
             $scope.editClass = "";
           }
           if (!$scope.editMode){
-            // dashboardService.set(dashboard.id, $scope.rows);
+            dashboard.store.set(name, model);
           }
         };
 

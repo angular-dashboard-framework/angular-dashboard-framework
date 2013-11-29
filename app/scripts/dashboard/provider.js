@@ -45,7 +45,38 @@ angular.module('dashboard.provider', [])
 
       return deferred.promise;
     };
-
+    
+    var isLocalStorageSupported = function(){
+      return ('localStorage' in window && window['localStorage'] !== null);
+    };
+    
+    var localStore = {
+      set: function(key, value){
+        if (isLocalStorageSupported()){
+          if (angular.isObject(value) || angular.isArray(value)) {
+            value = angular.toJson(value);
+          }
+          localStorage.setItem(key, value);
+        }
+      },
+      get: function(key){
+        var result = null;
+        if (isLocalStorageSupported()){
+          var item = localStorage.getItem(key);
+          if (item && item !== 'null'){
+            if (item.charAt(0) === "{" || item.charAt(0) === "[") {
+              result = angular.fromJson(item);
+            } else {
+              result = item;
+            }
+          }
+        }
+        return result;
+      }
+    };
+    
+    
+    var store = localStore;
     var widgets = {};
     var structures = {};
     var loadingTemplate = '<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" style="width: 100%"><span class="sr-only">loading ...</span></div></div>';
@@ -63,13 +94,19 @@ angular.module('dashboard.provider', [])
     this.loadingTemplate = function(template){
       loadingTemplate = template;
       return this;
-    }
+    };
+    
+    this.store = function(dashboardStore){
+      store = dashboardStore;
+      return this;
+    };
 
     this.$get = function($q, $sce, $http, $templateCache){
       return {
         widgets: widgets,
         structures: structures,
         loadingTemplate: loadingTemplate,
+        store: store,
         getTemplate: function(widget){
           return getTemplate($q, $sce, $http, $templateCache, widget);
         }
