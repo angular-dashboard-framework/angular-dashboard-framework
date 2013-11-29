@@ -44,9 +44,11 @@ angular.module('dashboard', [
       .structure('4-8', {
         rows: [{
           columns: [{
-            class: 'col-md-4'
+            class: 'col-md-4',
+            widgets: []
           },{
-            class: 'col-md-8'
+            class: 'col-md-8',
+            widgets: []
           }]
         }]
       })
@@ -85,47 +87,5 @@ angular.module('dashboard', [
 
   })
   .controller('dashboardCtrl', function($scope){
-    $scope.widgets = [{
-      column: 0,
-      widget: 'markdown',
-      config: {
-        content: 'This is [Markdown](http://en.wikipedia.org/wiki/Markdown) content'
-      }
-    },{
-      column: 0,
-      widget: 'weather',
-      config: {
-        location: 'Hildesheim'
-      }
-    },{
-      column: 0,
-      widget: 'weather',
-      config: {
-        location: 'Dublin,IE'
-      }
-    },{
-      column: 0,
-      widget: 'weather',
-      config: {
-        location: 'Edinburgh,UK'
-      }
-    },{
-      column: 1,
-      widget: 'news',
-      config: {
-        url: 'http://rss.golem.de/rss.php?feed=ATOM1.0'
-      }
-    },{
-      column: 1,
-      widget: 'news',
-      config: {
-        url: 'http://jaxenter.de/all-content.xml'
-      }
-    },{
-      column: 1,
-      widget: 'news',
-      config: {
-        url: 'http://www.scm-manager.org/feed/'
-      }
-    }];
+    // $scope.widgets = [];
   });

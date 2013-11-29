@@ -18,10 +18,10 @@
 
   <div class="dashboard" ng-class="editClass">
 
-    <div ng-repeat="row in rows" class="row" ng-class="row.class">
+    <div ng-repeat="row in model.rows" class="row" ng-class="row.class">
       <div ng-repeat="col in row.columns" class="column" ng-class="col.class" ui-sortable="sortableOptions" ng-model="col.widgets">
-        <div ng-repeat="widget in col.widgets">
-          <widget type="{{widget.widget}}" config="{{widget.config}}" edit-mode="{{editMode}}" />
+        <div class="widgets" ng-repeat="definition in col.widgets">
+          <widget definition="definition" edit-mode="{{editMode}}" />
         </div>
       </div>
     </div>

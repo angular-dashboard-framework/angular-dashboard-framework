@@ -29,6 +29,12 @@ angular.module('dashboard.widgets.markdown', ['dashboard.provider', 'btford.mark
     dashboardProvider
       .widget('markdown', {
         title: 'Markdown',
+        controller: function($scope, config){
+          if (!config.content){
+            config.content = '';
+          }
+          $scope.config = config;
+        },
         templateUrl: 'scripts/widgets/markdown/markdown.html',
         edit: {
           templateUrl: 'scripts/widgets/markdown/edit.html'

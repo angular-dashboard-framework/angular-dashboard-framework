@@ -81,7 +81,7 @@ angular.module('dashboard')
           $scope.error += ': ' + reason;
         }
       });
-    }
+    };
 
     var renderWidget = function ($scope, $element, type, config, editMode){
       var w = dashboard.widgets[type];
@@ -107,7 +107,7 @@ angular.module('dashboard')
         // bind close function
         $scope.close = function(){
           $element.remove();
-        }
+        };
 
         // bind edit function
         $scope.edit = function(){
@@ -126,16 +126,18 @@ angular.module('dashboard')
           var instance = $modal.open(opts);
           editScope.closeDialog = function(){
             instance.close();
+            editScope.$destroy();
+            
             // recompile widget
             compileWidget($scope, $element, widget, config);
-          }
-        }
+          };
+        };
 
         compileWidget($scope, $element, widget, config);
       } else {
         $log.warn('could not find widget ' + type);
       }
-    }
+    };
 
     return {
       replace: true,
@@ -143,18 +145,17 @@ angular.module('dashboard')
       transclude : false,
       templateUrl: 'scripts/dashboard/widget.html',
       scope: {
-        type: '@',
-        config: '@',
+        definition: '=',
         editMode: '@'
       },
       link: function ($scope, $element, $attr) {
-        var type = $attr.type;
-        if ( type ){
-          renderWidget($scope, $element, type, $attr.config, $attr.editMode);
+        var widget = $scope.definition;
+        if ( widget ){
+          renderWidget($scope, $element, widget.type, widget.config, $attr.editMode);
         } else {
-          $log.warn('type not specified');
+          $log.warn('definition not specified');
         }
       }
-    }
+    };
 
   });
