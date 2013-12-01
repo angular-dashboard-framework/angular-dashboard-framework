@@ -31,3 +31,11 @@ pre.edit {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+
+.widget h3 a {
+  text-decoration: none;
+}
+
+.dashboard-container h1 a {
+  text-decoration: none;
+}
