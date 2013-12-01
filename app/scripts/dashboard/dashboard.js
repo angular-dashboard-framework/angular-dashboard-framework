@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('dashboard')
-  .directive('dashboard', function($log, dashboard, $compile, $controller, $modal){
+  .directive('dashboard', function($log, $modal, dashboard){
 
     return {
       replace: true,
