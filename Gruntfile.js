@@ -28,8 +28,7 @@
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     dirs: {
-      src: 'app/scripts/dashboard',
-      dest: 'dist/<%= pkg.name %>/<%= pkg.version %>',
+      src: 'app/scripts/dashboard'
     },
     ngtemplates: {
       dashboard: {
@@ -40,14 +39,14 @@
           htmlmin: {
             collapseWhitespace: true, 
             collapseBooleanAttributes: true,
-            removeComments: true,
+            removeComments: true
           }
         }
       }
     },
     concat: {
       options: {
-        separator: ';',
+        separator: ';'
       },
       dist: {
         src: [
@@ -55,10 +54,11 @@
           '<%= dirs.src %>/dashboard.js', 
           '<%= dirs.src %>/sortable.js', 
           '<%= dirs.src %>/widget.js', 
+          '<%= dirs.src %>/app.js', 
           'build/templates.js'
         ],
-        dest: 'build/concat.js',
-      },
+        dest: 'build/concat.js'
+      }
     },
     ngmin: {
       directives: {
@@ -80,7 +80,7 @@
     cssmin: {
       minify: {
         src: 'app/styles/main.css',
-        dest: 'dist/<%= pkg.name %>.min.css',
+        dest: 'dist/<%= pkg.name %>.min.css'
       }
     }
   });
