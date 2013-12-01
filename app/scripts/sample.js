@@ -87,10 +87,13 @@ angular.module('sample', [
 
   })
   .controller('dashboardCtrl', function($scope, localStorageService){
-    var dashboard = localStorageService.get('default');
+    var name = 'default';
+    
+    var dashboard = localStorageService.get(name);
     if (!dashboard){
       dashboard = {};
     }
+    $scope.name = name;
     $scope.widgets = dashboard;
     
     $scope.$on('dashboardChanged', function(event, name, model){
