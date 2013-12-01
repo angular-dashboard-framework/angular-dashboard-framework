@@ -26,8 +26,9 @@
 
 angular.module('sample', [
     'dashboard', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
-    'dashboard.widgets.weather', 'dashboard.widgets.markdown'
+    'dashboard.widgets.weather', 'dashboard.widgets.markdown', 'LocalStorageModule'
   ])
+  .value('prefix', '')
   .config(function(dashboardProvider){
 
     dashboardProvider
@@ -85,6 +86,14 @@ angular.module('sample', [
       });
 
   })
-  .controller('dashboardCtrl', function($scope){
-    // $scope.widgets = [];
+  .controller('dashboardCtrl', function($scope, localStorageService){
+    var dashboard = localStorageService.get('default');
+    if (!dashboard){
+      dashboard = {};
+    }
+    $scope.widgets = dashboard;
+    
+    $scope.$on('dashboardChanged', function(event, name, model){
+      localStorageService.set(name, model);
+    });
   });

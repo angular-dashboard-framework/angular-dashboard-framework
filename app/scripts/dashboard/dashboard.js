@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('dashboard')
-  .directive('dashboard', function($log, $modal, dashboard){
+  .directive('dashboard', function($rootScope, $log, $modal, dashboard){
 
     return {
       replace: true,
@@ -33,7 +33,8 @@ angular.module('dashboard')
       transclude : false,
       scope: {
         structure: '@',
-        name: '@'
+        name: '@',
+        adfModel: '='
       },
       controller: function($scope){
         // sortable options for drag and drop
@@ -48,12 +49,16 @@ angular.module('dashboard')
         };
         
         var name = $scope.name;
-        var model = dashboard.store.get(name);
-        if ( ! model ){
+        var model = $scope.adfModel;
+        if ( ! model || ! model.rows ){
           var structureName = $scope.structure;
           var structure = dashboard.structures[structureName];
           if (structure){
-            model = angular.copy(structure);
+            if (model){
+              model.rows = angular.copy(structure).rows;
+            } else {
+              model = angular.copy(structure);
+            }
           } else {
             $log.error( 'could not find structure ' + structureName);
           }
@@ -76,7 +81,7 @@ angular.module('dashboard')
             $scope.editClass = "";
           }
           if (!$scope.editMode){
-            dashboard.store.set(name, model);
+            $rootScope.$broadcast('dashboardChanged', name, model);
           }
         };
 
