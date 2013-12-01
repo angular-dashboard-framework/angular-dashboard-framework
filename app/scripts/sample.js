@@ -26,8 +26,7 @@
 
 angular.module('sample', [
     'dashboard', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
-    'dashboard.widgets.weather', 'dashboard.widgets.markdown',
-    'ngRoute', 'ngSanitize', 'ngAnimate', 'ui.bootstrap', 'ui.sortable'
+    'dashboard.widgets.weather', 'dashboard.widgets.markdown'
   ])
   .config(function(dashboardProvider){
 

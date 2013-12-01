@@ -24,4 +24,4 @@
 
 'use strict';
 
-angular.module('dashboard', ['dashboard.provider', 'ui.sortable']);
+angular.module('dashboard', ['dashboard.provider', 'ui.bootstrap', 'ui.sortable']);
