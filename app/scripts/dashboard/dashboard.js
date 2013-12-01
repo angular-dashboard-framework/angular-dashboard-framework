@@ -104,11 +104,6 @@ angular.module('dashboard')
             addScope.$destroy();
           };
         };
-
-        // format json
-        $scope.stringify = function(obj){
-          return JSON.stringify(obj, null, 2);
-        };
       },
       link: function ($scope, $element, $attr) {
         // pass attributes to scope
