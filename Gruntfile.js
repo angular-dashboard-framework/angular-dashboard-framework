@@ -45,16 +45,13 @@
       }
     },
     concat: {
-      options: {
-        separator: ';'
-      },
       dist: {
         src: [
-          '<%= dirs.src %>/provider.js', 
-          '<%= dirs.src %>/dashboard.js', 
           '<%= dirs.src %>/sortable.js', 
-          '<%= dirs.src %>/widget.js', 
-          '<%= dirs.src %>/app.js', 
+          '<%= dirs.src %>/provider.js', 
+          'app/scripts/app.js',
+          '<%= dirs.src %>/dashboard.js', 
+          '<%= dirs.src %>/widget.js',  
           'build/templates.js'
         ],
         dest: 'build/concat.js'
