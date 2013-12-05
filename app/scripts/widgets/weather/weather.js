@@ -26,6 +26,24 @@
 
 angular.module('dashboard.widgets.weather', ['dashboard.provider'])
   .value('weatherServiceUrl', 'http://api.openweathermap.org/data/2.5/weather?units=metric&callback=JSON_CALLBACK&q=')
+  .config(function(dashboardProvider){
+    dashboardProvider
+      .widget('weather', {
+        title: 'Weather',
+        templateUrl: 'scripts/widgets/weather/weather.html',
+        controller: 'weatherCtrl',
+        resolve: {
+          data: function(weatcherService, config){
+            if (config.location){
+              return weatcherService.get(config.location);
+            }
+          }
+        },
+        edit: {
+          templateUrl: 'scripts/widgets/weather/edit.html'
+        }
+      });
+  })
   .service('weatcherService', function($q, $http, weatherServiceUrl){
     return {
       get: function(location){
@@ -45,24 +63,6 @@ angular.module('dashboard.widgets.weather', ['dashboard.provider'])
         return deferred.promise;
       }
     };
-  })
-  .config(function(dashboardProvider){
-    dashboardProvider
-      .widget('weather', {
-        title: 'Weather',
-        templateUrl: 'scripts/widgets/weather/weather.html',
-        controller: 'weatherCtrl',
-        resolve: {
-          data: function(weatcherService, config){
-            if (config.location){
-              return weatcherService.get(config.location);
-            }
-          }
-        },
-        edit: {
-          templateUrl: 'scripts/widgets/weather/edit.html'
-        }
-      });
   })
   .controller('weatherCtrl', function($scope, data){
     $scope.data = data;

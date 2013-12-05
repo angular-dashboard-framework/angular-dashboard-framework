@@ -25,6 +25,14 @@
 'use strict';
 
 angular.module('dashboard.widgets.randommsg', ['dashboard.provider'])
+  .config(function(dashboardProvider){
+    dashboardProvider
+      .widget('randommsg', {
+        title: 'Random Message',
+        templateUrl: 'scripts/widgets/randommsg/randommsg.html',
+        controller: 'randommsgCtrl'
+      });
+  })
   .service('randommsgService', function(){
     // source http://bookriot.com/2012/05/25/the-42-best-lines-from-douglas-adams-the-hitchhikers-guide-to-the-galaxy-series/
     var msgs = [
@@ -84,14 +92,6 @@ angular.module('dashboard.widgets.randommsg', ['dashboard.provider'])
         };
       }
     };
-  })
-  .config(function(dashboardProvider){
-    dashboardProvider
-      .widget('randommsg', {
-        title: 'Random Message',
-        templateUrl: 'scripts/widgets/randommsg/randommsg.html',
-        controller: 'randommsgCtrl'
-      });
   })
   .controller('randommsgCtrl', function($scope, randommsgService){
     $scope.msg = randommsgService.get();

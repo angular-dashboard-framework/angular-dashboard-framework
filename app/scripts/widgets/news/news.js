@@ -26,26 +26,6 @@
 
 angular.module('dashboard.widgets.news', ['dashboard.provider'])
   .value('newsServiceUrl', 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=JSON_CALLBACK&q=')
-  .service('newsService', function($q, $http, newsServiceUrl){
-    return {
-      get: function(url){
-        var deferred = $q.defer();
-        var url =  newsServiceUrl + encodeURIComponent(url) ;
-        $http.jsonp(url)
-          .success(function(data){
-            if (data && data.responseData && data.responseData.feed){
-              deferred.resolve(data.responseData.feed);
-            } else {
-              deferred.reject();
-            }
-          })
-          .error(function(){
-            deferred.reject();
-          });
-        return deferred.promise;
-      }
-    };
-  })
   .config(function(dashboardProvider){
     dashboardProvider
       .widget('news', {
@@ -63,6 +43,25 @@ angular.module('dashboard.widgets.news', ['dashboard.provider'])
           templateUrl: 'scripts/widgets/news/edit.html'
         }
       });
+  })
+  .service('newsService', function($q, $http, newsServiceUrl){
+    return {
+      get: function(url){
+        var deferred = $q.defer();
+        $http.jsonp(newsServiceUrl + encodeURIComponent(url))
+          .success(function(data){
+            if (data && data.responseData && data.responseData.feed){
+              deferred.resolve(data.responseData.feed);
+            } else {
+              deferred.reject();
+            }
+          })
+          .error(function(){
+            deferred.reject();
+          });
+        return deferred.promise;
+      }
+    };
   })
   .controller('newsCtrl', function($scope, feed){
     $scope.feed = feed;
