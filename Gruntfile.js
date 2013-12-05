@@ -51,7 +51,8 @@
           '<%= dirs.src %>/provider.js', 
           'app/scripts/app.js',
           '<%= dirs.src %>/dashboard.js', 
-          '<%= dirs.src %>/widget.js',  
+          '<%= dirs.src %>/widget-content.js',
+          '<%= dirs.src %>/widget.js',
           'build/templates.js'
         ],
         dest: 'build/concat.js'
