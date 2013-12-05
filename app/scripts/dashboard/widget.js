@@ -49,6 +49,7 @@ angular.module('dashboard')
             config = {};
           }
 
+          // pass config to scope
           $scope.config = config;
         } else {
           $log.warn('could not find widget ' + type);
@@ -111,6 +112,11 @@ angular.module('dashboard')
         editMode: '@'
       },
       compile: function compile($element, $attr, transclude) {
+        
+        /**
+         * use pre link, because link of widget-content
+         * is executed before post link widget
+         */ 
         return {
           pre: preLink,
           post: postLink
