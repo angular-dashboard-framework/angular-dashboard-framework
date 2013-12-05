@@ -25,145 +25,96 @@
 'use strict';
 
 angular.module('dashboard')
-  .directive('widget', function($q, $log, $compile, $controller, $injector, $modal, dashboard){
+  .directive('widget', function($log, $modal, dashboard) {
 
-    var compileWidget = function($scope, $element, widget, config){
-      // clear errors
-      $scope.error = "";
+    function preLink($scope, $element, $attr){
+      var definition = $scope.definition;
+      if (definition) {
+        var w = dashboard.widgets[definition.type];
+        if (w) {
 
-      // render copy of widget
-      var contentEl = $element.find('div.panel-content');
-      contentEl.html(dashboard.loadingTemplate);
+          // pass edit mode
+          $scope.editMode = $attr.editMode;
 
-      // create new scope for widget & controller
-      var templateScope = $scope.$new();
+          // pass copy of widget to scope
+          $scope.widget = angular.copy(w);
 
-      // pass config to templateScope
-      templateScope.config = config;
-
-      // local injections
-      var base = {
-        $scope: templateScope,
-        widget: widget,
-        config: config
-      };
-
-      // get resolve promises from widget
-      var resolvers = {};
-      resolvers['$tpl'] = dashboard.getTemplate(widget);
-      if (widget.resolve){
-        angular.forEach(widget.resolve, function(promise, key){
-          if (angular.isString(promise)){
-            resolvers[key] = $injector.get(promise);
+          // create config object
+          var config = definition.config;
+          if (config) {
+            if (angular.isString(config)) {
+              config = angular.fromJson(config);
+            }
           } else {
-            resolvers[key] = $injector.invoke(promise, promise, base);
+            config = {};
           }
-        });
-      }
 
-      // resolve all resolvers
-      $q.all(resolvers).then(function(locals){
-        angular.extend(locals, base);
-
-        // compile & render template
-        var template = locals['$tpl'];
-        contentEl.html(template);
-        if (widget.controller){
-          var templateCtrl = $controller(widget.controller, locals);
-          contentEl.children().data('$ngControllerController', templateCtrl);
-        }
-        $compile( contentEl.contents() )( templateScope );
-      }, function(reason){
-        // handle promise rejection
-        contentEl.empty();
-        $scope.error = 'Could not resolve all promises';
-        if (reason){
-          $scope.error += ': ' + reason;
-        }
-      });
-    };
-
-    var renderWidget = function ($scope, $element, definition, column, editMode){
-      var type = definition.type;
-      var w = dashboard.widgets[type];
-      if (w){
-        // create a copy
-        var widget = angular.copy(w);
-
-        // pass edit mode
-        $scope.editMode = editMode;
-
-        // pass widget to scope
-        $scope.widget = widget;
-
-        // create config object
-        var config = definition.config;
-        if (config){
-          if (angular.isString(config)){
-            config = angular.fromJson(config);
-          }
+          $scope.config = config;
         } else {
-          config = {};
+          $log.warn('could not find widget ' + type);
         }
-
+      } else {
+        $log.debug('definition not specified, widget was probably removed');
+      }
+    }
+    
+    function postLink($scope, $element, $attr) {
+      var definition = $scope.definition;
+      if (definition) {
         // bind close function
-        $scope.close = function(){
-          if (column){
+        $scope.close = function() {
+          var column = $scope.col;
+          if (column) {
             var index = column.widgets.indexOf(definition);
-            if (index >= 0){
+            if (index >= 0) {
               column.widgets.splice(index, 1);
             }
           }
+          $element.remove();
         };
 
         // bind edit function
-        $scope.edit = function(){
+        $scope.edit = function() {
           var editScope = $scope.$new();
-          editScope.config = config;
+          // editScope.config = config;
 
           var opts = {
             scope: editScope,
-            templateUrl: 'scripts/dashboard/widget-edit.html'            
+            templateUrl: 'scripts/dashboard/widget-edit.html'
           };
 
-          if (widget.edit.controller){
+          var widget = $scope.widget;
+          if (widget.edit.controller) {
             opts.controller = widget.edit.controller;
           }
 
           var instance = $modal.open(opts);
-          editScope.closeDialog = function(){
+          editScope.closeDialog = function() {
             instance.close();
             editScope.$destroy();
-            
-            // recompile widget
-            compileWidget($scope, $element, widget, config);
+            $scope.$broadcast('widgetConfigChanged');
           };
         };
-
-        compileWidget($scope, $element, widget, config);
       } else {
-        $log.warn('could not find widget ' + type);
+        $log.debug('widget not found');
       }
-    };
+    }
 
     return {
       replace: true,
       restrict: 'EA',
-      transclude : false,
+      transclude: false,
       templateUrl: 'scripts/dashboard/widget.html',
       scope: {
         definition: '=',
         col: '=column',
         editMode: '@'
       },
-      link: function ($scope, $element, $attr) {
-        var definition = $scope.definition;
-        if ( definition ){
-          renderWidget($scope, $element, definition, $scope.col, $attr.editMode);
-        } else {
-          $log.debug('definition not specified, widget was probably removed');
-          $element.remove();
-        }
+      compile: function compile($element, $attr, transclude) {
+        return {
+          pre: preLink,
+          post: postLink
+        };
       }
     };
 

@@ -5,7 +5,7 @@
       <h4 class="modal-title">{{widget.title}}</h4>
     </div>
     <div class="modal-body">
-      <ng-include src="widget.edit.templateUrl"></ng-include>
+      <widget-content model="definition" content="widget.edit" />
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>

@@ -27,25 +27,6 @@
 angular.module('dashboard.provider', [])
   .provider('dashboard', function(){
 
-    var getTemplate = function($q, $sce, $http, $templateCache, widget){
-      var deferred = $q.defer();
-
-      if ( widget.template ){
-        deferred.resolve(widget.template);
-      } else if (widget.templateUrl) {
-        var url = $sce.getTrustedResourceUrl(widget.templateUrl);
-        $http.get(url, {cache: $templateCache})
-          .success(function(response){
-            deferred.resolve(response);
-          })
-          .error(function(){
-            deferred.reject('could not load template');
-          });
-      }
-
-      return deferred.promise;
-    };
-
     var widgets = {};
     var structures = {};
     var loadingTemplate = '<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" style="width: 100%"><span class="sr-only">loading ...</span></div></div>';
@@ -65,14 +46,11 @@ angular.module('dashboard.provider', [])
       return this;
     };
 
-    this.$get = function($q, $sce, $http, $templateCache){
+    this.$get = function(){
       return {
         widgets: widgets,
         structures: structures,
-        loadingTemplate: loadingTemplate,
-        getTemplate: function(widget){
-          return getTemplate($q, $sce, $http, $templateCache, widget);
-        }
+        loadingTemplate: loadingTemplate
       };
     };
 
