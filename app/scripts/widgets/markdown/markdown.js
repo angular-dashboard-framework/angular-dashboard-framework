@@ -37,7 +37,8 @@ angular.module('dashboard.widgets.markdown', ['dashboard.provider', 'btford.mark
         },
         templateUrl: 'scripts/widgets/markdown/markdown.html',
         edit: {
-          templateUrl: 'scripts/widgets/markdown/edit.html'
+          templateUrl: 'scripts/widgets/markdown/edit.html',
+          reload: false
         }
       });
   });
