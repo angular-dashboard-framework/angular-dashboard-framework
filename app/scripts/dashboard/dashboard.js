@@ -59,6 +59,7 @@ angular.module('dashboard')
             } else {
               model = angular.copy(structure);
             }
+            model.structure = structureName;
           } else {
             $log.error( 'could not find structure ' + structureName);
           }
@@ -92,10 +93,15 @@ angular.module('dashboard')
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
           var editDashboardScope = $scope.$new();
+          editDashboardScope.structures = dashboard.structures;
           var instance = $modal.open({
             scope: editDashboardScope,
             templateUrl: 'scripts/dashboard/dashboard-edit.html'
           });
+          $scope.changeStructure = function(name, structure){
+            $log.info('change structure to ' + name);
+            // TODO implement structure change
+          };
           editDashboardScope.closeDialog = function(){
             instance.close();
             editDashboardScope.$destroy();
