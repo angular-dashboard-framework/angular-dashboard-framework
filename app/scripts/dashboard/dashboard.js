@@ -63,7 +63,11 @@ angular.module('dashboard')
             $log.error( 'could not find structure ' + structureName);
           }
         } 
+        
         if (model) {
+          if (!model.title){
+            model.title = 'Dashboard';
+          }
           $scope.model = model;
         } else {
           $log.error('could not find or create model');
@@ -83,6 +87,19 @@ angular.module('dashboard')
           if (!$scope.editMode){
             $rootScope.$broadcast('dashboardChanged', name, model);
           }
+        };
+        
+        // edit dashboard settings
+        $scope.editDashboardDialog = function(){
+          var editDashboardScope = $scope.$new();
+          var instance = $modal.open({
+            scope: editDashboardScope,
+            templateUrl: 'scripts/dashboard/dashboard-edit.html'
+          });
+          editDashboardScope.closeDialog = function(){
+            instance.close();
+            editDashboardScope.$destroy();
+          };
         };
 
         // add widget dialog
