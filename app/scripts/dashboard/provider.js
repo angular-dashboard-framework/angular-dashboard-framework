@@ -32,6 +32,11 @@ angular.module('dashboard.provider', [])
     var loadingTemplate = '<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" style="width: 100%"><span class="sr-only">loading ...</span></div></div>';
 
     this.widget = function(name, widget){
+      if ( widget.edit ){
+        var edit = {reload: true};
+        angular.extend(edit, widget.edit);
+        widget.edit = edit;
+      }      
       widgets[name] = widget;
       return this;
     };

@@ -77,8 +77,7 @@ angular.module('dashboard')
         // bind edit function
         $scope.edit = function() {
           var editScope = $scope.$new();
-          // editScope.config = config;
-
+          
           var opts = {
             scope: editScope,
             templateUrl: 'scripts/dashboard/widget-edit.html'
@@ -93,7 +92,11 @@ angular.module('dashboard')
           editScope.closeDialog = function() {
             instance.close();
             editScope.$destroy();
-            $scope.$broadcast('widgetConfigChanged');
+            
+            if (widget.edit.reload){
+              // reload content after edit dialog is closed
+              $scope.$broadcast('widgetConfigChanged');
+            }
           };
         };
       } else {
