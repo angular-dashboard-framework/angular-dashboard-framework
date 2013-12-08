@@ -27,6 +27,41 @@
 angular.module('dashboard')
   .directive('dashboard', function($rootScope, $log, $modal, dashboard){
 
+    function fillStructure(model, widgets, counter){
+      angular.forEach(model.rows, function(row){
+        angular.forEach(row.columns, function(column){
+          if ( counter < widgets.length ){
+            if (!column.widgets){
+              column.widgets = [];
+            }
+            column.widgets.push(widgets[counter++]);
+          }
+        });
+      });
+      return counter;
+    }
+    
+    function readWidgets(model){
+      var widgets = [];
+      angular.forEach(model.rows, function(row){
+        angular.forEach(row.columns, function(column){
+          angular.forEach(column.widgets, function(widget){
+            widgets.push(widget);
+          });
+        });
+      });
+      return widgets;
+    }
+            
+    function changeStructure(model, structure){
+      var widgets = readWidgets(model);
+      model.rows = structure.rows;
+      var counter = 0;
+      while ( counter < widgets.length ){
+        counter = fillStructure(model, widgets, counter);
+      }
+    }
+
     return {
       replace: true,
       restrict: 'EA',
@@ -100,7 +135,7 @@ angular.module('dashboard')
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
-            // TODO implement structure change
+            changeStructure(model, structure);
           };
           editDashboardScope.closeDialog = function(){
             instance.close();
