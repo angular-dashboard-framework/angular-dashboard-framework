@@ -32,6 +32,10 @@ angular.module('dashboard')
       if (definition) {
         var w = dashboard.widgets[definition.type];
         if (w) {
+          // pass title
+          if (!definition.title){
+            definition.title = w.title;
+          }
 
           // pass edit mode
           $scope.editMode = $attr.editMode;
