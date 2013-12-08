@@ -88,7 +88,7 @@ angular.module('dashboard')
           };
 
           var widget = $scope.widget;
-          if (widget.edit.controller) {
+          if (widget.edit && widget.edit.controller) {
             opts.controller = widget.edit.controller;
           }
 
@@ -97,7 +97,7 @@ angular.module('dashboard')
             instance.close();
             editScope.$destroy();
             
-            if (widget.edit.reload){
+            if (widget.edit && widget.edit.reload){
               // reload content after edit dialog is closed
               $scope.$broadcast('widgetConfigChanged');
             }
