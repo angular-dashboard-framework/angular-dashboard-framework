@@ -36,7 +36,7 @@ angular.module('dashboard.provider', [])
         var edit = {reload: true};
         angular.extend(edit, widget.edit);
         widget.edit = edit;
-      }      
+      }
       widgets[name] = widget;
       return this;
     };

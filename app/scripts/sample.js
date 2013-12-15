@@ -26,7 +26,8 @@
 
 angular.module('sample', [
     'dashboard', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
-    'dashboard.widgets.weather', 'dashboard.widgets.markdown', 'LocalStorageModule'
+    'dashboard.widgets.weather', 'dashboard.widgets.markdown', 
+    'dashboard.widgets.linklist', 'LocalStorageModule'
   ])
   .value('prefix', '')
   .config(function(dashboardProvider){
