@@ -27,38 +27,40 @@
 angular.module('dashboard')
   .directive('dashboard', function($rootScope, $log, $modal, dashboard){
 
-    function fillStructure(model, widgets, counter){
+    function fillStructure(model, columns, counter){
       angular.forEach(model.rows, function(row){
         angular.forEach(row.columns, function(column){
-          if ( counter < widgets.length ){
+          if ( counter < columns.length ){
             if (!column.widgets){
               column.widgets = [];
             }
-            column.widgets.push(widgets[counter++]);
+            angular.forEach(columns[counter].widgets, function(widget){
+              column.widgets.push(widget);
+            });
+            counter++;
           }
         });
       });
       return counter;
     }
     
-    function readWidgets(model){
-      var widgets = [];
+    function readColumns(model){
+      var columns = [];
       angular.forEach(model.rows, function(row){
-        angular.forEach(row.columns, function(column){
-          angular.forEach(column.widgets, function(widget){
-            widgets.push(widget);
-          });
+        angular.forEach(row.columns, function(col){
+          columns.push(col);
         });
       });
-      return widgets;
+      return columns;
     }
             
     function changeStructure(model, structure){
-      var widgets = readWidgets(model);
+      var columns = readColumns(model);
+      console.log(columns);
       model.rows = structure.rows;
       var counter = 0;
-      while ( counter < widgets.length ){
-        counter = fillStructure(model, widgets, counter);
+      while ( counter < columns.length ){
+        counter = fillStructure(model, columns, counter);
       }
     }
 
