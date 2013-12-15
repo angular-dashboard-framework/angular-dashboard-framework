@@ -29,6 +29,7 @@ angular.module('dashboard.provider', [])
 
     var widgets = {};
     var structures = {};
+    var messageTemplate = '<div class="alert alert-danger">{}</div>';
     var loadingTemplate = '\
       <div class="progress progress-striped active">\n\
         <div class="progress-bar" role="progressbar" style="width: 100%">\n\
@@ -50,6 +51,10 @@ angular.module('dashboard.provider', [])
       structures[name] = structure;
       return this;
     };
+    
+    this.messageTemplate = function(template){
+      messageTemplate = template;
+    };
 
     this.loadingTemplate = function(template){
       loadingTemplate = template;
@@ -60,6 +65,7 @@ angular.module('dashboard.provider', [])
       return {
         widgets: widgets,
         structures: structures,
+        messageTemplate: messageTemplate,
         loadingTemplate: loadingTemplate
       };
     };

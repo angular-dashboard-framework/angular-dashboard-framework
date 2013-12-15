@@ -102,7 +102,7 @@ angular.module('dashboard')
           msg += ': ' + reason;
         }
         $log.warn(msg);
-        $element.html('<div class="alert alert-danger">' + msg + '</div>');
+        $element.html(dashboard.messageTemplate.replace(/{}/g, msg));
       });
     }
 

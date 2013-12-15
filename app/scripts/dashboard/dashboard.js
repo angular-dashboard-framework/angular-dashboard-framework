@@ -56,7 +56,6 @@ angular.module('dashboard')
             
     function changeStructure(model, structure){
       var columns = readColumns(model);
-      console.log(columns);
       model.rows = structure.rows;
       var counter = 0;
       while ( counter < columns.length ){
