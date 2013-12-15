@@ -29,7 +29,12 @@ angular.module('dashboard.provider', [])
 
     var widgets = {};
     var structures = {};
-    var loadingTemplate = '<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" style="width: 100%"><span class="sr-only">loading ...</span></div></div>';
+    var loadingTemplate = '\
+      <div class="progress progress-striped active">\n\
+        <div class="progress-bar" role="progressbar" style="width: 100%">\n\
+          <span class="sr-only">loading ...</span>\n\
+        </div>\n\
+      </div>';
 
     this.widget = function(name, widget){
       if ( widget.edit ){
