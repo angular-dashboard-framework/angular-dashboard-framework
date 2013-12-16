@@ -24,7 +24,7 @@
 
 'use strict';
 
-angular.module('dashboard.widgets.markdown', ['dashboard.provider', 'btford.markdown'])
+angular.module('dashboard.widgets.markdown', ['adf.provider', 'btford.markdown'])
   .config(function(dashboardProvider){
     dashboardProvider
       .widget('markdown', {

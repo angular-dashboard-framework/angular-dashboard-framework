@@ -24,7 +24,7 @@
 
 'use strict';
 
-angular.module('dashboard')
+angular.module('adf')
   .directive('widgetContent', function($log, $q, $sce, $http, $templateCache, $compile, $controller, $injector, dashboard) {
 
     function getTemplate(widget){

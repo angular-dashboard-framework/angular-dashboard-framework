@@ -31,7 +31,7 @@
  * 
  * The dashboardProvider can be used to register structures and widgets.
  */
-angular.module('dashboard.provider', [])
+angular.module('adf.provider', [])
   .provider('dashboard', function(){
 
     var widgets = {};

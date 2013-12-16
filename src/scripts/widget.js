@@ -24,7 +24,7 @@
 
 'use strict';
 
-angular.module('dashboard')
+angular.module('adf')
   .directive('widget', function($log, $modal, dashboard) {
 
     function preLink($scope, $element, $attr){

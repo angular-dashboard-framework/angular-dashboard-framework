@@ -36,7 +36,7 @@
 
 'use strict';
 
-angular.module('dashboard')
+angular.module('adf')
   .directive('dashboard', function($rootScope, $log, $modal, dashboard){
 
     function fillStructure(model, columns, counter){

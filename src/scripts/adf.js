@@ -24,4 +24,4 @@
 
 'use strict';
 
-angular.module('dashboard', ['dashboard.provider', 'ui.bootstrap', 'ui.sortable']);
+angular.module('adf', ['adf.provider', 'ui.bootstrap', 'ui.sortable']);

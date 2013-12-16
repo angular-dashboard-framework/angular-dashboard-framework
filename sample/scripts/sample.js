@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('sample', [
-    'dashboard', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
+    'adf', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
     'dashboard.widgets.weather', 'dashboard.widgets.markdown', 
     'dashboard.widgets.linklist', 'LocalStorageModule'
   ])
