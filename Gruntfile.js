@@ -28,12 +28,11 @@
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     dirs: {
-      src: 'app/scripts/dashboard'
+      src: 'src/scripts'
     },
     ngtemplates: {
       dashboard: {
-        cwd: 'app',
-        src: 'scripts/dashboard/*.html',
+        src: 'src/templates/*.html',
         dest: 'build/templates.js',
         options: {
           htmlmin: {
@@ -49,7 +48,7 @@
         src: [
           '<%= dirs.src %>/sortable.js', 
           '<%= dirs.src %>/provider.js', 
-          'app/scripts/app.js',
+          '<%= dirs.src %>/adf.js',
           '<%= dirs.src %>/dashboard.js', 
           '<%= dirs.src %>/widget-content.js',
           '<%= dirs.src %>/widget.js',
@@ -77,7 +76,7 @@
     },
     cssmin: {
       minify: {
-        src: 'app/styles/main.css',
+        src: 'src/styles/main.css',
         dest: 'dist/<%= pkg.name %>.min.css'
       },
     },
@@ -88,7 +87,7 @@
         html5Mode: false
       },
       api: {
-        src: ['app/scripts/dashboard/*.js'],
+        src: ['src/scripts/*.js'],
         title: 'API Documentation'
       }
     }
