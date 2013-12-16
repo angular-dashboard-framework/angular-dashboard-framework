@@ -25,9 +25,9 @@
 'use strict';
 
 angular.module('sample', [
-    'adf', 'dashboard.widgets.news', 'dashboard.widgets.randommsg',
-    'dashboard.widgets.weather', 'dashboard.widgets.markdown', 
-    'dashboard.widgets.linklist', 'LocalStorageModule'
+    'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
+    'sample.widgets.weather', 'sample.widgets.markdown', 
+    'sample.widgets.linklist', 'LocalStorageModule'
   ])
   .value('prefix', '')
   .config(function(dashboardProvider){

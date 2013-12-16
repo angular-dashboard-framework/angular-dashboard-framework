@@ -24,7 +24,7 @@
 
 'use strict';
 
-angular.module('dashboard.widgets.news', ['adf.provider'])
+angular.module('sample.widgets.news', ['adf.provider'])
   .value('newsServiceUrl', 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=JSON_CALLBACK&q=')
   .config(function(dashboardProvider){
     dashboardProvider
