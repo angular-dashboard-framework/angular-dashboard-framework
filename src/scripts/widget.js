@@ -84,7 +84,7 @@ angular.module('dashboard')
           
           var opts = {
             scope: editScope,
-            templateUrl: 'scripts/dashboard/widget-edit.html'
+            templateUrl: '../src/templates/widget-edit.html'
           };
 
           var widget = $scope.widget;
@@ -112,7 +112,7 @@ angular.module('dashboard')
       replace: true,
       restrict: 'EA',
       transclude: false,
-      templateUrl: 'scripts/dashboard/widget.html',
+      templateUrl: '../src/templates/widget.html',
       scope: {
         definition: '=',
         col: '=column',

@@ -144,7 +144,7 @@ angular.module('dashboard')
           editDashboardScope.structures = dashboard.structures;
           var instance = $modal.open({
             scope: editDashboardScope,
-            templateUrl: 'scripts/dashboard/dashboard-edit.html'
+            templateUrl: '../src/templates/dashboard-edit.html'
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
@@ -162,7 +162,7 @@ angular.module('dashboard')
           addScope.widgets = dashboard.widgets;
           var opts = {
             scope: addScope,
-            templateUrl: 'scripts/dashboard/widget-add.html'
+            templateUrl: '../src/templates/widget-add.html'
           };
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
@@ -186,6 +186,6 @@ angular.module('dashboard')
         $scope.name = $attr.name;
         $scope.structure = $attr.structure;
       },
-      templateUrl: 'scripts/dashboard/dashboard.html'
+      templateUrl: '../src/templates/dashboard.html'
     };
   });
