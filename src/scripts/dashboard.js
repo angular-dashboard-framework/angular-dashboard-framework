@@ -37,7 +37,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('dashboard', function($rootScope, $log, $modal, dashboard){
+  .directive('adfDashboard', function($rootScope, $log, $modal, dashboard){
 
     function fillStructure(model, columns, counter){
       angular.forEach(model.rows, function(row){
