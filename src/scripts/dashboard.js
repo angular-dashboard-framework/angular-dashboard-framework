@@ -42,10 +42,10 @@ angular.module('adf')
     function fillStructure(model, columns, counter){
       angular.forEach(model.rows, function(row){
         angular.forEach(row.columns, function(column){
+          if (!column.widgets){
+            column.widgets = [];
+          }
           if ( counter < columns.length ){
-            if (!column.widgets){
-              column.widgets = [];
-            }
             angular.forEach(columns[counter].widgets, function(widget){
               column.widgets.push(widget);
             });
