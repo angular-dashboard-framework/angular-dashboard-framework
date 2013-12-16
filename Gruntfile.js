@@ -79,6 +79,17 @@
       minify: {
         src: 'app/styles/main.css',
         dest: 'dist/<%= pkg.name %>.min.css'
+      },
+    },
+    ngdocs: {
+      options: {
+        title: 'angular-dashboard-framework',
+        dest: 'dist/docs',
+        html5Mode: false
+      },
+      api: {
+        src: ['app/scripts/dashboard/*.js'],
+        title: 'API Documentation'
       }
     }
   });
@@ -104,6 +115,9 @@
   // clean 
   grunt.loadNpmTasks('grunt-contrib-clean');
 
+  // docular
+  grunt.loadNpmTasks('grunt-ngdocs');
+
   // Default task(s).
-  grunt.registerTask('default', ['ngtemplates', 'concat', 'ngmin', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['ngtemplates', 'concat', 'ngmin', 'uglify', 'cssmin', 'ngdocs']);
 };

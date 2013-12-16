@@ -22,6 +22,18 @@
  * SOFTWARE.
  */
 
+/**
+ * @ngdoc directive
+ * @name adf.directive:adfDashboard
+ * @element div
+ * @restrict ECA
+ * @scope
+ * @description
+ * 
+ * Directive which renders the dashboard.
+ */
+
+
 'use strict';
 
 angular.module('dashboard')

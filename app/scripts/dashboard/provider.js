@@ -24,6 +24,13 @@
 
 'use strict';
 
+/**
+ * @ngdoc object
+ * @name adf.dashboardProvider
+ * @description
+ * 
+ * The dashboardProvider can be used to register structures and widgets.
+ */
 angular.module('dashboard.provider', [])
   .provider('dashboard', function(){
 
@@ -37,6 +44,49 @@ angular.module('dashboard.provider', [])
         </div>\n\
       </div>';
 
+   /**
+    * @ngdoc method
+    * @name adf.dashboardProvider#widget
+    * @methodOf adf.dashboardProvider
+    * @description
+    * 
+    * Registeres a new widget.
+    *
+    * @param {string} name of the widget
+    * @param {object} widget to be registered.
+    *
+    *   Object properties:
+    *
+    *   - `title` - `{string=}` - The title of the widget.
+    *   - `controller` - `{string=|function()=}` - Controller fn that should be 
+    *      associated with newly created scope of the widget or the name of a 
+    *      {@link http://docs.angularjs.org/api/angular.Module#controller registered controller} 
+    *      if passed as a string.
+    *   - `template` - `{string=|function()=}` - html template as a string.
+    *   - `templateUrl` - `{string=}` - path to an html template.
+    *   - `resolve` - `{Object.<string, function>=}` - An optional map of dependencies which should
+    *      be injected into the controller. If any of these dependencies are promises, the widget 
+    *      will wait for them all to be resolved or one to be rejected before the controller is
+    *      instantiated.
+    *      If all the promises are resolved successfully, the values of the resolved promises are
+    *      injected.
+    *
+    *      The map object is:
+    *      - `key` – `{string}`: a name of a dependency to be injected into the controller.
+    *      - `factory` - `{string|function}`: If `string` then it is an alias for a service.
+    *        Otherwise if function, then it is {@link http://docs.angularjs.org/api/AUTO.$injector#invoke injected}
+    *        and the return value is treated as the dependency. If the result is a promise, it is
+    *        resolved before its value is injected into the controller.
+    *   - `edit` - `{object}` - Edit modus of the widget.
+    *      - `controller` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
+    *      - `template` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
+    *      - `templateUrl` - `{string=}` - Same as above, but for the edit mode of the widget.
+    *      - `resolve` - `{Object.<string, function>=}` - Same as above, but for the edit mode of the widget.
+    *      - `reload` - {boolean} - true if the widget should be reloaded, after the edit mode is closed. 
+    *        Default is true.
+    *
+    * @returns {Object} self
+    */
     this.widget = function(name, widget){
       if ( widget.edit ){
         var edit = {reload: true};
@@ -47,6 +97,21 @@ angular.module('dashboard.provider', [])
       return this;
     };
 
+   /**
+    * @ngdoc method
+    * @name adf.dashboardProvider#widget
+    * @methodOf adf.dashboardProvider
+    * @description
+    * 
+    * Registeres a new structure.
+    *
+    * @param {string} name of the structure
+    * @param {object} structure to be registered.
+    *
+    *   Object properties:
+    *   - 
+    * 
+    */
     this.structure = function(name, structure){
       structures[name] = structure;
       return this;
@@ -61,6 +126,13 @@ angular.module('dashboard.provider', [])
       return this;
     };
 
+   /**
+    * @ngdoc object
+    * @name adf.dashboard
+    * @description
+    * 
+    * The dashboard holds all structures and widgets.
+    */
     this.$get = function(){
       return {
         widgets: widgets,
