@@ -158,7 +158,10 @@
       sample: {
         html: ['dist/sample/index.html']
       }
-    }
+    },
+    clean: [
+      '.tmp', 'dist'
+    ]
   });
 
   // jshint
