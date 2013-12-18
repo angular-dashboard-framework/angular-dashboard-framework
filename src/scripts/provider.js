@@ -99,7 +99,7 @@ angular.module('adf.provider', [])
 
    /**
     * @ngdoc method
-    * @name adf.dashboardProvider#widget
+    * @name adf.dashboardProvider#structure
     * @methodOf adf.dashboardProvider
     * @description
     * 
@@ -109,18 +109,48 @@ angular.module('adf.provider', [])
     * @param {object} structure to be registered.
     *
     *   Object properties:
-    *   - 
+    *
+    *   - `rows` - `{Array.<Object>}` - Rows of the dashboard structure.
+    *     - `class` - `{string}` - CSS Class of the row.
+    *     - `columns` - `{Array.<Object>}` - Columns of the row.
+    *       - `class` - `{string}` - CSS Class of the column.
     * 
+    * @returns {Object} self
     */
     this.structure = function(name, structure){
       structures[name] = structure;
       return this;
     };
     
+   /**
+    * @ngdoc method
+    * @name adf.dashboardProvider#messageTemplate
+    * @methodOf adf.dashboardProvider
+    * @description
+    * 
+    * Changes the template for messages.
+    *
+    * @param {string} template for messages.
+    * 
+    * @returns {Object} self
+    */
     this.messageTemplate = function(template){
       messageTemplate = template;
     };
 
+   /**
+    * @ngdoc method
+    * @name adf.dashboardProvider#loadingTemplate
+    * @methodOf adf.dashboardProvider
+    * @description
+    * 
+    * Changes the template which is displayed as 
+    * long as the widget resources are not resolved.
+    *
+    * @param {string} loading template
+    * 
+    * @returns {Object} self
+    */
     this.loadingTemplate = function(template){
       loadingTemplate = template;
       return this;
@@ -132,6 +162,8 @@ angular.module('adf.provider', [])
     * @description
     * 
     * The dashboard holds all structures and widgets.
+    *
+    * @returns {Object} self
     */
     this.$get = function(){
       return {
