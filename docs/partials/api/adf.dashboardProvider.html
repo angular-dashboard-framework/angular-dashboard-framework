@@ -1,0 +1,67 @@
+<h1><code ng:non-bindable="">dashboardProvider</code>
+<span class="hint">(service in module <code ng:non-bindable="">adf</code>
+)</span>
+</h1>
+<div><h2 id="Description">Description</h2>
+<div class="description"><p>The dashboardProvider can be used to register structures and widgets.</p></div>
+<div class="member method"><h2 id="Methods">Methods</h2>
+<ul class="methods"><li><h3 id="widget">widget(name, widget)</h3>
+<div class="widget"><p>Registeres a new widget.</p><h4 id="Parameters">Parameters</h4>
+<ul class="parameters"><li><code ng:non-bindable="">name – {string} – </code>
+<p>of the widget</p></li>
+<li><code ng:non-bindable="">widget – {object} – </code>
+<p>to be registered.</p>
+
+<p>Object properties:</p>
+
+<ul>
+<li><code>title</code> - <code>{string=}</code> - The title of the widget.</li>
+<li><code>controller</code> - <code>{string=|function()=}</code> - Controller fn that should be 
+ associated with newly created scope of the widget or the name of a 
+ <a href="http://docs.angularjs.org/api/angular.Module#controller">registered controller</a> 
+ if passed as a string.</li>
+<li><code>template</code> - <code>{string=|function()=}</code> - html template as a string.</li>
+<li><code>templateUrl</code> - <code>{string=}</code> - path to an html template.</li>
+<li><p><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - An optional map of dependencies which should
+ be injected into the controller. If any of these dependencies are promises, the widget 
+ will wait for them all to be resolved or one to be rejected before the controller is
+ instantiated.
+ If all the promises are resolved successfully, the values of the resolved promises are
+ injected.</p>
+
+<p>The map object is:</p>
+
+<ul><li><code>key</code> – <code>{string}</code>: a name of a dependency to be injected into the controller.</li>
+<li><code>factory</code> - <code>{string|function}</code>: If <code>string</code> then it is an alias for a service.
+Otherwise if function, then it is <a href="http://docs.angularjs.org/api/AUTO.$injector#invoke">injected</a>
+and the return value is treated as the dependency. If the result is a promise, it is
+resolved before its value is injected into the controller.</li></ul></li>
+<li><code>edit</code> - <code>{object}</code> - Edit modus of the widget.
+<ul><li><code>controller</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
+<li><code>template</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
+<li><code>templateUrl</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
+<li><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - Same as above, but for the edit mode of the widget.</li>
+<li><code>reload</code> - {boolean} - true if the widget should be reloaded, after the edit mode is closed. 
+Default is true.</li></ul></li>
+</ul></li>
+</ul>
+<h4 id="Returns">Returns</h4>
+<div class="returns"><code ng:non-bindable="">{Object}</code>
+– <p>self</p></div>
+</div>
+</li>
+<li><h3 id="widget">widget(name, structure)</h3>
+<div class="widget"><p>Registeres a new structure.</p><h4 id="Parameters">Parameters</h4>
+<ul class="parameters"><li><code ng:non-bindable="">name – {string} – </code>
+<p>of the structure</p></li>
+<li><code ng:non-bindable="">structure – {object} – </code>
+<p>to be registered.</p>
+
+<p>Object properties:
+  - </p></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
