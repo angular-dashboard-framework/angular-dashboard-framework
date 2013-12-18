@@ -167,6 +167,14 @@
         html: ['dist/sample/index.html']
       }
     },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          keepalive: true
+        }
+      }
+    },
     clean: [
       '.tmp', 'dist'
     ]
@@ -207,6 +215,9 @@
 
   // filerev
   grunt.loadNpmTasks('grunt-filerev');
+
+  // connect
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task(s).
   grunt.registerTask('default', [

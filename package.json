@@ -15,6 +15,7 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-usemin": "~2.0.1",
     "grunt-google-cdn": "~0.2.2",
-    "grunt-filerev": "~0.2.0"
+    "grunt-filerev": "~0.2.0",
+    "grunt-contrib-connect": "~0.5.0"
   }
 }
