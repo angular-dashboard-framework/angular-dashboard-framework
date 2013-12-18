@@ -154,6 +154,14 @@
     usemin: {
       html: 'dist/sample/index.html'
     },
+    filerev: {
+      js: {
+        src: ['dist/sample/js/*.js']
+      },
+      css: {
+        src: ['dist/sample/css/*.css']
+      },
+    },
     cdnify: {
       sample: {
         html: ['dist/sample/index.html']
@@ -197,6 +205,9 @@
   // cdnify
   grunt.loadNpmTasks('grunt-google-cdn');
 
+  // filerev
+  grunt.loadNpmTasks('grunt-filerev');
+
   // Default task(s).
   grunt.registerTask('default', [
     'ngtemplates:adf', 
@@ -214,13 +225,14 @@
   grunt.registerTask('sample', [
     'useminPrepare', 
     'copy:sample', 
-    'usemin', 
     'concat:generated',
     'ngtemplates',
     'concat:sample',
     'cssmin:sample', 
     'ngmin:sample', 
     'uglify:sample',
+    'filerev',
+    'usemin',
     'cdnify:sample'
   ]);
 

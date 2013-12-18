@@ -14,6 +14,7 @@
     "grunt-ngdocs": "~0.1.7",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-usemin": "~2.0.1",
-    "grunt-google-cdn": "~0.2.2"
+    "grunt-google-cdn": "~0.2.2",
+    "grunt-filerev": "~0.2.0"
   }
 }
