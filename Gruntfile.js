@@ -31,9 +31,22 @@
       src: 'src/scripts'
     },
     ngtemplates: {
-      dashboard: {
+      adf: {
         src: 'src/templates/*.html',
-        dest: 'build/templates.js',
+        dest: '.tmp/ngtemplates/templates.js',
+        options: {
+          htmlmin: {
+            collapseWhitespace: true, 
+            collapseBooleanAttributes: true,
+            removeComments: true
+          },
+          prefix: '..'
+        }
+      },
+      sample: {
+        cwd: 'sample',
+        src: 'scripts/widgets/*/*.html',
+        dest: '.tmp/ngtemplates/widget.templates.js',
         options: {
           htmlmin: {
             collapseWhitespace: true, 
@@ -44,7 +57,7 @@
       }
     },
     concat: {
-      dist: {
+      default: {
         src: [
           '<%= dirs.src %>/sortable.js', 
           '<%= dirs.src %>/provider.js', 
@@ -52,33 +65,60 @@
           '<%= dirs.src %>/dashboard.js', 
           '<%= dirs.src %>/widget-content.js',
           '<%= dirs.src %>/widget.js',
-          'build/templates.js'
+          '.tmp/ngtemplates/templates.js'
         ],
-        dest: 'build/concat.js'
+        dest: '.tmp/concat/adf.js'
+      },
+      sample: {
+        src: ['.tmp/concat/js/sample.min.js', '.tmp/ngtemplates/templates.js', '.tmp/ngtemplates/widget.templates.js'],
+        dest: '.tmp/concat/js/complete.min.js'
       }
     },
     ngmin: {
-      directives: {
+      default: {
         expand: true,
-        cwd: 'build',
-        src: 'concat.js',
-        dest: 'build/ngmin'
+        cwd: '.tmp/concat',
+        src: 'adf.js',
+        dest: '.tmp/ngmin'
+      },
+      sample: {
+        expand: true,
+        cwd: '.tmp/concat/js/',
+        src: 'complete.min.js',
+        dest: '.tmp/ngmin'
       }
     },
     uglify: {
-      options: {
-        banner: '/*! <%= pkg.name %> <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>) */\n'
+      default: {
+        options: {
+          banner: '/*! <%= pkg.name %> <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>) */\n'
+        },
+        files: {
+          'dist/<%= pkg.name %>.min.js': ['.tmp/ngmin/adf.js']
+        }
       },
-      build: {
-        src: 'build/ngmin/concat.js',
-        dest: 'dist/<%= pkg.name %>.min.js'
+      sample: {
+        options: {
+          banner: '/*! <%= pkg.name %> <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd") %>) */\n',
+          mangle: false
+        },
+        files: {
+          'dist/sample/js/sample.min.js': ['.tmp/ngmin/complete.min.js'],
+          'dist/sample/js/jquery.ui.sortable.min.js': ['.tmp/concat/js/jquery.ui.sortable.min.js']
+        }        
       }
     },
     cssmin: {
-      minify: {
-        src: 'src/styles/main.css',
-        dest: 'dist/<%= pkg.name %>.min.css'
+      default: {
+        files: {
+          'dist/<%= pkg.name %>.min.css': ['src/styles/main.css']
+        }
       },
+      sample: {
+        files: {
+          'dist/sample/css/sample.min.css': ['.tmp/concat/css/sample.min.css']
+        }        
+      }
     },
     ngdocs: {
       options: {
@@ -89,6 +129,34 @@
       api: {
         src: ['src/scripts/*.js'],
         title: 'API Documentation'
+      }
+    },
+    copy: {
+      sample: {
+        files: [{
+          src: 'sample/index.html',
+          dest: 'dist/sample/index.html'            
+        },{
+          src: 'sample/components/angular/angular.min.js',
+          dest: 'dist/sample/js/angular.min.js'
+        },{
+          src: 'sample/components/jquery/jquery.min.js',
+          dest: 'dist/sample/js/jquery.min.js'
+        }]
+      }
+    },
+    useminPrepare: {
+      html: 'sample/index.html',
+      options: {
+        dirs: ['dist/sample']
+      }
+    },
+    usemin: {
+      html: 'dist/sample/index.html'
+    },
+    cdnify: {
+      sample: {
+        html: ['dist/sample/index.html']
       }
     }
   });
@@ -114,9 +182,45 @@
   // clean 
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  // docular
+  // ngdoc
   grunt.loadNpmTasks('grunt-ngdocs');
+  
+  // copy
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  
+  // usemin
+  grunt.loadNpmTasks('grunt-usemin');
+  
+  // cdnify
+  grunt.loadNpmTasks('grunt-google-cdn');
 
   // Default task(s).
-  grunt.registerTask('default', ['ngtemplates', 'concat', 'ngmin', 'uglify', 'cssmin', 'ngdocs']);
+  grunt.registerTask('default', [
+    'ngtemplates:adf', 
+    'concat:default', 
+    'ngmin:default', 
+    'uglify:default', 
+    'cssmin:default', 
+    'ngdocs'
+  ]);
+
+  // gocs task
+  grunt.registerTask('docs', ['ngdocs']);
+  
+  // sample task
+  grunt.registerTask('sample', [
+    'useminPrepare', 
+    'copy:sample', 
+    'usemin', 
+    'concat:generated',
+    'ngtemplates',
+    'concat:sample',
+    'cssmin:sample', 
+    'ngmin:sample', 
+    'uglify:sample',
+    'cdnify:sample'
+  ]);
+
+  // all task
+  grunt.registerTask('all', ['default', 'docs', 'sample']);
 };

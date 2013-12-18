@@ -29,16 +29,16 @@ angular.module('sample.widgets.markdown', ['adf.provider', 'btford.markdown'])
     dashboardProvider
       .widget('markdown', {
         title: 'Markdown',
-        controller: function($scope, config){
-          if (!config.content){
-            config.content = '';
-          }
-          $scope.config = config;
-        },
+        controller: 'markdownCtrl',
         templateUrl: 'scripts/widgets/markdown/markdown.html',
         edit: {
           templateUrl: 'scripts/widgets/markdown/edit.html',
           reload: false
         }
       });
+  }).controller('markdownCtrl', function($scope, config){
+    if (!config.content){
+      config.content = '';
+    }
+    $scope.config = config;
   });
