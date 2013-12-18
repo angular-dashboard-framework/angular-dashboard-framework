@@ -1,18 +1,18 @@
 /*
  * The MIT License
- * 
+ *
  * Copyright (c) 2013, Sebastian Sdorra
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,83 +21,139 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
 'use strict';
 
 angular.module('sample', [
-    'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
-    'sample.widgets.weather', 'sample.widgets.markdown', 
-    'sample.widgets.linklist', 'LocalStorageModule'
-  ])
-  .value('prefix', '')
-  .config(function(dashboardProvider){
-
-    dashboardProvider
-      .structure('6-6', {
-        rows: [{
-          columns: [{
-            class: 'col-md-6'
-          },{
-            class: 'col-md-6'
-          }]
+  'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
+  'sample.widgets.weather', 'sample.widgets.markdown',
+  'sample.widgets.linklist', 'LocalStorageModule'
+])
+.value('prefix', '')
+.config(function (dashboardProvider) {
+  dashboardProvider
+    .structure('6-6', {
+      rows: [{
+        columns: [{
+          class: 'col-md-6'
+        }, {
+          class: 'col-md-6'
         }]
-      })
-      .structure('4-8', {
-        rows: [{
-          columns: [{
-            class: 'col-md-4',
-            widgets: []
-          },{
-            class: 'col-md-8',
-            widgets: []
-          }]
+      }]
+    })
+    .structure('4-8', {
+      rows: [{
+        columns: [{
+          class: 'col-md-4',
+          widgets: []
+        }, {
+          class: 'col-md-8',
+          widgets: []
         }]
-      })
-      .structure('12/4-4-4', {
-        rows: [{
-          columns: [{
-            class: 'col-md-12'
-          }]
-        },{
-          columns: [{
-            class: 'col-md-4'
-          },{
-            class: 'col-md-4'
-          },{
-            class: 'col-md-4'
-          }]
+      }]
+    })
+    .structure('12/4-4-4', {
+      rows: [{
+        columns: [{
+          class: 'col-md-12'
         }]
-      })
-      .structure('12/6-6/12', {
-        rows: [{
-          columns: [{
-            class: 'col-md-12'
-          }]
-        },{
-          columns: [{
-            class: 'col-md-6'
-          },{
-            class: 'col-md-6'
-          }]
-        },{
-          columns: [{
-            class: 'col-md-12'
-          }]
+      }, {
+        columns: [{
+          class: 'col-md-4'
+        }, {
+          class: 'col-md-4'
+        }, {
+          class: 'col-md-4'
         }]
-      });
-
-  })
-  .controller('dashboardCtrl', function($scope, localStorageService){
-    var name = 'default';
-    
-    var dashboard = localStorageService.get(name);
-    if (!dashboard){
-      dashboard = {};
-    }
-    $scope.name = name;
-    $scope.widgets = dashboard;
-    
-    $scope.$on('dashboardChanged', function(event, name, model){
-      localStorageService.set(name, model);
+      }]
+    })
+    .structure('12/6-6/12', {
+      rows: [{
+        columns: [{
+          class: 'col-md-12'
+        }]
+      }, {
+        columns: [{
+          class: 'col-md-6'
+        }, {
+          class: 'col-md-6'
+        }]
+      }, {
+        columns: [{
+          class: 'col-md-12'
+        }]
+      }]
     });
+
+})
+.controller('dashboardCtrl', function ($scope, localStorageService) {
+  var name = 'default';
+  var model = localStorageService.get(name);
+  if (!model) {
+    // set default model for demo purposes
+    model = {
+      title: "Dashboard",
+      structure: "4-8",
+      rows: [{
+        columns: [{
+          class: "col-md-4",
+          widgets: [{
+            type: "linklist",
+            config: {
+              links: [{
+                title: "SCM-Manager",
+                href: "http://www.scm-manager.org"
+              }, {
+                title: "Github",
+                href: "https://github.com"
+              }, {
+                title: "Bitbucket",
+                href: "https://bitbucket.org"
+              }, {
+                title: "Stackoverflow",
+                href: "http://stackoverflow.com"
+              }]
+            },
+            title: "Links"
+          }, {
+            type: "weather",
+            config: {
+              location: "Hildesheim"
+            },
+            title: "Weather Hildesheim"
+          }, {
+            type: "weather",
+            config: {
+              location: "Edinburgh"
+            },
+            title: "Weather"
+          }, {
+            type: "weather",
+            config: {
+              location: "Dublin,IE"
+            },
+            title: "Weather"
+          }]
+        }, {
+          class: "col-md-8",
+          widgets: [{
+            type: "randommsg",
+            config: {},
+            title: "Douglas Adams"
+          }, {
+            type: "markdown",
+            config: {
+              content: "![scm-manager logo](https://bitbucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg)\n\nThe easiest way to share and manage your Git, Mercurial and Subversion repositories over http.\n\n* Very easy installation\n* No need to hack configuration files, SCM-Manager is completely configureable from its Web-Interface\n* No Apache and no database installation is required\n* Central user, group and permission management\n* Out of the box support for Git, Mercurial and Subversion\n* Full RESTFul Web Service API (JSON and XML)\n* Rich User Interface\n* Simple Plugin API\n* Useful plugins available ( f.e. Ldap-, ActiveDirectory-, PAM-Authentication)\n* Licensed under the BSD-License"
+            },
+            title: "Markdown"
+          }]
+        }]
+      }]      
+    }
+  }
+  $scope.name = name;
+  $scope.model = model;
+
+  $scope.$on('dashboardChanged', function (event, name, model) {
+    localStorageService.set(name, model);
   });
+});
