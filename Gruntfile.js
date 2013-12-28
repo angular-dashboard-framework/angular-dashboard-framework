@@ -160,7 +160,7 @@
       },
       css: {
         src: ['dist/sample/css/*.css']
-      },
+      }
     },
     cdnify: {
       sample: {
