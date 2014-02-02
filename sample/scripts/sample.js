@@ -153,7 +153,7 @@ angular.module('sample', [
   $scope.name = name;
   $scope.model = model;
 
-  $scope.$on('dashboardChanged', function (event, name, model) {
+  $scope.$on('adfDashboardChanged', function (event, name, model) {
     localStorageService.set(name, model);
   });
 });
