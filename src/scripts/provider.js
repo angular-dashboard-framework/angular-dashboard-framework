@@ -58,6 +58,7 @@ angular.module('adf.provider', [])
     *   Object properties:
     *
     *   - `title` - `{string=}` - The title of the widget.
+    *   - `description` - `{string=}` - Description of the widget.
     *   - `controller` - `{string=|function()=}` - Controller fn that should be 
     *      associated with newly created scope of the widget or the name of a 
     *      {@link http://docs.angularjs.org/api/angular.Module#controller registered controller} 
@@ -136,6 +137,7 @@ angular.module('adf.provider', [])
     */
     this.messageTemplate = function(template){
       messageTemplate = template;
+      return this;
     };
 
    /**

@@ -3,13 +3,18 @@
   <h4 class="modal-title">Add new widget</h4>
 </div>
 <div class="modal-body">
-  <ul>
-    <li ng-repeat="(key, widget) in widgets">
-      <a href="" ng-click="addWidget(key)">
-        {{widget.title}}
-      </a>
-    </li>
-  </ul>
+  <div style="display: inline-block;">
+    <dl class="dl-horizontal" ng-click="addWidget(key)">
+      <dt ng-repeat-start="(key, widget) in widgets">
+        <a href="" ng-click="addWidget(key)">
+          {{widget.title}}
+        </a>      
+      </dt>
+      <dd ng-repeat-end ng-if="widget.description">
+        {{widget.description}}
+      </dd>
+    </dl>
+  </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
