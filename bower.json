@@ -9,7 +9,7 @@
     "json3": "~3.2.4",
     "jquery": "~2.0.3",
     "jquery-ui": "~1.10.3",
-    "bootstrap": "~3.0.3",
+    "bootstrap": "~3.1.0",
     "es5-shim": "~2.0.8",
     "angular-markdown-directive": "~0.1.0"
   },
