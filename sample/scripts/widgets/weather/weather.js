@@ -30,6 +30,7 @@ angular.module('sample.widgets.weather', ['adf.provider'])
     dashboardProvider
       .widget('weather', {
         title: 'Weather',
+        description: 'Display the current temperature of a city',
         templateUrl: 'scripts/widgets/weather/weather.html',
         controller: 'weatherCtrl',
         resolve: {

@@ -30,6 +30,7 @@ angular.module('sample.widgets.news', ['adf.provider'])
     dashboardProvider
       .widget('news', {
         title: 'News',
+        description: 'Displays a RSS/Atom feed',
         templateUrl: 'scripts/widgets/news/news.html',
         controller: 'newsCtrl',
         resolve: {

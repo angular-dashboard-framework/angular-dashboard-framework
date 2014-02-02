@@ -29,6 +29,7 @@ angular.module('sample.widgets.markdown', ['adf.provider', 'btford.markdown'])
     dashboardProvider
       .widget('markdown', {
         title: 'Markdown',
+        description: 'Markdown widget',
         controller: 'markdownCtrl',
         templateUrl: 'scripts/widgets/markdown/markdown.html',
         edit: {

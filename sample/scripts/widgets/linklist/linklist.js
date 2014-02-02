@@ -29,6 +29,7 @@ angular.module('sample.widgets.linklist', ['adf.provider'])
     dashboardProvider
       .widget('linklist', {
         title: 'Links',
+        description: 'Displays a list of links',
         controller: 'linklistCtrl',
         templateUrl: 'scripts/widgets/linklist/linklist.html',
         edit: {
