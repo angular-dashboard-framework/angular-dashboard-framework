@@ -30,7 +30,9 @@
  * @scope
  * @description
  * 
- * Directive which renders the dashboard.
+ * `adfDashboard` is a directive which renders the dashboard with all its 
+ * components. The directive requires a name attribute. The name of the
+ * dashboard can be used to store the model.
  */
 
 
