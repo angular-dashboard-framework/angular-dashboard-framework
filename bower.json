@@ -4,7 +4,7 @@
   "dependencies": {
     "angular": "1.2.12",
     "angular-bootstrap": "~0.9.0",
-    "angular-local-storage": "v0.1",
+    "angular-local-storage": "0.0.1",
     "font-awesome": "~4.0.3",
     "json3": "~3.2.4",
     "jquery": "~2.0.3",

@@ -2,7 +2,7 @@
   "name": "angular-dashboard-framework",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt": "~0.4.2",
+    "grunt": "^0.4.2",
     "grunt-ngmin": "0.0.3",
     "grunt-angular-templates": "~0.4.0",
     "grunt-contrib-concat": "~0.3.0",
