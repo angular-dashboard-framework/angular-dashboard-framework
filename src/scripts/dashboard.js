@@ -76,6 +76,15 @@ angular.module('adf')
         counter = fillStructure(model, columns, counter);
       }
     }
+    
+    function createConfiguration(type){
+      var cfg = {};
+      var config = dashboard.widgets[type].config;
+      if (config){
+        cfg = angular.copy(config);
+      }
+      return cfg;
+    }
 
     return {
       replace: true,
@@ -170,7 +179,7 @@ angular.module('adf')
           addScope.addWidget = function(widget){
             var w = {
               type: widget,
-              config: {}
+              config: createConfiguration(widget)
             };
             addScope.model.rows[0].columns[0].widgets.unshift(w);
             instance.close();
