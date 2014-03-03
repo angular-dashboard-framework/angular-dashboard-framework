@@ -59,6 +59,7 @@ angular.module('adf.provider', [])
     *
     *   - `title` - `{string=}` - The title of the widget.
     *   - `description` - `{string=}` - Description of the widget.
+    *   - `config` - `{object}` - Predefined widget configuration.
     *   - `controller` - `{string=|function()=}` - Controller fn that should be 
     *      associated with newly created scope of the widget or the name of a 
     *      {@link http://docs.angularjs.org/api/angular.Module#controller registered controller} 
