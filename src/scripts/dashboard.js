@@ -41,16 +41,24 @@
 angular.module('adf')
   .directive('adfDashboard', function($rootScope, $log, $modal, dashboard){
 
+    function copyWidgets(source, target){
+      if ( source.widgets && source.widgets.length > 0 ){
+        var w = source.widgets.shift();
+        while (w){
+          target.widgets.push(w);
+          w = source.widgets.shift();
+        }
+      }
+    }
+
     function fillStructure(model, columns, counter){
       angular.forEach(model.rows, function(row){
         angular.forEach(row.columns, function(column){
           if (!column.widgets){
             column.widgets = [];
           }
-          if ( counter < columns.length ){
-            angular.forEach(columns[counter].widgets, function(widget){
-              column.widgets.push(widget);
-            });
+          if ( columns[counter] ){
+            copyWidgets(columns[counter], column);
             counter++;
           }
         });
