@@ -35,6 +35,7 @@ bower install
 Now you are able to build angular-dashboard-framework and the samples:
 
 ```bash
+grunt
 grunt sample
 ```
 
