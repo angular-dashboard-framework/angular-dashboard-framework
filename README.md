@@ -27,19 +27,26 @@ cd angular-dashboard-framework
 Install npm and bower dependencies:
 
 ```bash
-npm grunt-cli --save
 npm install --save
 bower install
 ```
 
-Now you are able to build angular-dashboard-framework and the samples:
+You can start the sample dashboard, by using the connect grunt task:
+
+```bash
+grunt connect
+```
+
+Now you open the sample in your browser at http://localhost:9001/sample
+
+Or you can create a release build of angular-dashboard-framework and the samples:
 
 ```bash
 grunt
 grunt sample
 ```
-
 The sample and the final build of angular-dashboard-framework are now in the dist directory.
+
 
 ## License
 
