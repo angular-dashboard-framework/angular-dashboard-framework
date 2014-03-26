@@ -31,10 +31,10 @@ npm install --save
 bower install
 ```
 
-You can start the sample dashboard, by using the connect grunt task:
+You can start the sample dashboard, by using the server grunt task:
 
 ```bash
-grunt connect
+grunt server
 ```
 
 Now you open the sample in your browser at http://localhost:9001/sample
