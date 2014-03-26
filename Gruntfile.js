@@ -220,7 +220,10 @@
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task(s).
-  grunt.registerTask('default', [
+  grunt.registerTask('default', ['clean', 'default-wo-clean']);
+
+  grunt.registerTask('default-wo-clean', [
+    'clean',
     'ngtemplates:adf', 
     'concat:default', 
     'ngmin:default', 
@@ -230,10 +233,13 @@
   ]);
 
   // gocs task
-  grunt.registerTask('docs', ['ngdocs']);
+  grunt.registerTask('docs', ['clean', 'ngdocs']);
+  grunt.registerTask('docs-wo-clean', ['ngdocs']);
   
   // sample task
-  grunt.registerTask('sample', [
+  grunt.registerTask('sample', ['clean', 'sample-wo-clean']);
+
+  grunt.registerTask('sample-wo-clean', [
     'useminPrepare', 
     'copy:sample', 
     'concat:generated',
@@ -248,5 +254,5 @@
   ]);
 
   // all task
-  grunt.registerTask('all', ['default', 'docs', 'sample']);
+  grunt.registerTask('all', ['clean', 'default-wo-clean', 'docs-wo-clean', 'sample-wo-clean']);
 };
