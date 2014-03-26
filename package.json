@@ -13,9 +13,10 @@
     "grunt-contrib-clean": "~0.5.0",
     "grunt-ngdocs": "~0.1.7",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-usemin": "~2.0.1",
+    "grunt-usemin": "~2.1.0",
     "grunt-google-cdn": "~0.2.2",
     "grunt-filerev": "~0.2.0",
-    "grunt-contrib-connect": "~0.5.0"
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1"
   }
 }

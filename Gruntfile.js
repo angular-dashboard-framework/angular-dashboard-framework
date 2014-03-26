@@ -171,8 +171,22 @@
       server: {
         options: {
           port: 9001,
-          keepalive: true
+          livereload: true
         }
+      }
+    },
+    watch: {
+      scripts: {
+        files: [
+          'src/**.js', 
+          'src/**.html', 
+          'src/**.css',
+          'sample/**.js',
+          'sample/**.html'
+        ]
+      },
+      options: {
+        livereload: true
       }
     },
     clean: [
@@ -219,6 +233,9 @@
   // connect
   grunt.loadNpmTasks('grunt-contrib-connect');
 
+  // watch
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
   // Default task(s).
   grunt.registerTask('default', ['clean', 'default-wo-clean']);
 
@@ -241,7 +258,7 @@
 
   grunt.registerTask('sample-wo-clean', [
     'useminPrepare', 
-    'copy:sample', 
+    'copy:sample',
     'concat:generated',
     'ngtemplates',
     'concat:sample',
@@ -252,6 +269,9 @@
     'usemin',
     'cdnify:sample'
   ]);
+
+  // server task
+  grunt.registerTask('server', ['connect', 'watch']);
 
   // all task
   grunt.registerTask('all', ['clean', 'default-wo-clean', 'docs-wo-clean', 'sample-wo-clean']);
