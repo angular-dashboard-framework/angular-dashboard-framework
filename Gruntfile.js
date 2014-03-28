@@ -178,11 +178,13 @@
     watch: {
       scripts: {
         files: [
-          'src/**.js', 
-          'src/**.html', 
-          'src/**.css',
-          'sample/**.js',
-          'sample/**.html'
+          'src/**/*.js', 
+          'src/**/*.html', 
+          'src/**/*.css',
+          'sample/index.html',
+          'sample/scripts/**/*.js',
+          'sample/scripts/**/*.html',
+          'sample/scripts/**/*.css'
         ]
       },
       options: {
