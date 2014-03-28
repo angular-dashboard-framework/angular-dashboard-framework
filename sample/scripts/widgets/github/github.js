@@ -51,7 +51,7 @@ angular.module('sample.widgets.github', ['adf.provider', 'highcharts-ng'])
         }, widget))
       .widget('githubAuthor', angular.extend({
         title: 'Github Author',
-        descritption: 'Displays the commits per author as pie chart',
+        description: 'Displays the commits per author as pie chart',
         controller: 'githubAuthorCtrl'
         }, widget));
         
