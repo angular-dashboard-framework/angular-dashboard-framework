@@ -66,6 +66,7 @@ angular.module('adf.provider', [])
     *      if passed as a string.
     *   - `template` - `{string=|function()=}` - html template as a string.
     *   - `templateUrl` - `{string=}` - path to an html template.
+    *   - `reload` - `{boolean=}` - true if the widget could be reloaded. The default is false.
     *   - `resolve` - `{Object.<string, function>=}` - An optional map of dependencies which should
     *      be injected into the controller. If any of these dependencies are promises, the widget 
     *      will wait for them all to be resolved or one to be rejected before the controller is
@@ -90,12 +91,13 @@ angular.module('adf.provider', [])
     * @returns {Object} self
     */
     this.widget = function(name, widget){
-      if ( widget.edit ){
+      var w = angular.extend({reload: false}, widget)
+      if ( w.edit ){
         var edit = {reload: true};
-        angular.extend(edit, widget.edit);
-        widget.edit = edit;
+        angular.extend(edit, w.edit);
+        w.edit = edit;
       }
-      widgets[name] = widget;
+      widgets[name] = w;
       return this;
     };
 

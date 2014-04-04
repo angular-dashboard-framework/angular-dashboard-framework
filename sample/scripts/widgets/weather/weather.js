@@ -33,6 +33,7 @@ angular.module('sample.widgets.weather', ['adf.provider'])
         description: 'Display the current temperature of a city',
         templateUrl: 'scripts/widgets/weather/weather.html',
         controller: 'weatherCtrl',
+        reload: true,
         resolve: {
           data: function(weatcherService, config){
             if (config.location){

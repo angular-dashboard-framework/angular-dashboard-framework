@@ -119,6 +119,9 @@ angular.module('adf')
         $scope.$on('widgetConfigChanged', function(){
           compileWidget($scope, $element);
         });
+        $scope.$on('widgetReload', function(){
+          compileWidget($scope, $element);
+        });
       }
     };
 

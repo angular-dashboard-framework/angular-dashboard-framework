@@ -77,6 +77,11 @@ angular.module('adf')
           }
           $element.remove();
         };
+        
+        // bind reload function
+        $scope.reload = function(){
+          $scope.$broadcast('widgetReload');
+        };
 
         // bind edit function
         $scope.edit = function() {
