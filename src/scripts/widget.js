@@ -55,6 +55,9 @@ angular.module('adf')
 
           // pass config to scope
           $scope.config = config;
+          
+          // collapse
+          $scope.isCollapsed = false;
         } else {
           $log.warn('could not find widget ' + type);
         }
@@ -121,7 +124,8 @@ angular.module('adf')
       scope: {
         definition: '=',
         col: '=column',
-        editMode: '@'
+        editMode: '@',
+        collapsible: '='
       },
       compile: function compile($element, $attr, transclude) {
         

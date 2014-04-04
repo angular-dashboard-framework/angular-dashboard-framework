@@ -20,7 +20,7 @@
     <div ng-repeat="row in model.rows" class="row" ng-class="row.styleClass">
       <div ng-repeat="col in row.columns" class="column" ng-class="col.styleClass" ui-sortable="sortableOptions" ng-model="col.widgets">
         <div class="widgets" ng-repeat="definition in col.widgets">
-          <adf-widget definition="definition" column="col" edit-mode="{{editMode}}" />
+          <adf-widget definition="definition" column="col" edit-mode="{{editMode}}" collapsible="collapsible" />
         </div>
       </div>
     </div>

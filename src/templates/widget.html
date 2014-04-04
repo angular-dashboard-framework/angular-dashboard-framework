@@ -20,10 +20,13 @@
             <i class="fa fa-times"></i>
           </a>
         </span>
+        <a href="" title="collapse/expand wdiget" ng-show="collapsible" ng-click="isCollapsed = !isCollapsed">
+          <i class="fa fa-minus"></i>
+        </a>
       </span>
     </h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" collapse="isCollapsed">
     <adf-widget-content model="definition" content="widget" />
   </div>
 </div>

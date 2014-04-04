@@ -101,6 +101,7 @@ angular.module('adf')
       scope: {
         structure: '@',
         name: '@',
+        collapsible: '@',
         adfModel: '='
       },
       controller: function($scope){
