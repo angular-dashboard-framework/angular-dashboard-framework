@@ -35,19 +35,19 @@ angular.module('sample', [
     .structure('6-6', {
       rows: [{
         columns: [{
-          class: 'col-md-6'
+          styleClass: 'col-md-6'
         }, {
-          class: 'col-md-6'
+          styleClass: 'col-md-6'
         }]
       }]
     })
     .structure('4-8', {
       rows: [{
         columns: [{
-          class: 'col-md-4',
+          styleClass: 'col-md-4',
           widgets: []
         }, {
-          class: 'col-md-8',
+          styleClass: 'col-md-8',
           widgets: []
         }]
       }]
@@ -55,32 +55,32 @@ angular.module('sample', [
     .structure('12/4-4-4', {
       rows: [{
         columns: [{
-          class: 'col-md-12'
+          styleClass: 'col-md-12'
         }]
       }, {
         columns: [{
-          class: 'col-md-4'
+          styleClass: 'col-md-4'
         }, {
-          class: 'col-md-4'
+          styleClass: 'col-md-4'
         }, {
-          class: 'col-md-4'
+          styleClass: 'col-md-4'
         }]
       }]
     })
     .structure('12/6-6/12', {
       rows: [{
         columns: [{
-          class: 'col-md-12'
+          styleClass: 'col-md-12'
         }]
       }, {
         columns: [{
-          class: 'col-md-6'
+          styleClass: 'col-md-6'
         }, {
-          class: 'col-md-6'
+          styleClass: 'col-md-6'
         }]
       }, {
         columns: [{
-          class: 'col-md-12'
+          styleClass: 'col-md-12'
         }]
       }]
     });
@@ -96,7 +96,7 @@ angular.module('sample', [
       structure: "4-8",
       rows: [{
         columns: [{
-          class: "col-md-4",
+          styleClass: "col-md-4",
           widgets: [{
             type: "linklist",
             config: {
@@ -135,7 +135,7 @@ angular.module('sample', [
             title: "Weather"
           }]
         }, {
-          class: "col-md-8",
+          styleClass: "col-md-8",
           widgets: [{
             type: "randommsg",
             config: {},

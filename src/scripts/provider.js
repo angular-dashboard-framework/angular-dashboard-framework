@@ -113,9 +113,9 @@ angular.module('adf.provider', [])
     *   Object properties:
     *
     *   - `rows` - `{Array.<Object>}` - Rows of the dashboard structure.
-    *     - `class` - `{string}` - CSS Class of the row.
+    *     - `styleClass` - `{string}` - CSS Class of the row.
     *     - `columns` - `{Array.<Object>}` - Columns of the row.
-    *       - `class` - `{string}` - CSS Class of the column.
+    *       - `styleClass` - `{string}` - CSS Class of the column.
     * 
     * @returns {Object} self
     */
