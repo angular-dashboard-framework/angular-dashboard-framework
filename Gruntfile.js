@@ -45,8 +45,8 @@
       },
       sample: {
         cwd: 'sample',
-        src: 'scripts/widgets/*/*.html',
-        dest: '.tmp/ngtemplates/widget.templates.js',
+        src: ['scripts/widgets/*/*.html', 'partials/*.html'],
+        dest: '.tmp/ngtemplates/sample.templates.js',
         options: {
           htmlmin: {
             collapseWhitespace: true, 
@@ -70,7 +70,7 @@
         dest: '.tmp/concat/adf.js'
       },
       sample: {
-        src: ['.tmp/concat/js/sample.min.js', '.tmp/ngtemplates/templates.js', '.tmp/ngtemplates/widget.templates.js'],
+        src: ['.tmp/concat/js/sample.min.js', '.tmp/ngtemplates/templates.js', '.tmp/ngtemplates/sample.templates.js'],
         dest: '.tmp/concat/js/complete.min.js'
       }
     },
@@ -139,6 +139,9 @@
         },{
           src: 'sample/components/angular/angular.min.js',
           dest: 'dist/sample/js/angular.min.js'
+        },{
+          src: 'sample/components/angular-route/angular-route.min.js',
+          dest: 'dist/sample/js/angular-route.min.js'
         },{
           src: 'sample/components/jquery/jquery.min.js',
           dest: 'dist/sample/js/jquery.min.js'
