@@ -95,11 +95,6 @@ angular.module('adf')
             templateUrl: '../src/templates/widget-edit.html'
           };
 
-          var widget = $scope.widget;
-          if (widget.edit && widget.edit.controller) {
-            opts.controller = widget.edit.controller;
-          }
-
           var instance = $modal.open(opts);
           editScope.closeDialog = function() {
             instance.close();
