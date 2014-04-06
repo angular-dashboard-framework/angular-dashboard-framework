@@ -37,9 +37,9 @@ long as the widget resources are not resolved.</p><h4 id="Parameters">Parameters
 
 <ul>
 <li><code>rows</code> - <code>{Array.&lt;Object&gt;}</code> - Rows of the dashboard structure.
-<ul><li><code>class</code> - <code>{string}</code> - CSS Class of the row.</li>
+<ul><li><code>styleClass</code> - <code>{string}</code> - CSS Class of the row.</li>
 <li><code>columns</code> - <code>{Array.&lt;Object&gt;}</code> - Columns of the row.
-<ul><li><code>class</code> - <code>{string}</code> - CSS Class of the column.</li></ul></li></ul></li>
+<ul><li><code>styleClass</code> - <code>{string}</code> - CSS Class of the column.</li></ul></li></ul></li>
 </ul></li>
 </ul>
 <h4 id="Returns">Returns</h4>
@@ -66,6 +66,7 @@ long as the widget resources are not resolved.</p><h4 id="Parameters">Parameters
  if passed as a string.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - html template as a string.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - path to an html template.</li>
+<li><code>reload</code> - <code>{boolean=}</code> - true if the widget could be reloaded. The default is false.</li>
 <li><p><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - An optional map of dependencies which should
  be injected into the controller. If any of these dependencies are promises, the widget 
  will wait for them all to be resolved or one to be rejected before the controller is

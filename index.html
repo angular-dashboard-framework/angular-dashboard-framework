@@ -42,6 +42,16 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    
+    <!--[if lte IE 8]>
+      <script>
+        document.createElement('adf-dashboard');
+        document.createElement('adf-widget');
+        document.createElement('adf-widget-content');
+    
+        document.createElement('highchart');
+      </script>
+    <![endif]-->
   </head>
 
   <body ng-app="sample">
@@ -49,23 +59,37 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Dashboard</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ADF</a>
         </div>
+        <div class="collapse navbar-collapse" ng-controller="navigationCtrl">
+          <ul class="nav navbar-nav">
+            <li ng-class="navClass('sample/01')"><a href="#/sample/01">Sample 01</a></li>
+            <li ng-class="navClass('sample/02')"><a href="#/sample/02">Sample 02</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div class="container" ng-controller="dashboardCtrl">
+    <div class="container">
 
-      <adf-dashboard name="{{name}}" structure="4-8" adf-model="model" ng-cloak />
+      <div ng-view />
 
     </div>
 
     <script src="js/jquery.min.ccd0edd1.js"></script>
 
-    <script src="js/jquery.ui.sortable.min.33d5174b.js"></script>
+    <script src="js/jquery.ui.sortable.min.83d88441.js"></script>
 
-    <script src="js/angular.min.743f65fd.js"></script>
+    <script src="js/angular.min.5ae69803.js"></script>
+    
+    <script src="js/angular-route.min.c4aa3a5c.js"></script>
 
-    <script src="js/sample.min.af99fc76.js"></script>
+    <script src="js/sample.min.14f1641a.js"></script>
   </body>
 </html>
