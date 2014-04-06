@@ -27,134 +27,29 @@ angular.module('sample', [
   'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
   'sample.widgets.weather', 'sample.widgets.markdown',
   'sample.widgets.linklist', 'sample.widgets.github', 
-  'LocalStorageModule'
+  'LocalStorageModule', 'structures', 'sample-01', 'sample-02', 'ngRoute'
 ])
-.value('prefix', '')
-.config(function (dashboardProvider) {
-  dashboardProvider
-    .structure('6-6', {
-      rows: [{
-        columns: [{
-          styleClass: 'col-md-6'
-        }, {
-          styleClass: 'col-md-6'
-        }]
-      }]
-    })
-    .structure('4-8', {
-      rows: [{
-        columns: [{
-          styleClass: 'col-md-4',
-          widgets: []
-        }, {
-          styleClass: 'col-md-8',
-          widgets: []
-        }]
-      }]
-    })
-    .structure('12/4-4-4', {
-      rows: [{
-        columns: [{
-          styleClass: 'col-md-12'
-        }]
-      }, {
-        columns: [{
-          styleClass: 'col-md-4'
-        }, {
-          styleClass: 'col-md-4'
-        }, {
-          styleClass: 'col-md-4'
-        }]
-      }]
-    })
-    .structure('12/6-6/12', {
-      rows: [{
-        columns: [{
-          styleClass: 'col-md-12'
-        }]
-      }, {
-        columns: [{
-          styleClass: 'col-md-6'
-        }, {
-          styleClass: 'col-md-6'
-        }]
-      }, {
-        columns: [{
-          styleClass: 'col-md-12'
-        }]
-      }]
-    });
-
-})
-.controller('dashboardCtrl', function ($scope, localStorageService) {
-  var name = 'default';
-  var model = localStorageService.get(name);
-  if (!model) {
-    // set default model for demo purposes
-    model = {
-      title: "Dashboard",
-      structure: "4-8",
-      rows: [{
-        columns: [{
-          styleClass: "col-md-4",
-          widgets: [{
-            type: "linklist",
-            config: {
-              links: [{
-                title: "SCM-Manager",
-                href: "http://www.scm-manager.org"
-              }, {
-                title: "Github",
-                href: "https://github.com"
-              }, {
-                title: "Bitbucket",
-                href: "https://bitbucket.org"
-              }, {
-                title: "Stackoverflow",
-                href: "http://stackoverflow.com"
-              }]
-            },
-            title: "Links"
-          }, {
-            type: "weather",
-            config: {
-              location: "Hildesheim"
-            },
-            title: "Weather Hildesheim"
-          }, {
-            type: "weather",
-            config: {
-              location: "Edinburgh"
-            },
-            title: "Weather"
-          }, {
-            type: "weather",
-            config: {
-              location: "Dublin,IE"
-            },
-            title: "Weather"
-          }]
-        }, {
-          styleClass: "col-md-8",
-          widgets: [{
-            type: "randommsg",
-            config: {},
-            title: "Douglas Adams"
-          }, {
-            type: "markdown",
-            config: {
-              content: "![scm-manager logo](https://bitbucket.org/sdorra/scm-manager/wiki/resources/scm-manager_logo.jpg)\n\nThe easiest way to share and manage your Git, Mercurial and Subversion repositories over http.\n\n* Very easy installation\n* No need to hack configuration files, SCM-Manager is completely configureable from its Web-Interface\n* No Apache and no database installation is required\n* Central user, group and permission management\n* Out of the box support for Git, Mercurial and Subversion\n* Full RESTFul Web Service API (JSON and XML)\n* Rich User Interface\n* Simple Plugin API\n* Useful plugins available ( f.e. Ldap-, ActiveDirectory-, PAM-Authentication)\n* Licensed under the BSD-License"
-            },
-            title: "Markdown"
-          }]
-        }]
-      }]      
-    };
-  }
-  $scope.name = name;
-  $scope.model = model;
-
-  $scope.$on('adfDashboardChanged', function (event, name, model) {
-    localStorageService.set(name, model);
+.config(function($routeProvider, localStorageServiceProvider){
+  localStorageServiceProvider.setPrefix('adf');
+  
+  $routeProvider.when('/sample/01', {
+    templateUrl: 'partials/sample.html',
+    controller: 'sample01Ctrl'
+  })
+  .when('/sample/02', {
+    templateUrl: 'partials/sample.html',
+    controller: 'sample02Ctrl'
+  })
+  .otherwise({
+    redirectTo: '/sample/01'
   });
+  
+})
+.controller('navigationCtrl', function($scope, $location){
+  
+  $scope.navClass = function(page) {
+    var currentRoute = $location.path().substring(1) || 'Sample 01';
+    return page === currentRoute || new RegExp(page).test(currentRoute) ? 'active' : '';
+  };
+  
 });

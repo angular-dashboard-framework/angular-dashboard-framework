@@ -65,14 +65,26 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Dashboard</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">ADF</a>
         </div>
+        <div class="collapse navbar-collapse" ng-controller="navigationCtrl">
+          <ul class="nav navbar-nav">
+            <li ng-class="navClass('sample/01')"><a href="#/sample/01">Sample 01</a></li>
+            <li ng-class="navClass('sample/02')"><a href="#/sample/02">Sample 02</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
 
-    <div class="container" ng-controller="dashboardCtrl">
+    <div class="container">
 
-      <adf-dashboard name="{{name}}" structure="4-8" adf-model="model" collapsible="true" ng-cloak />
+      <div ng-view />
 
     </div>
 
@@ -89,6 +101,10 @@
 
     <!-- build:js js/angular.min.js -->
     <script type="text/javascript" src="components/angular/angular.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:js js/angular-route.min.js -->
+    <script type="text/javascript" src="components/angular-route/angular-route.js"></script>
     <!-- endbuild -->
 
     <!-- build:js js/sample.min.js -->
@@ -109,6 +125,9 @@
     
     <!-- sample -->
     <script type="text/javascript" src="scripts/sample.js"></script>
+    <script type="text/javascript" src="scripts/sample-01.js"></script>
+    <script type="text/javascript" src="scripts/sample-02.js"></script>
+    <script type="text/javascript" src="scripts/structures.js"></script>
     
     <!-- news widget -->
     <script type="text/javascript" src="scripts/widgets/news/news.js"></script>

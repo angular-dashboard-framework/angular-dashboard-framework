@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "angular": "1.2.16",
+    "angular-route": "1.2.16",
     "angular-bootstrap": "~0.10.0",
     "angular-local-storage": "0.0.1",
     "font-awesome": "~4.0.3",
