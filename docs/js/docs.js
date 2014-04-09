@@ -300,7 +300,7 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
       active: page1 && this.currentPage == page1 || page2 && this.currentPage == page2,
       match: this.focused && this.currentPage != page1 &&
              this.bestMatch.rank > 0 && this.bestMatch.page == page1
-             
+
     };
   };
 
@@ -346,6 +346,7 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
 
     if (!$scope.currentPage) {
       $scope.partialTitle = 'Error: Page Not Found!';
+      page = {};
     }
 
     updateSearch();
@@ -362,8 +363,10 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
       } else if (match = partialId.match(GLOBALS)) {
         breadcrumb.push({ name: partialId });
       } else if (match = partialId.match(MODULE)) {
+        match[1] = page.moduleName || match[1];
         breadcrumb.push({ name: match[1] });
       } else if (match = partialId.match(MODULE_FILTER)) {
+        match[1] = page.moduleName || match[1];
         breadcrumb.push({ name: match[1], url: sectionPath + '/' + match[1] });
         breadcrumb.push({ name: match[2] });
       } else if (match = partialId.match(MODULE_DIRECTIVE)) {
@@ -374,9 +377,11 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
         breadcrumb.push({ name: 'input' });
         breadcrumb.push({ name: match[2] });
       } else if (match = partialId.match(MODULE_CUSTOM)) {
+        match[1] = page.moduleName || match[1];
         breadcrumb.push({ name: match[1], url: sectionPath + '/' + match[1] });
         breadcrumb.push({ name: match[3] });
       } else if (match = partialId.match(MODULE_TYPE)) {
+        match[1] = page.moduleName || match[1];
         breadcrumb.push({ name: match[1], url: sectionPath + '/' + match[1] });
         breadcrumb.push({ name: match[2] });
       }  else if (match = partialId.match(MODULE_SERVICE)) {
@@ -384,6 +389,7 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
           // module name with dots looks like a service
           breadcrumb.push({ name: partialId });
         } else {
+          match[1] = page.moduleName || match[1];
           breadcrumb.push({ name: match[1], url: sectionPath + '/' + match[1] });
           breadcrumb.push({ name: match[2] + (match[3] || '') });
         }
@@ -407,21 +413,12 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
 
   $scope.versionNumber = angular.version.full;
   $scope.version = angular.version.full + "  " + angular.version.codeName;
-  $scope.subpage = false;
   $scope.futurePartialTitle = null;
   $scope.loading = 0;
 
   if (!$location.path() || INDEX_PATH.test($location.path())) {
     $location.path(NG_DOCS.startPage).replace();
   }
-  // bind escape to hash reset callback
-  angular.element(window).bind('keydown', function(e) {
-    if (e.keyCode === 27) {
-      $scope.$apply(function() {
-        $scope.subpage = false;
-      });
-    }
-  });
 
   /**********************************
    Private methods
@@ -455,22 +452,22 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
       } else if (match = id.match(GLOBALS)) {
         module('ng', section).globals.push(page);
       } else if (match = id.match(MODULE)) {
-        module(match[1], section);
+        module(page.moduleName || match[1], section);
       } else if (match = id.match(MODULE_FILTER)) {
-        module(match[1], section).filters.push(page);
+        module(page.moduleName || match[1], section).filters.push(page);
       } else if (match = id.match(MODULE_DIRECTIVE)) {
-        module(match[1], section).directives.push(page);
+        module(page.moduleName || match[1], section).directives.push(page);
       } else if (match = id.match(MODULE_DIRECTIVE_INPUT)) {
-        module(match[1], section).directives.push(page);
+        module(page.moduleName || match[1], section).directives.push(page);
       } else if (match = id.match(MODULE_CUSTOM)) {
-        module(match[1], section).others.push(page);
+        module(page.moduleName || match[1], section).others.push(page);
       } else if (match = id.match(MODULE_TYPE)) {
-        module(match[1], section).types.push(page);
+        module(page.moduleName || match[1], section).types.push(page);
       } else if (match = id.match(MODULE_SERVICE)) {
         if (page.type === 'overview') {
           module(id, section);
         } else {
-          module(match[1], section).service(match[2])[match[3] ? 'provider' : 'instance'] = page;
+          module(page.moduleName || match[1], section).service(match[2])[match[3] ? 'provider' : 'instance'] = page;
         }
       } else if (match = id.match(MODULE_MOCK)) {
         module('ngMock', section).globals.push(page);
@@ -544,7 +541,7 @@ docsApp.controller.DocsController = function($scope, $location, $window, section
     // http://docs.disqus.com/developers/universal/
     (function() {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://angularjs.disqus.com/embed.js';
+      dsq.src = '//angularjs.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] ||
         document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();

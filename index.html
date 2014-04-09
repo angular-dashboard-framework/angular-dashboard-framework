@@ -35,7 +35,7 @@
     <!-- font awesome -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/sample.min.b6737ec6.css"/>
+    <link rel="stylesheet" href="css/sample.min.0b3ecadf.css"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,9 +57,9 @@
   <body ng-app="sample">
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="container" ng-controller="navigationCtrl">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <button type="button" class="navbar-toggle" ng-click="toggleNav()">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -67,10 +67,14 @@
           </button>
           <a class="navbar-brand" href="#">ADF</a>
         </div>
-        <div class="collapse navbar-collapse" ng-controller="navigationCtrl">
+        <div collapse="navCollapsed" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li ng-class="navClass('sample/01')"><a href="#/sample/01">Sample 01</a></li>
-            <li ng-class="navClass('sample/02')"><a href="#/sample/02">Sample 02</a></li>
+            <li ng-class="navClass('sample/01')">
+              <a href="#/sample/01">Sample 01</a>
+            </li>
+            <li ng-class="navClass('sample/02')">
+              <a href="#/sample/02">Sample 02</a>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -84,12 +88,12 @@
 
     <script src="js/jquery.min.ccd0edd1.js"></script>
 
-    <script src="js/jquery.ui.sortable.min.83d88441.js"></script>
+    <script src="js/jquery.ui.sortable.min.3c217d6c.js"></script>
 
     <script src="js/angular.min.5ae69803.js"></script>
     
     <script src="js/angular-route.min.c4aa3a5c.js"></script>
 
-    <script src="js/sample.min.14f1641a.js"></script>
+    <script src="js/sample.min.30a6433b.js"></script>
   </body>
 </html>

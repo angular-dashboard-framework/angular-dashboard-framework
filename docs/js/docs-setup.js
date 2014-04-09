@@ -6,23 +6,29 @@ NG_DOCS={
     {
       "section": "api",
       "id": "adf.dashboard",
-      "shortName": "dashboard",
+      "shortName": "adf.dashboard",
       "type": "object",
-      "keywords": "adf all and api dashboard holds object self structures the widgets"
+      "moduleName": "adf",
+      "shortDescription": "The dashboard holds all structures and widgets.",
+      "keywords": "adf api dashboard holds object structures widgets"
     },
     {
       "section": "api",
       "id": "adf.dashboardProvider",
-      "shortName": "dashboardProvider",
+      "shortName": "adf.dashboardProvider",
       "type": "object",
-      "keywords": "$injector above adf after alias all an and angularjs any api are as associated be before but can changes class closed column columns config configuration controller could created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn for function html http if injected instantiated into invoke is it its key loading loadingtemplate long map messages messagetemplate method mode module modus name new newly not object of one optional or org otherwise passed path predefined promise promises properties register registered registeres rejected reload reloaded resolve resolved resources result return row rows same scope self service should string structure structures styleclass successfully template templateurl that the them then these title to treated true used value values wait which widget widgets will with"
+      "moduleName": "adf",
+      "shortDescription": "The dashboardProvider can be used to register structures and widgets.",
+      "keywords": "$injector adf alias angularjs api associated changes class closed column columns config configuration controller created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn function html http injected instantiated invoke key loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path predefined promise promises properties register registered registeres rejected reload reloaded resolve resolved resources result return row rows scope service string structure structures styleclass template templateurl title treated true values wait widget widgets"
     },
     {
       "section": "api",
       "id": "adf.directive:adfDashboard",
       "shortName": "adfDashboard",
       "type": "directive",
-      "keywords": "adf adfdashboard all api attribute be can components dashboard directive div eca is its model name of renders requires store the to used which with"
+      "moduleName": "adf",
+      "shortDescription": "adfDashboard is a directive which renders the dashboard with all its ",
+      "keywords": "adf adfdashboard api attribute components dashboard directive div eca model renders requires store"
     }
   ],
   "apis": {

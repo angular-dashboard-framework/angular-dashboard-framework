@@ -1,61 +1,48 @@
 <h1><code ng:non-bindable="">dashboardProvider</code>
-<span class="hint">(service in module <code ng:non-bindable="">adf</code>
-)</span>
+<div><span class="hint">service in module <code ng:non-bindable="">adf</code>
+</span>
+</div>
 </h1>
-<div><h2 id="Description">Description</h2>
-<div class="description"><p>The dashboardProvider can be used to register structures and widgets.</p></div>
-<div class="member method"><h2 id="Methods">Methods</h2>
-<ul class="methods"><li><h3 id="loadingTemplate">loadingTemplate(loading)</h3>
-<div class="loadingtemplate"><p>Changes the template which is displayed as 
-long as the widget resources are not resolved.</p><h4 id="Parameters">Parameters</h4>
-<ul class="parameters"><li><code ng:non-bindable="">loading – {string} – </code>
-<p>template</p></li>
-</ul>
-<h4 id="Returns">Returns</h4>
-<div class="returns"><code ng:non-bindable="">{Object}</code>
-– <p>self</p></div>
-</div>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="adf-dashboardprovider-page"><p>The dashboardProvider can be used to register structures and widgets.</p>
+</div></div>
+<div class="member method"><h2 id="methods">Methods</h2>
+<ul class="methods"><li><h3 id="methods_loadingtemplate">loadingTemplate(loading)</h3>
+<div class="loadingtemplate"><div class="adf-dashboardprovider-loadingtemplate-page"><p>Changes the template which is displayed as 
+long as the widget resources are not resolved.</p>
+</div><h5 id="methods_loadingtemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>loading</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>template</p>
+</div></td></tr></tbody></table><h5 id="methods_loadingtemplate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>self</p>
+</div></td></tr></table></div>
 </li>
-<li><h3 id="messageTemplate">messageTemplate(template)</h3>
-<div class="messagetemplate"><p>Changes the template for messages.</p><h4 id="Parameters">Parameters</h4>
-<ul class="parameters"><li><code ng:non-bindable="">template – {string} – </code>
-<p>for messages.</p></li>
-</ul>
-<h4 id="Returns">Returns</h4>
-<div class="returns"><code ng:non-bindable="">{Object}</code>
-– <p>self</p></div>
-</div>
+<li><h3 id="methods_messagetemplate">messageTemplate(template)</h3>
+<div class="messagetemplate"><div class="adf-dashboardprovider-messagetemplate-page"><p>Changes the template for messages.</p>
+</div><h5 id="methods_messagetemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>template</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-messagetemplate-page"><p>for messages.</p>
+</div></td></tr></tbody></table><h5 id="methods_messagetemplate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-messagetemplate-page"><p>self</p>
+</div></td></tr></table></div>
 </li>
-<li><h3 id="structure">structure(name, structure)</h3>
-<div class="structure"><p>Registeres a new structure.</p><h4 id="Parameters">Parameters</h4>
-<ul class="parameters"><li><code ng:non-bindable="">name – {string} – </code>
-<p>of the structure</p></li>
-<li><code ng:non-bindable="">structure – {object} – </code>
-<p>to be registered.</p>
-
-<p>Object properties:</p>
-
+<li><h3 id="methods_structure">structure(name, structure)</h3>
+<div class="structure"><div class="adf-dashboardprovider-structure-page"><p>Registeres a new structure.</p>
+</div><h5 id="methods_structure_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-structure-page"><p>of the structure</p>
+</div></td></tr><tr><td>structure</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="adf-dashboardprovider-structure-page"><p>to be registered.</p>
+<p>  Object properties:</p>
 <ul>
-<li><code>rows</code> - <code>{Array.&lt;Object&gt;}</code> - Rows of the dashboard structure.
-<ul><li><code>styleClass</code> - <code>{string}</code> - CSS Class of the row.</li>
-<li><code>columns</code> - <code>{Array.&lt;Object&gt;}</code> - Columns of the row.
-<ul><li><code>styleClass</code> - <code>{string}</code> - CSS Class of the column.</li></ul></li></ul></li>
-</ul></li>
+<li><code>rows</code> - <code>{Array.&lt;Object&gt;}</code> - Rows of the dashboard structure.<ul>
+<li><code>styleClass</code> - <code>{string}</code> - CSS Class of the row.</li>
+<li><code>columns</code> - <code>{Array.&lt;Object&gt;}</code> - Columns of the row.<ul>
+<li><code>styleClass</code> - <code>{string}</code> - CSS Class of the column.</li>
 </ul>
-<h4 id="Returns">Returns</h4>
-<div class="returns"><code ng:non-bindable="">{Object}</code>
-– <p>self</p></div>
-</div>
 </li>
-<li><h3 id="widget">widget(name, widget)</h3>
-<div class="widget"><p>Registeres a new widget.</p><h4 id="Parameters">Parameters</h4>
-<ul class="parameters"><li><code ng:non-bindable="">name – {string} – </code>
-<p>of the widget</p></li>
-<li><code ng:non-bindable="">widget – {object} – </code>
-<p>to be registered.</p>
-
-<p>Object properties:</p>
-
+</ul>
+</li>
+</ul>
+</div></td></tr></tbody></table><h5 id="methods_structure_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-structure-page"><p>self</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_widget">widget(name, widget)</h3>
+<div class="widget"><div class="adf-dashboardprovider-widget-page"><p>Registeres a new widget.</p>
+</div><h5 id="methods_widget_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-widget-page"><p>of the widget</p>
+</div></td></tr><tr><td>widget</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="adf-dashboardprovider-widget-page"><p>to be registered.</p>
+<p>  Object properties:</p>
 <ul>
 <li><code>title</code> - <code>{string=}</code> - The title of the widget.</li>
 <li><code>description</code> - <code>{string=}</code> - Description of the widget.</li>
@@ -73,27 +60,27 @@ long as the widget resources are not resolved.</p><h4 id="Parameters">Parameters
  instantiated.
  If all the promises are resolved successfully, the values of the resolved promises are
  injected.</p>
-
-<p>The map object is:</p>
-
-<ul><li><code>key</code> – <code>{string}</code>: a name of a dependency to be injected into the controller.</li>
+<p> The map object is:</p>
+<ul>
+<li><code>key</code> – <code>{string}</code>: a name of a dependency to be injected into the controller.</li>
 <li><code>factory</code> - <code>{string|function}</code>: If <code>string</code> then it is an alias for a service.
 Otherwise if function, then it is <a href="http://docs.angularjs.org/api/AUTO.$injector#invoke">injected</a>
 and the return value is treated as the dependency. If the result is a promise, it is
-resolved before its value is injected into the controller.</li></ul></li>
-<li><code>edit</code> - <code>{object}</code> - Edit modus of the widget.
-<ul><li><code>controller</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
+resolved before its value is injected into the controller.</li>
+</ul>
+</li>
+<li><code>edit</code> - <code>{object}</code> - Edit modus of the widget.<ul>
+<li><code>controller</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>reload</code> - {boolean} - true if the widget should be reloaded, after the edit mode is closed. 
-Default is true.</li></ul></li>
-</ul></li>
+Default is true.</li>
 </ul>
-<h4 id="Returns">Returns</h4>
-<div class="returns"><code ng:non-bindable="">{Object}</code>
-– <p>self</p></div>
-</div>
+</li>
+</ul>
+</div></td></tr></tbody></table><h5 id="methods_widget_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-widget-page"><p>self</p>
+</div></td></tr></table></div>
 </li>
 </ul>
 </div>
