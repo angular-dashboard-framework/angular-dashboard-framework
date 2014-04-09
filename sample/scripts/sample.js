@@ -47,6 +47,16 @@ angular.module('sample', [
 })
 .controller('navigationCtrl', function($scope, $location){
   
+  $scope.navCollapsed = true;
+  
+  $scope.toggleNav = function(){
+    $scope.navCollapsed = !$scope.navCollapsed;
+  };
+  
+  $scope.$on('$routeChangeStart', function() { 
+    $scope.navCollapsed = true;
+  });
+  
   $scope.navClass = function(page) {
     var currentRoute = $location.path().substring(1) || 'Sample 01';
     return page === currentRoute || new RegExp(page).test(currentRoute) ? 'active' : '';
