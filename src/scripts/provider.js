@@ -107,7 +107,7 @@ angular.module('adf.provider', [])
     * @methodOf adf.dashboardProvider
     * @description
     * 
-    * Registeres a new structure.
+    * Registers a new structure.
     *
     * @param {string} name of the structure
     * @param {object} structure to be registered.
