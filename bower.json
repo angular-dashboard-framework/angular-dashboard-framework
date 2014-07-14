@@ -1,6 +1,7 @@
 {
   "name": "angular-dashboard-framework",
   "version": "0.1.0",
+  "main": "sample/components",
   "dependencies": {
     "angular": "1.2.18",
     "angular-route": "1.2.18",
@@ -14,7 +15,7 @@
     "es5-shim": "~2.0.8",
     "angular-markdown-directive": "~0.1.0",
     "highcharts-ng": "0.0.6",
-    "highcharts": "3.0.7"
+    "highcharts": "4.0.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.18",
