@@ -117,7 +117,9 @@ angular.module('adf')
         };
         
         var name = $scope.name;
-        var model = $scope.adfModel;
+            var model = $scope.adfModel;
+            var modelBeforeEdit = jQuery.extend(true, {}, model);
+
         if ( ! model || ! model.rows ){
           var structureName = $scope.structure;
           var structure = dashboard.structures[structureName];
@@ -137,6 +139,7 @@ angular.module('adf')
           if (!model.title){
             model.title = 'Dashboard';
           }
+          
           $scope.model = model;
         } else {
           $log.error('could not find or create model');
@@ -146,15 +149,20 @@ angular.module('adf')
         $scope.editMode = false;
         $scope.editClass = "";
 
-        $scope.toggleEditMode = function(){
+        $scope.toggleEditMode = function(saveChanges){
           $scope.editMode = ! $scope.editMode;
           if ($scope.editClass === ""){
             $scope.editClass = "edit";
           } else {
             $scope.editClass = "";
           }
-          if (!$scope.editMode){
-            $rootScope.$broadcast('adfDashboardChanged', name, model);
+                if (!$scope.editMode) {
+                    if (saveChanges) {
+	                    modelBeforeEdit = model;
+                        $rootScope.$broadcast('adfDashboardChanged', name, model);
+                    } else {
+                        $scope.model = modelBeforeEdit;
+                    }
           }
         };
         

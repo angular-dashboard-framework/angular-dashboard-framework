@@ -4,3 +4,8 @@
 /dist/
 /sample/components/
 /.tmp/
+/*.suo
+
+/obj/Debug
+
+/*.dat

@@ -57,9 +57,17 @@ pre.edit {
   text-decoration: none;
 }
 
-.dashboard-container h1 a {
-  text-decoration: none;
+.dashboard-container .editRow {
+	text-align: right;
+	margin-bottom: 20px;
 }
+
+.dashboard-container .editRow a {
+	text-decoration: none;
+	margin-left: 5px;
+	font-size: 30px;
+}
+
 
 .padding-bottom {
   padding-bottom: 5px;

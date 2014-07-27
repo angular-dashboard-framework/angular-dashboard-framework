@@ -1,30 +1,31 @@
 <div class="dashboard-container">
-
-  <h1>
-    {{model.title}}
-    <span style="font-size: 16px" class="pull-right">
-      <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
-        <i class="fa fa-plus-circle"></i>
-      </a>
-      <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
-        <i class="fa fa-cog"></i>
-      </a>
-      <a href="" title="{{editMode ? 'disable edit mode' : 'enable edit mode'}}" ng-click="toggleEditMode()">
-        <i class="fa fa-edit"></i>
-      </a>
-    </span>
-  </h1>
-
-  <div class="dashboard" ng-class="editClass">
-
-    <div ng-repeat="row in model.rows" class="row" ng-class="row.styleClass">
-      <div ng-repeat="col in row.columns" class="column" ng-class="col.styleClass" ui-sortable="sortableOptions" ng-model="col.widgets">
-        <div class="widgets" ng-repeat="definition in col.widgets">
-          <adf-widget definition="definition" column="col" edit-mode="{{editMode}}" collapsible="collapsible" />
-        </div>
-      </div>
-    </div>
     
-  </div>
+    <div class="row editRow">
+        <div class="col-md-12 pull-right">
+            <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
+                <i class="fa fa-plus"></i>
+            </a>
+            <a href="" ng-if="!editMode" title="edit dashboard" ng-click="toggleEditMode()">
+                <i class="fa fa-cog"></i>
+            </a>
+            <a href="" ng-if="editMode" title="save changes" ng-click="toggleEditMode(true)">
+                <i class="fa fa-save"></i>
+            </a>
+            <a href="" ng-if="editMode" title="discard changes" ng-click="toggleEditMode(false)">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+    </div>
+        <div class="dashboard" ng-class="editClass">
 
-</div>
+            <div ng-repeat="row in model.rows" class="row" ng-class="row.styleClass">
+                <div ng-repeat="col in row.columns" class="column" ng-class="col.styleClass" ui-sortable="sortableOptions" ng-model="col.widgets">
+                    <div class="widgets" ng-repeat="definition in col.widgets">
+                        <adf-widget definition="definition" column="col" edit-mode="{{editMode}}" collapsible="collapsible" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
