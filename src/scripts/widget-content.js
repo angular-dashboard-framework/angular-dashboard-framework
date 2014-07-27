@@ -48,7 +48,10 @@ angular.module('adf')
 
     function compileWidget($scope, $element) {
       var model = $scope.model;
-      var content = $scope.content;
+        var content = $scope.content;
+        
+        //TODO find betther way
+     $(".panel-body").mCustomScrollbar({ theme: "minimal-dark" });
 
       // display loading template
       $element.html(dashboard.loadingTemplate);

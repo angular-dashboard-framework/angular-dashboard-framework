@@ -24,124 +24,141 @@
 'use strict';
 
 angular.module('sample-01', ['adf', 'LocalStorageModule'])
-.controller('sample01Ctrl', function($scope, localStorageService){
-  
-  var name = 'sample-01';
-  var model = localStorageService.get(name);
-  if (!model) {
-    // set default model for demo purposes
-    model = {
-      title: "Sample 01",
-      structure: "4-4-4",
-      rows: [{
-        columns: [{
-          styleClass: "col-md-4",
-          widgets: [{
-            type: "linklist",
-            config: {
-              links: [{
-                title: "SCM-Manager",
-                href: "http://www.scm-manager.org"
-              }, {
-                title: "Github",
-                href: "https://github.com"
-              }, {
-                title: "Bitbucket",
-                href: "https://bitbucket.org"
-              }, {
-                title: "Stackoverflow",
-                href: "http://stackoverflow.com"
-              }]
-            },
-            title: "Links"
-          }, {
-            type: "weather",
-            config: {
-              location: "Hildesheim"
-            },
-            title: "Weather Hildesheim"
-          }, {
-            type: "weather",
-            config: {
-              location: "Edinburgh"
-            },
-            title: "Weather"
-          }]
-        }, {
-                    styleClass: "col-md-4",
-                    widgets: [{
-                        type: "linklist",
-                        config: {
-                            links: [{
-                                title: "SCM-Manager",
-                                href: "http://www.scm-manager.org"
-                            }, {
-                                title: "Github",
-                                href: "https://github.com"
-                            }, {
-                                title: "Bitbucket",
-                                href: "https://bitbucket.org"
-                            }, {
-                                title: "Stackoverflow",
-                                href: "http://stackoverflow.com"
-                            }]
-                        },
-                        title: "Links"
-                    }, {
-                        type: "weather",
-                        config: {
-                            location: "Hildesheim"
-                        },
-                        title: "Weather Hildesheim"
-                    }, {
-                        type: "weather",
-                        config: {
-                            location: "Edinburgh"
-                        },
-                        title: "Weather"
-                    }]
-                },{
-                    styleClass: "col-md-4",
-                    widgets: [{
-                        type: "linklist",
-                        config: {
-                            links: [{
-                                title: "SCM-Manager",
-                                href: "http://www.scm-manager.org"
-                            }, {
-                                title: "Github",
-                                href: "https://github.com"
-                            }, {
-                                title: "Bitbucket",
-                                href: "https://bitbucket.org"
-                            }, {
-                                title: "Stackoverflow",
-                                href: "http://stackoverflow.com"
-                            }]
-                        },
-                        title: "Links"
-                    }, {
-                        type: "weather",
-                        config: {
-                            location: "Hildesheim"
-                        },
-                        title: "Weather Hildesheim"
-                    }, {
-                        type: "weather",
-                        config: {
-                            location: "Edinburgh"
-                        },
-                        title: "Weather"
-                    }]
-                }]
-      }]      
-    };
-  }
-  $scope.name = name;
-  $scope.model = model;
-  $scope.collapsible = false;
+	.controller('sample01Ctrl', function($scope, localStorageService) {
 
-  $scope.$on('adfDashboardChanged', function (event, name, model) {
-    localStorageService.set(name, model);
-  });
-});
+		var name = 'sample-01';
+		var model = localStorageService.get(name);
+		if (!model) {
+			// set default model for demo purposes
+			model = {
+				title: "Sample 01",
+				rows: [
+					{
+						columns: [
+							{
+								widgets: [
+									{
+										type: "linklist",
+										title: "Links",
+										config: {
+											links: [
+												{
+													title: "SCM-Manager",
+													href: "http://www.scm-manager.org"
+												}, {
+													title: "Github",
+													href: "https://github.com"
+												}, {
+													title: "Bitbucket",
+													href: "https://bitbucket.org"
+												}, {
+													title: "Stackoverflow",
+													href: "http://stackoverflow.com"
+												}
+											]
+										},
+									}, {
+										type: "weather",
+										title: "Weather Hildesheim",
+										config: {
+											location: "Hildesheim"
+										},
+
+									}, {
+										type: "weather",
+										title: "Weather",
+										config: {
+											location: "Edinburgh"
+										},
+									}
+								]
+							}, {
+								widgets: [
+									{
+										type: "linklist",
+										title: "Links",
+										config: {
+											links: [
+												{
+													title: "SCM-Manager",
+													href: "http://www.scm-manager.org"
+												}, {
+													title: "Github",
+													href: "https://github.com"
+												}, {
+													title: "Bitbucket",
+													href: "https://bitbucket.org"
+												}, {
+													title: "Stackoverflow",
+													href: "http://stackoverflow.com"
+												}
+											]
+										},
+									}, {
+										type: "weather",
+										title: "Weather Hildesheim",
+										config: {
+											location: "Hildesheim"
+										},
+
+									}, {
+										type: "weather",
+										config: {
+											location: "Edinburgh"
+										},
+										title: "Weather"
+									}
+								]
+							}, {
+								widgets: [
+									{
+										type: "linklist",
+										title: "Links",
+										config: {
+											links: [
+												{
+													title: "SCM-Manager",
+													href: "http://www.scm-manager.org"
+												}, {
+													title: "Github",
+													href: "https://github.com"
+												}, {
+													title: "Bitbucket",
+													href: "https://bitbucket.org"
+												}, {
+													title: "Stackoverflow",
+													href: "http://stackoverflow.com"
+												}
+											]
+										}
+
+									}, {
+										type: "weather",
+										title: "Weather Hildesheim",
+										config: {
+											location: "Hildesheim"
+										}
+
+									}, {
+										type: "weather",
+										title: "Weather",
+										config: {
+											location: "Edinburgh"
+										}
+
+									}
+								]
+							}
+						]
+					}
+				]
+			};
+		}
+		$scope.name = name;
+		$scope.model = model;
+		$scope.collapsible = false;
+
+		$scope.$on('adfDashboardChanged', function(event, name, model) {
+			localStorageService.set(name, model);
+		});
+	});

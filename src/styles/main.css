@@ -53,6 +53,10 @@ pre.edit {
   border-radius: 5px;
 }
 
+.widget .panel-body{
+	height: 200px !important;
+}
+
 .widget h3 a {
   text-decoration: none;
 }

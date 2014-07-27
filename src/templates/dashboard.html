@@ -18,8 +18,8 @@
     </div>
         <div class="dashboard" ng-class="editClass">
 
-            <div ng-repeat="row in model.rows" class="row" ng-class="row.styleClass">
-                <div ng-repeat="col in row.columns" class="column" ng-class="col.styleClass" ui-sortable="sortableOptions" ng-model="col.widgets">
+            <div ng-repeat="row in model.rows" class="row">
+                <div ng-repeat="col in row.columns" class="column col-md-4 col-sm-6" ui-sortable="sortableOptions" ng-model="col.widgets">
                     <div class="widgets" ng-repeat="definition in col.widgets">
                         <adf-widget definition="definition" column="col" edit-mode="{{editMode}}" collapsible="collapsible" />
                     </div>
