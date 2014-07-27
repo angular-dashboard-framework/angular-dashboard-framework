@@ -174,6 +174,7 @@
       server: {
         options: {
           port: 9001,
+		  hostname: '*',
           livereload: true
         }
       }
