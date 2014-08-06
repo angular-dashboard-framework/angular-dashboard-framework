@@ -24,4 +24,4 @@
 
 'use strict';
 
-angular.module('adf', ['adf.provider', 'ui.bootstrap', 'ui.sortable']);
+angular.module('adf', ['adf.config', 'adf.provider', 'ui.bootstrap', 'ui.sortable']);

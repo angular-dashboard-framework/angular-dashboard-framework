@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidget', function($log, $modal, dashboard) {
+  .directive('adfWidget', function($log, $modal, dashboard, configuration) {
 
     function preLink($scope, $element, $attr){
       var definition = $scope.definition;
@@ -92,7 +92,7 @@ angular.module('adf')
           
           var opts = {
             scope: editScope,
-            templateUrl: '../src/templates/widget-edit.html'
+            templateUrl: configuration.rootUrl + '/src/templates/widget-edit.html'
           };
 
           var instance = $modal.open(opts);
@@ -116,7 +116,7 @@ angular.module('adf')
       replace: true,
       restrict: 'EA',
       transclude: false,
-      templateUrl: '../src/templates/widget.html',
+      templateUrl: configuration.rootUrl + '/src/templates/widget.html',
       scope: {
         definition: '=',
         col: '=column',

@@ -39,7 +39,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfDashboard', function($rootScope, $log, $modal, dashboard){
+  .directive('adfDashboard', function($rootScope, $log, $modal, dashboard, configuration){
 
     function copyWidgets(source, target){
       if ( source.widgets && source.widgets.length > 0 ){
@@ -172,7 +172,7 @@ angular.module('adf')
           editDashboardScope.structures = dashboard.structures;
           var instance = $modal.open({
             scope: editDashboardScope,
-            templateUrl: '../src/templates/dashboard-edit.html'
+            templateUrl: configuration.rootUrl + '/src/templates/dashboard-edit.html'
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
@@ -190,7 +190,7 @@ angular.module('adf')
           addScope.widgets = dashboard.widgets;
           var opts = {
             scope: addScope,
-            templateUrl: '../src/templates/widget-add.html'
+            templateUrl: configuration.rootUrl + '/src/templates/widget-add.html'
           };
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
@@ -214,6 +214,6 @@ angular.module('adf')
         $scope.name = $attr.name;
         $scope.structure = $attr.structure;
       },
-      templateUrl: '../src/templates/dashboard.html'
+      templateUrl: configuration.rootUrl + '/src/templates/dashboard.html'
     };
   });
