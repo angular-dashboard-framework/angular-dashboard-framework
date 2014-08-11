@@ -24,4 +24,12 @@
 
 'use strict';
 
-angular.module('adf', ['adf.config', 'adf.provider', 'ui.bootstrap', 'ui.sortable']);
+var adf = angular.module('adf', ['adf.config', 'adf.provider', 'ui.bootstrap', 'ui.sortable']);
+
+adf.config(function ($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
+    adf.controller = $controllerProvider.register;
+    adf.directive = $compileProvider.directive;
+    adf.filter = $filterProvider.register;
+    adf.factory = $provide.factory;
+    adf.service = $provide.service;
+});
