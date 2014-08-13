@@ -18,6 +18,7 @@
     "highcharts": "4.0.3",
 		"malihu-custom-scrollbar-plugin": "3.0.2"
   },
+  "ignore": [],
   "devDependencies": {
     "angular-mocks": "1.2.18",
     "angular-scenario": "1.2.18"
