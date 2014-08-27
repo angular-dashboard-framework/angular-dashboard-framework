@@ -24,7 +24,7 @@
 
 'use strict';
 
-var adf = angular.module('adf', ['adf.config', 'adf.provider', 'ui.bootstrap', 'ui.sortable']);
+var adf = angular.module('adf', ['adf.config', 'adf.provider', 'ui.bootstrap', 'ui.sortable', 'ngRoute']);
 
 adf.config(function ($routeProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
     adf.controller = $controllerProvider.register;
