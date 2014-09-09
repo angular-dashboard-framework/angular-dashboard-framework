@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <!--*
  The MIT License
- 
+
  Copyright (c) 2013, Sebastian Sdorra
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,7 +31,7 @@
     <meta name="author" content="Sebastian Sdorra">
 
     <title>Dashboard</title>
-    
+
     <!-- font awesome -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -48,13 +48,13 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    
+
     <!--[if lte IE 8]>
       <script>
         document.createElement('adf-dashboard');
         document.createElement('adf-widget');
         document.createElement('adf-widget-content');
-    
+
         document.createElement('highchart');
       </script>
     <![endif]-->
@@ -81,6 +81,9 @@
             <li ng-class="navClass('sample/02')">
               <a href="#/sample/02">Sample 02</a>
             </li>
+            <li ng-class="navClass('sample/03')">
+              <a href="#/sample/03">Sample 03</a>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -106,7 +109,7 @@
     <!-- build:js js/angular.min.js -->
     <script type="text/javascript" src="components/angular/angular.js"></script>
     <!-- endbuild -->
-    
+
     <!-- build:js js/angular-route.min.js -->
     <script type="text/javascript" src="components/angular-route/angular-route.js"></script>
     <!-- endbuild -->
@@ -123,22 +126,23 @@
     <script type="text/javascript" src="../src/scripts/widget-content.js"></script>
     <script type="text/javascript" src="../src/scripts/widget.js"></script>
     <script type="text/javascript" src="../src/scripts/dashboard.js"></script>
-    
+
     <!-- local storage -->
     <script type="text/javascript" src="components/angular-local-storage/angular-local-storage.js"></script>
-    
+
     <!-- sample -->
     <script type="text/javascript" src="scripts/sample.js"></script>
     <script type="text/javascript" src="scripts/sample-01.js"></script>
     <script type="text/javascript" src="scripts/sample-02.js"></script>
+    <script type="text/javascript" src="scripts/sample-03.js"></script>
     <script type="text/javascript" src="scripts/structures.js"></script>
-    
+
     <!-- news widget -->
     <script type="text/javascript" src="scripts/widgets/news/news.js"></script>
 
     <!-- weather widget -->
     <script type="text/javascript" src="scripts/widgets/weather/weather.js"></script>
-    
+
     <!-- linklist widget -->
     <script type="text/javascript" src="scripts/widgets/linklist/linklist.js"></script>
 
@@ -146,10 +150,10 @@
     <script type="text/javascript" src="components/showdown/src/showdown.js"></script>
     <script type="text/javascript" src="components/angular-markdown-directive/markdown.js"></script>
     <script type="text/javascript" src="scripts/widgets/markdown/markdown.js"></script>
-    
+
     <!-- randommsg widget -->
     <script type="text/javascript" src="scripts/widgets/randommsg/randommsg.js"></script>
-    
+
     <!-- github widget -->
     <script type="text/javascript" src="components/highcharts/highcharts.js"></script>
     <script type="text/javascript" src="components/highcharts-ng/dist/highcharts-ng.js"></script>
