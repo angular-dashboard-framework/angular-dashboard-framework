@@ -1,18 +1,18 @@
 /*
  * The MIT License
- * 
+ *
  * Copyright (c) 2013, Sebastian Sdorra
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,8 +29,8 @@
  * @restrict ECA
  * @scope
  * @description
- * 
- * `adfDashboard` is a directive which renders the dashboard with all its 
+ *
+ * `adfDashboard` is a directive which renders the dashboard with all its
  * components. The directive requires a name attribute. The name of the
  * dashboard can be used to store the model.
  */
@@ -65,7 +65,7 @@ angular.module('adf')
       });
       return counter;
     }
-    
+
     function readColumns(model){
       var columns = [];
       angular.forEach(model.rows, function(row){
@@ -75,7 +75,7 @@ angular.module('adf')
       });
       return columns;
     }
-            
+
     function changeStructure(model, structure){
       var columns = readColumns(model);
       model.rows = structure.rows;
@@ -84,7 +84,7 @@ angular.module('adf')
         counter = fillStructure(model, columns, counter);
       }
     }
-    
+
     function createConfiguration(type){
       var cfg = {};
       var config = dashboard.widgets[type].config;
@@ -102,7 +102,8 @@ angular.module('adf')
         structure: '@',
         name: '@',
         collapsible: '@',
-        adfModel: '='
+        adfModel: '=',
+        adfWidgetFilter: '='
       },
       controller: function($scope){
         // sortable options for drag and drop
@@ -115,9 +116,10 @@ angular.module('adf')
           forcePlaceholderSize: true,
           opacity: 0.4
         };
-        
+
         var name = $scope.name;
         var model = $scope.adfModel;
+        var widgetFilter = $scope.adfWidgetFilter;
         if ( ! model || ! model.rows ){
           var structureName = $scope.structure;
           var structure = dashboard.structures[structureName];
@@ -131,8 +133,8 @@ angular.module('adf')
           } else {
             $log.error( 'could not find structure ' + structureName);
           }
-        } 
-        
+        }
+
         if (model) {
           if (!model.title){
             model.title = 'Dashboard';
@@ -157,7 +159,7 @@ angular.module('adf')
             $rootScope.$broadcast('adfDashboardChanged', name, model);
           }
         };
-        
+
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
           var editDashboardScope = $scope.$new();
@@ -179,7 +181,18 @@ angular.module('adf')
         // add widget dialog
         $scope.addWidgetDialog = function(){
           var addScope = $scope.$new();
-          addScope.widgets = dashboard.widgets;
+          var widgets;
+          if (angular.isFunction(widgetFilter)){
+            widgets = {};
+            angular.forEach(dashboard.widgets, function(widget, type){
+              if (widgetFilter(widget, type)){
+                widgets[type] = widget;
+              }
+            });
+          } else {
+            widgets = dashboard.widgets;
+          }
+          addScope.widgets = widgets;
           var opts = {
             scope: addScope,
             templateUrl: '../src/templates/widget-add.html'
