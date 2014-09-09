@@ -26,7 +26,7 @@
  * @ngdoc directive
  * @name adf.directive:adfDashboard
  * @element div
- * @restrict ECA
+ * @restrict EA
  * @scope
  * @description
  *
