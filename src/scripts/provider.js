@@ -50,7 +50,7 @@ angular.module('adf.provider', [])
     * @methodOf adf.dashboardProvider
     * @description
     *
-    * Registeres a new widget.
+    * Registers a new widget.
     *
     * @param {string} name of the widget
     * @param {object} widget to be registered.
@@ -110,7 +110,7 @@ angular.module('adf.provider', [])
     * @methodOf adf.dashboardProvider
     * @description
     *
-    * Registeres a new structure.
+    * Registers a new structure.
     *
     * @param {string} name of the structure
     * @param {object} structure to be registered.

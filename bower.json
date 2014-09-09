@@ -1,24 +1,37 @@
 {
   "name": "angular-dashboard-framework",
   "version": "0.1.0",
+  "main": "dist/angular-dashboard-framework.min.js",
+  "ignore": [
+    "bower.json",
+    ".bowerrc",
+    ".gitignore",
+    "Gruntfile.js",
+    "node_modules",
+    "package.json",
+    "sample",
+    "src",
+    ".tmp",
+    "dist/docs"
+  ],
   "dependencies": {
     "angular": "1.2.18",
-    "angular-route": "1.2.18",
     "angular-bootstrap": "~0.11.0",
-    "angular-local-storage": "0.0.1",
     "font-awesome": "~4.1.0",
-    "json3": "~3.2.4",
     "jquery": "~2.0.3",
     "jquery-ui": "~1.10.3",
-    "bootstrap": "~3.2.0",
-    "es5-shim": "~2.0.8",
-    "angular-markdown-directive": "~0.1.0",
-    "highcharts-ng": "0.0.6",
-    "highcharts": "3.0.7"
+    "bootstrap": "~3.2.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.18",
-    "angular-scenario": "1.2.18"
+    "angular-scenario": "1.2.18",
+    "angular-route": "1.2.18",
+    "angular-local-storage": "0.0.1",
+    "json3": "~3.2.4",
+    "es5-shim": "~2.0.8",
+    "angular-markdown-directive": "~0.1.0",
+    "highcharts-ng": "0.0.6",
+    "highcharts": "4.0.3"
   },
   "resolutions": {
     "angular": "1.2.18"
