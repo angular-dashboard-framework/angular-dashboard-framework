@@ -8,7 +8,7 @@
 </div></div>
 <div class="member method"><h2 id="methods">Methods</h2>
 <ul class="methods"><li><h3 id="methods_loadingtemplate">loadingTemplate(loading)</h3>
-<div class="loadingtemplate"><div class="adf-dashboardprovider-loadingtemplate-page"><p>Changes the template which is displayed as 
+<div class="loadingtemplate"><div class="adf-dashboardprovider-loadingtemplate-page"><p>Changes the template which is displayed as
 long as the widget resources are not resolved.</p>
 </div><h5 id="methods_loadingtemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>loading</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>template</p>
 </div></td></tr></tbody></table><h5 id="methods_loadingtemplate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>self</p>
@@ -21,7 +21,7 @@ long as the widget resources are not resolved.</p>
 </div></td></tr></table></div>
 </li>
 <li><h3 id="methods_structure">structure(name, structure)</h3>
-<div class="structure"><div class="adf-dashboardprovider-structure-page"><p>Registeres a new structure.</p>
+<div class="structure"><div class="adf-dashboardprovider-structure-page"><p>Registers a new structure.</p>
 </div><h5 id="methods_structure_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-structure-page"><p>of the structure</p>
 </div></td></tr><tr><td>structure</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="adf-dashboardprovider-structure-page"><p>to be registered.</p>
 <p>  Object properties:</p>
@@ -39,7 +39,7 @@ long as the widget resources are not resolved.</p>
 </div></td></tr></table></div>
 </li>
 <li><h3 id="methods_widget">widget(name, widget)</h3>
-<div class="widget"><div class="adf-dashboardprovider-widget-page"><p>Registeres a new widget.</p>
+<div class="widget"><div class="adf-dashboardprovider-widget-page"><p>Registers a new widget.</p>
 </div><h5 id="methods_widget_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-widget-page"><p>of the widget</p>
 </div></td></tr><tr><td>widget</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="adf-dashboardprovider-widget-page"><p>to be registered.</p>
 <p>  Object properties:</p>
@@ -47,15 +47,15 @@ long as the widget resources are not resolved.</p>
 <li><code>title</code> - <code>{string=}</code> - The title of the widget.</li>
 <li><code>description</code> - <code>{string=}</code> - Description of the widget.</li>
 <li><code>config</code> - <code>{object}</code> - Predefined widget configuration.</li>
-<li><code>controller</code> - <code>{string=|function()=}</code> - Controller fn that should be 
- associated with newly created scope of the widget or the name of a 
- <a href="http://docs.angularjs.org/api/angular.Module#controller">registered controller</a> 
+<li><code>controller</code> - <code>{string=|function()=}</code> - Controller fn that should be
+ associated with newly created scope of the widget or the name of a
+ <a href="http://docs.angularjs.org/api/angular.Module#controller">registered controller</a>
  if passed as a string.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - html template as a string.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - path to an html template.</li>
 <li><code>reload</code> - <code>{boolean=}</code> - true if the widget could be reloaded. The default is false.</li>
 <li><p><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - An optional map of dependencies which should
- be injected into the controller. If any of these dependencies are promises, the widget 
+ be injected into the controller. If any of these dependencies are promises, the widget
  will wait for them all to be resolved or one to be rejected before the controller is
  instantiated.
  If all the promises are resolved successfully, the values of the resolved promises are
@@ -74,7 +74,7 @@ resolved before its value is injected into the controller.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - Same as above, but for the edit mode of the widget.</li>
-<li><code>reload</code> - {boolean} - true if the widget should be reloaded, after the edit mode is closed. 
+<li><code>reload</code> - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
 Default is true.</li>
 </ul>
 </li>

@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "adf",
       "shortDescription": "The dashboardProvider can be used to register structures and widgets.",
-      "keywords": "$injector adf alias angularjs api associated changes class closed column columns config configuration controller created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn function html http injected instantiated invoke key loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path predefined promise promises properties register registered registeres rejected reload reloaded resolve resolved resources result return row rows scope service string structure structures styleclass template templateurl title treated true values wait widget widgets"
+      "keywords": "$injector adf alias angularjs api associated changes class closed column columns config configuration controller created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn function html http injected instantiated invoke key loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path predefined promise promises properties register registered registers rejected reload reloaded resolve resolved resources result return row rows scope service string structure structures styleclass template templateurl title treated true values wait widget widgets"
     },
     {
       "section": "api",
@@ -27,7 +27,7 @@ NG_DOCS={
       "shortName": "adfDashboard",
       "type": "directive",
       "moduleName": "adf",
-      "shortDescription": "adfDashboard is a directive which renders the dashboard with all its ",
+      "shortDescription": "adfDashboard is a directive which renders the dashboard with all its",
       "keywords": "adf adfdashboard api attribute components dashboard directive div eca model renders requires store"
     }
   ],
