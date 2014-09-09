@@ -36,7 +36,7 @@
         dest: '.tmp/ngtemplates/templates.js',
         options: {
           htmlmin: {
-            collapseWhitespace: true, 
+            collapseWhitespace: true,
             collapseBooleanAttributes: true,
             removeComments: true
           },
@@ -49,7 +49,7 @@
         dest: '.tmp/ngtemplates/sample.templates.js',
         options: {
           htmlmin: {
-            collapseWhitespace: true, 
+            collapseWhitespace: true,
             collapseBooleanAttributes: true,
             removeComments: true
           }
@@ -59,10 +59,10 @@
     concat: {
       default: {
         src: [
-          '<%= dirs.src %>/sortable.js', 
-          '<%= dirs.src %>/provider.js', 
+          '<%= dirs.src %>/sortable.js',
+          '<%= dirs.src %>/provider.js',
           '<%= dirs.src %>/adf.js',
-          '<%= dirs.src %>/dashboard.js', 
+          '<%= dirs.src %>/dashboard.js',
           '<%= dirs.src %>/widget-content.js',
           '<%= dirs.src %>/widget.js',
           '.tmp/ngtemplates/templates.js'
@@ -105,7 +105,7 @@
         files: {
           'dist/sample/js/sample.min.js': ['.tmp/ngmin/complete.min.js'],
           'dist/sample/js/jquery.ui.sortable.min.js': ['.tmp/concat/js/jquery.ui.sortable.min.js']
-        }        
+        }
       }
     },
     cssmin: {
@@ -117,7 +117,7 @@
       sample: {
         files: {
           'dist/sample/css/sample.min.css': ['.tmp/concat/css/sample.min.css']
-        }        
+        }
       }
     },
     ngdocs: {
@@ -135,7 +135,7 @@
       sample: {
         files: [{
           src: 'sample/index.html',
-          dest: 'dist/sample/index.html'            
+          dest: 'dist/sample/index.html'
         },{
           src: 'sample/components/angular/angular.min.js',
           dest: 'dist/sample/js/angular.min.js'
@@ -170,6 +170,14 @@
         html: ['dist/sample/index.html']
       }
     },
+    jshint: {
+      options: {
+        globals: {
+          angular: true
+        }
+      },
+      files: ['Gruntfile.js', 'src/scripts/*.js']
+    },
     connect: {
       server: {
         options: {
@@ -181,8 +189,8 @@
     watch: {
       scripts: {
         files: [
-          'src/**/*.js', 
-          'src/**/*.html', 
+          'src/**/*.js',
+          'src/**/*.html',
           'src/**/*.css',
           'sample/index.html',
           'sample/scripts/**/*.js',
@@ -217,18 +225,18 @@
   // css
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  // clean 
+  // clean
   grunt.loadNpmTasks('grunt-contrib-clean');
 
   // ngdoc
   grunt.loadNpmTasks('grunt-ngdocs');
-  
+
   // copy
   grunt.loadNpmTasks('grunt-contrib-copy');
-  
+
   // usemin
   grunt.loadNpmTasks('grunt-usemin');
-  
+
   // cdnify
   grunt.loadNpmTasks('grunt-google-cdn');
 
@@ -246,29 +254,29 @@
 
   grunt.registerTask('default-wo-clean', [
     'clean',
-    'ngtemplates:adf', 
-    'concat:default', 
-    'ngmin:default', 
-    'uglify:default', 
-    'cssmin:default', 
+    'ngtemplates:adf',
+    'concat:default',
+    'ngmin:default',
+    'uglify:default',
+    'cssmin:default',
     'ngdocs'
   ]);
 
   // gocs task
   grunt.registerTask('docs', ['clean', 'ngdocs']);
   grunt.registerTask('docs-wo-clean', ['ngdocs']);
-  
+
   // sample task
   grunt.registerTask('sample', ['clean', 'sample-wo-clean']);
 
   grunt.registerTask('sample-wo-clean', [
-    'useminPrepare', 
+    'useminPrepare',
     'copy:sample',
     'concat:generated',
     'ngtemplates',
     'concat:sample',
-    'cssmin:sample', 
-    'ngmin:sample', 
+    'cssmin:sample',
+    'ngmin:sample',
     'uglify:sample',
     'filerev',
     'usemin',
