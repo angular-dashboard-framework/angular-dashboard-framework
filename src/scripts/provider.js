@@ -91,10 +91,7 @@ angular.module('adf.provider', [])
     * @returns {Object} self
     */
     this.widget = function(name, widget){
-      var w = angular.extend({
-        reload: false,
-        widgetName: name
-      }, widget)
+      var w = angular.extend({reload: false}, widget);
       if ( w.edit ){
         var edit = {reload: true};
         angular.extend(edit, w.edit);

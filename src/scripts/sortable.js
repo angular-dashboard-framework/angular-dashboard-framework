@@ -3,6 +3,8 @@
  https://raw.github.com/CyborgMaster/ui-sortable/angular1.2/src/sortable.js
  @param [ui-sortable] {object} Options to pass to $.fn.sortable() merged onto ui.config
  */
+ 'use strict';
+
 angular.module('ui.sortable', [])
   .value('uiSortableConfig',{})
   .directive('uiSortable', [

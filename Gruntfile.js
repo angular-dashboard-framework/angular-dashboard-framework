@@ -172,11 +172,13 @@
     },
     jshint: {
       options: {
+        globalstrict: true,
+        multistr: true,
         globals: {
           angular: true
         }
       },
-      files: ['Gruntfile.js', 'src/scripts/*.js']
+      files: 'src/scripts/*.js'
     },
     connect: {
       server: {
