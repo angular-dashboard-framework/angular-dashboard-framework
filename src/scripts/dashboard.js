@@ -150,15 +150,21 @@ angular.module('adf')
 
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
-          if ($scope.editClass === ""){
-            $scope.editClass = "edit";
-          } else {
-            $scope.editClass = "";
-          }
+		  if ($scope.editMode){
+			$scope.modelCopy = angular.copy($scope.adfModel, {});
+		  }
+		  
           if (!$scope.editMode){
             $rootScope.$broadcast('adfDashboardChanged', name, model);
           }
         };
+		$scope.cancelEditMode = function(){
+		
+          $scope.editMode = false;		  
+		  $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+	  
+       };
+		
 
         // edit dashboard settings
         $scope.editDashboardDialog = function(){

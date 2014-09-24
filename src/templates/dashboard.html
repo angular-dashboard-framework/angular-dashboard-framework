@@ -9,13 +9,16 @@
       <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
         <i class="fa fa-cog"></i>
       </a>
-      <a href="" title="{{editMode ? 'disable edit mode' : 'enable edit mode'}}" ng-click="toggleEditMode()">
-        <i class="fa fa-edit"></i>
+      <a href="" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
+        <i class="fa" x-ng-class="{'fa-edit' : !editMode, 'fa-save' : editMode}"></i>
+      </a>
+	  <a data-ng-if="editMode" href="" title="undo changes" ng-click="cancelEditMode()">
+        <i class="fa fa-undo"></i>
       </a>
     </span>
   </h1>
 
-  <div class="dashboard" ng-class="editClass">
+  <div class="dashboard" x-ng-class="{'edit' : editMode}">
 
     <div ng-repeat="row in model.rows" class="row" ng-class="row.styleClass">
       <div ng-repeat="col in row.columns" class="column" ng-class="col.styleClass" ui-sortable="sortableOptions" ng-model="col.widgets">
