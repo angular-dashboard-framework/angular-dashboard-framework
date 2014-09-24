@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "adf",
       "shortDescription": "adfDashboard is a directive which renders the dashboard with all its",
-      "keywords": "adf adfdashboard api attribute components dashboard directive div eca model renders requires store"
+      "keywords": "adf adfdashboard api attribute components dashboard directive div ea model renders requires store"
     }
   ],
   "apis": {
