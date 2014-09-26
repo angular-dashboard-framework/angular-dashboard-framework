@@ -1,6 +1,6 @@
 <div class="linklist">
   <ul>
-    <li ng-repeat="link in links | orderBy:'title'">
+    <li ng-repeat="link in list.links | orderBy:'title'">
       <a target="_blank" ng-href="{{link.href}}">{{link.title}}</a>
     </li>
   </ul>

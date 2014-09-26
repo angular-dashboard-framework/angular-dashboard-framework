@@ -64,6 +64,8 @@ angular.module('adf.provider', [])
     *      associated with newly created scope of the widget or the name of a
     *      {@link http://docs.angularjs.org/api/angular.Module#controller registered controller}
     *      if passed as a string.
+    *   - `controllerAs` - `{string=}` - A controller alias name. If present the controller will be
+    *      published to scope under the `controllerAs` name.
     *   - `template` - `{string=|function()=}` - html template as a string.
     *   - `templateUrl` - `{string=}` - path to an html template.
     *   - `reload` - `{boolean=}` - true if the widget could be reloaded. The default is false.
