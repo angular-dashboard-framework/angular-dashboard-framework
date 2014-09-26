@@ -1,6 +1,6 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist/angular-dashboard-framework.min.js",
   "ignore": [
     "bower.json",
