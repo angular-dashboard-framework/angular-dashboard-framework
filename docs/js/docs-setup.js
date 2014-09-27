@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "adf",
       "shortDescription": "The dashboardProvider can be used to register structures and widgets.",
-      "keywords": "$injector adf alias angularjs api associated changes class closed column columns config configuration controller created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn function html http injected instantiated invoke key loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path predefined promise promises properties register registered registers rejected reload reloaded resolve resolved resources result return row rows scope service string structure structures styleclass template templateurl title treated true values wait widget widgets"
+      "keywords": "$injector adf alias angularjs api associated changes class closed column columns config configuration controller controlleras created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn function html http injected instantiated invoke key loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path predefined promise promises properties published register registered registers rejected reload reloaded resolve resolved resources result return row rows scope service string structure structures styleclass template templateurl title treated true values wait widget widgets"
     },
     {
       "section": "api",
