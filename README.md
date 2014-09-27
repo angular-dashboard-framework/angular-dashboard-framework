@@ -8,6 +8,8 @@ The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.
 
 A live demo of the adf can be viewed [here](http://sdorra.github.io/angular-dashboard-framework/). The demo uses html5 localStorage to store the state of the dashboard. The source of the demo can be found [here](https://github.com/sdorra/angular-dashboard-framework/tree/master/sample).
 
+A more dynamic example can be found [here](https://github.com/sdorra/adf-dynamic-example).
+
 ## Getting started
 
 Install bower and grunt:
