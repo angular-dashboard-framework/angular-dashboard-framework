@@ -1,22 +1,23 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "0.2.0",
+  "version": "0.3.0-SNAPSHOT",
   "devDependencies": {
     "grunt": "^0.4.2",
-    "grunt-ngmin": "0.0.3",
     "grunt-angular-templates": "~0.4.0",
+    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-connect": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.7.0",
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.2",
-    "grunt-contrib-cssmin": "~0.7.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-ngdocs": "~0.1.7",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-usemin": "~2.1.0",
-    "grunt-google-cdn": "~0.2.2",
+    "grunt-contrib-watch": "~0.6.1",
     "grunt-filerev": "~0.2.0",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-watch": "~0.6.1"
+    "grunt-google-cdn": "~0.2.2",
+    "grunt-ngdocs": "~0.1.7",
+    "grunt-ngmin": "0.0.3",
+    "grunt-string-replace": "^1.0.0",
+    "grunt-usemin": "~2.1.0"
   }
 }

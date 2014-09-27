@@ -24,9 +24,11 @@
 
  module.exports = function(grunt) {
 
+  var pkg = grunt.file.readJSON('package.json');
+
   // Project configuration.
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
     dirs: {
       src: 'src/scripts'
     },
@@ -72,6 +74,23 @@
       sample: {
         src: ['.tmp/concat/js/sample.min.js', '.tmp/ngtemplates/templates.js', '.tmp/ngtemplates/sample.templates.js'],
         dest: '.tmp/concat/js/complete.min.js'
+      }
+    },
+    'string-replace': {
+      dist: {
+        files: [{
+          src: '.tmp/concat/adf.js',
+          dest: '.tmp/concat/adf.js'
+        },{
+          src: '.tmp/concat/js/complete.min.js',
+          dest: '.tmp/concat/js/complete.min.js'
+        }],
+        options: {
+          replacements: [{
+            pattern: '<<adfVersion>>',
+            replacement: pkg.version
+          }]
+        }
       }
     },
     ngmin: {
@@ -221,6 +240,9 @@
   // concat
   grunt.loadNpmTasks('grunt-contrib-concat');
 
+  // string-replace
+  grunt.loadNpmTasks('grunt-string-replace');
+
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
@@ -258,6 +280,7 @@
     'clean',
     'ngtemplates:adf',
     'concat:default',
+    'string-replace',
     'ngmin:default',
     'uglify:default',
     'cssmin:default',
@@ -277,6 +300,7 @@
     'concat:generated',
     'ngtemplates',
     'concat:sample',
+    'string-replace',
     'cssmin:sample',
     'ngmin:sample',
     'uglify:sample',

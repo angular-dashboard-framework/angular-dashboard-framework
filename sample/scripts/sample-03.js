@@ -61,7 +61,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
 
   // only allow github widgets
   $scope.widgetFilter = function(widget, type){
-    return type.indexOf('github') >= 0 || type === 'markdown';
+    return type.indexOf('github') >= 0 || type === 'markdown' || type === 'version';
   };
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {

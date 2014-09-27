@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) 2013, Sebastian Sdorra
+ * Copyright (c) 2014, Sebastian Sdorra
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,19 @@
 
 'use strict';
 
-angular.module('adf', ['adf.provider', 'ui.bootstrap', 'ui.sortable'])
-  .value('adfTemplatePath', '../src/templates/')
-  .value('adfVersion', '<<adfVersion>>');
+angular.module('sample.widgets.version', ['adf.provider'])
+  .config(function(dashboardProvider){
+    dashboardProvider
+      .widget('version', {
+        title: 'Version',
+        description: 'Displays the angular-dashboard-framework',
+        template: 'angular-dashboard-framework: {{version}}',
+        controller: function($scope, adfVersion){
+          var version = adfVersion;
+          if (version.indexOf('<<') >= 0){
+            version = 'unknown';
+          }
+          $scope.version = version;
+        },
+      });
+  });

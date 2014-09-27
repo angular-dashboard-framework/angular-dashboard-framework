@@ -27,8 +27,9 @@ angular.module('sample', [
   'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
   'sample.widgets.weather', 'sample.widgets.markdown',
   'sample.widgets.linklist', 'sample.widgets.github',
-  'LocalStorageModule', 'structures', 'sample-01',
-  'sample-02', 'sample-03', 'ngRoute'
+  'sample.widgets.version', 'LocalStorageModule',
+  'structures', 'sample-01', 'sample-02', 'sample-03',
+  'ngRoute'
 ])
 .config(function($routeProvider, localStorageServiceProvider){
   localStorageServiceProvider.setPrefix('adf');
