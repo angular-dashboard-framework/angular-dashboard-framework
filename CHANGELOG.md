@@ -2,7 +2,7 @@
 
 ## New features
 
-- ability to reset Dashboard to original view
+- ability to reset dashboard to original view
 - support for filtering widgets
 
 # 0.1.0
