@@ -1,3 +1,15 @@
+# 0.3.0
+
+## New features
+
+- support for controllerAs syntax
+- added inject value for template path
+- added adfVersion inject value
+
+## Bug fixes
+
+- fixed displaying control btns outside the panel title, when title is long ([#30](https://github.com/sdorra/angular-dashboard-framework/pull/30))
+
 # 0.2.0
 
 ## New features
