@@ -29,7 +29,7 @@ cd angular-dashboard-framework
 Install npm and bower dependencies:
 
 ```bash
-npm install --save
+npm install
 bower install
 ```
 
