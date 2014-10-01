@@ -27,7 +27,16 @@
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
 
+    function stringToBoolean(string){
+      switch(string != null ? string.toLowerCase() : null){
+        case "true": case "yes": case "1": return true;
+        case "false": case "no": case "0": case null: return false;
+        default: return Boolean(string);
+      }
+    }
+
     function preLink($scope, $element, $attr){
+      console.log();
       var definition = $scope.definition;
       if (definition) {
         var w = dashboard.widgets[definition.type];
@@ -56,6 +65,9 @@ angular.module('adf')
           // pass config to scope
           $scope.config = config;
 
+          // convert collapsible to string
+          $scope.collapsible = stringToBoolean($scope.collapsible);
+          
           // collapse
           $scope.isCollapsed = false;
         } else {

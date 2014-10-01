@@ -101,7 +101,7 @@ angular.module('adf')
       scope: {
         structure: '@',
         name: '@',
-        collapsible: '=',
+        collapsible: '@',
         adfModel: '=',
         adfWidgetFilter: '='
       },
