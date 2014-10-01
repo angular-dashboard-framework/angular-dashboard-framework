@@ -1,3 +1,9 @@
+# 0.3.1
+
+## Bug fixes
+
+- fix bug with the collapsible attribute of the dashboard directive
+
 # 0.3.0
 
 ## New features
