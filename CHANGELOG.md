@@ -1,3 +1,9 @@
+# 0.3.2
+
+## Bug fixes
+
+- Changing dashboard structure copies widgets from previous changed dashboard structure, see issue #35
+
 # 0.3.1
 
 ## Bug fixes
