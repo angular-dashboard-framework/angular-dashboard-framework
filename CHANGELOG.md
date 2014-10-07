@@ -2,7 +2,7 @@
 
 ## Bug fixes
 
-- Changing dashboard structure copies widgets from previous changed dashboard structure, see issue #35
+- Changing dashboard structure copies widgets from previous changed dashboard structure, see [#35](https://github.com/sdorra/angular-dashboard-framework/issues/35)
 
 # 0.3.1
 
