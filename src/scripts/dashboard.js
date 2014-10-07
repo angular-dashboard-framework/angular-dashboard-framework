@@ -78,7 +78,7 @@ angular.module('adf')
 
     function changeStructure(model, structure){
       var columns = readColumns(model);
-      model.rows = structure.rows;
+      model.rows = angular.copy(structure.rows);
       var counter = 0;
       while ( counter < columns.length ){
         counter = fillStructure(model, columns, counter);
