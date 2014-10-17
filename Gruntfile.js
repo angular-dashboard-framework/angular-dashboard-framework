@@ -184,11 +184,6 @@
         src: ['dist/sample/css/*.css']
       }
     },
-    cdnify: {
-      sample: {
-        html: ['dist/sample/index.html']
-      }
-    },
     jshint: {
       options: {
         globalstrict: true,
@@ -261,9 +256,6 @@
   // usemin
   grunt.loadNpmTasks('grunt-usemin');
 
-  // cdnify
-  grunt.loadNpmTasks('grunt-google-cdn');
-
   // filerev
   grunt.loadNpmTasks('grunt-filerev');
 
@@ -305,8 +297,7 @@
     'ngAnnotate:sample',
     'uglify:sample',
     'filerev',
-    'usemin',
-    'cdnify:sample'
+    'usemin'
   ]);
 
   // server task
