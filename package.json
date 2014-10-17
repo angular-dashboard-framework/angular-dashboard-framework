@@ -16,7 +16,7 @@
     "grunt-filerev": "~2.1.0",
     "grunt-google-cdn": "~0.4.3",
     "grunt-ngdocs": "~0.2.5",
-    "grunt-ngmin": "0.0.3",
+    "grunt-ng-annotate": "~0.4.0",
     "grunt-string-replace": "^1.0.0",
     "grunt-usemin": "~2.4.0"
   }

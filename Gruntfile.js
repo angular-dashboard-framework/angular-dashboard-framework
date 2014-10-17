@@ -93,7 +93,7 @@
         }
       }
     },
-    ngmin: {
+    ngAnnotate: {
       default: {
         expand: true,
         cwd: '.tmp/concat',
@@ -234,8 +234,8 @@
   // templates
   grunt.loadNpmTasks('grunt-angular-templates');
 
-  // ngmin
-  grunt.loadNpmTasks('grunt-ngmin');
+  // ng-annotate
+  grunt.loadNpmTasks('grunt-ng-annotate');
 
   // concat
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -281,7 +281,7 @@
     'ngtemplates:adf',
     'concat:default',
     'string-replace',
-    'ngmin:default',
+    'ngAnnotate:default',
     'uglify:default',
     'cssmin:default',
     'ngdocs'
@@ -302,7 +302,7 @@
     'concat:sample',
     'string-replace',
     'cssmin:sample',
-    'ngmin:sample',
+    'ngAnnotate:sample',
     'uglify:sample',
     'filerev',
     'usemin',
