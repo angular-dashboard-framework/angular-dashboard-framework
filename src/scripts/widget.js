@@ -36,7 +36,6 @@ angular.module('adf')
     }
 
     function preLink($scope, $element, $attr){
-      console.log();
       var definition = $scope.definition;
       if (definition) {
         var w = dashboard.widgets[definition.type];
@@ -67,7 +66,7 @@ angular.module('adf')
 
           // convert collapsible to string
           $scope.collapsible = stringToBoolean($scope.collapsible);
-          
+
           // collapse
           $scope.isCollapsed = false;
         } else {
