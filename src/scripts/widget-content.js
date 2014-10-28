@@ -50,8 +50,7 @@ angular.module('adf')
       var model = $scope.model;
         var content = $scope.content;
         
-        //TODO find betther way
-     $(".panel-body").mCustomScrollbar({ theme: "minimal-dark" });
+        $(".custom-scrollbar").mCustomScrollbar({ theme: "minimal-dark" });
 
       // display loading template
       $element.html(dashboard.loadingTemplate);
