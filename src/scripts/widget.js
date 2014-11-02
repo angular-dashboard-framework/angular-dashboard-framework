@@ -46,7 +46,9 @@ angular.module('adf')
           }
 
           // pass edit mode
-          $scope.editMode = $attr.editMode;
+          $attr.$observe('editMode', function(value){
+            $scope.editMode = stringToBoolean(value);
+          });
 
           // pass copy of widget to scope
           $scope.widget = angular.copy(w);
