@@ -76,3 +76,11 @@ pre.edit {
 .padding-bottom {
   padding-bottom: 5px;
 }
+
+
+.dashboard .widget.linklistClass .panel-heading {
+  /*height: 34px !important;*/
+}
+.dashboard .widget.linklistClass .panel-body {
+  height: 140px !important;
+}
