@@ -37,6 +37,7 @@ angular.module('adf')
             definition.title = w.title;
           }
           definition.subtitle = "";
+          definition.widgetclass = w.widgetclass;
 
           // pass edit mode
           $scope.editMode = $attr.editMode;
