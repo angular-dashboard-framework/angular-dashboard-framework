@@ -7,6 +7,7 @@
     "angular-route": "1.2.18",
     "angular-bootstrap": "~0.11.0",
     "angular-local-storage": "0.0.1",
+    "angular-ui-sortable": "angular-ui/ui-sortable",
     "font-awesome": "~4.1.0",
     "json3": "~3.2.4",
     "jquery": "~1.11.1",
