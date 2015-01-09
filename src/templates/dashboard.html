@@ -19,15 +19,7 @@
   </h1>
 
   <div class="dashboard" x-ng-class="{'edit' : editMode}">
-
-    <div ng-repeat="row in model.rows" class="row" ng-class="row.styleClass">
-      <div ng-repeat="col in row.columns" class="column" ng-class="col.styleClass" ui-sortable="sortableOptions" ng-model="col.widgets">
-        <div class="widgets" ng-repeat="definition in col.widgets">
-          <adf-widget definition="definition" column="col" edit-mode="{{editMode}}" collapsible="collapsible" />
-        </div>
-      </div>
-    </div>
-    
+    <adf-dashboard-row row="row" ng-repeat="row in model.rows" edit-mode="{{editMode}}" sortable-options="sortableOptions"></adf-dashboard-row>
   </div>
 
 </div>
