@@ -4,7 +4,7 @@ angular.module('adf')
         'use strict';
 
         function stringToBoolean(string){
-            switch(string != null ? string.toLowerCase() : null){
+            switch(string !== null ? string.toLowerCase() : null){
                 case "true": case "yes": case "1": return true;
                 case "false": case "no": case "0": case null: return false;
                 default: return Boolean(string);
@@ -33,5 +33,5 @@ angular.module('adf')
                     });
                 }
             }
-        }
+        };
     });

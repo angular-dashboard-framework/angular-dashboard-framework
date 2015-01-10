@@ -50,7 +50,7 @@ angular.module('adf')
     }
 
     function fillStructure(root, columns, counter) {
-        var counter = counter || 0;
+        counter = counter || 0;
 
         if (angular.isDefined(root.rows)) {
             angular.forEach(root.rows, function (row) {
@@ -82,7 +82,7 @@ angular.module('adf')
     * @param array  an array of existing columns; used when recursion happens
     */
     function readColumns(root, columns) {
-        var columns = columns || [];
+        columns = columns || [];
 
         if (angular.isDefined(root.rows)) {
             angular.forEach(root.rows, function (row) {
@@ -98,8 +98,8 @@ angular.module('adf')
     }
 
     function changeStructure(model, structure){
-      var columns = readColumns(model),
-          counter = 0;
+      var columns = readColumns(model);
+      var counter = 0;
 
       model.rows = angular.copy(structure.rows);
 
