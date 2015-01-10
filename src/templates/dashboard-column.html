@@ -1,0 +1,6 @@
+<div class="column" ng-class="column.styleClass" ui-sortable="sortableOptions" ng-model="column.widgets">
+    <div class="widgets" ng-repeat="definition in column.widgets">
+        <adf-widget definition="definition" column="column" edit-mode="{{editMode}}" collapsible="collapsible" />
+    </div>
+    <!-- If present, a new row will be injected here -->
+</div>
