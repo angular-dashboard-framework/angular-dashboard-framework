@@ -149,7 +149,7 @@ angular.module('adf')
 
         // Watching for changes on adfModel
         $scope.$watch('adfModel', function(oldVal, newVal) {
-          if(newVal =! null) {
+          if (newVal !== null) {
             model = $scope.adfModel;
             widgetFilter = $scope.adfWidgetFilter;
             if ( ! model || ! model.rows ){
