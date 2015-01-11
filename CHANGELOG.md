@@ -1,3 +1,10 @@
+# 0.5.0
+
+## New features
+
+- Support for nested rows [#52](https://github.com/sdorra/angular-dashboard-framework/pull/52)
+- Watch dashboard model for changed [#45](https://github.com/sdorra/angular-dashboard-framework/pull/45)
+
 # 0.4.0
 
 ## New features
