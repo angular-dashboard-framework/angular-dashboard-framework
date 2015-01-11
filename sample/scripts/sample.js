@@ -29,7 +29,7 @@ angular.module('sample', [
   'sample.widgets.linklist', 'sample.widgets.github',
   'sample.widgets.version', 'LocalStorageModule',
   'structures', 'sample-01', 'sample-02', 'sample-03',
-  'ngRoute'
+  'sample-04', 'ngRoute'
 ])
 .config(function($routeProvider, localStorageServiceProvider){
   localStorageServiceProvider.setPrefix('adf');
@@ -45,6 +45,10 @@ angular.module('sample', [
   .when('/sample/03', {
     templateUrl: 'partials/sampleWithFilter.html',
     controller: 'sample03Ctrl'
+  })
+  .when('/sample/04', {
+    templateUrl: 'partials/sample.html',
+    controller: 'sample04Ctrl'
   })
   .otherwise({
     redirectTo: '/sample/01'

@@ -91,6 +91,26 @@ angular.module('structures', ['adf'])
           styleClass: 'col-md-12'
         }]
       }]
+    })
+    .structure('3-9 (6-6/12)', {
+      rows: [{
+        columns: [{
+          styleClass: "col-md-3"
+        }, {
+          styleClass: "col-md-9",
+          rows: [{
+            columns: [{
+              styleClass: "col-md-6"
+            }, {
+              styleClass: "col-md-6"
+            }]
+          }, {
+            columns: [{
+              styleClass: "col-md-12"
+            }]
+          }]
+        }]
+      }]
     });
 
 });
