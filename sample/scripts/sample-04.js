@@ -30,9 +30,9 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
   if (!model) {
     // set default model for demo purposes
     model = {
-      "title": "Sample 02",
-      "structure": "3-9 (6-6/12)",
-      "rows": [{
+      title: "Sample 02",
+      structure: "3-9 (6-6/12)",
+      rows: [{
           "columns": [
             {
               "styleClass": "col-md-3",
@@ -47,7 +47,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
                 {
                   "type": "weather",
                   "config": {
-                    "location": "Dublin"
+                    "location": "Dublin,IE"
                   },
                   "title": "Weather"
                 },
