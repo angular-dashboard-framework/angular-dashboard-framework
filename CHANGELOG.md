@@ -1,3 +1,7 @@
+## Bug fixes
+
+- fix missing files in minified version
+
 # 0.5.0
 
 ## New features
