@@ -61,12 +61,7 @@
     concat: {
       default: {
         src: [
-          '<%= dirs.src %>/sortable.js',
-          '<%= dirs.src %>/provider.js',
-          '<%= dirs.src %>/adf.js',
-          '<%= dirs.src %>/dashboard.js',
-          '<%= dirs.src %>/widget-content.js',
-          '<%= dirs.src %>/widget.js',
+          '<%= dirs.src %>/*.js',
           '.tmp/ngtemplates/templates.js'
         ],
         dest: '.tmp/concat/adf.js'
