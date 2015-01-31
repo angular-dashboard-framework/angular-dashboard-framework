@@ -181,7 +181,7 @@ gulp.task('watch', function(){
   });
 });
 
-gulp.task('webserver', function(){
+gulp.task('webserver', ['install-widgets'], function(){
   connect.server({
     port: 9001,
     livereload: true
