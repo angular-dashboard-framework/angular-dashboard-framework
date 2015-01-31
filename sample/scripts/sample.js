@@ -27,11 +27,12 @@ angular.module('sample', [
   'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
   'sample.widgets.weather', 'sample.widgets.markdown',
   'sample.widgets.linklist', 'sample.widgets.github',
-  'sample.widgets.version', 'LocalStorageModule',
-  'structures', 'sample-01', 'sample-02', 'sample-03',
-  'sample-04', 'ngRoute'
+  'sample.widgets.version', 'adf.widgets.clock',
+  'LocalStorageModule', 'structures', 'sample-01', 'sample-02',
+  'sample-03', 'sample-04', 'ngRoute'
 ])
-.config(function($routeProvider, localStorageServiceProvider){
+.config(function(dashboardProvider, $routeProvider, localStorageServiceProvider){
+  dashboardProvider.widgetsPath('widgets/');
   localStorageServiceProvider.setPrefix('adf');
 
   $routeProvider.when('/sample/01', {

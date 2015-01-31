@@ -1,0 +1,3 @@
+[submodule "sample/widgets/clock"]
+	path = sample/widgets/clock
+	url = https://github.com/sdorra/adf-widget-clock
