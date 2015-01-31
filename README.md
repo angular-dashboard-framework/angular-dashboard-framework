@@ -33,6 +33,13 @@ npm install
 bower install
 ```
 
+Checkout git submodule widgets:
+
+```bash
+git submodule init
+git submodule update
+```
+
 You can start the sample dashboard, by using the server grunt task:
 
 ```bash
