@@ -24,35 +24,37 @@
 
 'use strict';
 
-angular.module('sample.widgets.news', ['adf.provider'])
-  .value('newsServiceUrl', 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&callback=JSON_CALLBACK&q=')
+angular.module('sample.widgets.weather', ['adf.provider'])
+  .value('weatherServiceUrl', 'http://api.openweathermap.org/data/2.5/weather?units=metric&callback=JSON_CALLBACK&q=')
   .config(function(dashboardProvider){
     dashboardProvider
-      .widget('news', {
-        title: 'News',
-        description: 'Displays a RSS/Atom feed',
-        templateUrl: 'scripts/widgets/news/news.html',
-        controller: 'newsCtrl',
+      .widget('weather', {
+        title: 'Weather',
+        description: 'Display the current temperature of a city',
+        templateUrl: 'widgets/weather/weather.html',
+        controller: 'weatherCtrl',
+        reload: true,
         resolve: {
-          feed: function(newsService, config){
-            if (config.url){
-              return newsService.get(config.url);
+          data: function(weatcherService, config){
+            if (config.location){
+              return weatcherService.get(config.location);
             }
           }
         },
         edit: {
-          templateUrl: 'scripts/widgets/news/edit.html'
+          templateUrl: 'widgets/weather/edit.html'
         }
       });
   })
-  .service('newsService', function($q, $http, newsServiceUrl){
+  .service('weatcherService', function($q, $http, weatherServiceUrl){
     return {
-      get: function(url){
+      get: function(location){
         var deferred = $q.defer();
-        $http.jsonp(newsServiceUrl + encodeURIComponent(url))
+        var url = weatherServiceUrl + location;
+        $http.jsonp(url)
           .success(function(data){
-            if (data && data.responseData && data.responseData.feed){
-              deferred.resolve(data.responseData.feed);
+            if (data && data.cod === 200){
+              deferred.resolve(data);
             } else {
               deferred.reject();
             }
@@ -64,6 +66,6 @@ angular.module('sample.widgets.news', ['adf.provider'])
       }
     };
   })
-  .controller('newsCtrl', function($scope, feed){
-    $scope.feed = feed;
+  .controller('weatherCtrl', function($scope, data){
+    $scope.data = data;
   });

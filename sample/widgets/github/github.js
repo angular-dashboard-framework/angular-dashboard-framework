@@ -29,7 +29,7 @@ angular.module('sample.widgets.github', ['adf.provider', 'highcharts-ng'])
   .config(function(dashboardProvider){
     // template object for github widgets
     var widget = {
-      templateUrl: 'scripts/widgets/github/github.html',
+      templateUrl: 'widgets/github/github.html',
       reload: true,
       resolve: {
         commits: function(githubService, config){
@@ -39,7 +39,7 @@ angular.module('sample.widgets.github', ['adf.provider', 'highcharts-ng'])
         }
       },
       edit: {
-        templateUrl: 'scripts/widgets/github/edit.html'
+        templateUrl: 'widgets/github/edit.html'
       }
     };
 

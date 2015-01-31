@@ -30,7 +30,7 @@ angular.module('sample.widgets.randommsg', ['adf.provider'])
       .widget('randommsg', {
         title: 'Random Message',
         description: 'Display a random quote of Douglas Adams',
-        templateUrl: 'scripts/widgets/randommsg/randommsg.html',
+        templateUrl: 'widgets/randommsg/randommsg.html',
         controller: 'randommsgCtrl'
       });
   })

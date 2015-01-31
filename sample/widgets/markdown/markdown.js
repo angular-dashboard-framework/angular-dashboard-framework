@@ -31,9 +31,9 @@ angular.module('sample.widgets.markdown', ['adf.provider', 'btford.markdown'])
         title: 'Markdown',
         description: 'Markdown widget',
         controller: 'markdownCtrl',
-        templateUrl: 'scripts/widgets/markdown/markdown.html',
+        templateUrl: 'widgets/markdown/markdown.html',
         edit: {
-          templateUrl: 'scripts/widgets/markdown/edit.html',
+          templateUrl: 'widgets/markdown/edit.html',
           reload: false
         }
       });

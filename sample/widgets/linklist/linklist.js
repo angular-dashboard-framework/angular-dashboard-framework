@@ -32,9 +32,9 @@ angular.module('sample.widgets.linklist', ['adf.provider'])
         description: 'Displays a list of links',
         controller: 'linklistCtrl',
         controllerAs: 'list',
-        templateUrl: 'scripts/widgets/linklist/linklist.html',
+        templateUrl: 'widgets/linklist/linklist.html',
         edit: {
-          templateUrl: 'scripts/widgets/linklist/edit.html',
+          templateUrl: 'widgets/linklist/edit.html',
           reload: false,
           controller: 'linklistEditCtrl'
         }
