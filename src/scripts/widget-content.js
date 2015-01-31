@@ -27,20 +27,32 @@
 angular.module('adf')
   .directive('adfWidgetContent', function($log, $q, $sce, $http, $templateCache, $compile, $controller, $injector, dashboard) {
 
+    function parseUrl(url){
+      return url.replace('{widgetsPath}', dashboard.widgetsPath);
+    }
+
     function getTemplate(widget){
       var deferred = $q.defer();
 
       if ( widget.template ){
         deferred.resolve(widget.template);
       } else if (widget.templateUrl) {
-        var url = $sce.getTrustedResourceUrl(widget.templateUrl);
-        $http.get(url, {cache: $templateCache})
-          .success(function(response){
-            deferred.resolve(response);
-          })
-          .error(function(){
-            deferred.reject('could not load template');
-          });
+        // try to fetch template from cache
+        var tpl = $templateCache.get(widget.templateUrl);
+        if (tpl){
+          deferred.resolve(tpl);
+        } else {
+          var url = $sce.getTrustedResourceUrl(parseUrl(widget.templateUrl));
+          $http.get(url)
+            .success(function(response){
+              // put response to cache, with unmodified url as key
+              $templateCache.put(widget.templateUrl, response);
+              deferred.resolve(response);
+            })
+            .error(function(){
+              deferred.reject('could not load template');
+            });
+        }
       }
 
       return deferred.promise;
