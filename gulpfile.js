@@ -90,13 +90,28 @@ gulp.task('docs', function(){
 });
 
 /** build sample **/
+gulp.task('install-widgets', function(){
+  return gulp.src(['sample/widgets/*/package.json', 'sample/widgets/*/bower.json'])
+             .pipe($.install());
+});
 
-gulp.task('widget-templates', function(){
+gulp.task('new-widget-templates', ['install-widgets'], function(){
   var opts = {
-    root: 'scripts/widgets',
+    root: '{widgetsPath}',
     module: 'sample'
   };
-  return gulp.src('sample/scripts/widgets/*/*.html')
+  return gulp.src('sample/widgets/*/src/*.html')
+             .pipe($.minifyHtml())
+             .pipe($.angularTemplatecache('new-widgets.js', opts))
+             .pipe(gulp.dest('.tmp'));
+});
+
+gulp.task('widget-templates', ['new-widget-templates'], function(){
+  var opts = {
+    root: 'widgets',
+    module: 'sample'
+  };
+  return gulp.src('sample/widgets/*/*.html')
              .pipe($.minifyHtml())
              .pipe($.angularTemplatecache('widgets.js', opts))
              .pipe(gulp.dest('.tmp'));
@@ -151,9 +166,14 @@ gulp.task('watch', function(){
     'src/styles/*.css',
     'src/templates/*.html',
     'sample/*.html',
-    'sample/**/*.js',
-    'sample/**/*.css',
-    'sample/**/*.html'
+    'sample/scripts/*.js',
+    'sample/partials/*.html',
+    'sample/widgets/*/*.js',
+    'sample/widgets/*/*.css',
+    'sample/widgets/*/*.html',
+    'sample/widgets/*/src/*.js',
+    'sample/widgets/*/src/*.css',
+    'sample/widgets/*/src/*.html'
   ];
   gulp.watch(paths).on('change', function(file){
     gulp.src(file.path)
