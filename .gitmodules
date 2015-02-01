@@ -19,3 +19,6 @@
 [submodule "sample/widgets/version"]
 	path = sample/widgets/version
 	url = https://github.com/sdorra/adf-widget-version
+[submodule "sample/widgets/weather"]
+	path = sample/widgets/weather
+	url = https://github.com/sdorra/adf-widget-weather
