@@ -10,3 +10,6 @@
 [submodule "sample/widgets/markdown"]
 	path = sample/widgets/markdown
 	url = https://github.com/sdorra/adf-widget-markdown
+[submodule "sample/widgets/news"]
+	path = sample/widgets/news
+	url = https://github.com/sdorra/adf-widget-news
