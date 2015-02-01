@@ -95,23 +95,12 @@ gulp.task('install-widgets', function(){
              .pipe($.install());
 });
 
-gulp.task('new-widget-templates', ['install-widgets'], function(){
+gulp.task('widget-templates', ['install-widgets'], function(){
   var opts = {
     root: '{widgetsPath}',
     module: 'sample'
   };
   return gulp.src('sample/widgets/*/src/*.html')
-             .pipe($.minifyHtml())
-             .pipe($.angularTemplatecache('new-widgets.js', opts))
-             .pipe(gulp.dest('.tmp'));
-});
-
-gulp.task('widget-templates', ['new-widget-templates'], function(){
-  var opts = {
-    root: 'widgets',
-    module: 'sample'
-  };
-  return gulp.src('sample/widgets/*/*.html')
              .pipe($.minifyHtml())
              .pipe($.angularTemplatecache('widgets.js', opts))
              .pipe(gulp.dest('.tmp'));
