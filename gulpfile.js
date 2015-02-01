@@ -91,7 +91,7 @@ gulp.task('docs', function(){
 
 /** build sample **/
 gulp.task('install-widgets', function(){
-  return gulp.src(['sample/widgets/*/package.json', 'sample/widgets/*/bower.json'])
+  return gulp.src('sample/widgets/*/bower.json')
              .pipe($.install());
 });
 
