@@ -25,7 +25,7 @@
 
 angular.module('sample', [
   'adf', 'sample.widgets.news', 'sample.widgets.randommsg',
-  'sample.widgets.weather', 'sample.widgets.markdown',
+  'sample.widgets.weather', 'adf.widget.markdown',
   'adf.widget.linklist', 'adf.widget.github',
   'sample.widgets.version', 'adf.widget.clock',
   'LocalStorageModule', 'structures', 'sample-01', 'sample-02',
