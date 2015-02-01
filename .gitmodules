@@ -13,3 +13,6 @@
 [submodule "sample/widgets/news"]
 	path = sample/widgets/news
 	url = https://github.com/sdorra/adf-widget-news
+[submodule "sample/widgets/randommsg"]
+	path = sample/widgets/randommsg
+	url = https://github.com/sdorra/adf-widget-randommsg

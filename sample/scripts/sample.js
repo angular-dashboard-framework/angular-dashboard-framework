@@ -24,7 +24,7 @@
 'use strict';
 
 angular.module('sample', [
-  'adf', 'adf.widget.news', 'sample.widgets.randommsg',
+  'adf', 'adf.widget.news', 'adf.widget.randommsg',
   'sample.widgets.weather', 'adf.widget.markdown',
   'adf.widget.linklist', 'adf.widget.github',
   'sample.widgets.version', 'adf.widget.clock',
