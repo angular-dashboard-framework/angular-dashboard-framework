@@ -4,3 +4,6 @@
 [submodule "sample/widgets/github"]
 	path = sample/widgets/github
 	url = https://github.com/sdorra/adf-widget-github
+[submodule "sample/widgets/linklist"]
+	path = sample/widgets/linklist
+	url = https://github.com/sdorra/adf-widget-linklist
