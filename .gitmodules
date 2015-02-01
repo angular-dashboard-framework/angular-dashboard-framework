@@ -16,3 +16,6 @@
 [submodule "sample/widgets/randommsg"]
 	path = sample/widgets/randommsg
 	url = https://github.com/sdorra/adf-widget-randommsg
+[submodule "sample/widgets/version"]
+	path = sample/widgets/version
+	url = https://github.com/sdorra/adf-widget-version
