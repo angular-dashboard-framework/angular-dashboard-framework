@@ -58,7 +58,7 @@ angular.module('adf')
       return deferred.promise;
     }
 
-    function compileWidget($scope, $element) {
+    function compileWidget($scope, $element, currentScope) {
       var model = $scope.model;
       var content = $scope.content;
 
@@ -119,6 +119,13 @@ angular.module('adf')
         $log.warn(msg);
         $element.html(dashboard.messageTemplate.replace(/{}/g, msg));
       });
+
+      // destroy old scope
+      if (currentScope){
+        currentScope.$destroy();
+      }
+
+      return templateScope;
     }
 
     return {
@@ -130,12 +137,12 @@ angular.module('adf')
         content: '='
       },
       link: function($scope, $element, $attr) {
-        compileWidget($scope, $element);
+        var currentScope = compileWidget($scope, $element, null);
         $scope.$on('widgetConfigChanged', function(){
-          compileWidget($scope, $element);
+          currentScope = compileWidget($scope, $element, currentScope);
         });
         $scope.$on('widgetReload', function(){
-          compileWidget($scope, $element);
+          currentScope = compileWidget($scope, $element, currentScope);
         });
       }
     };
