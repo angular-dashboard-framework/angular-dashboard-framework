@@ -132,7 +132,7 @@ angular.module('adf')
         // sortable options for drag and drop
         $scope.sortableOptions = {
           connectWith: ".column",
-          handle: ".fa-arrows",
+          handle: ".glyphicon-move",
           cursor: 'move',
           tolerance: 'pointer',
           placeholder: 'placeholder',

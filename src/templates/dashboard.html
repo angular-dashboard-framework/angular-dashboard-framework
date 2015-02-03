@@ -4,16 +4,16 @@
     {{model.title}}
     <span style="font-size: 16px" class="pull-right">
       <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
-        <i class="fa fa-plus-circle"></i>
+        <i class="glyphicon glyphicon-plus-sign"></i>
       </a>
       <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
-        <i class="fa fa-cog"></i>
+        <i class="glyphicon glyphicon-cog"></i>
       </a>
       <a href="" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
-        <i class="fa" x-ng-class="{'fa-edit' : !editMode, 'fa-save' : editMode}"></i>
+        <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}"></i>
       </a>
 	  <a data-ng-if="editMode" href="" title="undo changes" ng-click="cancelEditMode()">
-        <i class="fa fa-undo"></i>
+        <i class="glyphicon fa-undo"></i>
       </a>
     </span>
   </h1>
