@@ -159,6 +159,11 @@
         },{
           src: 'sample/components/jquery/jquery.min.js',
           dest: 'dist/sample/js/jquery.min.js'
+        },{
+          src: 'sample/components/bootstrap/dist/fonts/*',
+          dest: 'dist/sample/fonts/',
+          expand: true,
+          flatten: true
         }]
       }
     },
