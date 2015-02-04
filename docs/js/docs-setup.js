@@ -9,8 +9,8 @@ NG_DOCS={
       "shortName": "adf.dashboard",
       "type": "object",
       "moduleName": "adf",
-      "shortDescription": "The dashboard holds all structures and widgets.",
-      "keywords": "adf api dashboard holds object structures widgets"
+      "shortDescription": "The dashboard holds all options, structures and widgets.",
+      "keywords": "adf api dashboard holds object options structures widgets"
     },
     {
       "section": "api",
@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "adf",
       "shortDescription": "The dashboardProvider can be used to register structures and widgets.",
-      "keywords": "$injector adf alias angularjs api associated changes class closed column columns config configuration controller controlleras created css dashboard dashboardprovider default dependencies dependency description displayed edit factory false fn function html http injected instantiated invoke key loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path predefined promise promises properties published register registered registers rejected reload reloaded resolve resolved resources result return row rows scope service string structure structures styleclass template templateurl title treated true values wait widget widgets"
+      "keywords": "$injector adf alias angularjs api associated cached changes class closed column columns config configuration configured controller controlleras created css dashboard dashboardprovider default dependencies dependency description directory displayed edit factory false fn function html http injected instantiated invoke key loaded loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path placeholder predefined promise promises properties published register registered registers rejected reload reloaded replaced resolve resolved resources result return row rows scope service sets string structure structures styleclass template templateurl title treated true unmodified values wait widget widgetpaths widgets widgetspath"
     },
     {
       "section": "api",
