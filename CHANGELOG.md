@@ -1,3 +1,17 @@
+# 0.6.0
+
+## Enhancements
+
+- switch from Font Awesome to Bootstrap glyphicons, see [#56](https://github.com/sdorra/angular-dashboard-framework/issues/56)
+- added widgetPaths option to replace {widgetsPath} in the templateUrl of widgets
+
+## Bug fixes
+
+- added missing css to bower main section
+- fixed a scope leak [#55](https://github.com/sdorra/angular-dashboard-framework/issues/55)
+
+# 0.5.1
+
 ## Bug fixes
 
 - fix missing files in minified version
