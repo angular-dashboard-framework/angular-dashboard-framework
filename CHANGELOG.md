@@ -1,3 +1,9 @@
+# 0.6.1
+
+## Bug fixes
+
+- fix missing undo button
+
 # 0.6.0
 
 ## Enhancements
