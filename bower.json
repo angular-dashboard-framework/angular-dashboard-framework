@@ -20,9 +20,7 @@
   "dependencies": {
     "angular": "1.2.18",
     "angular-bootstrap": "~0.11.0",
-    "jquery": "~2.0.3",
-    "jquery-ui": "~1.10.3",
-    "angular-ui-sortable": "0.13.0",
+    "Sortable": "1.0.1",
     "bootstrap": "~3.2.0"
   },
   "devDependencies": {

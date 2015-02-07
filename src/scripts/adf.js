@@ -24,7 +24,7 @@
 
 'use strict';
 
-angular.module('adf', ['adf.provider', 'ui.bootstrap', 'ui.sortable'])
+angular.module('adf', ['adf.provider', 'ui.bootstrap', 'ng-sortable'])
   .value('adfTemplatePath', '../src/templates/')
   .value('rowTemplate', '<adf-dashboard-row row="row" ng-repeat="row in column.rows" edit-mode="{{editMode}}" sortable-options="sortableOptions"></adf-dashboard-row>')
   .value('columnTemplate', '<adf-dashboard-column column="column" ng-repeat="column in row.columns" edit-mode="{{editMode}}" sortable-options="sortableOptions"></adf-dashboard-column>')
