@@ -20,7 +20,7 @@
   "dependencies": {
     "angular": "1.2.18",
     "angular-bootstrap": "~0.11.0",
-    "Sortable": "1.0.1",
+    "Sortable": "git@github.com:bolasblack/Sortable#fix-nest-dispatch-event",
     "bootstrap": "~3.2.0"
   },
   "devDependencies": {
