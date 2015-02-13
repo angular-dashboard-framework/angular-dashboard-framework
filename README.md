@@ -2,7 +2,7 @@
 
 > Dashboard framework with Angular.js and Twitter Bootstrap.
 
-The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/).
+The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/). Follow me ([ssdorra](https://twitter.com/ssdorra)) on twitter for latest updates and news about aft.
 
 ## Demo
 
