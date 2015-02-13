@@ -1,6 +1,6 @@
 # angular-dashboard-framework
 
-> Dashboard framework with Angular.js, Twitter Bootstrap and Font Awesome.
+> Dashboard framework with Angular.js and Twitter Bootstrap.
 
 The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/).
 

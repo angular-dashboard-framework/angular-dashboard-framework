@@ -49,31 +49,39 @@ angular.module('adf')
       }
     }
 
+    /**
+    * Copy widget from old columns to the new model
+    * @param object root the model
+    * @param array of columns
+    * @param counter
+    */
     function fillStructure(root, columns, counter) {
-        counter = counter || 0;
+      counter = counter || 0;
 
-        if (angular.isDefined(root.rows)) {
-            angular.forEach(root.rows, function (row) {
-                angular.forEach(row.columns, function (column) {
-                    // if the widgets prop doesn't exist, create a new array for it.
-                    // this allows ui.sortable to do it's thing without error
-                    if (!column.widgets) {
-                        column.widgets = [];
-                    }
+      if (angular.isDefined(root.rows)) {
+        angular.forEach(root.rows, function (row) {
+          angular.forEach(row.columns, function (column) {
+            // if the widgets prop doesn't exist, create a new array for it.
+            // this allows ui.sortable to do it's thing without error
+            if (!column.widgets) {
+              column.widgets = [];
+            }
 
-                    // if a column exist at the counter index, copy over the column
-                    if (angular.isDefined(columns[counter])) {
-                        copyWidgets(columns[counter], column);
-                        counter++;
-                    }
+            // if a column exist at the counter index, copy over the column
+            if (angular.isDefined(columns[counter])) {
+              // do not add widgets to a column, which uses nested rows
+              if (!angular.isDefined(column.rows)){
+                copyWidgets(columns[counter], column);
+                counter++;
+              }
+            }
 
-                    // run fillStructure again for any sub rows/columns
-                    counter = fillStructure(column, columns, counter);
-                });
-            });
-        }
-
-        return counter;
+            // run fillStructure again for any sub rows/columns
+            counter = fillStructure(column, columns, counter);
+          });
+        });
+      }
+      return counter;
     }
 
     /**
@@ -82,19 +90,19 @@ angular.module('adf')
     * @param array  an array of existing columns; used when recursion happens
     */
     function readColumns(root, columns) {
-        columns = columns || [];
+      columns = columns || [];
 
-        if (angular.isDefined(root.rows)) {
-            angular.forEach(root.rows, function (row) {
-                angular.forEach(row.columns, function (col) {
-                    columns.push(col);
-                    // keep reading columns until we can't any more
-                    readColumns(col, columns);
-                });
-            });
-        }
+      if (angular.isDefined(root.rows)) {
+        angular.forEach(root.rows, function (row) {
+          angular.forEach(row.columns, function (col) {
+            columns.push(col);
+            // keep reading columns until we can't any more
+            readColumns(col, columns);
+          });
+        });
+      }
 
-        return columns;
+      return columns;
     }
 
     function changeStructure(model, structure){

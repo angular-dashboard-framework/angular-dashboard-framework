@@ -92,7 +92,7 @@ angular.module('structures', ['adf'])
         }]
       }]
     })
-    .structure('3-9 (6-6/12)', {
+    .structure('3-9 (12/6-6)', {
       rows: [{
         columns: [{
           styleClass: "col-md-3"
@@ -100,13 +100,13 @@ angular.module('structures', ['adf'])
           styleClass: "col-md-9",
           rows: [{
             columns: [{
-              styleClass: "col-md-6"
-            }, {
-              styleClass: "col-md-6"
+              styleClass: "col-md-12"
             }]
           }, {
             columns: [{
-              styleClass: "col-md-12"
+              styleClass: "col-md-6"
+            }, {
+              styleClass: "col-md-6"
             }]
           }]
         }]
