@@ -209,6 +209,11 @@ angular.module('adf')
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
           var editDashboardScope = $scope.$new();
+          // create a copy of the title, to avoid changing the title to
+          // "dashboard" if the field is empty
+          editDashboardScope.copy = {
+            title: model.title
+          };
           editDashboardScope.structures = dashboard.structures;
           var instance = $modal.open({
             scope: editDashboardScope,
@@ -219,6 +224,9 @@ angular.module('adf')
             changeStructure(model, structure);
           };
           editDashboardScope.closeDialog = function(){
+            // copy the new title back to the model
+            model.title = editDashboardScope.copy.title;
+            // close modal and destroy the scope
             instance.close();
             editDashboardScope.$destroy();
           };
