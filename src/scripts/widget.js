@@ -46,9 +46,7 @@ angular.module('adf')
           }
 
           // pass edit mode
-          $attr.$observe('editMode', function(value){
-            $scope.editMode = stringToBoolean(value);
-          });
+          $scope.editMode = $scope.editMode;
 
           // pass copy of widget to scope
           $scope.widget = angular.copy(w);
@@ -133,7 +131,7 @@ angular.module('adf')
       scope: {
         definition: '=',
         col: '=column',
-        editMode: '@',
+        editMode: '=',
         collapsible: '='
       },
       compile: function compile($element, $attr, transclude) {
