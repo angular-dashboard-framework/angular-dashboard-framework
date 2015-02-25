@@ -42,7 +42,8 @@ angular.module('adf')
             scope: {
                 column: "=",
                 editMode: "@",
-                sortableOptions: "="
+                sortableOptions: "=",
+                collapsible: "="
             },
             templateUrl: adfTemplatePath + "dashboard-column.html",
             link: function ($scope, $element, $attr) {

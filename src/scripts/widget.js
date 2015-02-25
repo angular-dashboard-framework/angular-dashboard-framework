@@ -134,7 +134,7 @@ angular.module('adf')
         definition: '=',
         col: '=column',
         editMode: '@',
-        collapsible: '@'
+        collapsible: '='
       },
       compile: function compile($element, $attr, transclude) {
 
