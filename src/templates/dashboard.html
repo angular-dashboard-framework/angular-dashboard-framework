@@ -12,7 +12,7 @@
       <a href="" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
         <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}"></i>
       </a>
-	  <a data-ng-if="editMode" href="" title="undo changes" ng-click="cancelEditMode()">
+	    <a href="" ng-if="editMode" title="undo changes" ng-click="cancelEditMode()">
         <i class="glyphicon glyphicon-repeat adf-flip"></i>
       </a>
     </span>
