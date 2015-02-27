@@ -1,3 +1,13 @@
+# 0.7.0
+
+## Enhancements
+
+- added editable option to disable the edit mode, see [#68](https://github.com/sdorra/angular-dashboard-framework/issues/68)
+
+## Bug fixes
+
+- fix collapsible option
+
 # 0.6.1
 
 ## Bug fixes
