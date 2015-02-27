@@ -1,6 +1,6 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "0.7.0",
+  "version": "0.8.0-SNAPSHOT",
   "main": [
     "dist/angular-dashboard-framework.min.js",
     "dist/angular-dashboard-framework.min.css"
