@@ -118,6 +118,7 @@
         },
         files: {
           'dist/sample/js/sample.min.js': ['.tmp/ngmin/complete.min.js'],
+          'dist/sample/js/jquery.min.js': ['.tmp/concat/js/jquery.min.js'],
           'dist/sample/js/jquery.ui.sortable.min.js': ['.tmp/concat/js/jquery.ui.sortable.min.js']
         }
       }
