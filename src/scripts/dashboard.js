@@ -133,6 +133,7 @@ angular.module('adf')
         structure: '@',
         name: '@',
         collapsible: '@',
+        editable: '@',
         adfModel: '=',
         adfWidgetFilter: '='
       },
@@ -268,10 +269,16 @@ angular.module('adf')
           };
         };
       },
+      compile: function($element, $attrs){
+        if (!angular.isDefined($attrs.editable)){
+          $attrs.editable = true;
+        }
+      },
       link: function ($scope, $element, $attr) {
         // pass attributes to scope
         $scope.name = $attr.name;
         $scope.structure = $attr.structure;
+        $scope.editable = $attr.editable;
       },
       templateUrl: adfTemplatePath + 'dashboard.html'
     };
