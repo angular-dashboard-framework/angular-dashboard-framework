@@ -44,10 +44,9 @@ angular.module('adf')
           if (!definition.title){
             definition.title = w.title;
           }
-
-          // pass edit mode
-          $scope.editMode = $scope.editMode;
-
+          $scope.fullScreen = definition.fullScreen;
+          $scope.modalSize = definition.modalSize;
+            
           // pass copy of widget to scope
           $scope.widget = angular.copy(w);
 
@@ -68,7 +67,7 @@ angular.module('adf')
           $scope.collapsible = stringToBoolean($scope.collapsible);
 
           // collapse
-          $scope.isCollapsed = false;
+          $scope.isCollapsed = false;            
         } else {
           $log.warn('could not find widget ' + definition.type);
         }
@@ -134,6 +133,37 @@ angular.module('adf')
         editMode: '=',
         collapsible: '='
       },
+      // #NS <--
+      controller: function ($scope) {
+          $scope.openFullScreen = function () {
+              var fullScreenScope = $scope.$new();
+
+              var controller;
+              var template;
+
+              angular.forEach(dashboard.widgets, function (widget) {
+                  if (widget.title === $scope.definition.title) {
+                      controller = widget.controller;
+                      template = widget.templateUrl
+                  }
+              });
+
+              var opts = {
+                  scope: fullScreenScope,
+                  templateUrl: adfTemplatePath + 'widget-fullscreen.html',
+                  size: $scope.modalSize || 'lg', // 'sm', 'lg'
+                  windowClass: ($scope.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
+              };
+
+              var instance = $modal.open(opts);
+              fullScreenScope.closeDialog = function () {
+                  instance.close();
+                  fullScreenScope.$destroy();
+              }
+          };
+      },
+      // -->
+
       compile: function compile($element, $attr, transclude) {
 
         /**

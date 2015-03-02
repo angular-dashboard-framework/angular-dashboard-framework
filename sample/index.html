@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <!--*
  The MIT License
 
@@ -57,6 +57,16 @@
         document.createElement('highchart');
       </script>
     <![endif]-->
+
+      <style>
+          /* fixe for modal-backdrop*/
+          .modal-backdrop {
+              bottom: 0;
+              /* some fixes appear to use this, too: */
+              position: fixed;
+          }
+      </style>
+
   </head>
 
   <body ng-app="sample">
