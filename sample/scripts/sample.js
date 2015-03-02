@@ -30,7 +30,7 @@ angular.module('sample', [
   'sample.widgets.version', 'LocalStorageModule',
   'structures', 'sample-01', 'sample-02', 'sample-03',
   'sample-04', 'ngRoute'
-])
+]).value('adfVersion', '0.6.1')
 .config(function($routeProvider, localStorageServiceProvider){
   localStorageServiceProvider.setPrefix('adf');
 
