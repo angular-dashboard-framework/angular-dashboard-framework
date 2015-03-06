@@ -45,9 +45,6 @@ angular.module('adf')
             definition.title = w.title;
           }
 
-          // pass edit mode
-          $scope.editMode = $scope.editMode;
-
           // pass copy of widget to scope
           $scope.widget = angular.copy(w);
 
