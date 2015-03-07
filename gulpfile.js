@@ -25,6 +25,7 @@
 
 var gulp = require('gulp');
 var connect = require('gulp-connect');
+var modRewrite = require('connect-modrewrite');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var jsReporter = require('jshint-stylish');
@@ -179,7 +180,15 @@ gulp.task('watch', function(){
 gulp.task('webserver', ['install-widgets'], function(){
   connect.server({
     port: 9001,
-    livereload: true
+    livereload: true,
+    // redirect / to /sample
+    middleware: function() {
+      return [
+        modRewrite([
+          '^/$ /sample/ [R]'
+        ])
+      ];
+    }
   });
 });
 
