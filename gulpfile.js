@@ -28,12 +28,19 @@ var connect = require('gulp-connect');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var jsReporter = require('jshint-stylish');
+var annotateAdfPlugin = require('ng-annotate-adf-plugin');
 var pkg = require('./package.json');
 var name = pkg.name;
 
 var templateOptions = {
   root: '../src/templates',
   module: 'adf'
+};
+
+var annotateOptions = {
+  plugin: [
+    annotateAdfPlugin
+  ]
 };
 
 
@@ -73,7 +80,7 @@ gulp.task('js', function(){
       .pipe($.if('*.html', $.minifyHtml()))
       .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
       .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
-      .pipe($.ngAnnotate())
+      .pipe($.ngAnnotate(annotateOptions))
       .pipe($.concat(name + '.min.js'))
       .pipe($.uglify())
       .pipe(gulp.dest('dist/'));
@@ -136,9 +143,8 @@ gulp.task('sample', ['widget-templates', 'sample-templates', 'dashboard-template
       .pipe($.inject(templates, {relative: true}))
       .pipe(assets)
       .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
-      // https://github.com/olov/ng-annotate/issues/133
-      //.pipe($.if('*.js', $.ngAnnotate()))
-      //.pipe($.if('*.js', $.uglify()))
+      .pipe($.if('*.js', $.ngAnnotate(annotateOptions)))
+      .pipe($.if('*.js', $.uglify()))
       .pipe($.if('*.css', $.minifyCss()))
       .pipe($.rev())
       .pipe(assets.restore())
