@@ -1,7 +1,7 @@
 <div class="widget panel panel-default">
 	<div class="panel-heading clearfix">
-	    <h3 class="panel-title">
-		    {{definition.title}}
+		<h3 class="panel-title">
+			{{definition.title}}
 			<span class="pull-right">
 				<a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
 					<i class="glyphicon glyphicon-refresh"></i>
@@ -22,7 +22,7 @@
 				<a href="" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
 					<i class="glyphicon glyphicon-cog"></i>
 				</a>
-
+	
 				<!-- #NS fullscreen widget -->
 				<a href="" title="fullscreen widget" ng-click="openFullScreen()" ng-if="!editMode">
 					<i class="glyphicon glyphicon-fullscreen"></i>
