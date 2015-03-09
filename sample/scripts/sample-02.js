@@ -25,8 +25,8 @@
 
 angular.module('sample-02', ['adf', 'LocalStorageModule'])
 .controller('sample02Ctrl', function ($scope, localStorageService) {    
- var name = 'sample-02';
- var model = localStorageService.get(name);
+  var name = 'sample-02';
+  var model = localStorageService.get(name);
  if (!model) {
   // set default model for demo purposes
   model = {
