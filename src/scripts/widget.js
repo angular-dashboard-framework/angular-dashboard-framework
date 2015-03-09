@@ -67,7 +67,7 @@ angular.module('adf')
           $scope.collapsible = stringToBoolean($scope.collapsible);
 
           // collapse
-          $scope.isCollapsed = false;            
+          $scope.isCollapsed = false;
         } else {
           $log.warn('could not find widget ' + definition.type);
         }
