@@ -133,6 +133,7 @@ angular.module('adf')
           var sortable = Sortable.create(el, {
             group: 'widgets',
             handle: '.glyphicon-move',
+            ghostClass: 'placeholder',
             animation: 150,
             onAdd: function(evt){
               addWidgetToColumn($scope, model, column, evt);
