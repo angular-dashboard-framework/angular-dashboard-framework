@@ -20,7 +20,7 @@
   "dependencies": {
     "angular": "1.2.27",
     "angular-bootstrap": "0.12.0",
-    "bootstrap": "3.3.1",
+    "bootstrap": "3.3.4",
     "Sortable": "1.1.1"
   },
   "devDependencies": {
