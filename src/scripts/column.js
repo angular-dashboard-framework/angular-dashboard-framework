@@ -93,12 +93,12 @@ angular.module('adf')
          */
         function addWidgetToColumn($scope, model, targetColumn, evt){
           // find source column
-          var cid = evt.from.getAttribute('rel');
+          var cid = evt.from.getAttribute('adf-id');
           var sourceColumn = findColumn(model, cid);
 
           if (sourceColumn){
             // find moved widget
-            var wid = evt.item.getAttribute('rel');
+            var wid = evt.item.getAttribute('adf-id');
             var widget = findWidget(sourceColumn, wid);
 
             if (widget){
