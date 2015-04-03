@@ -33,14 +33,14 @@ angular.module("adf")
         replace: true,
         scope: {
           row: "=",
+          adfModel: "=",
           editMode: "=",
-          sortableOptions: "=",
           collapsible: "="
         },
         templateUrl: adfTemplatePath + "dashboard-row.html",
         link: function ($scope, $element, $attr) {
           if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
-            $compile(columnTemplate)($scope, function (cloned) {
+            $compile(columnTemplate)($scope, function(cloned) {
               $element.append(cloned);
             });
           }

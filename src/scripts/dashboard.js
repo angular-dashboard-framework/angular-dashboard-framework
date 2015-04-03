@@ -138,18 +138,6 @@ angular.module('adf')
         adfWidgetFilter: '='
       },
       controller: function($scope){
-        // sortable options for drag and drop
-        $scope.sortableOptions = {
-          connectWith: ".column",
-          handle: ".glyphicon-move",
-          cursor: 'move',
-          tolerance: 'pointer',
-          placeholder: 'placeholder',
-          forcePlaceholderSize: true,
-          opacity: 0.4
-        };
-
-
         var model = {};
         var structure = {};
         var widgetFilter = {};

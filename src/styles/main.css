@@ -27,6 +27,11 @@
   display: none !important;
 }
 
+.adf-move {
+  cursor: move;
+  cursor: -webkit-grabbing;
+}
+
 .edit .column {
   min-height: 120px;
   border: 1px #ccc dashed;
@@ -41,6 +46,7 @@ pre.edit {
 }
 
 .column .placeholder {
+  opacity: 0.4;
   background: #E8E8E8;
   border: 1px dashed #505050;
   margin-bottom: 15px;
