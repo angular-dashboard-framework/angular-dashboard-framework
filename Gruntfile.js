@@ -117,9 +117,7 @@
           mangle: false
         },
         files: {
-          'dist/sample/js/sample.min.js': ['.tmp/ngmin/complete.min.js'],
-          'dist/sample/js/jquery.min.js': ['.tmp/concat/js/jquery.min.js'],
-          'dist/sample/js/jquery.ui.sortable.min.js': ['.tmp/concat/js/jquery.ui.sortable.min.js']
+          'dist/sample/js/sample.min.js': ['.tmp/ngmin/complete.min.js']
         }
       }
     },
@@ -157,9 +155,6 @@
         },{
           src: 'sample/components/angular-route/angular-route.min.js',
           dest: 'dist/sample/js/angular-route.min.js'
-        },{
-          src: 'sample/components/jquery/jquery.min.js',
-          dest: 'dist/sample/js/jquery.min.js'
         },{
           src: 'sample/components/bootstrap/dist/fonts/*',
           dest: 'dist/sample/fonts/',
