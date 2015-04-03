@@ -125,7 +125,7 @@ angular.module('adf.provider', [])
     this.widgetsPath = function(path){
       widgetsPath = path;
       return this;
-    }
+    };
 
    /**
     * @ngdoc method
