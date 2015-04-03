@@ -29,21 +29,21 @@ angular.module("adf")
     'use strict';
 
     return {
-        restrict: "E",
-        replace: true,
-        scope: {
-          row: "=",
-          adfModel: "=",
-          editMode: "=",
-          collapsible: "="
-        },
-        templateUrl: adfTemplatePath + "dashboard-row.html",
-        link: function ($scope, $element, $attr) {
-          if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
-            $compile(columnTemplate)($scope, function(cloned) {
-              $element.append(cloned);
-            });
-          }
+      restrict: "E",
+      replace: true,
+      scope: {
+        row: "=",
+        adfModel: "=",
+        editMode: "=",
+        collapsible: "="
+      },
+      templateUrl: adfTemplatePath + "dashboard-row.html",
+      link: function ($scope, $element, $attr) {
+        if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
+          $compile(columnTemplate)($scope, function(cloned) {
+            $element.append(cloned);
+          });
         }
+      }
     };
   });
