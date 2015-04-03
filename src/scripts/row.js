@@ -40,6 +40,7 @@ angular.module("adf")
             replace: true,
             scope: {
                 row: "=",
+                adfModel: "=",
                 editMode: "@",
                 sortableOptions: "="
             },

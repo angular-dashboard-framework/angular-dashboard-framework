@@ -19,7 +19,7 @@
   </h1>
 
   <div class="dashboard" x-ng-class="{'edit' : editMode}">
-    <adf-dashboard-row row="row" ng-repeat="row in model.rows" edit-mode="{{editMode}}" />
+    <adf-dashboard-row row="row" adf-model="model" ng-repeat="row in model.rows" edit-mode="{{editMode}}" />
   </div>
 
 </div>

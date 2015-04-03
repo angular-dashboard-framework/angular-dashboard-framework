@@ -45,6 +45,11 @@ angular.module('adf')
             definition.title = w.title;
           }
 
+          // set id for sortable
+          if (!definition.wid){
+            definition.wid = dashboard.id();
+          }
+
           // pass edit mode
           $attr.$observe('editMode', function(value){
             $scope.editMode = stringToBoolean(value);

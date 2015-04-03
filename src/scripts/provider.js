@@ -197,12 +197,17 @@ angular.module('adf.provider', [])
     * @returns {Object} self
     */
     this.$get = function(){
+      var cid = 0;
+
       return {
         widgets: widgets,
         widgetsPath: widgetsPath,
         structures: structures,
         messageTemplate: messageTemplate,
-        loadingTemplate: loadingTemplate
+        loadingTemplate: loadingTemplate,
+        id: function(){
+          return ++cid;
+        }
       };
     };
 
