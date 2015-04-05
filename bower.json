@@ -2,8 +2,8 @@
   "name": "angular-dashboard-framework",
   "version": "0.8.0-SNAPSHOT",
   "main": [
-    "dist/angular-dashboard-framework.min.js",
-    "dist/angular-dashboard-framework.min.css"
+    "dist/angular-dashboard-framework.js",
+    "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
     "bower.json",
@@ -29,10 +29,7 @@
     "angular-route": "1.2.28",
     "angular-local-storage": "0.1.5",
     "json3": "~3.2.4",
-    "es5-shim": "~2.0.8",
-    "angular-markdown-directive": "~0.1.0",
-    "highcharts-ng": "0.0.7",
-    "highcharts": "4.0.4"
+    "es5-shim": "~2.0.8"
   },
   "resolutions": {
     "angular": "1.2.28"

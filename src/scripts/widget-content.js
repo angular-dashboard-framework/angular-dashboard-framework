@@ -25,10 +25,19 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidgetContent', function($log, $q, $sce, $http, $templateCache, $compile, $controller, $injector, dashboard) {
+  .directive('adfWidgetContent', function($log, $q, $sce, $http, $templateCache,
+    $compile, $controller, $injector, dashboard) {
 
     function parseUrl(url){
-      return url.replace('{widgetsPath}', dashboard.widgetsPath);
+      var parsedUrl = url;
+      if ( url.indexOf('{widgetsPath}') >= 0 ){
+        parsedUrl = url.replace('{widgetsPath}', dashboard.widgetsPath)
+                       .replace('//', '/');
+        if (parsedUrl.indexOf('/') == 0){
+          parsedUrl = parsedUrl.substring(1);
+        }
+      }
+      return parsedUrl;
     }
 
     function getTemplate(widget){
