@@ -142,7 +142,12 @@ gulp.task('dashboard-templates', function(){
              .pipe(gulp.dest('.tmp'));
 });
 
-gulp.task('sample', ['widget-templates', 'sample-templates', 'dashboard-templates'], function(){
+gulp.task('copy-font', function(){
+  gulp.src('sample/components/bootstrap/dist/fonts/*')
+      .pipe(gulp.dest('dist/sample/fonts'));
+});
+
+gulp.task('sample', ['widget-templates', 'sample-templates', 'dashboard-templates', 'copy-font'], function(){
   var templates = gulp.src('.tmp/*.js', {read: false});
   var assets = $.useref.assets();
   gulp.src('sample/index.html')
