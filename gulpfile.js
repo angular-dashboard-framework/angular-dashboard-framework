@@ -44,6 +44,11 @@ var annotateOptions = {
   ]
 };
 
+var minifyHtmlOptions = {
+  empty: true,
+  loose: true
+};
+
 
 /** lint **/
 
@@ -80,7 +85,7 @@ gulp.task('css', function(){
 
 gulp.task('js', function(){
   gulp.src(['src/scripts/*.js', 'src/templates/*.html'])
-      .pipe($.if('*.html', $.minifyHtml()))
+      .pipe($.if('*.html', $.minifyHtml(minifyHtmlOptions)))
       .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
       .pipe($.sourcemaps.init())
       .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
@@ -115,7 +120,7 @@ gulp.task('widget-templates', ['install-widgets'], function(){
     module: 'sample'
   };
   return gulp.src('sample/widgets/*/src/*.html')
-             .pipe($.minifyHtml())
+             .pipe($.minifyHtml(minifyHtmlOptions))
              .pipe($.angularTemplatecache('widgets.js', opts))
              .pipe(gulp.dest('.tmp'));
 });
@@ -126,7 +131,7 @@ gulp.task('sample-templates', function(){
     module: 'sample'
   };
   return gulp.src('sample/partials/*.html')
-             .pipe($.minifyHtml())
+             .pipe($.minifyHtml(minifyHtmlOptions))
              .pipe($.angularTemplatecache('samples.js', opts))
              .pipe(gulp.dest('.tmp'));
 });
@@ -137,7 +142,7 @@ gulp.task('dashboard-templates', function(){
     module: 'adf'
   };
   return gulp.src('src/templates/*.html')
-             .pipe($.minifyHtml())
+             .pipe($.minifyHtml(minifyHtmlOptions))
              .pipe($.angularTemplatecache('adf.js', opts))
              .pipe(gulp.dest('.tmp'));
 });
