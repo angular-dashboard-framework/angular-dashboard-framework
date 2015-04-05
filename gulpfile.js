@@ -82,12 +82,14 @@ gulp.task('js', function(){
   gulp.src(['src/scripts/*.js', 'src/templates/*.html'])
       .pipe($.if('*.html', $.minifyHtml()))
       .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
+      .pipe($.sourcemaps.init())
       .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
       .pipe($.concat(name + '.js'))
       .pipe(gulp.dest('dist/'))
       .pipe($.rename(name + '.min.js'))
       .pipe($.ngAnnotate(annotateOptions))
       .pipe($.uglify())
+      .pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest('dist/'));
 });
 
