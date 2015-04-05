@@ -71,7 +71,9 @@ gulp.task('clean', function(cb){
 
 gulp.task('css', function(){
   gulp.src('src/styles/*.css')
-      .pipe($.concat(name + '.min.css'))
+      .pipe($.concat(name + '.css'))
+      .pipe(gulp.dest('dist/'))
+      .pipe($.rename(name + '.min.css'))
       .pipe($.minifyCss())
       .pipe(gulp.dest('dist/'));
 });
@@ -81,8 +83,10 @@ gulp.task('js', function(){
       .pipe($.if('*.html', $.minifyHtml()))
       .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
       .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
+      .pipe($.concat(name + '.js'))
+      .pipe(gulp.dest('dist/'))
+      .pipe($.rename(name + '.min.js'))
       .pipe($.ngAnnotate(annotateOptions))
-      .pipe($.concat(name + '.min.js'))
       .pipe($.uglify())
       .pipe(gulp.dest('dist/'));
 });
