@@ -28,7 +28,7 @@
 describe('dashboard edit tests', function(){
 
   beforeEach(function(){
-    browser.get('http://localhost:9001/sample/index.html#/sample/03');
+    browser.get('http://localhost:9003/sample/index.html#/sample/03');
   });
 
   it('should have Sample 01 as default title', function(){
