@@ -29,13 +29,13 @@ angular.module('adf')
 
     function stringToBoolean(string){
       switch(angular.isDefined(string) ? string.toLowerCase() : null){
-        case "true": case "yes": case "1": return true;
-        case "false": case "no": case "0": case null: return false;
+        case 'true': case 'yes': case '1': return true;
+        case 'false': case 'no': case '0': case null: return false;
         default: return Boolean(string);
       }
     }
 
-    function preLink($scope, $element, $attr){
+    function preLink($scope){
       var definition = $scope.definition;
       if (definition) {
         var w = dashboard.widgets[definition.type];
@@ -79,7 +79,7 @@ angular.module('adf')
       }
     }
 
-    function postLink($scope, $element, $attr) {
+    function postLink($scope, $element) {
       var definition = $scope.definition;
       if (definition) {
         // bind close function
@@ -136,7 +136,7 @@ angular.module('adf')
         editMode: '=',
         collapsible: '='
       },
-      compile: function compile($element, $attr, transclude) {
+      compile: function compile(){
 
         /**
          * use pre link, because link of widget-content

@@ -18,5 +18,6 @@
   "strict": true,
   "trailing": true,
   "smarttabs": true,
-  "predef": ["angular"]
+  "multistr": true,
+  "predef": ["angular","Sortable"]
 }

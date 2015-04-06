@@ -46,7 +46,7 @@ angular.module('adf')
           var widget = null;
           for (var i=0; i<column.widgets.length; i++){
             var w = column.widgets[i];
-            if (w.wid == index){
+            if (w.wid === index){
               widget = w;
               break;
             }
@@ -63,7 +63,7 @@ angular.module('adf')
             var r = model.rows[i];
             for (var j=0; j<r.columns.length; j++){
               var c = r.columns[j];
-              if ( c.cid == index ){
+              if ( c.cid === index ){
                 column = c;
                 break;
               } else if (c.rows){
@@ -78,16 +78,24 @@ angular.module('adf')
         }
 
         /**
+         * get the adf id from an html element
+         */
+        function getId(el){
+          var id = el.getAttribute('adf-id');
+          return id ? parseInt(id) : -1;
+        }
+
+        /**
          * adds a widget to a column
          */
         function addWidgetToColumn($scope, model, targetColumn, evt){
           // find source column
-          var cid = evt.from.getAttribute('adf-id');
+          var cid = getId(evt.from);
           var sourceColumn = findColumn(model, cid);
 
           if (sourceColumn){
             // find moved widget
-            var wid = evt.item.getAttribute('adf-id');
+            var wid = getId(evt.item);
             var widget = findWidget(sourceColumn, wid);
 
             if (widget){
@@ -142,16 +150,16 @@ angular.module('adf')
         }
 
         return {
-          restrict: "E",
+          restrict: 'E',
           replace: true,
           scope: {
-            column: "=",
-            editMode: "=",
-            adfModel: "=",
-            collapsible: "="
+            column: '=',
+            editMode: '=',
+            adfModel: '=',
+            collapsible: '='
           },
-          templateUrl: adfTemplatePath + "dashboard-column.html",
-          link: function ($scope, $element, $attr) {
+          templateUrl: adfTemplatePath + 'dashboard-column.html',
+          link: function ($scope, $element) {
             // set id
             var col = $scope.column;
             if (!col.cid){

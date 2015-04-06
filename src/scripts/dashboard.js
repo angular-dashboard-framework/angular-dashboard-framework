@@ -178,7 +178,7 @@ angular.module('adf')
 
         // edit mode
         $scope.editMode = false;
-        $scope.editClass = "";
+        $scope.editClass = '';
 
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;

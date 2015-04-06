@@ -33,7 +33,7 @@ angular.module('adf')
       if ( url.indexOf('{widgetsPath}') >= 0 ){
         parsedUrl = url.replace('{widgetsPath}', dashboard.widgetsPath)
                        .replace('//', '/');
-        if (parsedUrl.indexOf('/') == 0){
+        if (parsedUrl.indexOf('/') === 0){
           parsedUrl = parsedUrl.substring(1);
         }
       }
@@ -145,7 +145,7 @@ angular.module('adf')
         model: '=',
         content: '='
       },
-      link: function($scope, $element, $attr) {
+      link: function($scope, $element) {
         var currentScope = compileWidget($scope, $element, null);
         $scope.$on('widgetConfigChanged', function(){
           currentScope = compileWidget($scope, $element, currentScope);
