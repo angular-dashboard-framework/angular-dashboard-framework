@@ -30,7 +30,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
   if (!model) {
     // set default model for demo purposes
     model = {
-      title: "Sample 02",
+      title: "Sample 04",
       structure: "3-9 (12/6-6)",
       rows: [{
           "columns": [
