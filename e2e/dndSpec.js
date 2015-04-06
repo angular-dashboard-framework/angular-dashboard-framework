@@ -29,6 +29,7 @@ describe('Drag and drop tests', function(){
 
   beforeEach(function(){
     browser.get('http://localhost:9003/sample/index.html#/sample/03');
+    browser.executeScript('window.localStorage.clear();');
   });
 
   it('widgets should be moveable', function(){
