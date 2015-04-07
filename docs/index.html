@@ -11,7 +11,7 @@
                  Declarative templates with data-binding, MVC, dependency injection and great
                  testability story all implemented with pure client-side JavaScript!">
   <meta name="fragment" content="!">
-  <title ng-bind-template="angular-dashboard-framework: {{partialTitle}}">Docs</title>
+  <title ng-bind-template="API Documentation: {{partialTitle}}">Docs</title>
   <script type="text/javascript">
     // dynamically add base tag as well as css and javascript files.
     // we can't add css/js the usual way, because some browsers (FF) eagerly prefetch resources
@@ -33,11 +33,14 @@
 
       
 
-      addTag('script', {src: 'js/google-code-prettify.js'}, sync);
-      addTag('script', {src: 'js/marked.js'}, sync);
-
       
         addTag('script', {src: 'js/angular.min.js'}, sync);
+      
+        addTag('script', {src: 'js/angular-animate.min.js'}, sync);
+      
+        addTag('script', {src: 'js/marked.js'}, sync);
+      
+        addTag('script', {src: 'js/prettify.js'}, sync);
       
       
       addTag('script', {src: 'js/angular-bootstrap.js'}, sync);
@@ -79,7 +82,7 @@
         <div class="container">
           
           
-            <a  class="brand">angular-dashboard-framework</a>
+            <a  class="brand">API Documentation</a>
           
           <ul class="nav">
             <li ng-repeat="(url, name) in sections" ng-class="{active: isActivePath(url)}">
@@ -134,7 +137,7 @@
           <ul class="nav nav-list well" ng-repeat="module in modules track by module.url" class="api-list-item">
             <li class="nav-header module">
               <a class="guide">module</a>
-              <a class="code" href="{{module.url}}" title="{{module.name}}">{{module.name}}</a>
+              <a class="code" href="{{module.url}}">{{module.name}}</a>
             </li>
 
             <li ng-repeat="page in module.others track by page.url" ng-class="navClass(page)" class="api-list-item expand">
