@@ -22,3 +22,6 @@
 [submodule "sample/widgets/weather"]
 	path = sample/widgets/weather
 	url = https://github.com/sdorra/adf-widget-weather
+[submodule "sample/structures/base"]
+	path = sample/structures/base
+	url = https://github.com/sdorra/adf-structures-base
