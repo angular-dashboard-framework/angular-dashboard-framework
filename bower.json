@@ -18,6 +18,13 @@
     "dist/docs",
     "dist/sample"
   ],
+  "keywords": [
+    "dashboard",
+    "angular",
+    "bootstrap",
+    "widgets",
+    "adf"
+  ],
   "dependencies": {
     "angular": "1.2.28",
     "angular-bootstrap": "0.12.0",
