@@ -15,7 +15,8 @@
     "sample",
     "src",
     ".tmp",
-    "dist/docs"
+    "dist/docs",
+    "dist/sample"
   ],
   "dependencies": {
     "angular": "1.2.28",
