@@ -1,3 +1,20 @@
+# 0.8.0
+
+## Enhancements
+
+- reimplement drag and drop with [Sortable](https://github.com/RubaXa/Sortable) instead of [ui-sortable](https://github.com/angular-ui/ui-sortable).
+- remove [jQuery](http://jquery.com/) and [jQuery-UI](http://jqueryui.com/) dependency
+
+## Bug fixes
+
+- fix initialization without model attribute, to fix issue [#73](https://github.com/sdorra/angular-dashboard-framework/issues/73)
+
+## Build
+
+- move widgets and structures to separate repositories and use it with git submodules
+- use gulp instead of grunt
+- build sourcemap of minified files
+
 # 0.7.0
 
 ## Enhancements
