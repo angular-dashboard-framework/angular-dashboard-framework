@@ -125,6 +125,57 @@ angular.module('adf')
       return cfg;
     }
 
+    /**
+     * Find first widget column in model.
+     *
+     * @param dashboard model
+     */
+    function findFirstWidgetColumn(model){
+      var column = null;
+      if (!angular.isArray(model.rows)){
+        $log.error('model does not have any rows');
+        return null;
+      }
+      for (var i=0; i<model.rows.length; i++){
+        var row = model.rows[i];
+        if (angular.isArray(row.columns)){
+          for (var j=0; j<row.columns.length; j++){
+            var col = row.columns[j];
+            if (!col.rows){
+              column = col;
+              break;
+            }
+          }
+        }
+        if (column){
+          break;
+        }
+      }
+      return column;
+    }
+
+    /**
+     * Adds the widget to first column of the model.
+     *
+     * @param dashboard model
+     * @param widget to add to model
+     */
+    function addNewWidgetToModel(model, widget){
+      if (model){
+        var column = findFirstWidgetColumn(model);
+        if (column){
+          if (!column.widgets){
+            column.widgets = [];
+          }
+          column.widgets.unshift(widget);
+        } else {
+          $log.error('could not find first widget column');
+        }
+      } else {
+        $log.error('model is undefined');
+      }
+    }
+
     return {
       replace: true,
       restrict: 'EA',
@@ -247,12 +298,13 @@ angular.module('adf')
               type: widget,
               config: createConfiguration(widget)
             };
-            addScope.model.rows[0].columns[0].widgets.unshift(w);
+            addNewWidgetToModel(addScope.model, w);
+            // close and destroy
             instance.close();
-
             addScope.$destroy();
           };
           addScope.closeDialog = function(){
+            // close and destroy
             instance.close();
             addScope.$destroy();
           };
