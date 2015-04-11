@@ -93,9 +93,9 @@ gulp.task('js', function(){
       .pipe($.sourcemaps.init())
       .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
       .pipe($.concat(name + '.js'))
+      .pipe($.ngAnnotate(annotateOptions))
       .pipe(gulp.dest('dist/'))
       .pipe($.rename(name + '.min.js'))
-      .pipe($.ngAnnotate(annotateOptions))
       .pipe($.uglify())
       .pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest('dist/'));
