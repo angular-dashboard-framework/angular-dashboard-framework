@@ -129,7 +129,7 @@ angular.module('adf')
       var el = $element[0];
       var sortable = Sortable.create(el, {
         group: 'widgets',
-        handle: '.glyphicon-move',
+        handle: '.adf-move',
         ghostClass: 'placeholder',
         animation: 150,
         onAdd: function(evt){
