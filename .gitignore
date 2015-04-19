@@ -1,7 +1,21 @@
-/nbproject/
+# npm
 /node_modules/
-/build/
+
+# bower
 /sample/components/
+
+# gulp build
+/build/
 /.tmp/
 /dist/docs/
 /dist/sample/
+
+# netbeans
+/nbproject/
+
+# idea
+/.idea/
+*.iml
+
+# brackets
+.brackets.json
