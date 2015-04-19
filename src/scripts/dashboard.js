@@ -191,7 +191,7 @@ angular.module('adf')
       controller: function($scope){
         var model = {};
         var structure = {};
-        var widgetFilter = {};
+        var widgetFilter = null;
         var structureName = {};
         var name = $scope.name;
 
