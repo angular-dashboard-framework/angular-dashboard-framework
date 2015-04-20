@@ -36,6 +36,7 @@
     <!-- Foundation core CSS -->
     <link href="components/foundation/css/foundation.css" rel="stylesheet">
 
+    <link href="components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- dashboard style -->
     <link href="../src/styles/main.css" rel="stylesheet">
     <link href="widgets/clock/src/style.css" rel="stylesheet">
@@ -58,51 +59,42 @@
         document.createElement('highchart');
       </script>
     <![endif]-->
-
-    <!-- inlince css -->
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-      }
-    </style>
   </head>
 
   <body ng-app="sample">
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container" ng-controller="navigationCtrl">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" ng-click="toggleNav()">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">ADF</a>
-        </div>
-        <div collapse="navCollapsed" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li ng-class="navClass('sample/01')">
-              <a href="#/sample/01">Sample 01</a>
+    <div class="top-bar" role="navigation" ng-controller="navigationCtrl">
+
+        <ul class="title-area">
+            <li class="name">
+                <h1><a href="#">ADF</a></h1>
             </li>
-            <li ng-class="navClass('sample/02')">
-              <a href="#/sample/02">Sample 02</a>
-            </li>
-            <li ng-class="navClass('sample/03')">
-              <a href="#/sample/03">Sample 03</a>
-            </li>
-            <li ng-class="navClass('sample/04')">
-              <a href="#/sample/04">Sample 04</a>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+          <section class="top-bar-section">
+              <ul class="left">
+                  <li ng-class="navClass('sample/01')">
+                      <a href="#/sample/01">Sample 01</a>
+                  </li>
+                  <li ng-class="navClass('sample/02')">
+                      <a href="#/sample/02">Sample 02</a>
+                  </li>
+                  <li ng-class="navClass('sample/03')">
+                      <a href="#/sample/03">Sample 03</a>
+                  </li>
+                  <li ng-class="navClass('sample/04')">
+                      <a href="#/sample/04">Sample 04</a>
+                  </li>
+              </ul>
+          </section>
     </div>
 
-    <div class="container">
-
-      <div ng-view />
-
+    <div class="row">
+        <div class="large-12 large-centered columns">
+            <div ng-view />
+        </div>
     </div>
 
     <!-- build:js js/angular.min.js -->

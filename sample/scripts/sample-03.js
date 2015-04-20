@@ -34,7 +34,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
       structure: "6-6",
       rows: [{
         columns: [{
-          styleClass: "col-md-6",
+          styleClass: "medium-6",
           widgets: [{
             title: 'Description',
             type: 'markdown',
@@ -43,7 +43,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
             }
           }]
         }, {
-          styleClass: "col-md-6",
+          styleClass: "medium-6",
           widgets: [{
             title: 'Restangular',
             type: 'githubAuthor',

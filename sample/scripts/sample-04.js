@@ -35,7 +35,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
       rows: [{
           "columns": [
             {
-              "styleClass": "col-md-3",
+              "styleClass": "medium-3",
               "widgets": [
                 {
                   "type": "weather",
@@ -68,12 +68,12 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
               ]
             },
             {
-              "styleClass": "col-md-9",
+              "styleClass": "medium-9",
               "rows": [
                 {
                   "columns": [
                     {
-                      "styleClass": "col-md-12",
+                      "styleClass": "medium-12",
                       "widgets": [
                         {
                           "type": "markdown",
@@ -89,7 +89,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
                 {
                   "columns": [
                     {
-                      "styleClass": "col-md-6",
+                      "styleClass": "medium-6",
                       "widgets": [
                         {
                           "type": "githubHistory",
@@ -101,7 +101,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
                       ]
                     },
                     {
-                      "styleClass": "col-md-6",
+                      "styleClass": "medium-6",
                       "widgets": [
                         {
                           "type": "githubAuthor",

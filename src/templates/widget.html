@@ -4,27 +4,27 @@
     {{definition.title}}
       <span class="pull-right">
         <a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
-          <i class="glyphicon glyphicon-refresh"></i>
+          <i class="fa fa-refresh"></i>
         </a>
         <!-- change widget location -->
         <a href="" title="change widget location" class="adf-move" ng-if="editMode">
-          <i class="glyphicon glyphicon-move"></i>
+          <i class="fa fa-arrows"></i>
         </a>
         <!-- collapse -->
         <a href="" title="collapse widget" ng-show="collapsible && !isCollapsed" ng-click="isCollapsed = !isCollapsed">
-          <i class="glyphicon glyphicon-minus"></i>
+          <i class="fa fa-minus"></i>
         </a>
         <!-- expand -->
         <a href="" title="expand widget" ng-show="collapsible && isCollapsed" ng-click="isCollapsed = !isCollapsed">
-          <i class="glyphicon glyphicon-plus"></i>
+          <i class="fa fa-plus"></i>
         </a>
         <!-- open edit mode -->
         <a href="" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
-          <i class="glyphicon glyphicon-cog"></i>
+          <i class="fa fa-cog"></i>
         </a>
         <!-- remove widget -->
         <a href="" title="remove widget" ng-click="close()" ng-if="editMode">
-          <i class="glyphicon glyphicon-remove"></i>
+          <i class="fa fa-remove"></i>
         </a>
       </span>
     </h3>
