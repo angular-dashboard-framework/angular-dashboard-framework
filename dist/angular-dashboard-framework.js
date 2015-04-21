@@ -28,7 +28,7 @@ angular.module('adf', ['adf.provider', 'mm.foundation'])
   .value('adfTemplatePath', '../src/templates/')
   .value('rowTemplate', '<adf-dashboard-row row="row" adf-model="adfModel" collapsible="collapsible" edit-mode="editMode" ng-repeat="row in column.rows" />')
   .value('columnTemplate', '<adf-dashboard-column column="column" adf-model="adfModel" collapsible="collapsible" edit-mode="editMode" ng-repeat="column in row.columns" />')
-  .value('adfVersion', '0.9.0-SNAPSHOT');
+  .value('adfVersion', '0.9.1');
 
 /*
 * The MIT License

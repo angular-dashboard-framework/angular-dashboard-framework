@@ -1,6 +1,6 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "0.9.0-SNAPSHOT",
+  "version": "0.9.1",
   "devDependencies": {
     "connect-modrewrite": "^0.7.11",
     "del": "^1.1.1",

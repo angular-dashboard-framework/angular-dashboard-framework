@@ -1,16 +1,9 @@
 # angular-dashboard-framework
 
-> Dashboard framework with Angular.js and Twitter Bootstrap.
+> Dashboard framework with Angular.js and Twitter Bootstrap use Foundation CSS.
 
 The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/). A getting
 started guide can be found [here](https://github.com/sdorra/angular-dashboard-framework/wiki/Getting-started).
-Follow me ([@ssdorra](https://twitter.com/ssdorra)) on twitter for latest updates and news about adf.
-
-## Demo
-
-A live demo of the adf can be viewed [here](http://sdorra.github.io/angular-dashboard-framework/). The demo uses html5 localStorage to store the state of the dashboard. The source of the demo can be found [here](https://github.com/sdorra/angular-dashboard-framework/tree/master/sample).
-
-A more dynamic example can be found [here](https://github.com/sdorra/adf-dynamic-example).
 
 ## Build from source
 

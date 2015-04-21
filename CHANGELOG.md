@@ -1,3 +1,10 @@
+# 0.9.1
+
+## Using Foundation
+
+- use foundation css
+- use angular 1.3.*
+
 # 0.8.0
 
 ## Enhancements
