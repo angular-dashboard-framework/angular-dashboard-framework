@@ -3,16 +3,16 @@
   <h1>
     {{model.title}}
     <span style="font-size: 16px" class="pull-right">
-      <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
+      <a href="" ng-if="editMode" title="Neues Widget hinzufügen" ng-click="addWidgetDialog()">
         <i class="fa fa-plus"></i>
       </a>
-      <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
+      <a href="" ng-if="editMode" title="Dashboard bearbeiten" ng-click="editDashboardDialog()">
         <i class="fa fa-cog"></i>
       </a>
-      <a href="" ng-if="editable" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
+      <a href="" ng-if="editable" title="{{editMode ? 'speichern' : 'Bearbeitungsmodus aktivieren'}}" ng-click="toggleEditMode()">
         <i class="fa" x-ng-class="{'fa-edit' : !editMode, 'fa-save' : editMode}"></i>
       </a>
-	    <a href="" ng-if="editMode" title="undo changes" ng-click="cancelEditMode()">
+	    <a href="" ng-if="editMode" title="Änderungen verwerfen" ng-click="cancelEditMode()">
         <i class="fa fa-repeat adf-flip"></i>
       </a>
     </span>

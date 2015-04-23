@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+  <a class="close-reveal-modal" ng-click="closeDialog()" aria-hidden="true" aria-label="Close">&#215;</a>
   <h4 class="modal-title">{{widget.title}}</h4>
 </div>
 <div class="modal-body">
@@ -12,7 +12,4 @@
   <div ng-if="widget.edit">
     <adf-widget-content model="definition" content="widget.edit" />
   </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="button tiny" ng-click="closeDialog()">schließen</button>
 </div>

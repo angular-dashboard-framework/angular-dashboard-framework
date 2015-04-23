@@ -3,27 +3,27 @@
     <h3 class="panel-title">
     {{definition.title}}
       <span class="pull-right">
-        <a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
+        <a href="" title="Daten neu laden" ng-if="widget.reload" ng-click="reload()">
           <i class="fa fa-refresh"></i>
         </a>
         <!-- change widget location -->
-        <a href="" title="change widget location" class="adf-move" ng-if="editMode">
+        <a href="" title="verschieben" class="adf-move" ng-if="editMode">
           <i class="fa fa-arrows"></i>
         </a>
         <!-- collapse -->
-        <a href="" title="collapse widget" ng-show="collapsible && !isCollapsed" ng-click="isCollapsed = !isCollapsed">
+        <a href="" title="zu klappen" ng-show="collapsible && !isCollapsed" ng-click="isCollapsed = !isCollapsed">
           <i class="fa fa-minus"></i>
         </a>
         <!-- expand -->
-        <a href="" title="expand widget" ng-show="collapsible && isCollapsed" ng-click="isCollapsed = !isCollapsed">
+        <a href="" title="auf klappen" ng-show="collapsible && isCollapsed" ng-click="isCollapsed = !isCollapsed">
           <i class="fa fa-plus"></i>
         </a>
         <!-- open edit mode -->
-        <a href="" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
+        <a href="" title="konfigurieren" ng-click="edit()" ng-if="editMode">
           <i class="fa fa-cog"></i>
         </a>
         <!-- remove widget -->
-        <a href="" title="remove widget" ng-click="close()" ng-if="editMode">
+        <a href="" title="löschen" ng-click="close()" ng-if="editMode">
           <i class="fa fa-remove"></i>
         </a>
       </span>
