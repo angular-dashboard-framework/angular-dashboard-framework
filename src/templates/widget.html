@@ -1,14 +1,10 @@
 <div adf-id="{{definition.wid}}" class="widget panel panel-default">
   <div class="panel-heading clearfix">
-    <h3 class="panel-title">
+    <h3 class="panel-title" ng-class="editMode ? 'adf-move' : ''">
     {{definition.title}}
       <span class="pull-right">
         <a href="" title="Daten neu laden" ng-if="widget.reload" ng-click="reload()">
           <i class="fa fa-refresh"></i>
-        </a>
-        <!-- change widget location -->
-        <a href="" title="verschieben" class="adf-move" ng-if="editMode">
-          <i class="fa fa-arrows"></i>
         </a>
         <!-- collapse -->
         <a href="" title="zu klappen" ng-show="collapsible && !isCollapsed" ng-click="isCollapsed = !isCollapsed">
