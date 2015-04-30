@@ -265,13 +265,12 @@ angular.module('adf')
             $log.info('change structure to ' + name);
             changeStructure(model, structure);
           };
-          editDashboardScope.closeDialog = function(){
+          instance.result.finally(function() {
             // copy the new title back to the model
             model.title = editDashboardScope.copy.title;
-            // close modal and destroy the scope
-            instance.close();
+
             editDashboardScope.$destroy();
-          };
+          });
         };
 
         // add widget dialog
@@ -306,11 +305,10 @@ angular.module('adf')
             instance.close();
             addScope.$destroy();
           };
-          addScope.closeDialog = function(){
-            // close and destroy
-            instance.close();
+
+          instance.result.finally(function() {
             addScope.$destroy();
-          };
+          });
         };
       },
       compile: function($element, $attrs){

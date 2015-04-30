@@ -110,16 +110,13 @@ angular.module('adf')
           };
 
           var instance = $modal.open(opts);
-          editScope.closeDialog = function() {
-            instance.close();
-            editScope.$destroy();
-
+          instance.result.finally(function() {
             var widget = $scope.widget;
             if (widget.edit && widget.edit.reload){
               // reload content after edit dialog is closed
               $scope.$broadcast('widgetConfigChanged');
             }
-          };
+          });
         };
       } else {
         $log.debug('widget not found');
