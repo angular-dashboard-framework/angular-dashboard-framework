@@ -106,7 +106,7 @@ angular.module('adf')
           var opts = {
             scope: editScope,
             templateUrl: adfTemplatePath + 'widget-edit.html',
-			backdrop: 'static'
+            backdrop: 'static'
           };
 
           var instance = $modal.open(opts);
