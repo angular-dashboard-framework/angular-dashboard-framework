@@ -258,7 +258,8 @@ angular.module('adf')
           editDashboardScope.structures = dashboard.structures;
           var instance = $modal.open({
             scope: editDashboardScope,
-            templateUrl: adfTemplatePath + 'dashboard-edit.html'
+            templateUrl: adfTemplatePath + 'dashboard-edit.html',
+			backdrop: 'static'
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
@@ -290,7 +291,8 @@ angular.module('adf')
           addScope.widgets = widgets;
           var opts = {
             scope: addScope,
-            templateUrl: adfTemplatePath + 'widget-add.html'
+            templateUrl: adfTemplatePath + 'widget-add.html',
+			backdrop: 'static'
           };
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
