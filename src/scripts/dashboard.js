@@ -277,11 +277,12 @@ angular.module('adf')
         // add widget dialog
         $scope.addWidgetDialog = function(){
           var addScope = $scope.$new();
+          var model = $scope.model;
           var widgets;
           if (angular.isFunction(widgetFilter)){
             widgets = {};
             angular.forEach(dashboard.widgets, function(widget, type){
-              if (widgetFilter(widget, type)){
+              if (widgetFilter(widget, type, model)){
                 widgets[type] = widget;
               }
             });
@@ -300,7 +301,7 @@ angular.module('adf')
               type: widget,
               config: createConfiguration(widget)
             };
-            addNewWidgetToModel(addScope.model, w);
+            addNewWidgetToModel(model, w);
             // close and destroy
             instance.close();
             addScope.$destroy();
