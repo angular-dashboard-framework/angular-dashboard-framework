@@ -233,9 +233,9 @@ angular.module('adf')
 
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
-    		  if ($scope.editMode){
+          if ($scope.editMode){
             $scope.modelCopy = angular.copy($scope.adfModel, {});
-    		  }
+          }
 
           if (!$scope.editMode){
             $rootScope.$broadcast('adfDashboardChanged', name, model);
@@ -244,7 +244,7 @@ angular.module('adf')
 
         $scope.cancelEditMode = function(){
           $scope.editMode = false;
-		      $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
         };
 
         // edit dashboard settings
@@ -293,7 +293,7 @@ angular.module('adf')
           var opts = {
             scope: addScope,
             templateUrl: adfTemplatePath + 'widget-add.html',
-			      backdrop: 'static'
+            backdrop: 'static'
           };
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
