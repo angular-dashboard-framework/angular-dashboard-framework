@@ -44,7 +44,7 @@ angular.module('adf')
           if (!definition.title){
             definition.title = w.title;
           }
-          
+
           $scope.fullScreen = definition.fullScreen;
           $scope.modalSize = definition.modalSize;
 
@@ -69,8 +69,11 @@ angular.module('adf')
           // pass config to scope
           $scope.config = config;
 
-          // convert collapsible to string
+          // convert collapsible to boolean
           $scope.collapsible = stringToBoolean($scope.collapsible);
+
+          // convert maximizable to boolean
+          $scope.maximizable = stringToBoolean($scope.maximizable);
 
           // collapse
           $scope.isCollapsed = false;
@@ -138,9 +141,10 @@ angular.module('adf')
         definition: '=',
         col: '=column',
         editMode: '=',
-        collapsible: '='
+        collapsible: '=',
+        maximizable: '='
       },
-      
+
       controller: function ($scope) {
         $scope.openFullScreen = function () {
         var fullScreenScope = $scope.$new();
@@ -152,14 +156,14 @@ angular.module('adf')
           template = widget.templateUrl
          }
         });
- 
+
         var opts = {
           scope: fullScreenScope,
           templateUrl: adfTemplatePath + 'widget-fullscreen.html',
           size: $scope.modalSize || 'lg', // 'sm', 'lg'
           windowClass: ($scope.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
         };
- 
+
         var instance = $modal.open(opts);
          fullScreenScope.closeDialog = function () {
           instance.close();

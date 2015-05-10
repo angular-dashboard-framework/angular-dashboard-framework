@@ -185,6 +185,7 @@ angular.module('adf')
         name: '@',
         collapsible: '@',
         editable: '@',
+        maximizable: '@',
         adfModel: '=',
         adfWidgetFilter: '='
       },

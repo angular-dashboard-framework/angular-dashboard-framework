@@ -37,8 +37,8 @@ angular.module('sample-02', ['adf', 'LocalStorageModule'])
         columns: [{
           styleClass: "col-md-6",
           widgets: [{
-             fullScreen: false,
-             modalSize: 'lg',
+            fullScreen: false,
+            modalSize: 'lg',
             type: "markdown",
             config: {
               content: "# angular-dashboard-framework\n\n> Dashboard framework with Angular.js, Twitter Bootstrap and Font Awesome.\n\nThe api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/).\n\n## Demo\n\nA live demo of the adf can be viewed [here](http://sdorra.github.io/angular-dashboard-framework/). The demo uses html5 localStorage to store the state of the dashboard. The source of the demo can be found [here](https://github.com/sdorra/angular-dashboard-framework/tree/master/sample).\n\n## Getting started\n\nInstall bower and grunt:\n\n```bash\nnpm install -g bower\nnpm install -g grunt-cli\n```\n\nClone the repository:\n\n```bash\ngit clone https://github.com/sdorra/angular-dashboard-framework\ncd angular-dashboard-framework\n```\n\nInstall npm and bower dependencies:\n\n```bash\nnpm install --save\nbower install\n```\n\nYou can start the sample dashboard, by using the server grunt task:\n\n```bash\ngrunt server\n```\n\nNow you open the sample in your browser at http://localhost:9001/sample\n\nOr you can create a release build of angular-dashboard-framework and the samples:\n\n```bash\ngrunt\ngrunt sample\n```\nThe sample and the final build of angular-dashboard-framework are now in the dist directory."
@@ -71,6 +71,7 @@ angular.module('sample-02', ['adf', 'LocalStorageModule'])
   $scope.name = name;
   $scope.model = model;
   $scope.collapsible = true;
+  $scope.maximizable = true;
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);
