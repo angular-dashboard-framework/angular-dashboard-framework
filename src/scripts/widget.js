@@ -146,29 +146,30 @@ angular.module('adf')
       },
 
       controller: function ($scope) {
-        $scope.openFullScreen = function () {
-        var fullScreenScope = $scope.$new();
-        var controller;
-        var template;
-        angular.forEach(dashboard.widgets, function (widget) {
-         if (widget.title === $scope.definition.title) {
-          controller = widget.controller;
-          template = widget.templateUrl
-         }
-        });
+        $scope.openFullScreen = function() {
+          var fullScreenScope = $scope.$new();
+          var controller;
+          var template;
+          angular.forEach(dashboard.widgets, function (widget) {
+           if (widget.title === $scope.definition.title) {
+             controller = widget.controller;
+             template = widget.templateUrl;
+           }
+          });
 
-        var opts = {
-          scope: fullScreenScope,
-          templateUrl: adfTemplatePath + 'widget-fullscreen.html',
-          size: $scope.modalSize || 'lg', // 'sm', 'lg'
-          windowClass: ($scope.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
-        };
+          var opts = {
+            scope: fullScreenScope,
+            templateUrl: adfTemplatePath + 'widget-fullscreen.html',
+            size: $scope.modalSize || 'lg', // 'sm', 'lg'
+            backdrop: 'static',
+            windowClass: ($scope.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
+          };
 
-        var instance = $modal.open(opts);
-         fullScreenScope.closeDialog = function () {
-          instance.close();
-          fullScreenScope.$destroy();
-         }
+          var instance = $modal.open(opts);
+          fullScreenScope.closeDialog = function () {
+            instance.close();
+            fullScreenScope.$destroy();
+          }
         };
       },
 
