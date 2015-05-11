@@ -45,9 +45,6 @@ angular.module('adf')
             definition.title = w.title;
           }
 
-          $scope.fullScreen = definition.fullScreen;
-          $scope.modalSize = definition.modalSize;
-
           // set id for sortable
           if (!definition.wid){
             definition.wid = dashboard.id();
@@ -147,22 +144,14 @@ angular.module('adf')
 
       controller: function ($scope) {
         $scope.openFullScreen = function() {
+          var definition = $scope.definition;
           var fullScreenScope = $scope.$new();
-          var controller;
-          var template;
-          angular.forEach(dashboard.widgets, function (widget) {
-           if (widget.title === $scope.definition.title) {
-             controller = widget.controller;
-             template = widget.templateUrl;
-           }
-          });
-
           var opts = {
             scope: fullScreenScope,
             templateUrl: adfTemplatePath + 'widget-fullscreen.html',
-            size: $scope.modalSize || 'lg', // 'sm', 'lg'
+            size: definition.modalSize || 'lg', // 'sm', 'lg'
             backdrop: 'static',
-            windowClass: ($scope.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
+            windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
           };
 
           var instance = $modal.open(opts);
