@@ -35,8 +35,7 @@ angular.module('adf')
         row: '=',
         adfModel: '=',
         editMode: '=',
-        collapsible: '=',
-        maximizable: '='
+        options: '='
       },
       templateUrl: adfTemplatePath + 'dashboard-row.html',
       link: function ($scope, $element) {

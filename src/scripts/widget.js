@@ -27,14 +27,6 @@
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
 
-    function stringToBoolean(string){
-      switch(angular.isDefined(string) ? string.toLowerCase() : null){
-        case 'true': case 'yes': case '1': return true;
-        case 'false': case 'no': case '0': case null: return false;
-        default: return Boolean(string);
-      }
-    }
-
     function preLink($scope){
       var definition = $scope.definition;
       if (definition) {
@@ -65,12 +57,6 @@ angular.module('adf')
 
           // pass config to scope
           $scope.config = config;
-
-          // convert collapsible to boolean
-          $scope.collapsible = stringToBoolean($scope.collapsible);
-
-          // convert maximizable to boolean
-          $scope.maximizable = stringToBoolean($scope.maximizable);
 
           // collapse
           $scope.isCollapsed = false;
@@ -138,8 +124,7 @@ angular.module('adf')
         definition: '=',
         col: '=column',
         editMode: '=',
-        collapsible: '=',
-        maximizable: '='
+        options: '='
       },
 
       controller: function ($scope) {
@@ -158,7 +143,7 @@ angular.module('adf')
           fullScreenScope.closeDialog = function () {
             instance.close();
             fullScreenScope.$destroy();
-          }
+          };
         };
       },
 

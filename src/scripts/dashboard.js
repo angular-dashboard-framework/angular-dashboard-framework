@@ -39,6 +39,14 @@ angular.module('adf')
   .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
     'use strict';
 
+    function stringToBoolean(string){
+      switch(angular.isDefined(string) ? string.toLowerCase() : null){
+        case 'true': case 'yes': case '1': return true;
+        case 'false': case 'no': case '0': case null: return false;
+        default: return Boolean(string);
+      }
+    }
+
     function copyWidgets(source, target) {
       if ( source.widgets && source.widgets.length > 0 ){
         var w = source.widgets.shift();
@@ -314,16 +322,18 @@ angular.module('adf')
           };
         };
       },
-      compile: function($element, $attrs){
-        if (!angular.isDefined($attrs.editable)){
-          $attrs.editable = true;
-        }
-      },
       link: function ($scope, $element, $attr) {
-        // pass attributes to scope
-        $scope.name = $attr.name;
-        $scope.structure = $attr.structure;
-        $scope.editable = $attr.editable;
+        // pass options to scope
+        var options = {
+          name: $attr.name,
+          editable: true,
+          maximizable: stringToBoolean($attr.maximizable),
+          collapsible: stringToBoolean($attr.collapsible)
+        };
+        if (angular.isDefined($attr.editable)){
+          options.editable = stringToBoolean($attr.editable);
+        }
+        $scope.options = options;
       },
       templateUrl: adfTemplatePath + 'dashboard.html'
     };
