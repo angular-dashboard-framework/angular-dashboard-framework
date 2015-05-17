@@ -25,6 +25,8 @@
 
 'use strict';
 
+var helper = require('./helper.js')
+
 describe('dashboard edit tests', function(){
 
   beforeEach(function(){
@@ -67,6 +69,9 @@ describe('dashboard edit tests', function(){
     element(by.css('h1 a')).click();
     // open edit dialog
     element(by.css('h1 a > i.glyphicon-cog')).click();
+
+    // wait for modal
+    helper.waitForModal(browser);
 
     // check current selection
     var v = element(by.css('input[type=radio]:checked')).getAttribute('value');
