@@ -33,6 +33,14 @@
  * `adfDashboard` is a directive which renders the dashboard with all its
  * components. The directive requires a name attribute. The name of the
  * dashboard can be used to store the model.
+ *
+ * @param {string} name name of the dashboard. This attribute is required.
+ * @param {boolean=} editable false to disable the editmode of the dashboard.
+ * @param {boolean=} collapsible true to make widgets collapsible on the dashboard.
+ * @param {boolean=} maximizable true to add a button for open widgets in a large modal panel.
+ * @param {string=} structure the default structure of the dashboard.
+ * @param {object=} adfModel model object of the dashboard.
+ * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
  */
 
 angular.module('adf')

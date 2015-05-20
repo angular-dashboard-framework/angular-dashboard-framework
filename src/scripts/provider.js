@@ -194,6 +194,12 @@ angular.module('adf.provider', [])
     *
     * The dashboard holds all options, structures and widgets.
     *
+    * @property {Array.<Object>} widgets Array of registered widgets.
+    * @property {string} widgetsPath default path for widgets.
+    * @property {Array.<Object>} structures Array of registered structures.
+    * @property {string} messageTemplate template for messages.
+    * @property {string} loadingTemplate template for widget loading.
+    *
     * @returns {Object} self
     */
     this.$get = function(){

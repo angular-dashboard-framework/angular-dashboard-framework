@@ -49,6 +49,11 @@ var minifyHtmlOptions = {
   loose: true
 };
 
+var ngdocOptions = {
+  html5Mode: false,
+  title: 'ADF API Documentation'
+};
+
 var protractorOptions = {
   configFile: 'protractor.conf.js'
 };
@@ -109,7 +114,7 @@ gulp.task('build', ['css', 'js']);
 
 gulp.task('docs', function(){
   return gulp.src('src/scripts/*.js')
-    .pipe($.ngdocs.process({}))
+    .pipe($.ngdocs.process(ngdocOptions))
     .pipe(gulp.dest('./dist/docs'));
 });
 
