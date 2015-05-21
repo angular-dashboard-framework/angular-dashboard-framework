@@ -188,17 +188,17 @@ angular.module('adf.provider', [])
     };
 
    /**
-    * @ngdoc object
+    * @ngdoc service
     * @name adf.dashboard
     * @description
     *
     * The dashboard holds all options, structures and widgets.
     *
     * @property {Array.<Object>} widgets Array of registered widgets.
-    * @property {string} widgetsPath default path for widgets.
+    * @property {string} widgetsPath Default path for widgets.
     * @property {Array.<Object>} structures Array of registered structures.
-    * @property {string} messageTemplate template for messages.
-    * @property {string} loadingTemplate template for widget loading.
+    * @property {string} messageTemplate Template for messages.
+    * @property {string} loadingTemplate Template for widget loading.
     *
     * @returns {Object} self
     */
@@ -211,6 +211,16 @@ angular.module('adf.provider', [])
         structures: structures,
         messageTemplate: messageTemplate,
         loadingTemplate: loadingTemplate,
+
+        /**
+         * @ngdoc method
+         * @name adf.dashboard#id
+         * @methodOf adf.dashboard
+         * @description
+         *
+         * Creates an ongoing numeric id. The method is used to create ids for
+         * columns and widgets in the dashboard.
+         */
         id: function(){
           return ++cid;
         }
