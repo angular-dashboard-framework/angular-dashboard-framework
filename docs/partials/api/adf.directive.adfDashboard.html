@@ -9,14 +9,35 @@ components. The directive requires a name attribute. The name of the
 dashboard can be used to store the model.</p>
 </div></div>
 <h2 id="usage">Usage</h2>
-<div class="usage">as element:<pre class="prettyprint linenums">&lt;adf-dashboard&gt;
+<div class="usage">as element:<pre class="prettyprint linenums">&lt;adf-dashboard
+       name="{string}"
+       [editable="{boolean}"]
+       [collapsible="{boolean}"]
+       [maximizable="{boolean}"]
+       [structure="{string}"]
+       [adf-model="{object}"]
+       [adf-widget-filter="{function}"]&gt;
 &lt;/adf-dashboard&gt;</pre>
-as attribute<pre class="prettyprint linenums">&lt;div adf-dashboard&gt;
+as attribute<pre class="prettyprint linenums">&lt;div adf-dashboard
+     name="{string}"
+     [editable="{boolean}"]
+     [collapsible="{boolean}"]
+     [maximizable="{boolean}"]
+     [structure="{string}"]
+     [adf-model="{object}"]
+     [adf-widget-filter="{function}"]&gt;
    ...
 &lt;/div&gt;</pre>
 <h3 id="usage_directive-info">Directive info</h3>
 <div class="directive-info"><ul><li>This directive creates new scope.</li>
 </ul>
 </div>
-</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>name</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>name of the dashboard. This attribute is required.</p>
+</div></td></tr><tr><td>editable <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>false to disable the editmode of the dashboard.</p>
+</div></td></tr><tr><td>collapsible <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>true to make widgets collapsible on the dashboard.</p>
+</div></td></tr><tr><td>maximizable <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>true to add a button for open widgets in a large modal panel.</p>
+</div></td></tr><tr><td>structure <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>the default structure of the dashboard.</p>
+</div></td></tr><tr><td>adfModel <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>model object of the dashboard.</p>
+</div></td></tr><tr><td>adfWidgetFilter <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>function to filter widgets on the add dialog.</p>
+</div></td></tr></tbody></table></div>
 </div>

@@ -1,16 +1,16 @@
 NG_DOCS={
   "sections": {
-    "api": "API Documentation"
+    "api": "ADF API Documentation"
   },
   "pages": [
     {
       "section": "api",
       "id": "adf.dashboard",
       "shortName": "adf.dashboard",
-      "type": "object",
+      "type": "service",
       "moduleName": "adf",
       "shortDescription": "The dashboard holds all options, structures and widgets.",
-      "keywords": "adf api dashboard holds object options structures widgets"
+      "keywords": "adf adf-dashboard-page api array class columns create creates dashboard default holds ids loading loadingtemplate messages messagetemplate method numeric ongoing options path registered service structures template widget widgets widgetspath"
     },
     {
       "section": "api",
@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "adf",
       "shortDescription": "adfDashboard is a directive which renders the dashboard with all its",
-      "keywords": "adf adfdashboard api attribute components dashboard directive div ea model renders requires store"
+      "keywords": "add adf adfdashboard adfmodel adfwidgetfilter api attribute button collapsible components dashboard default dialog directive disable div ea editable editmode false filter function large maximizable modal model object open panel renders required requires store structure true widgets"
     }
   ],
   "apis": {
@@ -44,8 +44,8 @@ NG_DOCS={
       "js/prettify.js"
     ],
     "styles": [],
-    "title": "API Documentation",
-    "html5Mode": true,
+    "title": "ADF API Documentation",
+    "html5Mode": false,
     "editExample": true,
     "navTemplate": false,
     "navContent": "",
@@ -57,7 +57,7 @@ NG_DOCS={
       "prettify": true
     }
   },
-  "html5Mode": true,
+  "html5Mode": false,
   "editExample": true,
   "startPage": "/api",
   "scripts": [
