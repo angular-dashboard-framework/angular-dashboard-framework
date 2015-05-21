@@ -12,7 +12,7 @@
 * remove the unused dev dependency json3, see [#92](https://github.com/sdorra/angular-dashboard-framework/pull/92)
 * use backdrop static in $modal options, see [#90](https://github.com/sdorra/angular-dashboard-framework/pull/90)
 * implement more robust method to add new widgets to the model, see [#81](https://github.com/sdorra/angular-dashboard-framework/issues/81)
-* use ng-annotate to annotate unminified version, see issue [#84](https://github.com/sdorra/angular-dashboard-framework/issues/84) and [#82]
+* use ng-annotate to annotate unminified version, see issue [#84](https://github.com/sdorra/angular-dashboard-framework/issues/84) and [#82](https://github.com/sdorra/angular-dashboard-framework/issues/82)
 * use .adf-move as handle for sortable to fix issue [#80](https://github.com/sdorra/angular-dashboard-framework/issues/80)
 
 # 0.8.0
