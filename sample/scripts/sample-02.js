@@ -68,6 +68,7 @@ angular.module('sample-02', ['adf', 'LocalStorageModule'])
       }]
     };
   }
+
   $scope.name = name;
   $scope.model = model;
   $scope.collapsible = true;
