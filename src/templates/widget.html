@@ -19,7 +19,7 @@
           <i class="fa fa-cog"></i>
         </a>
         <a href="" title="fullscreen widget" ng-click="openFullScreen()" ng-show="options.maximizable">
-         <i class="glyphicon glyphicon-fullscreen"></i>
+         <i class="fa fa-arrows"></i>
         </a>
         <!-- remove widget -->
         <a href="" title="löschen" ng-click="close()" ng-if="editMode">
@@ -28,7 +28,7 @@
       </span>
     </h3>
   </div>
-  <div class="panel-body" collapse="isCollapsed">
+  <div class="panel-body" ng-show="options.collapsible && !isCollapsed">
     <adf-widget-content model="definition" content="widget" />
   </div>
 </div>
