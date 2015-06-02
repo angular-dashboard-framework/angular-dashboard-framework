@@ -28,7 +28,7 @@
       </span>
     </h3>
   </div>
-  <div class="panel-body" ng-show="options.collapsible && !isCollapsed">
+  <div class="panel-body" ng-show="!options.collapsible || (options.collapsible && !isCollapsed)">
     <adf-widget-content model="definition" content="widget" />
   </div>
 </div>

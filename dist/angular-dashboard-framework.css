@@ -62,18 +62,11 @@ pre.edit {
 .widget.panel {
     background-color: #FFF;
     padding: 0rem;
+    border: 0;
 }
 
-.widget.panel-default > .panel-heading {
-    color: #333;
-    background-color: #F5F5F5;
-    border-color: #DDD;
-}
 .widget .panel-heading {
-    padding: 10px 15px;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom: 1px solid transparent;
+    padding: 20px 20px;
 }
 
 .widget .panel-title {
@@ -128,4 +121,8 @@ pre.edit {
 */
 .dashboard-modal.widget-fullscreen .modal-dialog {
  width: 98%;
+}
+
+body {
+    background: url("../images/traperto-dashboard-bg.png");
 }
