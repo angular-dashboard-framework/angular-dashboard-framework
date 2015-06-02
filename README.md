@@ -1,54 +1,9 @@
 # angular-dashboard-framework
 
-> Dashboard framework with Angular.js and Twitter Bootstrap use Foundation CSS.
+> Dashboard framework with Angular.js and Foundation CSS.
 
 The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/). A getting
 started guide can be found [here](https://github.com/sdorra/angular-dashboard-framework/wiki/Getting-started).
-
-## Build from source
-
-Install bower and grunt:
-
-```bash
-npm install -g bower
-npm install -g gulp
-```
-
-Clone the repository:
-
-```bash
-git clone https://github.com/sdorra/angular-dashboard-framework
-cd angular-dashboard-framework
-```
-
-Install npm and bower dependencies:
-
-```bash
-npm install
-bower install
-```
-
-Checkout git submodule widgets:
-
-```bash
-git submodule init
-git submodule update
-```
-
-You can start the sample dashboard, by using the serve gulp task:
-
-```bash
-gulp serve
-```
-
-Now you open the sample in your browser at http://localhost:9001/sample
-
-Or you can create a release build of angular-dashboard-framework and the samples:
-
-```bash
-gulp all
-```
-The sample and the final build of angular-dashboard-framework are now in the dist directory.
 
 
 ## License
