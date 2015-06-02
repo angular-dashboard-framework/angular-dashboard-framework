@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <div class="pull-right widget-icons">
+    <a href="" title="Reload Widget Content" ng-if="widget.reload" ng-click="reload()">
+      <i class="glyphicon glyphicon-refresh"></i>
+    </a>
+    <a href="" title="close" ng-click="closeDialog()">
+      <i class="glyphicon glyphicon-remove"></i>
+    </a>
+  </div>
+  <h4 class="modal-title">{{definition.title}}</h4>
+</div>
+<div class="modal-body">
+  <adf-widget-content model="definition" content="widget" />
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
+</div>

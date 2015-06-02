@@ -1,9 +1,26 @@
-# 0.9.1
+# master
 
 ## Using Foundation
 
 - use foundation css
 - use angular 1.3.*
+
+# 0.9.0
+
+## Enhancements
+
+* support for maximize/minimize option, see [#87](https://github.com/sdorra/angular-dashboard-framework/pull/87)
+* rap the JavaScript code in an IIFE, see [#94](https://github.com/sdorra/angular-dashboard-framework/pull/94)
+* pass model as parameter for widget filter, see [#85](https://github.com/sdorra/angular-dashboard-framework/issues/85)
+* pass maximizable and collapsible as options object, to simplify creation of new attributes, see [#101](https://github.com/sdorra/angular-dashboard-framework/issues/101) and [#100](https://github.com/sdorra/angular-dashboard-framework/issues/100).
+
+## Bug fixes
+
+* remove the unused dev dependency json3, see [#92](https://github.com/sdorra/angular-dashboard-framework/pull/92)
+* use backdrop static in $modal options, see [#90](https://github.com/sdorra/angular-dashboard-framework/pull/90)
+* implement more robust method to add new widgets to the model, see [#81](https://github.com/sdorra/angular-dashboard-framework/issues/81)
+* use ng-annotate to annotate unminified version, see issue [#84](https://github.com/sdorra/angular-dashboard-framework/issues/84) and [#82](https://github.com/sdorra/angular-dashboard-framework/issues/82)
+* use .adf-move as handle for sortable to fix issue [#80](https://github.com/sdorra/angular-dashboard-framework/issues/80)
 
 # 0.8.0
 

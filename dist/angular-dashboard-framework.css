@@ -123,3 +123,9 @@ pre.edit {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
+/*
+ modal dialog in fullscreen
+*/
+.dashboard-modal.widget-fullscreen .modal-dialog {
+ width: 98%;
+}

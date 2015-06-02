@@ -27,14 +27,6 @@
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
 
-    function stringToBoolean(string){
-      switch(angular.isDefined(string) ? string.toLowerCase() : null){
-        case 'true': case 'yes': case '1': return true;
-        case 'false': case 'no': case '0': case null: return false;
-        default: return Boolean(string);
-      }
-    }
-
     function preLink($scope){
       var definition = $scope.definition;
       if (definition) {
@@ -65,9 +57,6 @@ angular.module('adf')
 
           // pass config to scope
           $scope.config = config;
-
-          // convert collapsible to string
-          $scope.collapsible = stringToBoolean($scope.collapsible);
 
           // collapse
           $scope.isCollapsed = false;
@@ -105,7 +94,8 @@ angular.module('adf')
 
           var opts = {
             scope: editScope,
-            templateUrl: adfTemplatePath + 'widget-edit.html'
+            templateUrl: adfTemplatePath + 'widget-edit.html',
+            backdrop: 'static'
           };
 
           var instance = $modal.open(opts);
@@ -134,8 +124,29 @@ angular.module('adf')
         definition: '=',
         col: '=column',
         editMode: '=',
-        collapsible: '='
+        options: '='
       },
+
+      controller: function ($scope) {
+        $scope.openFullScreen = function() {
+          var definition = $scope.definition;
+          var fullScreenScope = $scope.$new();
+          var opts = {
+            scope: fullScreenScope,
+            templateUrl: adfTemplatePath + 'widget-fullscreen.html',
+            size: definition.modalSize || 'lg', // 'sm', 'lg'
+            backdrop: 'static',
+            windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
+          };
+
+          var instance = $modal.open(opts);
+          fullScreenScope.closeDialog = function () {
+            instance.close();
+            fullScreenScope.$destroy();
+          };
+        };
+      },
+
       compile: function compile(){
 
         /**

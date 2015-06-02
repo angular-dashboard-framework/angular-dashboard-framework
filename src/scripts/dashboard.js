@@ -33,11 +33,27 @@
  * `adfDashboard` is a directive which renders the dashboard with all its
  * components. The directive requires a name attribute. The name of the
  * dashboard can be used to store the model.
+ *
+ * @param {string} name name of the dashboard. This attribute is required.
+ * @param {boolean=} editable false to disable the editmode of the dashboard.
+ * @param {boolean=} collapsible true to make widgets collapsible on the dashboard.
+ * @param {boolean=} maximizable true to add a button for open widgets in a large modal panel.
+ * @param {string=} structure the default structure of the dashboard.
+ * @param {object=} adfModel model object of the dashboard.
+ * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
  */
 
 angular.module('adf')
   .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
     'use strict';
+
+    function stringToBoolean(string){
+      switch(angular.isDefined(string) ? string.toLowerCase() : null){
+        case 'true': case 'yes': case '1': return true;
+        case 'false': case 'no': case '0': case null: return false;
+        default: return Boolean(string);
+      }
+    }
 
     function copyWidgets(source, target) {
       if ( source.widgets && source.widgets.length > 0 ){
@@ -185,6 +201,7 @@ angular.module('adf')
         name: '@',
         collapsible: '@',
         editable: '@',
+        maximizable: '@',
         adfModel: '=',
         adfWidgetFilter: '='
       },
@@ -233,9 +250,9 @@ angular.module('adf')
 
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
-    		  if ($scope.editMode){
+          if ($scope.editMode){
             $scope.modelCopy = angular.copy($scope.adfModel, {});
-    		  }
+          }
 
           if (!$scope.editMode){
             $rootScope.$broadcast('adfDashboardChanged', name, model);
@@ -244,7 +261,7 @@ angular.module('adf')
 
         $scope.cancelEditMode = function(){
           $scope.editMode = false;
-		      $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
         };
 
         // edit dashboard settings
@@ -258,7 +275,8 @@ angular.module('adf')
           editDashboardScope.structures = dashboard.structures;
           var instance = $modal.open({
             scope: editDashboardScope,
-            templateUrl: adfTemplatePath + 'dashboard-edit.html'
+            templateUrl: adfTemplatePath + 'dashboard-edit.html',
+            backdrop: 'static'
           });
           $scope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
@@ -276,11 +294,12 @@ angular.module('adf')
         // add widget dialog
         $scope.addWidgetDialog = function(){
           var addScope = $scope.$new();
+          var model = $scope.model;
           var widgets;
           if (angular.isFunction(widgetFilter)){
             widgets = {};
             angular.forEach(dashboard.widgets, function(widget, type){
-              if (widgetFilter(widget, type)){
+              if (widgetFilter(widget, type, model)){
                 widgets[type] = widget;
               }
             });
@@ -290,7 +309,8 @@ angular.module('adf')
           addScope.widgets = widgets;
           var opts = {
             scope: addScope,
-            templateUrl: adfTemplatePath + 'widget-add.html'
+            templateUrl: adfTemplatePath + 'widget-add.html',
+            backdrop: 'static'
           };
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
@@ -298,7 +318,7 @@ angular.module('adf')
               type: widget,
               config: createConfiguration(widget)
             };
-            addNewWidgetToModel(addScope.model, w);
+            addNewWidgetToModel(model, w);
             // close and destroy
             instance.close();
             addScope.$destroy();
@@ -310,16 +330,18 @@ angular.module('adf')
           };
         };
       },
-      compile: function($element, $attrs){
-        if (!angular.isDefined($attrs.editable)){
-          $attrs.editable = true;
-        }
-      },
       link: function ($scope, $element, $attr) {
-        // pass attributes to scope
-        $scope.name = $attr.name;
-        $scope.structure = $attr.structure;
-        $scope.editable = $attr.editable;
+        // pass options to scope
+        var options = {
+          name: $attr.name,
+          editable: true,
+          maximizable: stringToBoolean($attr.maximizable),
+          collapsible: stringToBoolean($attr.collapsible)
+        };
+        if (angular.isDefined($attr.editable)){
+          options.editable = stringToBoolean($attr.editable);
+        }
+        $scope.options = options;
       },
       templateUrl: adfTemplatePath + 'dashboard.html'
     };

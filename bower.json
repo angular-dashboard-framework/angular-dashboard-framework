@@ -1,22 +1,27 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "main": [
     "dist/angular-dashboard-framework.js",
     "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
-    "bower.json",
-    ".bowerrc",
-    ".gitignore",
-    "Gruntfile.js",
-    "node_modules",
-    "package.json",
-    "sample",
-    "src",
     ".tmp",
     "dist/docs",
-    "dist/sample"
+    "dist/sample",
+    "e2e",
+    "node_modules",
+    "sample",
+    "src",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitmodules",
+    ".jshintrc",
+    "bower.json",
+    "gulpfile.js",
+    "package.json",
+    "protractor.conf.js"
   ],
   "keywords": [
     "dashboard",
@@ -26,18 +31,17 @@
     "adf"
   ],
   "dependencies": {
-    "angular": "1.3.*",
+    "angular": "1.4.*",
     "angular-foundation": "*",
     "foundation": "5.5.x",
     "components-font-awesome": "*",
     "Sortable": "1.1.1"
   },
   "devDependencies": {
-    "angular-mocks": "1.3.*",
-    "angular-scenario": "1.3.*",
-    "angular-route": "1.3.*",
+    "angular-mocks": "1.4.*",
+    "angular-scenario": "1.4.*",
+    "angular-route": "1.4.*",
     "angular-local-storage": "0.1.5",
-    "json3": "~3.2.4",
     "es5-shim": "~2.0.8"
   }
 }

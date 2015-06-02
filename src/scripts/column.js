@@ -156,7 +156,7 @@ angular.module('adf')
         column: '=',
         editMode: '=',
         adfModel: '=',
-        collapsible: '='
+        options: '='
       },
       templateUrl: adfTemplatePath + 'dashboard-column.html',
       link: function ($scope, $element) {

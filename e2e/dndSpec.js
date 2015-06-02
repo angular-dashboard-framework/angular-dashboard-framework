@@ -25,7 +25,11 @@
 
 'use strict';
 
-describe('Drag and drop tests', function(){
+// disable dnd tests, because selenium and protractor does not have
+// support for html5 drag and drop: 
+// https://github.com/angular/protractor/issues/583
+// https://code.google.com/p/selenium/issues/detail?id=3604
+xdescribe('Drag and drop tests', function(){
 
   beforeEach(function(){
     browser.get('http://localhost:9003/sample/index.html#/sample/03');
