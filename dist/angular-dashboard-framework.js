@@ -473,6 +473,13 @@ angular.module('adf')
           }
         };
 
+        /**
+         * Scope method allowing action buttons to fire the delete request
+         */
+        $scope.deleteDashboard = function() {
+            $rootScope.$broadcast('adfDashboardDeleteRequested', name, model);
+        };
+
         $scope.cancelEditMode = function(){
           $scope.editMode = false;
           $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
