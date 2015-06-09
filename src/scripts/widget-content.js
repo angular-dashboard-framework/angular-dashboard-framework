@@ -143,7 +143,8 @@ angular.module('adf')
       transclude: false,
       scope: {
         model: '=',
-        content: '='
+        content: '=',
+        dashboardOptions: '='
       },
       link: function($scope, $element) {
         var currentScope = compileWidget($scope, $element, null);
