@@ -995,7 +995,7 @@ angular.module('adf')
       scope: {
         model: '=',
         content: '=',
-        dashboardOptions: '='
+        dashboardoptions: '='
       },
       link: function($scope, $element) {
         var currentScope = compileWidget($scope, $element, null);
