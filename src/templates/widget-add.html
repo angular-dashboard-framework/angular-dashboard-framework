@@ -2,17 +2,24 @@
   <a class="close-reveal-modal" ng-click="closeDialog()" aria-hidden="true" aria-label="Close">&#215;</a>
   <h4 class="modal-title">Widget hinzufügen</h4>
 </div>
-<div class="modal-body">
-  <div style="display: inline-block;">
-    <dl class="dl-horizontal">
-      <dt ng-repeat-start="(key, widget) in widgets">
-        <a href="" ng-click="addWidget(key)">
-          {{widget.title}}
-        </a>      
-      </dt>
-      <dd ng-repeat-end ng-if="widget.description">
-        {{widget.description}}
-      </dd>
-    </dl>
+<div class="modal-body" class="row">
+  <div class="columns">
+      <accordion close-others="true">
+          <accordion-group ng-repeat="(category, widgets) in categories" is-open="isopen">
+              <accordion-heading>
+                  {{category}}<i class="right" ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
+              </accordion-heading>
+              <dl class="dl-horizontal content active" id="#panel{{category}}">
+                  <dt ng-repeat-start="(key, widget) in widgets">
+                      <a href="" ng-click="addWidget(key)">
+                          {{widget.title}} <i class="fa fa-spinner fa-spin" ng-show="recentlyAdded.indexOf(key) > -1"></i>
+                      </a>
+                  </dt>
+                  <dd ng-repeat-end ng-if="widget.description">
+                      {{widget.description}}
+                  </dd>
+              </dl>
+          </accordion-group>
+      </accordion>
   </div>
 </div>

@@ -44,7 +44,7 @@
  */
 
 angular.module('adf')
-  .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath, $timeout) {
     'use strict';
 
     function stringToBoolean(string){
@@ -313,7 +313,25 @@ angular.module('adf')
           } else {
             widgets = dashboard.widgets;
           }
-          addScope.widgets = widgets;
+
+          addScope.categories = function getCategories() {
+              var categories = {};
+              angular.forEach(widgets, function(widget, key){
+                  var category = 'default';
+                  if (widget.category) {
+                      category = widget.category;
+                  }
+                  if (!categories[category]) {
+                      categories[category] = {};
+                  }
+                  categories[category][key] = widget;
+              });
+
+              return categories;
+          };
+
+          addScope.recentlyAdded = [];
+
           var opts = {
             scope: addScope,
             templateUrl: adfTemplatePath + 'widget-add.html',
@@ -326,9 +344,12 @@ angular.module('adf')
               config: createConfiguration(widget)
             };
             addNewWidgetToModel(model, w);
-            // close and destroy
-            instance.close();
-            addScope.$destroy();
+
+            addScope.recentlyAdded.push(widget);
+
+            $timeout(function() {
+                addScope.recentlyAdded.shift();
+            }, 1000);
           };
           addScope.closeDialog = function(){
             // close and destroy

@@ -258,7 +258,7 @@ angular.module('adf')
  */
 
 angular.module('adf')
-  .directive('adfDashboard', ["$rootScope", "$log", "$modal", "dashboard", "adfTemplatePath", function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', ["$rootScope", "$log", "$modal", "dashboard", "adfTemplatePath", "$timeout", function ($rootScope, $log, $modal, dashboard, adfTemplatePath, $timeout) {
     
 
     function stringToBoolean(string){
@@ -527,7 +527,25 @@ angular.module('adf')
           } else {
             widgets = dashboard.widgets;
           }
-          addScope.widgets = widgets;
+
+          addScope.categories = function getCategories() {
+              var categories = {};
+              angular.forEach(widgets, function(widget, key){
+                  var category = 'default';
+                  if (widget.category) {
+                      category = widget.category;
+                  }
+                  if (!categories[category]) {
+                      categories[category] = {};
+                  }
+                  categories[category][key] = widget;
+              });
+
+              return categories;
+          };
+
+          addScope.recentlyAdded = [];
+
           var opts = {
             scope: addScope,
             templateUrl: adfTemplatePath + 'widget-add.html',
@@ -540,9 +558,12 @@ angular.module('adf')
               config: createConfiguration(widget)
             };
             addNewWidgetToModel(model, w);
-            // close and destroy
-            instance.close();
-            addScope.$destroy();
+
+            addScope.recentlyAdded.push(widget);
+
+            $timeout(function() {
+                addScope.recentlyAdded.shift();
+            }, 1000);
           };
           addScope.closeDialog = function(){
             // close and destroy
@@ -1178,7 +1199,7 @@ angular.module("adf").run(["$templateCache", function($templateCache) {$template
 $templateCache.put("../src/templates/dashboard-edit.html","<a class=close-reveal-modal ng-click=closeDialog() aria-hidden=true aria-label=Close>&#215;</a> <h4 class=modal-title>Dashboard bearbeiten</h4> <form role=form> <div class=\"row dashboard-edit\"> <div class=\"small-6 columns\"> <h5>Titel</h5> <input type=text id=dashboardTitle ng-model=copy.title placeholder=\"Titel des Dashboards\"> </div> <div class=\"small-6 columns\"> <h5>Spaltenstruktur</h5> <div class=radio ng-repeat=\"(key, structure) in structures\"> <input type=radio value={{key}} ng-model=model.structure ng-change=\"changeStructure(key, structure)\"> <label>{{key}}</label> </div> </div> </div> </form>");
 $templateCache.put("../src/templates/dashboard-row.html","<div class=row ng-class=row.styleClass>  </div> ");
 $templateCache.put("../src/templates/dashboard.html","<div class=dashboard-container> <div class=row> <div class=\"columns small-8\"><h1>{{model.title}}</h1></div> <div class=\"columns small-4\"> <span style=\"font-size: 16px\" class=pull-right> <a href ng-if=editMode title=\"Neues Widget hinzufügen\" ng-click=addWidgetDialog()> <i class=\"fa fa-plus\"></i> </a> <a href ng-if=editMode title=\"Dashboard bearbeiten\" ng-click=editDashboardDialog()> <i class=\"fa fa-cog\"></i> </a> <a href ng-if=options.editable title=\"{{editMode ? \'speichern\' : \'Bearbeitungsmodus aktivieren\'}}\" ng-click=toggleEditMode()> <i class=fa x-ng-class=\"{\'fa-edit\' : !editMode, \'fa-save\' : editMode}\"></i> </a> <a href ng-if=editMode title=\"Änderungen verwerfen\" ng-click=cancelEditMode()> <i class=\"fa fa-repeat adf-flip\"></i> </a> </span> </div> </div> <div class=row> <div class=columns> <div class=dashboard x-ng-class=\"{\'edit\' : editMode}\"> <adf-dashboard-row row=row adf-model=model options=options ng-repeat=\"row in model.rows\" edit-mode=editMode> </adf-dashboard-row></div> </div> </div> </div> ");
-$templateCache.put("../src/templates/widget-add.html","<div class=modal-header> <a class=close-reveal-modal ng-click=closeDialog() aria-hidden=true aria-label=Close>&#215;</a> <h4 class=modal-title>Widget hinzufügen</h4> </div> <div class=modal-body> <div style=\"display: inline-block;\"> <dl class=dl-horizontal> <dt ng-repeat-start=\"(key, widget) in widgets\"> <a href ng-click=addWidget(key)> {{widget.title}} </a> </dt> <dd ng-repeat-end ng-if=widget.description> {{widget.description}} </dd> </dl> </div> </div> ");
+$templateCache.put("../src/templates/widget-add.html","<div class=modal-header> <a class=close-reveal-modal ng-click=closeDialog() aria-hidden=true aria-label=Close>&#215;</a> <h4 class=modal-title>Widget hinzufügen</h4> </div> <div class=modal-body> <div class=columns> <accordion close-others=true> <accordion-group ng-repeat=\"(category, widgets) in categories\" is-open=isopen> <accordion-heading> {{category}}<i class=right ng-class=\"{\'fa fa-chevron-down\': isopen, \'fa fa-chevron-right\': !isopen}\"></i> </accordion-heading> <dl class=\"dl-horizontal content active\" id=#panel{{category}}> <dt ng-repeat-start=\"(key, widget) in widgets\"> <a href ng-click=addWidget(key)> {{widget.title}} <i class=\"fa fa-spinner fa-spin\" ng-show=\"recentlyAdded.indexOf(key) > -1\"></i> </a> </dt> <dd ng-repeat-end ng-if=widget.description> {{widget.description}} </dd> </dl> </accordion-group> </accordion> </div> </div> ");
 $templateCache.put("../src/templates/widget-edit.html","<div class=modal-header> <a class=close-reveal-modal ng-click=closeDialog() aria-hidden=true aria-label=Close>&#215;</a> <h4 class=modal-title>{{widget.title}}</h4> </div> <div class=modal-body> <form> <div class=row> <div class=\"small-2 columns\"> <label for=widgetTitle class=\"inline widgetTitle\">Titel</label> </div> <div class=\"small-10 columns\"> <input type=text class=form-control id=widgetTitle ng-model=definition.title> </div> </div> </form> <div ng-if=widget.edit class=widget-settings> <adf-widget-content model=definition content=widget.edit> </adf-widget-content></div> </div>");
 $templateCache.put("../src/templates/widget-fullscreen.html","<a class=close-reveal-modal ng-click=closeDialog() aria-hidden=true aria-label=Close>&#215;</a> <div class=modal-header> <h4 class=modal-title>{{definition.title}}</h4> </div> <div class=modal-body> <adf-widget-content model=definition content=widget> </adf-widget-content></div>");
 $templateCache.put("../src/templates/widget.html","<div adf-id={{definition.wid}} class=\"widget panel panel-default\"> <div class=\"panel-heading clearfix\"> <h3 class=panel-title ng-class=\"editMode ? \'adf-move\' : \'\'\"> {{definition.title}} <span class=pull-right> <a href title=\"Daten neu laden\" ng-if=widget.reload ng-click=reload()> <i class=\"fa fa-refresh\"></i> </a>  <a href title=\"zu klappen\" ng-show=\"options.collapsible && !isCollapsed\" ng-click=\"isCollapsed = !isCollapsed\"> <i class=\"fa fa-minus\"></i> </a>  <a href title=\"auf klappen\" ng-show=\"options.collapsible && isCollapsed\" ng-click=\"isCollapsed = !isCollapsed\"> <i class=\"fa fa-plus\"></i> </a>  <a href title=konfigurieren ng-click=edit() ng-if=editMode> <i class=\"fa fa-cog\"></i> </a> <a href title=\"fullscreen widget\" ng-click=openFullScreen() ng-if=widget.fullScreen> <i class=\"fa fa-arrows\"></i> </a>  <a href title=löschen ng-click=close() ng-if=editMode> <i class=\"fa fa-remove\"></i> </a> </span> </h3> </div> <div class=panel-body ng-show=\"!options.collapsible || (options.collapsible && !isCollapsed)\"> <adf-widget-content model=definition dashboardoptions=options content=widget> </adf-widget-content></div> </div> ");}]);})(window);
