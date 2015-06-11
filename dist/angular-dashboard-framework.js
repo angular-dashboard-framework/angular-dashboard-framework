@@ -528,7 +528,9 @@ angular.module('adf')
             widgets = dashboard.widgets;
           }
 
-          addScope.categories = function getCategories() {
+          addScope.categories = getCategories();
+
+          function getCategories() {
               var categories = {};
               angular.forEach(widgets, function(widget, key){
                   var category = 'default';
