@@ -1,9 +1,9 @@
-# master
+# 1.0.0
 
 ## Using Foundation
 
-- use foundation css
-- use angular 1.3.*
+* use foundation css
+* use angular 1.4.*
 
 # 0.9.0
 
