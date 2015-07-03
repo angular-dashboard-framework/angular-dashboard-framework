@@ -1,0 +1,17 @@
+<h1>
+  {{model.title}}
+  <span style="font-size: 16px" class="pull-right">
+    <a href="" ng-if="editMode" title="add new widget" ng-click="addWidgetDialog()">
+      <i class="glyphicon glyphicon-plus-sign"></i>
+    </a>
+    <a href="" ng-if="editMode" title="edit dashboard" ng-click="editDashboardDialog()">
+      <i class="glyphicon glyphicon-cog"></i>
+    </a>
+    <a href="" ng-if="options.editable" title="{{editMode ? 'save changes' : 'enable edit mode'}}" ng-click="toggleEditMode()">
+      <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}"></i>
+    </a>
+    <a href="" ng-if="editMode" title="undo changes" ng-click="cancelEditMode()">
+      <i class="glyphicon glyphicon-repeat adf-flip"></i>
+    </a>
+  </span>
+</h1>

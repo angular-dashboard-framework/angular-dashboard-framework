@@ -237,6 +237,9 @@ angular.module('adf')
               if (!model.title){
                 model.title = 'Dashboard';
               }
+              if (!model.titleTemplateUrl) {
+                model.titleTemplateUrl = adfTemplatePath + 'dashboard-title.html';
+              }
               $scope.model = model;
             } else {
               $log.error('could not find or create model');
@@ -319,6 +322,7 @@ angular.module('adf')
               config: createConfiguration(widget)
             };
             addNewWidgetToModel(model, w);
+            $rootScope.$broadcast('adfWidgetAdded', name, model, w);
             // close and destroy
             instance.close();
             addScope.$destroy();
