@@ -1,0 +1,24 @@
+<h3 class="panel-title">
+  <i class="glyphicon glyphicon-star"></i>
+  {{definition.title}}
+  <span class="pull-right">
+    <a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
+      <i class="glyphicon glyphicon-refresh"></i>
+    </a>
+    <!-- change widget location -->
+    <a href="" title="change widget location" class="adf-move" ng-if="editMode">
+      <i class="glyphicon glyphicon-move"></i>
+    </a>
+    <!-- open edit mode -->
+    <a href="" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
+      <i class="glyphicon glyphicon-cog"></i>
+    </a>
+    <a href="" title="fullscreen widget" ng-click="openFullScreen()" ng-show="options.maximizable">
+     <i class="glyphicon glyphicon-fullscreen"></i>
+   </a>
+    <!-- remove widget -->
+    <a href="" title="remove widget" ng-click="close()" ng-if="editMode">
+      <i class="glyphicon glyphicon-remove"></i>
+    </a>
+  </span>
+</h3>
