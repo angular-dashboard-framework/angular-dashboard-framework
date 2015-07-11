@@ -262,6 +262,7 @@ angular.module('adf')
         $scope.cancelEditMode = function(){
           $scope.editMode = false;
           $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          $rootScope.$broadcast('adfDashboardEditsCancelled');
         };
 
         // edit dashboard settings
