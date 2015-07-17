@@ -495,6 +495,7 @@ angular.module('adf')
             title: model.title
           };
           editDashboardScope.structures = dashboard.structures;
+
           var instance = $modal.open({
             scope: editDashboardScope,
             templateUrl: adfTemplatePath + 'dashboard-edit.html',
@@ -529,11 +530,19 @@ angular.module('adf')
             widgets = dashboard.widgets;
           }
           addScope.widgets = widgets;
+
+          var adfAddTemplatePath = adfTemplatePath + 'widget-add.html';
+          if(model.addTemplateUrl)
+          {
+            adfAddTemplatePath = model.addTemplateUrl;
+          }
+
           var opts = {
             scope: addScope,
-            templateUrl: adfTemplatePath + 'widget-add.html',
+            templateUrl: adfAddTemplatePath,
             backdrop: 'static'
           };
+
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
             var w = {
@@ -1112,10 +1121,15 @@ angular.module('adf')
         // bind edit function
         $scope.edit = function() {
           var editScope = $scope.$new();
+          
+          var adfEditTemplatePath = adfTemplatePath + 'widget-edit.html';
+          if (definition.editTemplateUrl) {
+            adfEditTemplatePath = definition.editTemplateUrl;
+          }
 
           var opts = {
             scope: editScope,
-            templateUrl: adfTemplatePath + 'widget-edit.html',
+            templateUrl: adfEditTemplatePath,
             backdrop: 'static'
           };
 
@@ -1193,4 +1207,4 @@ $templateCache.put("../src/templates/widget-add.html","<div class=modal-header> 
 $templateCache.put("../src/templates/widget-edit.html","<div class=modal-header> <button type=button class=close ng-click=closeDialog() aria-hidden=true>&times;</button> <h4 class=modal-title>{{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>Title</label> <input type=text class=form-control id=widgetTitle ng-model=definition.title placeholder=\"Enter title\" required> </div> </form> <div ng-if=widget.edit> <adf-widget-content model=definition content=widget.edit> </adf-widget-content></div> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=closeDialog()>Close</button> </div>");
 $templateCache.put("../src/templates/widget-fullscreen.html","<div class=modal-header> <div class=\"pull-right widget-icons\"> <a href title=\"Reload Widget Content\" ng-if=widget.reload ng-click=reload()> <i class=\"glyphicon glyphicon-refresh\"></i> </a> <a href title=close ng-click=closeDialog()> <i class=\"glyphicon glyphicon-remove\"></i> </a> </div> <h4 class=modal-title>{{definition.title}}</h4> </div> <div class=modal-body> <adf-widget-content model=definition content=widget> </adf-widget-content></div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=closeDialog()>Close</button> </div> ");
 $templateCache.put("../src/templates/widget-title.html","<h3 class=panel-title> {{definition.title}} <span class=pull-right> <a href title=\"reload widget content\" ng-if=widget.reload ng-click=reload()> <i class=\"glyphicon glyphicon-refresh\"></i> </a>  <a href title=\"change widget location\" class=adf-move ng-if=editMode> <i class=\"glyphicon glyphicon-move\"></i> </a>  <a href title=\"collapse widget\" ng-show=\"options.collapsible && !widgetState.isCollapsed\" ng-click=\"widgetState.isCollapsed = !widgetState.isCollapsed\"> <i class=\"glyphicon glyphicon-minus\"></i> </a>  <a href title=\"expand widget\" ng-show=\"options.collapsible && widgetState.isCollapsed\" ng-click=\"widgetState.isCollapsed = !widgetState.isCollapsed\"> <i class=\"glyphicon glyphicon-plus\"></i> </a>  <a href title=\"edit widget configuration\" ng-click=edit() ng-if=editMode> <i class=\"glyphicon glyphicon-cog\"></i> </a> <a href title=\"fullscreen widget\" ng-click=openFullScreen() ng-show=options.maximizable> <i class=\"glyphicon glyphicon-fullscreen\"></i> </a>  <a href title=\"remove widget\" ng-click=close() ng-if=editMode> <i class=\"glyphicon glyphicon-remove\"></i> </a> </span> </h3> ");
-$templateCache.put("../src/templates/widget.html","<div adf-id={{definition.wid}} class=\"widget panel panel-default\"> <div class=\"panel-heading clearfix\"> <div ng-include src=definition.titleTemplateUrl></div> </div> <div class=panel-body collapse=widgetState.isCollapsed> <adf-widget-content model=definition content=widget> </adf-widget-content></div> </div> ");}]);})(window);
+$templateCache.put("../src/templates/widget.html","<div adf-id={{definition.wid}} adf-widget-type={{definition.type}} class=\"widget panel panel-default\"> <div class=\"panel-heading clearfix\"> <div ng-include src=definition.titleTemplateUrl></div> </div> <div class=panel-body collapse=widgetState.isCollapsed> <adf-widget-content model=definition content=widget> </adf-widget-content></div> </div> ");}]);})(window);

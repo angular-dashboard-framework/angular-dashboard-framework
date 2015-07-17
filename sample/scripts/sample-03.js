@@ -31,6 +31,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
     // set default model for demo purposes
     model = {
       title: "Sample 03",
+      addTemplateUrl : "partials/custom-dashboard-addwidget.html",      
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       structure: "6-6",
       rows: [{
@@ -39,6 +40,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
           widgets: [{
             title: 'Description',
             titleTemplateUrl: 'partials/custom-widget-title.html',
+            editTemplateUrl: "partials/custom-dashboard-editwidget.html",
             type: 'markdown',
             config: {
               content: 'This sample uses a widget filter, to restrict the widget selection on the "add dialog".\n\nIt also shows the ability to use custom templates for the dashboard title and widget title.'

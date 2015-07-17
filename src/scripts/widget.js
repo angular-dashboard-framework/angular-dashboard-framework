@@ -99,10 +99,15 @@ angular.module('adf')
         // bind edit function
         $scope.edit = function() {
           var editScope = $scope.$new();
+          
+          var adfEditTemplatePath = adfTemplatePath + 'widget-edit.html';
+          if (definition.editTemplateUrl) {
+            adfEditTemplatePath = definition.editTemplateUrl;
+          }
 
           var opts = {
             scope: editScope,
-            templateUrl: adfTemplatePath + 'widget-edit.html',
+            templateUrl: adfEditTemplatePath,
             backdrop: 'static'
           };
 
