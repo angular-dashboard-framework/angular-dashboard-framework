@@ -101,6 +101,10 @@ angular.module('adf')
         if (widget){
           // add new item and apply to scope
           $scope.$apply(function(){
+			if (!targetColumn.widgets) {
+				targetColumn.widgets = [];
+			}
+			
             targetColumn.widgets.splice(evt.newIndex, 0, widget);
           });
         } else {
