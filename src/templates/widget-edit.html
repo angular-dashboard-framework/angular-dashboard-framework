@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+  <button type="button" class="close" ng-click="$dismiss()" aria-hidden="true">&times;</button>
   <h4 class="modal-title">{{widget.title}}</h4>
 </div>
 <div class="modal-body">
@@ -14,5 +14,5 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
+  <button type="button" class="btn btn-primary" ng-click="$dismiss()">Close</button>
 </div>
