@@ -47,3 +47,32 @@ angular.module('adf')
       }
     };
   });
+
+class adfDashboardRow {
+  public restrict: string;
+  public replace : boolean;
+  public scope: ng.IScope;
+  public templateUrl: string;
+  public link: () => void;
+
+  constructor ($scope: ng.IScope, $element: any) {
+    this.restrict = 'E';
+    this.replace  = true;
+    this.scope = {
+      row: '=',
+      adfModel: '=',
+      editMode: '=',
+      options: '='
+    };
+    this.templateUrl = adfTemplatePath + 'dashboard-row.html';
+    this.link = function ($scope, $element) {
+      if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
+        $compile(columnTemplate)($scope, function(cloned) {
+          $element.append(cloned);
+        });
+      }
+    }
+  }
+}
+
+
