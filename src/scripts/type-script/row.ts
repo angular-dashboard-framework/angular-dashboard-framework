@@ -70,7 +70,7 @@ class adfDashboardRow implements ng.IDirective {
       options: '='
     };
     this.templateUrl = adfTemplatePath + 'dashboard-row.html';
-    this.link = function ($scope, $element) {
+    this.link = function ($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
       if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
         $compile(columnTemplate)($scope, function(cloned) {
           $element.append(cloned);
@@ -83,4 +83,4 @@ class adfDashboardRow implements ng.IDirective {
 angular.module('adf')
   .directive('adfDashboardRow', ['$compile', 'adfTemplatePath', 'columnTemplate', 
     ($compile, adfTemplatePath, columnTemplate) 
-    => return new adfDashboardRow($compile, adfTemplatePath, columnTemplate));
+    => return new adfDashboardRow($compile, adfTemplatePath, columnTemplate))];
