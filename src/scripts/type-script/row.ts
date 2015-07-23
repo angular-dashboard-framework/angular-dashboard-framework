@@ -21,29 +21,66 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-
+'use strict';
 
 /* global angular */
-angular.module('adf')
-  .directive('adfDashboardRow', [($compile, adfTemplatePath, columnTemplate): ng.IDirective => {
-        'use strict';
+// angular.module('adf')
+//   .directive('adfDashboardRow', [($compile, adfTemplatePath, columnTemplate): ng.IDirective => {
+//         'use strict';
 
-        return {
-            restrict: 'E',
-            replace: true,
-            scope: {
-                row: '=',
-                adfModel: '=',
-                editMode: '=',
-                options: '='
-            },
-            templateUrl: adfTemplatePath + 'dashboard-row.html',
-            link: function ($scope, $element) {
-                if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
-                    $compile(columnTemplate)($scope, function(cloned) {
-                        $element.append(cloned);
-                    });
-                }
-            }
-        };
-    }]);
+//     return {
+//       restrict: 'E',
+//       replace: true,
+//       scope: {
+//         row: '=',
+//         adfModel: '=',
+//         editMode: '=',
+//         options: '='
+//       },
+//       templateUrl: adfTemplatePath + 'dashboard-row.html',
+//       link: function ($scope, $element) {
+//         if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
+//           $compile(columnTemplate)($scope, function(cloned) {
+//             $element.append(cloned);
+//           });
+//         }
+//       }
+//     };
+//   });
+
+/// <reference path="./libs/angular.d.ts" />
+
+interface dashboardRowScope implements ng.IScope {
+  row: string,
+  adfModel: string,
+  editMode: string,
+  options: string
+}
+
+class adfDashboardRow implements ng.IDirective {
+  public scope: dashboardRowScope;
+
+  constructor ($compile: ng.ICompileService, adfTemplatePath: string, columnTemplate: string) {
+    this.restrict = 'E';
+    this.replace  = true;
+    this.scope = {
+      row: '=',
+      adfModel: '=',
+      editMode: '=',
+      options: '='
+    };
+    this.templateUrl = adfTemplatePath + 'dashboard-row.html';
+    this.link = function ($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
+      if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
+        $compile(columnTemplate)($scope, function(cloned) {
+          $element.append(cloned);
+        });
+      }
+    }
+  }
+}
+
+angular.module('adf')
+  .directive('adfDashboardRow', ['$compile', 'adfTemplatePath', 'columnTemplate', 
+    ($compile, adfTemplatePath, columnTemplate) 
+    => return new adfDashboardRow($compile, adfTemplatePath, columnTemplate))];

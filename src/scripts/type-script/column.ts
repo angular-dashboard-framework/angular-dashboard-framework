@@ -22,46 +22,44 @@
 * SOFTWARE.
 */
 
+'use strict';
 
 /* global angular */
 class AdfDashboardColumn implements ng.IDirective {
-    /*angular.module('adf')
-    .directive('adfDashboardColumn', */
+
+    
     constructor(private $log:ng.ILogService, private  $compile:ng.ICompileService, private  adfTemplatePath:string, private rowTemplate,private dashboard: any) {
-        'use strict';
-    }
 
-
-    restrict = 'E';
-    replace = true;
-    scope = {
-        column: '=',
-    editMode: '=',
-    adfModel: '=',
-    options: '='
-}
-    templateUrl = this.adfTemplatePath + 'dashboard-column.html';
-    link =  ($scope, $element) => {
-        // set id
-        var col = $scope.column;
-        if (!col.cid) {
-            col.cid =this.dashboard.id();
+        this.restrict = 'E';
+        this.replace = true;
+        this.scope = {
+          column: '=',
+          editMode: '=',
+          adfModel: '=',
+          options: '='
         }
-
-        if (angular.isDefined(col.rows) && angular.isArray(col.rows)) {
-            // be sure to tell Angular about the injected directive and push the new row directive to the column
-           this.$compile(this.rowTemplate)($scope, function (cloned) {
-                $element.append(cloned);
-            });
-        } else {
-            // enable drag and drop for widget only columns
-            this.applySortable($scope, $element, $scope.adfModel, col);
+        this.templateUrl = this.adfTemplatePath + 'dashboard-column.html';
+        this.link =  ($scope, $element) => {
+            // set id
+            var col = $scope.column;
+            if (!col.cid) {
+                col.cid =this.dashboard.id();
+            }
+    
+            if (angular.isDefined(col.rows) && angular.isArray(col.rows)) {
+                // be sure to tell Angular about the injected directive and push the new row directive to the column
+               this.$compile(this.rowTemplate)($scope, function (cloned) {
+                    $element.append(cloned);
+                });
+            } else {
+                // enable drag and drop for widget only columns
+                this.applySortable($scope, $element, $scope.adfModel, col);
+            }
         }
     }
+  }
 
        
-
-
 /**
          * moves a widget in between a column
          */
@@ -189,3 +187,8 @@ applySortable($scope, $element, model, column) {
 
        
     }
+
+angular.module('adf')
+.directive('adfDashboardColumn', ['$log', '$compile', 'adfTemplatePath', 'rowTemplate', 'dashboard',
+  ($log, $compile, adfTemplatePath, rowTemplate, dashboard) 
+  => return new AdfDashboardColumn($log, $compile, adfTemplatePath, rowTemplate, dashboard)];
