@@ -25,9 +25,9 @@
 
 /* global angular */
 angular.module('adf')
-  .directive('adfDashboardRow', function ($compile, adfTemplatePath, columnTemplate) : void {
-    'use strict';
-
+  .directive('adfDashboardRow', [($compile, adfTemplatePath, columnTemplate): ng.IDirective => {
+        'use strict';
+        
     return {
       restrict: 'E',
       replace: true,
@@ -74,5 +74,3 @@ class adfDashboardRow {
     }
   }
 }
-
-

@@ -27,7 +27,7 @@
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
 
-    function preLink($scope): void {
+    function preLink($scope){
       var definition = $scope.definition;
       if (definition) {
         var w = dashboard.widgets[definition.type];
@@ -76,7 +76,7 @@ angular.module('adf')
       }
     }
 
-    function postLink($scope, $element): void {
+    function postLink($scope, $element) {
       var definition = $scope.definition;
       if (definition) {
         // bind close function

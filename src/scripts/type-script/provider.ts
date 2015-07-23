@@ -1,3 +1,4 @@
+
 /*
  * The MIT License
  *
@@ -32,13 +33,14 @@
  * The dashboardProvider can be used to register structures and widgets.
  */
 angular.module('adf.provider', [])
-  .provider('dashboard', function(){
+    .provider('dashboard', AdfProvider);
+        class AdfProvider implements ng.IServiceProvider {
 
-    var widgets: any = {};
-    var widgetsPath: string = '';
-    var structures: any = {};
-    var messageTemplate: string = '<div class="alert alert-danger">{}</div>';
-    var loadingTemplate: string = '\
+    var widgets = {};
+    var widgetsPath = '';
+    var structures = {};
+    var messageTemplate = '<div class="alert alert-danger">{}</div>';
+    var loadingTemplate = '\
       <div class="progress progress-striped active">\n\
         <div class="progress-bar" role="progressbar" style="width: 100%">\n\
           <span class="sr-only">loading ...</span>\n\
@@ -93,7 +95,7 @@ angular.module('adf.provider', [])
     *
     * @returns {Object} self
     */
-    this.widget = function(name: string, widget: any): any {
+    this.widget = function(name, widget){
       var w = angular.extend({reload: false}, widget);
       if ( w.edit ){
         var edit = {reload: true};
@@ -122,7 +124,7 @@ angular.module('adf.provider', [])
      *
      * @returns {Object} self
      */
-    this.widgetsPath = function(path: string): any {
+    this.widgetsPath = function(path){
       widgetsPath = path;
       return this;
     };
@@ -147,7 +149,7 @@ angular.module('adf.provider', [])
     *
     * @returns {Object} self
     */
-    this.structure = function(name: string, structure: any): any {
+    this.structure = function(name, structure){
       structures[name] = structure;
       return this;
     };
@@ -164,7 +166,7 @@ angular.module('adf.provider', [])
     *
     * @returns {Object} self
     */
-    this.messageTemplate = function(template: string): any {
+    this.messageTemplate = function(template){
       messageTemplate = template;
       return this;
     };
@@ -182,7 +184,7 @@ angular.module('adf.provider', [])
     *
     * @returns {Object} self
     */
-    this.loadingTemplate = function(template: string): any {
+    this.loadingTemplate = function(template){
       loadingTemplate = template;
       return this;
     };
@@ -202,7 +204,7 @@ angular.module('adf.provider', [])
     *
     * @returns {Object} self
     */
-    this.$get = function(): any {
+   $get = function(){
       var cid = 0;
 
       return {
@@ -227,4 +229,4 @@ angular.module('adf.provider', [])
       };
     };
 
-  });
+  };

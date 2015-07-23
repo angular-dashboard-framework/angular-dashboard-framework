@@ -19,3 +19,13 @@
 
 # brackets
 .brackets.json
+
+#vs 
+/.settings/
+/.vs
+angularDash.csproj
+angularDash.sln
+web.Debug.config
+web.Release.config
+web.config
+obj/
