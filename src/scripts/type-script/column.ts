@@ -22,24 +22,21 @@
 * SOFTWARE.
 */
 
+'use strict';
 
 /* global angular */
 class AdfDashboardColumn implements ng.IDirective {
-    /*angular.module('adf')
-    .directive('adfDashboardColumn', */
-    constructor(private $log, private  $compile, private  adfTemplatePath, private rowTemplate,private dashboard) {
-        'use strict';
-    }
-
+    
+  constructor(private $log, private  $compile, private  adfTemplatePath, private rowTemplate,private dashboard) {
 
     restrict = 'E';
     replace = true;
     scope = {
-        column: '=',
-    editMode: '=',
-    adfModel: '=',
-    options: '='
-}
+      column: '=',
+      editMode: '=',
+      adfModel: '=',
+      options: '='
+    }
     templateUrl = this.adfTemplatePath + 'dashboard-column.html';
     link =  ($scope, $element) => {
         // set id
@@ -59,9 +56,9 @@ class AdfDashboardColumn implements ng.IDirective {
         }
     }
 
+  }
+
        
-
-
 /**
          * moves a widget in between a column
          */
@@ -189,3 +186,8 @@ applySortable($scope, $element, model, column) {
 
        
     }
+
+angular.module('adf')
+.directive('adfDashboardColumn', ['$log', '$compile', 'adfTemplatePath', 'rowTemplate', 'dashboard'
+  ($log, $compile, adfTemplatePath, rowTemplate, dashboard) 
+  => return new AdfDashboardColumn($log, $compile, adfTemplatePath, rowTemplate, dashboard)];
