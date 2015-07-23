@@ -22,6 +22,11 @@
  * SOFTWARE.
  */
 
+ class AdfWidget {
+    constructor(private $log, private $modal: angular.ui.bootstrap.IModalService, dashboard:any, adfTemplatePath:any ) {
+        
+    }
+}
 'use strict';
 
 angular.module('adf')

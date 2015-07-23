@@ -27,7 +27,7 @@
 class AdfDashboardColumn implements ng.IDirective {
     /*angular.module('adf')
     .directive('adfDashboardColumn', */
-    constructor(private $log, private  $compile, private  adfTemplatePath, private rowTemplate,private dashboard) {
+    constructor(private $log:ng.ILogService, private  $compile:ng.ICompileService, private  adfTemplatePath:string, private rowTemplate,private dashboard: any) {
         'use strict';
     }
 
