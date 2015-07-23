@@ -44,9 +44,11 @@
  */
 
 angular.module('adf')
-  .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
+    .directive('adfDashboard');
+    class AdfDashboard  implements  ng.IDirective{
+    constructor($rootScope, $log, $modal, dashboard, adfTemplatePath) {
     'use strict';
-
+}
     function stringToBoolean(string){
       switch(angular.isDefined(string) ? string.toLowerCase() : null){
         case 'true': case 'yes': case '1': return true;
@@ -350,4 +352,4 @@ angular.module('adf')
       },
       templateUrl: adfTemplatePath + 'dashboard.html'
     };
-  });
+  }});
