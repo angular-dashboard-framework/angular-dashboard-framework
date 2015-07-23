@@ -50,8 +50,15 @@
 
 /// <reference path="./libs/angular.d.ts" />
 
+interface dashboardRowScope implements ng.IScope {
+  row: string,
+  adfModel: string,
+  editMode: string,
+  options: string
+}
+
 class adfDashboardRow implements ng.IDirective {
-  public scope: ng:IScope;
+  public scope: dashboardRowScope;
 
   constructor ($compile: ng.ICompileService, adfTemplatePath: string, columnTemplate: string) {
     this.restrict = 'E';
