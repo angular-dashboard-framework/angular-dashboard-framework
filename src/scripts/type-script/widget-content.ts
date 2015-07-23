@@ -26,10 +26,10 @@
 
 angular.module('adf')
   .directive('adfWidgetContent', function($log, $q, $sce, $http, $templateCache,
-    $compile, $controller, $injector, dashboard): void {
+    $compile, $controller, $injector, dashboard) {
 
-    function parseUrl(url: string): string {
-      var parsedUrl: string = url;
+    function parseUrl(url){
+      var parsedUrl = url;
       if ( url.indexOf('{widgetsPath}') >= 0 ){
         parsedUrl = url.replace('{widgetsPath}', dashboard.widgetsPath)
                        .replace('//', '/');
@@ -40,7 +40,7 @@ angular.module('adf')
       return parsedUrl;
     }
 
-    function getTemplate(widget: any): any {
+    function getTemplate(widget){
       var deferred = $q.defer();
 
       if ( widget.template ){

@@ -47,7 +47,7 @@ angular.module('adf')
   .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
     'use strict';
 
-    function stringToBoolean(string: string): boolean {
+    function stringToBoolean(string){
       switch(angular.isDefined(string) ? string.toLowerCase() : null){
         case 'true': case 'yes': case '1': return true;
         case 'false': case 'no': case '0': case null: return false;
@@ -55,7 +55,7 @@ angular.module('adf')
       }
     }
 
-    function copyWidgets(source: any, target: any): void {
+    function copyWidgets(source, target) {
       if ( source.widgets && source.widgets.length > 0 ){
         var w = source.widgets.shift();
         while (w){
@@ -71,7 +71,7 @@ angular.module('adf')
     * @param array of columns
     * @param counter
     */
-    function fillStructure(root: any, columns: any, counter: number): number {
+    function fillStructure(root, columns, counter) {
       counter = counter || 0;
 
       if (angular.isDefined(root.rows)) {
@@ -105,7 +105,7 @@ angular.module('adf')
     * @param object model
     * @param array  an array of existing columns; used when recursion happens
     */
-    function readColumns(root: any, columns: any): any {
+    function readColumns(root, columns) {
       columns = columns || [];
 
       if (angular.isDefined(root.rows)) {
@@ -121,7 +121,7 @@ angular.module('adf')
       return columns;
     }
 
-    function changeStructure(model: any, structure: any): void {
+    function changeStructure(model, structure){
       var columns = readColumns(model);
       var counter = 0;
 
@@ -132,7 +132,7 @@ angular.module('adf')
       }
     }
 
-    function createConfiguration(type: string): any {
+    function createConfiguration(type){
       var cfg = {};
       var config = dashboard.widgets[type].config;
       if (config){
@@ -146,7 +146,7 @@ angular.module('adf')
      *
      * @param dashboard model
      */
-    function findFirstWidgetColumn(model: any): any {
+    function findFirstWidgetColumn(model){
       var column = null;
       if (!angular.isArray(model.rows)){
         $log.error('model does not have any rows');
@@ -176,7 +176,7 @@ angular.module('adf')
      * @param dashboard model
      * @param widget to add to model
      */
-    function addNewWidgetToModel(model: any, widget: any): void {
+    function addNewWidgetToModel(model, widget){
       if (model){
         var column = findFirstWidgetColumn(model);
         if (column){
@@ -205,7 +205,7 @@ angular.module('adf')
         adfModel: '=',
         adfWidgetFilter: '='
       },
-      controller: function($scope): void {
+      controller: function($scope){
         var model = {};
         var structure = {};
         var widgetFilter = null;
@@ -335,7 +335,7 @@ angular.module('adf')
           };
         };
       },
-      link: function ($scope, $element, $attr): void {
+      link: function ($scope, $element, $attr) {
         // pass options to scope
         var options = {
           name: $attr.name,
