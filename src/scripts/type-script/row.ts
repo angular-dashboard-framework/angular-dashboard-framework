@@ -23,6 +23,8 @@
 */
 'use strict';
 
+/// <reference path="./libs/angular.d.ts"/>
+
 /* global angular */
 // angular.module('adf')
 //   .directive('adfDashboardRow', [($compile, adfTemplatePath, columnTemplate): ng.IDirective => {
@@ -48,9 +50,7 @@
 //     };
 //   });
 
-/// <reference path="./libs/angular.d.ts" />
-
-interface dashboardRowScope implements ng.IScope {
+interface dashboardRowScope extends ng.IScope {
   row: string,
   adfModel: string,
   editMode: string,
@@ -59,6 +59,10 @@ interface dashboardRowScope implements ng.IScope {
 
 class adfDashboardRow implements ng.IDirective {
   public scope: dashboardRowScope;
+  public restrict: string;
+  public replace: boolean;
+  public templateUrl: string;
+  public link: ($scope: ng.IScope, $element: ng.IAugmentedJQuery) => void;
 
   constructor ($compile: ng.ICompileService, adfTemplatePath: string, columnTemplate: string) {
     this.restrict = 'E';
@@ -70,7 +74,7 @@ class adfDashboardRow implements ng.IDirective {
       options: '='
     };
     this.templateUrl = adfTemplatePath + 'dashboard-row.html';
-    this.link = function ($scope: ng.IScope, $element: ng.IAugmentedJQuery) {
+    this.link = function ($scope, $element) {
       if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
         $compile(columnTemplate)($scope, function(cloned) {
           $element.append(cloned);
@@ -82,5 +86,6 @@ class adfDashboardRow implements ng.IDirective {
 
 angular.module('adf')
   .directive('adfDashboardRow', ['$compile', 'adfTemplatePath', 'columnTemplate', 
-    ($compile, adfTemplatePath, columnTemplate) 
-    => return new adfDashboardRow($compile, adfTemplatePath, columnTemplate))];
+    ($compile, adfTemplatePath, columnTemplate) => { 
+      return new adfDashboardRow($compile, adfTemplatePath, columnTemplate)
+    }]);
