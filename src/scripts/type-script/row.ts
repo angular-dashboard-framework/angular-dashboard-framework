@@ -21,41 +21,39 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
-
+'use strict';
 
 /* global angular */
-angular.module('adf')
-  .directive('adfDashboardRow', [($compile, adfTemplatePath, columnTemplate): ng.IDirective => {
-        'use strict';
-        
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        row: '=',
-        adfModel: '=',
-        editMode: '=',
-        options: '='
-      },
-      templateUrl: adfTemplatePath + 'dashboard-row.html',
-      link: function ($scope, $element) {
-        if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
-          $compile(columnTemplate)($scope, function(cloned) {
-            $element.append(cloned);
-          });
-        }
-      }
-    };
-  });
+// angular.module('adf')
+//   .directive('adfDashboardRow', [($compile, adfTemplatePath, columnTemplate): ng.IDirective => {
+//         'use strict';
 
-class adfDashboardRow {
-  public restrict: string;
-  public replace : boolean;
-  public scope: ng.IScope;
-  public templateUrl: string;
-  public link: () => void;
+//     return {
+//       restrict: 'E',
+//       replace: true,
+//       scope: {
+//         row: '=',
+//         adfModel: '=',
+//         editMode: '=',
+//         options: '='
+//       },
+//       templateUrl: adfTemplatePath + 'dashboard-row.html',
+//       link: function ($scope, $element) {
+//         if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
+//           $compile(columnTemplate)($scope, function(cloned) {
+//             $element.append(cloned);
+//           });
+//         }
+//       }
+//     };
+//   });
 
-  constructor ($scope: ng.IScope, $element: any) {
+/// <reference path="./libs/angular.d.ts" />
+
+class adfDashboardRow implements ng.IDirective {
+  public scope: ng:IScope;
+
+  constructor ($compile: ng.ICompileService, adfTemplatePath: string, columnTemplate: string) {
     this.restrict = 'E';
     this.replace  = true;
     this.scope = {
@@ -74,3 +72,8 @@ class adfDashboardRow {
     }
   }
 }
+
+angular.module('adf')
+  .directive('adfDashboardRow', ['$compile', 'adfTemplatePath', 'columnTemplate', 
+    ($compile, adfTemplatePath, columnTemplate) 
+    => return new adfDashboardRow($compile, adfTemplatePath, columnTemplate));
