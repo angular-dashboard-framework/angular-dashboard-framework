@@ -26,10 +26,13 @@
 /* global angular */
 
 module Adf {
+    interface IAdfDashBoardRowLinkScope extends ng.IScope {
+        row:any;
+    }
  export  function  adfDashboardRow($compile:ng.ICompileService, adfTemplatePath:String, columnTemplate:ng.IAugmentedJQuery): ng.IDirective {
         'use strict';
 
-          var  linkFn: ng.IDirective = ($scope, $element) => {
+          var  linkFn: ng.IDirective = ($scope:IAdfDashBoardRowLinkScope, $element:ng.IAugmentedJQuery) => {
               if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
                   $compile(columnTemplate)($scope, cloned => {
                       $element.append(cloned);
