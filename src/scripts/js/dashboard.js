@@ -1,4 +1,3 @@
-
 /*
  * The MIT License
  *
@@ -22,80 +21,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-
-module Adf {
-    interface IAdfDasboardCtrlScope extends ng.IScope {
-        name:String;
-        adfModel:any;
-        adfWidgetFilter:any;
-        structure:String;
-        model:any;
-        editMode: boolean;
-        editClass: string;
-        toggleEditMode: () => void;
-        modelCopy:any;
-        cancelEditMode: () => void;
-        editDashboardDialog: () => void;
-        changeStructure: (name: String, structure: any) => void;
-        addWidgetDialog: () => void;
-    }
-
-    interface IAdfDashboardLinkFnScope extends ng.IScope {
-        options: {
-            name: String;
-            editable: boolean;
-            maximizable: boolean;
-            collapsible: boolean;
-        };
-    }
-
-    interface IAdfDashboardAtributes extends ng.IAttributes {
-        name:String;
-        maximizable:boolean;
-        collapsible:boolean;
-        editable:boolean;
-    }
-   /**
- * @ngdoc directive
- * @name adf.directive:adfDashboard
- * @element div
- * @restrict EA
- * @scope
- * @description
- *
- * `adfDashboard` is a directive which renders the dashboard with all its
- * components. The directive requires a name attribute. The name of the
- * dashboard can be used to store the model.
- *
- * @param {string} name name of the dashboard. This attribute is required.
- * @param {boolean=} editable false to disable the editmode of the dashboard.
- * @param {boolean=} collapsible true to make widgets collapsible on the dashboard.
- * @param {boolean=} maximizable true to add a button for open widgets in a large modal panel.
- * @param {string=} structure the default structure of the dashboard.
- * @param {object=} adfModel model object of the dashboard.
- * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
- */
-
-    function adfDashBoard($rootScope: ng.IRootScopeService, $log: ng.ILogService, $modal: angular.ui.bootstrap.IModalService,
-        dashboard: Adf.Dashboard, adfTemplatePath:String): ng.IDirective {
+var Adf;
+(function (Adf) {
+    /**
+  * @ngdoc directive
+  * @name adf.directive:adfDashboard
+  * @element div
+  * @restrict EA
+  * @scope
+  * @description
+  *
+  * `adfDashboard` is a directive which renders the dashboard with all its
+  * components. The directive requires a name attribute. The name of the
+  * dashboard can be used to store the model.
+  *
+  * @param {string} name name of the dashboard. This attribute is required.
+  * @param {boolean=} editable false to disable the editmode of the dashboard.
+  * @param {boolean=} collapsible true to make widgets collapsible on the dashboard.
+  * @param {boolean=} maximizable true to add a button for open widgets in a large modal panel.
+  * @param {string=} structure the default structure of the dashboard.
+  * @param {object=} adfModel model object of the dashboard.
+  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
+  */
+    function adfDashBoard($rootScope, $log, $modal, dashboard, adfTemplatePath) {
         'use strict';
-
-
-        function stringToBoolean(string) : boolean{
+        function stringToBoolean(string) {
             switch (angular.isDefined(string) ? string.toLowerCase() : null) {
-                case 'true': case 'yes': case '1': return true;
-                case 'false': case 'no': case '0': case null: return false;
+                case 'true':
+                case 'yes':
+                case '1': return true;
+                case 'false':
+                case 'no':
+                case '0':
+                case null: return false;
                 default: return Boolean(string);
             }
         }
-
-  /**
-        * Copy widget from old columns to the new model
-        * @param object root the model
-        * @param array of columns
-        * @param counter
-        */
+        /**
+              * Copy widget from old columns to the new model
+              * @param object root the model
+              * @param array of columns
+              * @param counter
+              */
         function copyWidgets(source, target) {
             if (source.widgets && source.widgets.length > 0) {
                 var w = source.widgets.shift();
@@ -105,20 +72,16 @@ module Adf {
                 }
             }
         }
-
-      
-        function fillStructure(root, columns, counter?:number) {
+        function fillStructure(root, columns, counter) {
             counter = counter || 0;
-
             if (angular.isDefined(root.rows)) {
-                angular.forEach(root.rows, row => {
-                    angular.forEach(row.columns, column => {
+                angular.forEach(root.rows, function (row) {
+                    angular.forEach(row.columns, function (column) {
                         // if the widgets prop doesn't exist, create a new array for it.
                         // this allows ui.sortable to do it's thing without error
                         if (!column.widgets) {
                             column.widgets = [];
                         }
-
                         // if a column exist at the counter index, copy over the column
                         if (angular.isDefined(columns[counter])) {
                             // do not add widgets to a column, which uses nested rows
@@ -127,7 +90,6 @@ module Adf {
                                 counter++;
                             }
                         }
-
                         // run fillStructure again for any sub rows/columns
                         counter = fillStructure(column, columns, counter);
                     });
@@ -135,40 +97,32 @@ module Adf {
             }
             return counter;
         }
-
         /**
         * Read Columns: recursively searches an object for the 'columns' property
         * @param object model
         * @param array  an array of existing columns; used when recursion happens
         */
-        function readColumns(root, columns?) {
+        function readColumns(root, columns) {
             columns = columns || [];
-
             if (angular.isDefined(root.rows)) {
-                angular.forEach(root.rows, row => {
-                    angular.forEach(row.columns, col => {
+                angular.forEach(root.rows, function (row) {
+                    angular.forEach(row.columns, function (col) {
                         columns.push(col);
                         // keep reading columns until we can't any more
                         readColumns(col, columns);
                     });
                 });
             }
-
             return columns;
         }
-
         function changeStructure(model, structure) {
             var columns = readColumns(model);
             var counter = 0;
-
             model.rows = angular.copy(structure.rows);
-
             while (counter < columns.length) {
                 counter = fillStructure(model, columns, counter);
             }
         }
-
-
         function createConfiguration(type) {
             var cfg = {};
             var config = dashboard.widgets[type].config;
@@ -177,7 +131,6 @@ module Adf {
             }
             return cfg;
         }
-
         /**
          * Find first widget column in model.
          *
@@ -206,7 +159,6 @@ module Adf {
             }
             return column;
         }
-
         /**
          * Adds the widget to first column of the model.
          *
@@ -221,24 +173,23 @@ module Adf {
                         column.widgets = [];
                     }
                     column.widgets.unshift(widget);
-                } else {
+                }
+                else {
                     $log.error('could not find first widget column');
                 }
-            } else {
+            }
+            else {
                 $log.error('model is undefined');
             }
         }
-
-       
-        function controllerFn($scope: IAdfDasboardCtrlScope) {
-            var model: any = {};
-            var structure: any = {};
-            var widgetFilter: any = null;
-            var structureName: any = {};
+        function controllerFn($scope) {
+            var model = {};
+            var structure = {};
+            var widgetFilter = null;
+            var structureName = {};
             var name = $scope.name;
-
             // Watching for changes on adfModel
-            $scope.$watch('adfModel', (oldVal, newVal) => {
+            $scope.$watch('adfModel', function (oldVal, newVal) {
                 // has model changed or is the model attribute not set
                 if (newVal !== null || (oldVal === null && newVal === null)) {
                     model = $scope.adfModel;
@@ -249,15 +200,16 @@ module Adf {
                         if (structure) {
                             if (model) {
                                 model.rows = angular.copy(structure).rows;
-                            } else {
+                            }
+                            else {
                                 model = angular.copy(structure);
                             }
                             model.structure = structureName;
-                        } else {
+                        }
+                        else {
                             $log.error('could not find structure ' + structureName);
                         }
                     }
-
                     if (model) {
                         if (!model.title) {
                             model.title = 'Dashboard';
@@ -266,36 +218,32 @@ module Adf {
                             model.titleTemplateUrl = adfTemplatePath + 'dashboard-title.html';
                         }
                         $scope.model = model;
-                    } else {
+                    }
+                    else {
                         $log.error('could not find or create model');
                     }
                 }
             }, true);
-
             // edit mode
             $scope.editMode = false;
             $scope.editClass = '';
-
-            $scope.toggleEditMode = () => {
+            $scope.toggleEditMode = function () {
                 $scope.editMode = !$scope.editMode;
                 if ($scope.editMode) {
                     $scope.modelCopy = angular.copy($scope.adfModel, {});
                 }
-
                 if (!$scope.editMode) {
                     $rootScope.$broadcast('adfDashboardChanged', name, model);
                 }
             };
-
-            $scope.cancelEditMode = () => {
+            $scope.cancelEditMode = function () {
                 $scope.editMode = false;
                 $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
                 $rootScope.$broadcast('adfDashboardEditsCancelled');
             };
-
             // edit dashboard settings
-            $scope.editDashboardDialog = () => {
-                var editDashboardScope:any = $scope.$new();
+            $scope.editDashboardDialog = function () {
+                var editDashboardScope = $scope.$new();
                 // create a copy of the title, to avoid changing the title to
                 // "dashboard" if the field is empty
                 editDashboardScope.copy = {
@@ -307,11 +255,11 @@ module Adf {
                     templateUrl: adfTemplatePath + 'dashboard-edit.html',
                     backdrop: 'static'
                 });
-                $scope.changeStructure = (name, structure) => {
+                $scope.changeStructure = function (name, structure) {
                     $log.info('change structure to ' + name);
                     changeStructure(model, structure);
                 };
-                editDashboardScope.closeDialog = () => {
+                editDashboardScope.closeDialog = function () {
                     // copy the new title back to the model
                     model.title = editDashboardScope.copy.title;
                     // close modal and destroy the scope
@@ -319,20 +267,20 @@ module Adf {
                     editDashboardScope.$destroy();
                 };
             };
-
             // add widget dialog
-            $scope.addWidgetDialog = () => {
-                var addScope:any = $scope.$new();
+            $scope.addWidgetDialog = function () {
+                var addScope = $scope.$new();
                 var model = $scope.model;
                 var widgets;
                 if (angular.isFunction(widgetFilter)) {
                     widgets = {};
-                    angular.forEach(dashboard.widgets, (widget, type) => {
+                    angular.forEach(dashboard.widgets, function (widget, type) {
                         if (widgetFilter(widget, type, model)) {
                             widgets[type] = widget;
                         }
                     });
-                } else {
+                }
+                else {
                     widgets = dashboard.widgets;
                 }
                 addScope.widgets = widgets;
@@ -342,7 +290,7 @@ module Adf {
                     backdrop: 'static'
                 };
                 var instance = $modal.open(opts);
-                addScope.addWidget = widget => {
+                addScope.addWidget = function (widget) {
                     var w = {
                         type: widget,
                         config: createConfiguration(widget)
@@ -353,16 +301,14 @@ module Adf {
                     instance.close();
                     addScope.$destroy();
                 };
-                addScope.closeDialog = () => {
+                addScope.closeDialog = function () {
                     // close and destroy
                     instance.close();
                     addScope.$destroy();
                 };
             };
         }
-
-
-        var  linkFn:ng.IDirectiveLinkFn =($scope:IAdfDashboardLinkFnScope, $element:ng.IAugmentedJQuery, $attr: IAdfDashboardAtributes) => {
+        var linkFn = function ($scope, $element, $attr) {
             // pass options to scope
             var options = {
                 name: $attr.name,
@@ -374,7 +320,7 @@ module Adf {
                 options.editable = stringToBoolean($attr.editable);
             }
             $scope.options = options;
-        }
+        };
         return {
             replace: true,
             restrict: 'EA',
@@ -392,8 +338,9 @@ module Adf {
             link: linkFn,
             templateUrl: adfTemplatePath + 'dashboard.html'
         };
-    };
-
+    }
+    ;
     angular.module('adf')
         .directive('adfDashboard', adfDashBoard);
-}
+})(Adf || (Adf = {}));
+//# sourceMappingURL=dashboard.js.map

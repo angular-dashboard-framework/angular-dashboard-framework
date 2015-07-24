@@ -1,0 +1,1 @@
+{"version":3,"file":"adf.js","sourceRoot":"","sources":["../type-script/adf.ts"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;;;GAsBG;AAEH,YAAY,CAAC;AAEb,OAAO,CAAC,MAAM,CAAC,KAAK,EAAE,CAAC,cAAc,EAAE,cAAc,CAAC,CAAC;KACpD,KAAK,CAAC,iBAAiB,EAAE,mBAAmB,CAAC;KAC7C,KAAK,CAAC,aAAa,EAAE,4HAA4H,CAAC;KAClJ,KAAK,CAAC,gBAAgB,EAAE,wIAAwI,CAAC;KACjK,KAAK,CAAC,YAAY,EAAE,gBAAgB,CAAC,CAAC"}
