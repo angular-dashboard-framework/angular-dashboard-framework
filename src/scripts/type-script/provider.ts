@@ -1,24 +1,27 @@
 
 
+module Adf {
 
-angular.module('adf.provider', []);
+    angular.module('adf.provider', [])
+        .provider('dashboard', Dashboard);
 
-class AdfProvider implements ng.IServiceProvider {
+    export class Dashboard implements ng.IServiceProvider {
 
-    widgets: any;
-    structures: any;
-    constructor() {
-        this.widgets = {};
-        this.widgetsPath= <any>('');
-        this.structures = {};
-        this.messageTemplate = <any>('<div class="alert alert-danger">{}</div>');
-       this.loadingTemplate = <any>('\
+        widgets: any;
+        structures: any;
+
+        constructor() {
+            this.widgets = {};
+            this.widgetsPath = <any>('');
+            this.structures = {};
+            this.messageTemplate = <any>('<div class="alert alert-danger">{}</div>');
+            this.loadingTemplate = <any>('\
       <div class="progress progress-striped active">\n\
         <div class="progress-bar" role="progressbar" style="width: 100%">\n\
           <span class="sr-only">loading ...</span>\n\
         </div>\n\
       </div>');
-    }
+        }
 
 /**
          * @ngdoc method
@@ -68,7 +71,7 @@ class AdfProvider implements ng.IServiceProvider {
          *
          * @returns {Object} self
          */
-        widget:any = function (name, widget) {
+        widget: any = function(name, widget) {
             var w = angular.extend({ reload: false }, widget);
             if (w.edit) {
                 var edit = { reload: true };
@@ -97,10 +100,10 @@ class AdfProvider implements ng.IServiceProvider {
          *
          * @returns {Object} self
          */
-    widgetsPath(path) {
-        var  widgetsPath = path;
-        return this;
-    } /**
+        widgetsPath(path) {
+            var widgetsPath = path;
+            return this;
+        } /**
          * @ngdoc method
          * @name adf.dashboardProvider#structure
          * @methodOf adf.dashboardProvider
@@ -120,10 +123,10 @@ class AdfProvider implements ng.IServiceProvider {
          *
          * @returns {Object} self
          */
-    structure(name, structure) {
-        this.structures[name] = structure;
-        return this;
-    } /**
+        structure(name, structure) {
+            this.structures[name] = structure;
+            return this;
+        } /**
          * @ngdoc method
          * @name adf.dashboardProvider#messageTemplate
          * @methodOf adf.dashboardProvider
@@ -135,10 +138,10 @@ class AdfProvider implements ng.IServiceProvider {
          *
          * @returns {Object} self
          */
-    messageTemplate(template) {
-        this.messageTemplate = template;
-        return this;
-    } /**
+        messageTemplate(template) {
+            this.messageTemplate = template;
+            return this;
+        } /**
          * @ngdoc method
          * @name adf.dashboardProvider#loadingTemplate
          * @methodOf adf.dashboardProvider
@@ -151,10 +154,10 @@ class AdfProvider implements ng.IServiceProvider {
          *
          * @returns {Object} self
          */
-    loadingTemplate(template) {
-        this.loadingTemplate = template;
-        return this;
-    } /**
+        loadingTemplate(template) {
+            this.loadingTemplate = template;
+            return this;
+        } /**
          * @ngdoc service
          * @name adf.dashboard
          * @description
@@ -169,17 +172,17 @@ class AdfProvider implements ng.IServiceProvider {
          *
          * @returns {Object} self
          */
-    $get() {
-        var cid = 0;
+        $get() {
+            var cid = 0;
 
-        return {
-            widgets:this.widgets,
-            widgetsPath:this.widgetsPath,
-            structures: this.structures,
-            messageTemplate:this.messageTemplate,
-            loadingTemplate: this.loadingTemplate,
+            return {
+                widgets: this.widgets,
+                widgetsPath: this.widgetsPath,
+                structures: this.structures,
+                messageTemplate: this.messageTemplate,
+                loadingTemplate: this.loadingTemplate,
 
-            /**
+                /**
                  * @ngdoc method
                  * @name adf.dashboard#id
                  * @methodOf adf.dashboard
@@ -188,9 +191,9 @@ class AdfProvider implements ng.IServiceProvider {
                  * Creates an ongoing numeric id. The method is used to create ids for
                  * columns and widgets in the dashboard.
                  */
-            id: function () {
-                return ++cid;
-            }
-        };
+                id: () => (++cid)
+            };
+        }
     }
+
 }
