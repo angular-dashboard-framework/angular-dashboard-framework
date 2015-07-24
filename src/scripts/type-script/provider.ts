@@ -2,8 +2,9 @@
 
 module Adf {
 
-    angular.module('adf.provider', [])
-        .provider('dashboard', Dashboard);
+    interface IDashBoardService {
+        
+    }
 
     export class Dashboard implements ng.IServiceProvider {
 
@@ -195,5 +196,8 @@ module Adf {
             };
         }
     }
+    angular.module('adf.provider', [])
+        .provider('dashboard', Dashboard);
+
 
 }

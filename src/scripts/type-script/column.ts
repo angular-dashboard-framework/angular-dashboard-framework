@@ -25,13 +25,21 @@
 
 /* global angular */
 module Adf {
+    declare var Sortable;
+
+    interface IAdfDashboardColumnLinkScope extends ng.IScope {
+        column:any;
+        adfModel:any;
+    }
+
+   
     function adfDashboardColumn($log: ng.ILogService, $compile: ng.ICompileService, adfTemplatePath: String, rowTemplate: ng.IAugmentedJQuery, dashboard: any): ng.IDirective {
         'use strict';
     
         /**
          * moves a widget in between a column
          */
-        function moveWidgetInColumn($scope, column, evt) {
+        function moveWidgetInColumn($scope:ng.IScope, column:any, evt:any) {
             var widgets = column.widgets;
             // move widget and apply to scope
             $scope.$apply(() => {
@@ -42,7 +50,7 @@ module Adf {
         /**
          * finds a widget by its id in the column
          */
-        function findWidget(column, index) {
+        function findWidget(column: any, index: any) {
             var widget = null;
             for (var i = 0; i < column.widgets.length; i++) {
                 var w = column.widgets[i];
@@ -57,7 +65,7 @@ module Adf {
         /**
          * finds a column by its id in the model
          */
-        function findColumn(model, index) {
+        function findColumn(model: any, index: any) {
             var column = null;
             for (var i = 0; i < model.rows.length; i++) {
                 var r = model.rows[i];
@@ -80,7 +88,7 @@ module Adf {
         /**
          * get the adf id from an html element
          */
-        function getId(el) {
+        function getId(el:Element){
             var id = el.getAttribute('adf-id');
             return id ? parseInt(id) : -1;
         }
@@ -88,7 +96,7 @@ module Adf {
         /**
          * adds a widget to a column
          */
-        function addWidgetToColumn($scope, model, targetColumn, evt) {
+        function addWidgetToColumn($scope: ng.IScope, model: any, targetColumn: any, evt: any){
             // find source column
             var cid = getId(evt.from);
             var sourceColumn = findColumn(model, cid);
@@ -118,8 +126,7 @@ module Adf {
         /**
          * removes a widget from a column
          */
-
-        function removeWidgetFromColumn($scope, column, evt) {
+        function removeWidgetFromColumn($scope: ng.IScope, column: any, evt: any) {
             // remove old item and apply to scope
             $scope.$apply(() => {
                 column.widgets.splice(evt.oldIndex, 1);
@@ -130,7 +137,7 @@ module Adf {
          * enable sortable
          */
         
-        function applySortable($scope, $element, model, column) {
+        function applySortable($scope:ng.IScope, $element:ng.IAugmentedJQuery, model:any, column:any) {
             // enable drag and drop
             var el = $element[0];
             var sortable = Sortable.create(el, {
@@ -154,7 +161,7 @@ module Adf {
                 sortable.destroy();
             });
         }
-        var linkFn: ng.IDirectiveLinkFn = ($scope: any, $element) => {
+        var linkFn: ng.IDirectiveLinkFn = ($scope: IAdfDashboardColumnLinkScope, $element:ng.IAugmentedJQuery) => {
             // set id
             var col = $scope.column;
             if (!col.cid) {
