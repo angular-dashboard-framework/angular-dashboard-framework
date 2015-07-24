@@ -29,3 +29,4 @@ web.Debug.config
 web.Release.config
 web.config
 obj/
+/src/scripts/js
