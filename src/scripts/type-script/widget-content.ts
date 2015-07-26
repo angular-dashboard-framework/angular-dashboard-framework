@@ -28,7 +28,7 @@ module Adf {
     
 
 function adfWidgetContent($log:ng.ILogService, $q:ng.IQService, $sce:ng.ISCEService, $http:ng.IHttpService, $templateCache:ng.ITemplateCacheService,
-        $compile:ng.ICompileService, $controller:ng.IControllerService, $injector, dashboard) {
+        $compile:ng.ICompileService, $controller:ng.IControllerService, $injector, dashboard:IDashBoardService) {
     function compileWidget($scope, $element, currentScope) {
         var model = $scope.model;
         var content = $scope.content;
@@ -120,7 +120,7 @@ function adfWidgetContent($log:ng.ILogService, $q:ng.IQService, $sce:ng.ISCEServ
             return parsedUrl;
         }
 
-    function getTemplate(widget) {
+    function getTemplate(widget:IWidget) {
             var deferred = $q.defer();
 
             if (widget.template) {

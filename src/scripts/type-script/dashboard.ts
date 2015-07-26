@@ -78,7 +78,7 @@ module Adf {
  */
 
     function adfDashBoard($rootScope: ng.IRootScopeService, $log: ng.ILogService, $modal: angular.ui.bootstrap.IModalService,
-        dashboard: Adf.Dashboard, adfTemplatePath:String): ng.IDirective {
+        dashboard: Adf.IDashBoardService, adfTemplatePath:String): ng.IDirective {
         'use strict';
 
 
@@ -170,6 +170,7 @@ module Adf {
 
 
         function createConfiguration(type) {
+           
             var cfg = {};
             var config = dashboard.widgets[type].config;
             if (config) {

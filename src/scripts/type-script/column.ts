@@ -39,7 +39,7 @@ module Adf {
         /**
          * moves a widget in between a column
          */
-        function moveWidgetInColumn($scope:ng.IScope, column:any, evt:any) {
+        function moveWidgetInColumn($scope:ng.IScope, column:IColumn, evt:any) {
             var widgets = column.widgets;
             // move widget and apply to scope
             $scope.$apply(() => {
@@ -96,7 +96,7 @@ module Adf {
         /**
          * adds a widget to a column
          */
-        function addWidgetToColumn($scope: ng.IScope, model: any, targetColumn: any, evt: any){
+        function addWidgetToColumn($scope: ng.IScope, model: any, targetColumn: IColumn, evt: any){
             // find source column
             var cid = getId(evt.from);
             var sourceColumn = findColumn(model, cid);
@@ -126,7 +126,7 @@ module Adf {
         /**
          * removes a widget from a column
          */
-        function removeWidgetFromColumn($scope: ng.IScope, column: any, evt: any) {
+        function removeWidgetFromColumn($scope: ng.IScope, column: IColumn, evt: any) {
             // remove old item and apply to scope
             $scope.$apply(() => {
                 column.widgets.splice(evt.oldIndex, 1);
@@ -137,7 +137,7 @@ module Adf {
          * enable sortable
          */
         
-        function applySortable($scope:ng.IScope, $element:ng.IAugmentedJQuery, model:any, column:any) {
+        function applySortable($scope:ng.IScope, $element:ng.IAugmentedJQuery, model:any, column:IColumn) {
             // enable drag and drop
             var el = $element[0];
             var sortable = Sortable.create(el, {
