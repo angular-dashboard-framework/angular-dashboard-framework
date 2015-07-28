@@ -137,6 +137,11 @@ angular.module('adf')
       },
 
       controller: function ($scope) {
+        
+        $scope.$on("adfDashboardCollapseExapand",function(event,args){
+           $scope.widgetState.isCollapsed = args.collapseExpandStatus;
+         });
+
         $scope.openFullScreen = function() {
           var definition = $scope.definition;
           var fullScreenScope = $scope.$new();
