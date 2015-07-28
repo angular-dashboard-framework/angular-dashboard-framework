@@ -99,7 +99,7 @@ angular.module('adf')
         // bind edit function
         $scope.edit = function() {
           var editScope = $scope.$new();
-
+          editScope.definition = angular.copy(definition);
           var opts = {
             scope: editScope,
             templateUrl: adfTemplatePath + 'widget-edit.html',
@@ -117,6 +117,11 @@ angular.module('adf')
               $scope.$broadcast('widgetConfigChanged');
             }
           };
+          editScope.saveDialog = function() {
+            definition.title = editScope.definition.title;
+            angular.extend(definition.config,editScope.definition.config);      
+            editScope.closeDialog();
+         };
         };
       } else {
         $log.debug('widget not found');
