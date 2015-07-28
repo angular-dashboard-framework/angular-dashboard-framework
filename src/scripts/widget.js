@@ -81,15 +81,35 @@ angular.module('adf')
       if (definition) {
         // bind close function
         $scope.close = function() {
-          var column = $scope.col;
-          if (column) {
-            var index = column.widgets.indexOf(definition);
-            if (index >= 0) {
-              column.widgets.splice(index, 1);
-            }
-          }
-          $element.remove();
-        };
+              var deleteScope= $scope.$new();
+              var adfDeleteTemplatePath = adfTemplatePath + 'widget-delete.html';
+              if (definition.deleteTemplateUrl) {
+                adfEditTemplatePath = definition.deleteTemplateUrl;
+              }
+              var opts = {
+                scope: deleteScope,
+                templateUrl: adfDeleteTemplatePath,
+                backdrop: 'static'
+              };
+              var instance = $modal.open(opts);
+
+              deleteScope.closeDialog = function() {
+                instance.close();
+                deleteScope.$destroy();
+              };
+              deleteScope.deleteDialog = function() {
+                instance.close();
+                deleteScope.$destroy();
+                var column = $scope.col;
+                if (column) {
+                  var index = column.widgets.indexOf(definition);
+                  if (index >= 0) {
+                    column.widgets.splice(index, 1);
+                  }
+                }
+                $element.remove();
+              };
+        }
 
         // bind reload function
         $scope.reload = function(){
