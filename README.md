@@ -57,6 +57,10 @@ gulp all
 ```
 The sample and the final build of angular-dashboard-framework are now in the dist directory.
 
+## Contributing
+
+Please do not commit changes to the dist folder. The dist folder is only generated for releases.
+
 
 ## License
 
