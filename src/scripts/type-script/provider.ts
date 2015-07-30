@@ -1,6 +1,4 @@
 
-
-
 module Adf {
 
     export interface IWidget  {
@@ -20,12 +18,12 @@ module Adf {
             resolve?: any;
             reload: boolean;
         }
-      
+
     }
 
     export interface IStructure {
         rows: IRow[],
-    
+
     }
 
     export interface IRow {
@@ -46,8 +44,8 @@ module Adf {
         loadingTemplate: string;
     }
 
+    export class Dashboard implements ng.IServiceProvider{
 
-    export class Dashboard implements ng.IServiceProvider {
 
         static widgetsPath = '';
         static widgets = {};

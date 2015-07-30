@@ -29,33 +29,41 @@ module Adf {
     interface IAdfDashBoardRowLinkScope extends ng.IScope {
         row:any;
     }
- export  function  adfDashboardRow($compile:ng.ICompileService, adfTemplatePath:String, columnTemplate:ng.IAugmentedJQuery): ng.IDirective {
-        'use strict';
 
-          var  linkFn: ng.IDirective = ($scope:IAdfDashBoardRowLinkScope, $element:ng.IAugmentedJQuery) => {
-              if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
-                  $compile(columnTemplate)($scope, cloned => {
-                      $element.append(cloned);
-                  });
-              }
-          }
-
-          return {
-            restrict: 'E',
-            replace: true,
-            scope: {
+    class AdfDashboardRow implements ng.IDirective{
+         restrict = 'E';
+            replace =true;
+            scope = {
                 row: '=',
                 adfModel: '=',
                 editMode: '=',
                 options: '='
-            },
-            templateUrl: adfTemplatePath + 'dashboard-row.html',
-            link:linkFn
+            };
+        link: ng.IDirectiveLinkFn;
+            templateUrl = this.adfTemplatePath + 'dashboard-row.html';
             
-        }
-      };
+ constructor( private $compile: ng.ICompileService, private adfTemplatePath: String, private columnTemplate: ng.IAugmentedJQuery) {
+            this.link = this.linkFn.bind(this);
+            }
+            static $inject = ['$compile', 'adfTemplatePath', 'columnTemplate'];
+
+            static instance($compile: ng.ICompileService, adfTemplatePath: String, columnTemplate: ng.IAugmentedJQuery) {
+
+                return new AdfDashboardRow($compile, adfTemplatePath, columnTemplate);
+            }
+           
+
+            linkFn ($scope: IAdfDashBoardRowLinkScope, $element: ng.IAugmentedJQuery) {
+                if (angular.isDefined($scope.row.columns) && angular.isArray($scope.row.columns)) {
+                    this.$compile(this.columnTemplate)($scope, cloned => {
+                        $element.append(cloned);
+                    });
+                }
+            }
+    }
+
     
 angular.module('adf')
-    .directive('adfDashboardRow', adfDashboardRow);
+    .directive('adfDashboardRow', ['$compile', 'adfTemplatePath', 'columnTemplate', AdfDashboardRow.instance]);
 
 }
