@@ -18,6 +18,12 @@
       <li ng-if="options.editable && editMode" ng-click="toggleEditMode()">
         <a href="">Save changes</a>
       </li>
+      <li ng-if="options.editable && editMode" ng-click="collapseAll(true)">
+        <a href="">Collapse All</a>
+      </li>
+      <li ng-if="options.editable && editMode" ng-click="collapseAll(false)">
+        <a href="">Expand All</a>
+      </li>
       <li ng-if="editMode" ng-click="cancelEditMode()">
         <a href="">Undo changes</a>
       </li>

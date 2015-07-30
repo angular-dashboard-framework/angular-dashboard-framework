@@ -60,7 +60,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
   }
   $scope.name = name;
   $scope.model = model;
-  $scope.collapsible = false;
+  $scope.collapsible = true;
   $scope.maximizable = false;
 
   // only allow github widgets
