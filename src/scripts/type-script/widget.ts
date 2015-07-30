@@ -26,7 +26,7 @@
 
 module Adf {
 
-    class AdfWidget {
+    class AdfWidget implements ng.IDirective {
 
         static $inject = ['$log', '$modal', 'dashboard', 'adfTemplatePath'];
 

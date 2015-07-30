@@ -32,7 +32,7 @@ module Adf {
         adfModel:any;
     }
 
-    class AdfDashboardColumn {
+    class AdfDashboardColumn implements ng.IDirective{
         restrict = 'E';
         replace = true;
         scope = {

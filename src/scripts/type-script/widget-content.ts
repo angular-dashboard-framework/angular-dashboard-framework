@@ -25,7 +25,7 @@
 'use strict';
 
 module Adf {
-    class AdfWidgetContent {
+    class AdfWidgetContent implements ng.IDirective{
         replace = true;
         restrict = 'EA';
         transclude = false;
