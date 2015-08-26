@@ -59,6 +59,9 @@ angular.module('adf')
             config = {};
           }
 
+          // apply default configs
+          config = angular.extend(w.config || {}, config);
+
           // pass config to scope
           $scope.config = config;
 
