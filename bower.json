@@ -33,7 +33,7 @@
   "dependencies": {
     "angular": ">=1.2",
     "angular-bootstrap": "0.12.0",
-    "bootstrap": "3.3.4",
+    "bootstrap": "3.3.5",
     "Sortable": "1.1.1"
   },
   "devDependencies": {
