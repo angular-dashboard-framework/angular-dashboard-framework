@@ -29,7 +29,6 @@ var modRewrite = require('connect-modrewrite');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
 var jsReporter = require('jshint-stylish');
-var annotateAdfPlugin = require('ng-annotate-adf-plugin');
 var pkg = require('./package.json');
 var name = pkg.name;
 
@@ -39,8 +38,8 @@ var templateOptions = {
 };
 
 var annotateOptions = {
-  plugin: [
-    annotateAdfPlugin
+  enable: [
+    'angular-dashboard-framework'
   ]
 };
 
