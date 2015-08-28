@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "adf",
       "shortDescription": "adfDashboard is a directive which renders the dashboard with all its",
-      "keywords": "add adf adfdashboard adfmodel adfwidgetfilter api attribute button collapsible components dashboard default dialog directive disable div ea editable editmode false filter function large maximizable modal model object open panel renders required requires store structure true widgets"
+      "keywords": "add adf adfdashboard adfmodel adfwidgetfilter api attribute button collapsible components dashboard default dialog directive disable div ea editable editmode enableconfirmdelete false filter function large maximizable modal model object open panel remove renders required requires store structure true widget widgets"
     }
   ],
   "apis": {
@@ -40,8 +40,7 @@ NG_DOCS={
     "scripts": [
       "js/angular.min.js",
       "js/angular-animate.min.js",
-      "js/marked.js",
-      "js/prettify.js"
+      "js/marked.js"
     ],
     "styles": [],
     "title": "ADF API Documentation",
@@ -53,17 +52,15 @@ NG_DOCS={
     "loadDefaults": {
       "angular": true,
       "angularAnimate": true,
-      "marked": true,
-      "prettify": true
+      "marked": true
     }
   },
   "html5Mode": false,
   "editExample": true,
   "startPage": "/api",
   "scripts": [
-    "angular.min.js",
-    "angular-animate.min.js",
-    "marked.js",
-    "prettify.js"
+    "js/angular.min.js",
+    "js/angular-animate.min.js",
+    "js/marked.js"
   ]
 };

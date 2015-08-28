@@ -112,17 +112,20 @@ docsApp.directive.sourceEdit = function(getEmbeddedTemplate) {
 
 docsApp.serviceFactory.loadedUrls = function($document) {
   var urls = {};
+    var tmp = document.createElement ('a');
 
   angular.forEach($document.find('script'), function(script) {
+    tmp.href = script.src;
     var match = script.src.match(/^.*\/([^\/]*\.js)$/);
     if (match) {
-      urls[match[1].replace(/(\-\d.*)?(\.min)?\.js$/, '.js')] = match[0];
+      urls[tmp.pathname] = match[0];
     }
   });
 
   urls.base = [];
   angular.forEach(NG_DOCS.scripts, function(script) {
-    var match = urls[script.replace(/(\-\d.*)?(\.min)?\.js$/, '.js')];
+    tmp.href = script;
+    var match = urls[tmp.pathname];
     if (match) {
       urls.base.push(match);
     }

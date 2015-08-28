@@ -30,9 +30,12 @@
 
 pre.prettyprint {
   padding: 8px;
-  background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
 }
+pre.prettyprint:not(.alert) {
+  background-color: #f7f7f9;
+}
+
 pre.prettyprint.linenums {
   -webkit-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
      -moz-box-shadow: inset 40px 0 0 #fbfbfc, inset 41px 0 0 #ececf0;
