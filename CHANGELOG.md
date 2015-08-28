@@ -1,3 +1,20 @@
+# 0.10.0
+
+## Enhancements
+
+* update bootstrap to version 3.3.5
+* use angular dependency >=1.2 instead of 1.2.28
+* Ok-cancel prompt for edit widget [#127](https://github.com/sdorra/angular-dashboard-framework/pull/127)
+* Added enableConfirmDelete option for prompt before widget delete [#128](https://github.com/sdorra/angular-dashboard-framework/pull/128)
+* Collapse and expand all widgets [#121](https://github.com/sdorra/angular-dashboard-framework/pull/121)
+* Add adf-widget-type attribute to panel div [#117](https://github.com/sdorra/angular-dashboard-framework/pull/117)
+* Added the ability to customize the dashboard and widget title templates [#116](https://github.com/sdorra/angular-dashboard-framework/pull/116)
+* Added adfDashboardEditsCancelled broadcast message to cancelEditMode() [#114](https://github.com/sdorra/angular-dashboard-framework/pull/114)
+
+## Bug fixes
+
+* Fixed error when moving widget to empty column [#119](https://github.com/sdorra/angular-dashboard-framework/pull/119)
+
 # 0.9.0
 
 ## Enhancements
