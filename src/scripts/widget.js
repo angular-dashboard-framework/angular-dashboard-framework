@@ -90,34 +90,34 @@ angular.module('adf')
           }
         }
         $element.remove();
-      }
-        $scope.remove = function() {
-          if($scope.options.enableConfirmDelete){
-              var deleteScope= $scope.$new();
-              var adfDeleteTemplatePath = adfTemplatePath + 'widget-delete.html';
-              if (definition.deleteTemplateUrl) {
-                adfEditTemplatePath = definition.deleteTemplateUrl;
-              }
-              var opts = {
-                scope: deleteScope,
-                templateUrl: adfDeleteTemplatePath,
-                backdrop: 'static'
-              };
-              var instance = $modal.open(opts);
+      };
 
-              deleteScope.closeDialog = function() {
-                instance.close();
-                deleteScope.$destroy();
-              };
-              deleteScope.deleteDialog = function() {
-                deleteWidget();
-                deleteScope.closeDialog();
-              };
+      $scope.remove = function() {
+        if ($scope.options.enableConfirmDelete){
+          var deleteScope= $scope.$new();
+          var deleteTemplateUrl = adfTemplatePath + 'widget-delete.html';
+          if (definition.deleteTemplateUrl) {
+            deleteTemplateUrl = definition.deleteTemplateUrl;
           }
-          else {
-              deleteWidget();
-          }
+          var opts = {
+            scope: deleteScope,
+            templateUrl: deleteTemplateUrl,
+            backdrop: 'static'
+          };
+          var instance = $modal.open(opts);
+
+          deleteScope.closeDialog = function() {
+            instance.close();
+            deleteScope.$destroy();
+          };
+          deleteScope.deleteDialog = function() {
+            deleteWidget();
+            deleteScope.closeDialog();
+          };
+        } else {
+          deleteWidget();
         }
+      };
 
         // bind reload function
         $scope.reload = function(){
@@ -147,7 +147,7 @@ angular.module('adf')
           };
           editScope.saveDialog = function() {
             definition.title = editScope.definition.title;
-            angular.extend(definition.config,editScope.definition.config);      
+            angular.extend(definition.config,editScope.definition.config);
             editScope.closeDialog();
          };
         };
@@ -170,8 +170,8 @@ angular.module('adf')
       },
 
       controller: function ($scope) {
-        
-        $scope.$on("adfDashboardCollapseExapand",function(event,args){
+
+        $scope.$on('adfDashboardCollapseExapand',function(event,args){
            $scope.widgetState.isCollapsed = args.collapseExpandStatus;
          });
 
