@@ -38,6 +38,7 @@
  * @param {boolean=} editable false to disable the editmode of the dashboard.
  * @param {boolean=} collapsible true to make widgets collapsible on the dashboard.
  * @param {boolean=} maximizable true to add a button for open widgets in a large modal panel.
+ * @param {boolean=} enableConfirmDelete true to ask before remove an widget from the dashboard.
  * @param {string=} structure the default structure of the dashboard.
  * @param {object=} adfModel model object of the dashboard.
  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
