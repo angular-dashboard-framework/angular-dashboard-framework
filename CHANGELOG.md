@@ -2,6 +2,7 @@
 
 ## Enhancements
 
+* update Sortable to version 1.2.1
 * update bootstrap to version 3.3.5
 * use angular dependency >=1.2 instead of 1.2.28
 * Ok-cancel prompt for edit widget [#127](https://github.com/sdorra/angular-dashboard-framework/pull/127)
