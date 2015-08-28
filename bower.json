@@ -31,19 +31,19 @@
     "adf"
   ],
   "dependencies": {
-    "angular": "1.2.28",
+    "angular": ">=1.2",
     "angular-bootstrap": "0.12.0",
     "bootstrap": "3.3.4",
     "Sortable": "1.1.1"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.28",
-    "angular-scenario": "1.2.28",
-    "angular-route": "1.2.28",
+    "angular-mocks": ">=1.2",
+    "angular-scenario": ">=1.2",
+    "angular-route": ">=1.2",
     "angular-local-storage": "0.1.5",
     "es5-shim": "~2.0.8"
   },
   "resolutions": {
-    "angular": "1.2.28"
+    "angular": ">=1.2"
   }
 }
