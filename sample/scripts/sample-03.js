@@ -62,6 +62,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
   $scope.model = model;
   $scope.collapsible = true;
   $scope.maximizable = false;
+  $scope.enableConfirmDelete = true;
 
   // only allow github widgets
   $scope.widgetFilter = function(widget, type){
