@@ -264,7 +264,7 @@ angular.module('adf')
         };
 
         $scope.collapseAll = function(collapseExpandStatus){
-            $rootScope.$broadcast('adfDashboardCollapseExapand',{collapseExpandStatus : collapseExpandStatus});
+          $rootScope.$broadcast('adfDashboardCollapseExapand',{collapseExpandStatus : collapseExpandStatus});
         };
 
         $scope.cancelEditMode = function(){

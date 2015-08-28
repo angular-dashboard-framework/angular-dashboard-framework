@@ -27,13 +27,13 @@
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
 
-    function preLink($scope){
+    function preLink($scope) {
       var definition = $scope.definition;
       if (definition) {
         var w = dashboard.widgets[definition.type];
         if (w) {
           // pass title
-          if (!definition.title){
+          if (!definition.title) {
             definition.title = w.title;
           }
 
@@ -42,7 +42,7 @@ angular.module('adf')
           }
 
           // set id for sortable
-          if (!definition.wid){
+          if (!definition.wid) {
             definition.wid = dashboard.id();
           }
 
@@ -63,9 +63,9 @@ angular.module('adf')
           $scope.config = config;
 
           // collapse exposed $scope.widgetState property
-         if(!$scope.widgetState){
-             $scope.widgetState ={};
-             $scope.widgetState.isCollapsed= false;
+          if (!$scope.widgetState) {
+            $scope.widgetState = {};
+            $scope.widgetState.isCollapsed = false;
           }
 
         } else {
@@ -81,46 +81,46 @@ angular.module('adf')
       if (definition) {
         // bind close function
 
-      var deleteWidget = function(){
-        var column = $scope.col;
-        if (column) {
-          var index = column.widgets.indexOf(definition);
-          if (index >= 0) {
-            column.widgets.splice(index, 1);
+        var deleteWidget = function() {
+          var column = $scope.col;
+          if (column) {
+            var index = column.widgets.indexOf(definition);
+            if (index >= 0) {
+              column.widgets.splice(index, 1);
+            }
           }
-        }
-        $element.remove();
-      };
+          $element.remove();
+        };
 
-      $scope.remove = function() {
-        if ($scope.options.enableConfirmDelete){
-          var deleteScope= $scope.$new();
-          var deleteTemplateUrl = adfTemplatePath + 'widget-delete.html';
-          if (definition.deleteTemplateUrl) {
-            deleteTemplateUrl = definition.deleteTemplateUrl;
-          }
-          var opts = {
-            scope: deleteScope,
-            templateUrl: deleteTemplateUrl,
-            backdrop: 'static'
-          };
-          var instance = $modal.open(opts);
+        $scope.remove = function() {
+          if ($scope.options.enableConfirmDelete) {
+            var deleteScope = $scope.$new();
+            var deleteTemplateUrl = adfTemplatePath + 'widget-delete.html';
+            if (definition.deleteTemplateUrl) {
+              deleteTemplateUrl = definition.deleteTemplateUrl;
+            }
+            var opts = {
+              scope: deleteScope,
+              templateUrl: deleteTemplateUrl,
+              backdrop: 'static'
+            };
+            var instance = $modal.open(opts);
 
-          deleteScope.closeDialog = function() {
-            instance.close();
-            deleteScope.$destroy();
-          };
-          deleteScope.deleteDialog = function() {
+            deleteScope.closeDialog = function() {
+              instance.close();
+              deleteScope.$destroy();
+            };
+            deleteScope.deleteDialog = function() {
+              deleteWidget();
+              deleteScope.closeDialog();
+            };
+          } else {
             deleteWidget();
-            deleteScope.closeDialog();
-          };
-        } else {
-          deleteWidget();
-        }
-      };
+          }
+        };
 
         // bind reload function
-        $scope.reload = function(){
+        $scope.reload = function() {
           $scope.$broadcast('widgetReload');
         };
 
@@ -140,16 +140,16 @@ angular.module('adf')
             editScope.$destroy();
 
             var widget = $scope.widget;
-            if (widget.edit && widget.edit.reload){
+            if (widget.edit && widget.edit.reload) {
               // reload content after edit dialog is closed
               $scope.$broadcast('widgetConfigChanged');
             }
           };
           editScope.saveDialog = function() {
             definition.title = editScope.definition.title;
-            angular.extend(definition.config,editScope.definition.config);
+            angular.extend(definition.config, editScope.definition.config);
             editScope.closeDialog();
-         };
+          };
         };
       } else {
         $log.debug('widget not found');
@@ -168,12 +168,11 @@ angular.module('adf')
         options: '=',
         widgetState: '='
       },
+      controller: function($scope) {
 
-      controller: function ($scope) {
-
-        $scope.$on('adfDashboardCollapseExapand',function(event,args){
-           $scope.widgetState.isCollapsed = args.collapseExpandStatus;
-         });
+        $scope.$on('adfDashboardCollapseExapand', function(event, args) {
+          $scope.widgetState.isCollapsed = args.collapseExpandStatus;
+        });
 
         $scope.openFullScreen = function() {
           var definition = $scope.definition;
@@ -187,14 +186,13 @@ angular.module('adf')
           };
 
           var instance = $modal.open(opts);
-          fullScreenScope.closeDialog = function () {
+          fullScreenScope.closeDialog = function() {
             instance.close();
             fullScreenScope.$destroy();
           };
         };
       },
-
-      compile: function compile(){
+      compile: function() {
 
         /**
          * use pre link, because link of widget-content

@@ -178,7 +178,7 @@ angular.module('adf.provider', [])
     * Changes the template which is displayed as
     * long as the widget resources are not resolved.
     *
-    * @param {string} loading template
+    * @param {string} template loading template
     *
     * @returns {Object} self
     */
