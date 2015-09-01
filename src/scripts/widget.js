@@ -41,6 +41,10 @@ angular.module('adf')
             definition.titleTemplateUrl = adfTemplatePath + 'widget-title.html';
           }
 
+          if (!definition.titleTemplateUrl) {
+            definition.frameless = w.frameless;
+          }
+
           // set id for sortable
           if (!definition.wid) {
             definition.wid = dashboard.id();
