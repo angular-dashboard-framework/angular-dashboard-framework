@@ -67,6 +67,7 @@ angular.module('adf.provider', [])
     *      if passed as a string.
     *   - `controllerAs` - `{string=}` - A controller alias name. If present the controller will be
     *      published to scope under the `controllerAs` name.
+    *   - `frameless` - `{boolean=}` - false if the widget should be shown in frameless mode. The default is false.
     *   - `template` - `{string=|function()=}` - html template as a string.
     *   - `templateUrl` - `{string=}` - path to an html template.
     *   - `reload` - `{boolean=}` - true if the widget could be reloaded. The default is false.
@@ -94,7 +95,7 @@ angular.module('adf.provider', [])
     * @returns {Object} self
     */
     this.widget = function(name, widget){
-      var w = angular.extend({reload: false}, widget);
+      var w = angular.extend({reload: false, frameless: false}, widget);
       if ( w.edit ){
         var edit = {reload: true};
         angular.extend(edit, w.edit);
