@@ -30,6 +30,7 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var jsReporter = require('jshint-stylish');
 var pkg = require('./package.json');
+var karmaServer = require('karma').Server;
 var name = pkg.name;
 
 var templateOptions = {
@@ -219,6 +220,16 @@ gulp.task('webserver', ['install-widgets'], function(){
 
 gulp.task('serve', ['webserver', 'watch']);
 
+
+gulp.task('test', ['build', 'karma']);
+gulp.task('karma', ['build'], function(done) {
+    new karmaServer({
+        configFile : __dirname +'/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+
+
 /** e2e **/
 
 // The protractor task
@@ -247,7 +258,7 @@ gulp.task('e2e-server', ['install-widgets'], function(){
 
 // Setting up the test task
 gulp.task('e2e', ['e2e-server', 'webdriver_update'], function(cb) {
-  gulp.src('e2e/*Spec.js')
+  gulp.src('test/e2e/*Spec.js')
       .pipe(protractor(protractorOptions))
       .on('error', function(e) {
         // stop webserver

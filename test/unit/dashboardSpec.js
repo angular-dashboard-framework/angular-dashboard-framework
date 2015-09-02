@@ -1,0 +1,126 @@
+'use strict';
+
+describe('Dashboard Directive tests', function() {
+
+    var $compile,
+        $rootScope,
+        $scope,
+        directive;
+
+    // Load the myApp module, which contains the directive
+    beforeEach(module('adf'));
+
+    // Store references to $rootScope and $compile
+    // so they are available to all tests in this describe block
+    beforeEach(inject(function(_$compile_, _$rootScope_){
+        // The injector unwraps the underscores (_) from around the parameter names when matching
+        $compile = _$compile_;
+        $rootScope = _$rootScope_;
+        $scope = $rootScope.$new();
+        directive = '<adf-dashboard name="{{name}}" collapsible="{{collapsible}}" maximizable="{{maximizable}}" structure="4-8" adf-model="model" />';
+
+
+        $scope.name = 'sample-01';
+        $scope.model = {
+            title: "Sample 01",
+            structure: "4-8",
+            rows: [{
+                columns: [{
+                    styleClass: "col-md-4",
+                    widgets: []
+                }]
+            }]
+        };
+        $scope.collapsible = false;
+        $scope.maximizable = false;
+
+    }));
+
+    function compileTemplate(template) {
+        // Compile a piece of HTML containing the directive
+        var el = $compile(template)($scope);
+        $scope.$digest();
+        return el;
+    }
+
+    it('should have the proper name in the h1 element (default template)', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.find("h1").text().trim()).toBe('Sample 01');
+    });
+
+    it('should not change the name when the title changes (default template)', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.find("h1").text().trim()).toBe('Sample 01');
+
+        // Change the name of the dashboard
+        $scope.name = 'Sample 02';
+        expect(element.find("h1").text().trim()).toBe('Sample 01');
+    });
+
+    it('should not change the name when the title changes (default template)', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.find("h1").text().trim()).toBe('Sample 01');
+
+        // Change the name of the dashboard
+        $scope.name = 'Sample 02';
+        expect(element.find("h1").text().trim()).toBe('Sample 01');
+    });
+
+    it('should toggle edit mode correctly', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.controller).not.toBeUndefined();
+        expect($scope).not.toBeUndefined();
+
+        var isolatedScope = element.isolateScope();
+
+        // By default it is false
+        expect(isolatedScope.editMode).toBeFalsy();
+
+        // Enable edit mode
+        isolatedScope.toggleEditMode();
+        expect(isolatedScope.editMode).toBeTruthy();
+
+        // Disable edit mode
+        isolatedScope.toggleEditMode();
+        expect(isolatedScope.editMode).toBeFalsy();
+    });
+
+    it('should cancel edit mode correctly', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.controller).not.toBeUndefined();
+        expect($scope).not.toBeUndefined();
+
+        var isolatedScope = element.isolateScope();
+
+        // By default it is false
+        expect(isolatedScope.editMode).toBeFalsy();
+
+        // Enable edit mode
+        isolatedScope.toggleEditMode();
+        expect(isolatedScope.editMode).toBeTruthy();
+
+        // Cancel edit mode
+        isolatedScope.cancelEditMode();
+        expect(isolatedScope.editMode).toBeFalsy();
+    });
+
+    it('should dispatch the `dfDashboardCollapseExapand` event downwards to all child scopes (and their children)', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.controller).not.toBeUndefined();
+        expect($scope).not.toBeUndefined();
+
+        var isolatedScope = element.isolateScope();
+        spyOn($rootScope, '$broadcast');
+
+        // Enable edit mode
+        isolatedScope.collapseAll(1);
+        expect($rootScope.$broadcast).toHaveBeenCalledWith('adfDashboardCollapseExapand',{collapseExpandStatus : 1});
+    });
+
+});
