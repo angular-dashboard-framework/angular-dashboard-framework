@@ -220,9 +220,11 @@ gulp.task('webserver', ['install-widgets'], function(){
 
 gulp.task('serve', ['webserver', 'watch']);
 
+/** unit tests */
 
-gulp.task('test', ['build', 'karma']);
-gulp.task('karma', ['build'], function(done) {
+gulp.task('test', ['dashboard-templates', 'karma']);
+
+gulp.task('karma', ['dashboard-templates'], function(done) {
     new karmaServer({
         configFile : __dirname +'/karma.conf.js',
         singleRun: true

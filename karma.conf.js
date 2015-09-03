@@ -19,7 +19,8 @@ module.exports = function(config) {
             'sample/components/bootstrap/dist/js/bootstrap.js',
             'sample/components/angular-local-storage/dist/angular-local-storage.js',
 
-            'dist/angular-dashboard-framework.js',
+            'src/**/*.js',
+            '.tmp/*.js',
             'test/unit/**/*Spec.js'
         ],
 
@@ -50,11 +51,41 @@ module.exports = function(config) {
         plugins: [
             'karma-phantomjs-launcher',
             'karma-chrome-launcher',
+            'karma-junit-reporter',
+            'karma-coverage',
             'karma-jasmine'
         ],
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false
+        singleRun: false,
+
+        // coverage reporter generates the coverage
+        reporters: ['junit', 'progress', 'coverage'],
+
+        // junit report
+        junitReporter: {
+          // will be resolved to basePath (in the same way as files/exclude patterns)
+          outputDir: 'dist/reports/junit'
+        },
+
+        preprocessors: {
+          // source files, that you wanna generate coverage for
+          // do not include tests or libraries
+          // (these files will be instrumented by Istanbul)
+          'src/**/*.js': ['coverage']
+        },
+
+        // optionally, configure the reporter
+        coverageReporter: {
+          subdir: '.',
+          reporters:[{
+            type: 'html',
+            dir:'dist/reports/coverage/html'
+          }, {
+            type : 'cobertura',
+            dir : 'dist/reports/coverage/cobertura/'
+          }]
+        }
     });
 };

@@ -9,6 +9,7 @@
 /.tmp/
 /dist/docs/
 /dist/sample/
+/dist/reports/
 
 # netbeans
 /nbproject/
