@@ -278,4 +278,4 @@ gulp.task('e2e', ['e2e-server', 'webdriver_update'], function(cb) {
 /** shorthand methods **/
 gulp.task('all', ['build', 'docs', 'sample']);
 
-gulp.task('default', ['build']);
+gulp.task('default', ['jslint', 'test', 'build']);
