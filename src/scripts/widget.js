@@ -39,6 +39,9 @@ angular.module('adf')
 
           if (!definition.titleTemplateUrl) {
             definition.titleTemplateUrl = adfTemplatePath + 'widget-title.html';
+            if (w.titleTemplateUrl) {
+              definition.titleTemplateUrl = w.titleTemplateUrl;
+            }
           }
 
           if (!definition.titleTemplateUrl) {
