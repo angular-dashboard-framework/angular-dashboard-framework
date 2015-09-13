@@ -2,7 +2,7 @@ module.exports = function(config) {
     config.set({
 
         // Base path, that will be used to resolve files and exclude
-        basePath: '',
+        basePath: '..',
 
         // Frameworks to use
         frameworks: ['jasmine'],

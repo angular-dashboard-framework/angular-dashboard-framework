@@ -55,7 +55,7 @@ var ngdocOptions = {
 };
 
 var protractorOptions = {
-  configFile: 'protractor.conf.js'
+  configFile: 'test/protractor.conf.js'
 };
 
 /** lint **/
@@ -226,7 +226,7 @@ gulp.task('test', ['dashboard-templates', 'karma']);
 
 gulp.task('karma', ['dashboard-templates'], function(done) {
     new karmaServer({
-        configFile : __dirname +'/karma.conf.js',
+        configFile : __dirname +'/test/karma.conf.js',
         singleRun: true
     }, done).start();
 });
