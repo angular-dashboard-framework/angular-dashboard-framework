@@ -80,7 +80,7 @@ module.exports = function(config) {
         coverageReporter: {
           subdir: '.',
           reporters:[{
-            type: 'html',
+            type: 'lcov',
             dir:'dist/reports/coverage/html'
           }, {
             type : 'cobertura',

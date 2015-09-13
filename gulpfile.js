@@ -231,6 +231,10 @@ gulp.task('karma', ['dashboard-templates'], function(done) {
     }, done).start();
 });
 
+gulp.task('coverall', ['test'], function() {
+    return gulp.src('dist/reports/coverage/html/lcov.info')
+               .pipe($.coveralls());
+});
 
 /** e2e **/
 
@@ -274,6 +278,10 @@ gulp.task('e2e', ['e2e-server', 'webdriver_update'], function(cb) {
         cb();
       });
 });
+
+/** travis ci **/
+
+gulp.task('travis', ['jslint', 'test', 'coverall', 'build']);
 
 /** shorthand methods **/
 gulp.task('all', ['build', 'docs', 'sample']);
