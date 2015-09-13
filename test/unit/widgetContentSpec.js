@@ -31,19 +31,23 @@ describe('widget-content directive tests', function() {
       $scope,
       directive,
       $q,
-      $templateCache;
+      $templateCache,
+      $httpBackend,
+      dashboard;
 
   // Load the myApp module, which contains the directive
   beforeEach(module('adf'));
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$q_, _$templateCache_){
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$q_, _$templateCache_, _$httpBackend_, _dashboard_){
       // The injector unwraps the underscores (_) from around the parameter names when matching
       $q = _$q_;
       $templateCache = _$templateCache_;
       $compile = _$compile_;
       $rootScope = _$rootScope_;
+      $httpBackend = _$httpBackend_;
+      dashboard = _dashboard_;
       $scope = $rootScope.$new();
       directive = '<adf-widget-content model="definition" content="widget" />';
 
@@ -118,6 +122,56 @@ describe('widget-content directive tests', function() {
       };
 
       var element = compileTemplate(directive);
+      expect(element.find("div.test-widget").text()).toBe('Hello World');
+  });
+
+  it('should render a widget with a remote template', function() {
+      $httpBackend.whenGET('src/test.html').respond(200, '<div class="test-widget">Hello World</div>');
+
+      $scope.widget = {
+        templateUrl: 'src/test.html'
+      };
+
+      var element = compileTemplate(directive);
+      $httpBackend.flush();
+      expect(element.find("div.test-widget").text()).toBe('Hello World');
+  });
+
+  it('should render a widget with a failed remote template', function() {
+      $httpBackend.whenGET('src/test.html').respond(500);
+
+      $scope.widget = {
+        templateUrl: 'src/test.html'
+      };
+
+      var element = compileTemplate(directive);
+      $httpBackend.flush();
+      expect(element.find("div.alert").text()).toContain('could not load template');
+  });
+
+  it('should render a widget with a remote template and a parsed url', function() {
+      dashboard.widgetsPath = 'src';
+      $httpBackend.whenGET('src/test.html').respond(200, '<div class="test-widget">Hello World</div>');
+
+      $scope.widget = {
+        templateUrl: '{widgetsPath}/test.html'
+      };
+
+      var element = compileTemplate(directive);
+      $httpBackend.flush();
+      expect(element.find("div.test-widget").text()).toBe('Hello World');
+  });
+
+  it('should render a widget with a remote template and a absolute parsed url', function() {
+      dashboard.widgetsPath = '/src';
+      $httpBackend.whenGET('src/test.html').respond(200, '<div class="test-widget">Hello World</div>');
+
+      $scope.widget = {
+        templateUrl: '{widgetsPath}/test.html'
+      };
+
+      var element = compileTemplate(directive);
+      $httpBackend.flush();
       expect(element.find("div.test-widget").text()).toBe('Hello World');
   });
 
