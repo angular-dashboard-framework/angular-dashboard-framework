@@ -121,4 +121,25 @@ describe('widget-content directive tests', function() {
       expect(element.find("div.test-widget").text()).toBe('Hello World');
   });
 
+  it('should rerender the widget on event', function() {
+      var counter = 0;
+      $scope.widget = {
+        template: '<div class="test-widget">{{counter}}</div>',
+        controller: function($scope){
+          $scope.counter = counter++;
+        }
+      };
+
+      var element = compileTemplate(directive);
+      expect(element.find("div.test-widget").text()).toBe('0');
+
+      $scope.$broadcast('widgetConfigChanged');
+      $scope.$digest();
+      expect(element.find("div.test-widget").text()).toBe('1');
+
+      $scope.$broadcast('widgetReload');
+      $scope.$digest();
+      expect(element.find("div.test-widget").text()).toBe('2');
+  });
+
 });
