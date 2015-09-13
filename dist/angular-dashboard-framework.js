@@ -134,10 +134,9 @@ angular.module('adf')
         if (widget){
           // add new item and apply to scope
           $scope.$apply(function(){
-			if (!targetColumn.widgets) {
-				targetColumn.widgets = [];
-			}
-			
+      			if (!targetColumn.widgets) {
+      				targetColumn.widgets = [];
+      			}
             targetColumn.widgets.splice(evt.newIndex, 0, widget);
           });
         } else {
@@ -500,6 +499,7 @@ angular.module('adf')
             title: model.title
           };
           editDashboardScope.structures = dashboard.structures;
+
           var instance = $modal.open({
             scope: editDashboardScope,
             templateUrl: adfTemplatePath + 'dashboard-edit.html',
@@ -534,11 +534,19 @@ angular.module('adf')
             widgets = dashboard.widgets;
           }
           addScope.widgets = widgets;
+
+          var adfAddTemplatePath = adfTemplatePath + 'widget-add.html';
+          if(model.addTemplateUrl)
+          {
+            adfAddTemplatePath = model.addTemplateUrl;
+          }
+
           var opts = {
             scope: addScope,
-            templateUrl: adfTemplatePath + 'widget-add.html',
+            templateUrl: adfAddTemplatePath,
             backdrop: 'static'
           };
+
           var instance = $modal.open(opts);
           addScope.addWidget = function(widget){
             var w = {
@@ -645,6 +653,7 @@ angular.module('adf.provider', [])
     *      if passed as a string.
     *   - `controllerAs` - `{string=}` - A controller alias name. If present the controller will be
     *      published to scope under the `controllerAs` name.
+    *   - `frameless` - `{boolean=}` - false if the widget should be shown in frameless mode. The default is false.
     *   - `template` - `{string=|function()=}` - html template as a string.
     *   - `templateUrl` - `{string=}` - path to an html template.
     *   - `reload` - `{boolean=}` - true if the widget could be reloaded. The default is false.
@@ -663,6 +672,7 @@ angular.module('adf.provider', [])
     *        resolved before its value is injected into the controller.
     *   - `edit` - `{object}` - Edit modus of the widget.
     *      - `controller` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
+    *      - `controllerAs` - `{string=}` - Same as above, but for the edit mode of the widget.
     *      - `template` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
     *      - `templateUrl` - `{string=}` - Same as above, but for the edit mode of the widget.
     *      - `resolve` - `{Object.<string, function>=}` - Same as above, but for the edit mode of the widget.
@@ -672,7 +682,7 @@ angular.module('adf.provider', [])
     * @returns {Object} self
     */
     this.widget = function(name, widget){
-      var w = angular.extend({reload: false}, widget);
+      var w = angular.extend({reload: false, frameless: false}, widget);
       if ( w.edit ){
         var edit = {reload: true};
         angular.extend(edit, w.edit);
@@ -1063,6 +1073,10 @@ angular.module('adf')
             }
           }
 
+          if (!definition.titleTemplateUrl) {
+            definition.frameless = w.frameless;
+          }
+
           // set id for sortable
           if (!definition.wid) {
             definition.wid = dashboard.id();
@@ -1150,9 +1164,15 @@ angular.module('adf')
         $scope.edit = function() {
           var editScope = $scope.$new();
           editScope.definition = angular.copy(definition);
+
+          var adfEditTemplatePath = adfTemplatePath + 'widget-edit.html';
+          if (definition.editTemplateUrl) {
+            adfEditTemplatePath = definition.editTemplateUrl;
+          }
+
           var opts = {
             scope: editScope,
-            templateUrl: adfTemplatePath + 'widget-edit.html',
+            templateUrl: adfEditTemplatePath,
             backdrop: 'static'
           };
 
@@ -1239,4 +1259,4 @@ $templateCache.put("../src/templates/widget-delete.html","<div class=modal-heade
 $templateCache.put("../src/templates/widget-edit.html","<div class=modal-header> <button type=button class=close ng-click=closeDialog() aria-hidden=true>&times;</button> <h4 class=modal-title>{{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>Title</label> <input type=text class=form-control id=widgetTitle ng-model=definition.title placeholder=\"Enter title\" required> </div> </form> <div ng-if=widget.edit> <adf-widget-content model=definition content=widget.edit> </adf-widget-content></div> </div> <div class=modal-footer> <button type=button class=\"btn btn-default\" ng-click=closeDialog()>Cancel</button> <button type=button class=\"btn btn-primary\" ng-click=saveDialog()>Apply</button> </div> ");
 $templateCache.put("../src/templates/widget-fullscreen.html","<div class=modal-header> <div class=\"pull-right widget-icons\"> <a href title=\"Reload Widget Content\" ng-if=widget.reload ng-click=reload()> <i class=\"glyphicon glyphicon-refresh\"></i> </a> <a href title=close ng-click=closeDialog()> <i class=\"glyphicon glyphicon-remove\"></i> </a> </div> <h4 class=modal-title>{{definition.title}}</h4> </div> <div class=modal-body> <adf-widget-content model=definition content=widget> </adf-widget-content></div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=closeDialog()>Close</button> </div> ");
 $templateCache.put("../src/templates/widget-title.html","<h3 class=panel-title> {{definition.title}} <span class=pull-right> <a href title=\"reload widget content\" ng-if=widget.reload ng-click=reload()> <i class=\"glyphicon glyphicon-refresh\"></i> </a>  <a href title=\"change widget location\" class=adf-move ng-if=editMode> <i class=\"glyphicon glyphicon-move\"></i> </a>  <a href title=\"collapse widget\" ng-show=\"options.collapsible && !widgetState.isCollapsed\" ng-click=\"widgetState.isCollapsed = !widgetState.isCollapsed\"> <i class=\"glyphicon glyphicon-minus\"></i> </a>  <a href title=\"expand widget\" ng-show=\"options.collapsible && widgetState.isCollapsed\" ng-click=\"widgetState.isCollapsed = !widgetState.isCollapsed\"> <i class=\"glyphicon glyphicon-plus\"></i> </a>  <a href title=\"edit widget configuration\" ng-click=edit() ng-if=editMode> <i class=\"glyphicon glyphicon-cog\"></i> </a> <a href title=\"fullscreen widget\" ng-click=openFullScreen() ng-show=options.maximizable> <i class=\"glyphicon glyphicon-fullscreen\"></i> </a>  <a href title=\"remove widget\" ng-click=remove() ng-if=editMode> <i class=\"glyphicon glyphicon-remove\"></i> </a> </span> </h3> ");
-$templateCache.put("../src/templates/widget.html","<div adf-id={{definition.wid}} adf-widget-type={{definition.type}} class=\"widget panel panel-default\"> <div class=\"panel-heading clearfix\"> <div ng-include src=definition.titleTemplateUrl></div> </div> <div class=panel-body collapse=widgetState.isCollapsed> <adf-widget-content model=definition content=widget> </adf-widget-content></div> </div> ");}]);})(window);
+$templateCache.put("../src/templates/widget.html","<div adf-id={{definition.wid}} adf-widget-type={{definition.type}} ng-class=\"{\'panel panel-default\':!widget.frameless || editMode}\" class=widget> <div class=\"panel-heading clearfix\" ng-if=\"!widget.frameless || editMode\"> <div ng-include src=definition.titleTemplateUrl></div> </div> <div ng-class=\"{\'panel-body\':!widget.frameless || editMode}\" collapse=widgetState.isCollapsed> <adf-widget-content model=definition content=widget> </adf-widget-content></div> </div> ");}]);})(window);

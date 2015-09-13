@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Add New Widget</h4>
+</div>
+<div class="modal-body">
+  <div>
+
+    <div class="panel panel-default" ng-repeat="(key, widget) in widgets">
+      <div class="panel-heading">{{widget.title}}</div>
+      <div class="panel-body" ng-if="widget.description">
+        <span class="pull-right">
+          <a href="" ng-click="addWidget(key)">
+            <span class="glyphicon glyphicon-plus"></span>
+          </a>
+        </span>
+        {{widget.description}}
+      </div>      
+    </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
+</div>
