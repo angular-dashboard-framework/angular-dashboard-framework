@@ -40,8 +40,8 @@
     "angular-mocks": ">=1.2",
     "angular-scenario": ">=1.2",
     "angular-route": ">=1.2",
-    "angular-local-storage": "0.1.5",
-    "es5-shim": "~2.0.8"
+    "angular-local-storage": ">=0.2",
+    "es5-shim": ">=4.1"
   },
   "resolutions": {
     "angular": ">=1.2"
