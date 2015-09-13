@@ -1,6 +1,6 @@
 # angular-dashboard-framework
 
-[![Build Status](https://travis-ci.org/sdorra/angular-dashboard-framework.svg?branch=master)](https://travis-ci.org/sdorra/angular-dashboard-framework) [![Dependency Status](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a) [![Join the chat at https://gitter.im/sdorra/angular-dashboard-framework](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sdorra/angular-dashboard-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]() [![Build Status](https://travis-ci.org/sdorra/angular-dashboard-framework.svg?branch=master)](https://travis-ci.org/sdorra/angular-dashboard-framework) [![Dependency Status](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a) [![Join the chat at https://gitter.im/sdorra/angular-dashboard-framework](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sdorra/angular-dashboard-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Dashboard framework with Angular.js and Twitter Bootstrap.
 
