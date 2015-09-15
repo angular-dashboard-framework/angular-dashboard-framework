@@ -151,16 +151,15 @@ angular.module('adf')
           editScope.closeDialog = function() {
             instance.close();
             editScope.$destroy();
-
-            var widget = $scope.widget;
-            if (widget.edit && widget.edit.reload) {
-              // reload content after edit dialog is closed
-              $scope.$broadcast('widgetConfigChanged');
-            }
           };
           editScope.saveDialog = function() {
             definition.title = editScope.definition.title;
             angular.extend(definition.config, editScope.definition.config);
+            var widget = $scope.widget;
+            if (widget.edit && widget.edit.reload) {
+                // reload content after edit dialog is closed
+                $scope.$broadcast('widgetConfigChanged');
+            }
             editScope.closeDialog();
           };
         };
