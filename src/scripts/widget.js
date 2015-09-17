@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfWidget', function($rootScope, $log, $modal, dashboard, adfTemplatePath) {
 
     function preLink($scope) {
       var definition = $scope.definition;
@@ -161,6 +161,7 @@ angular.module('adf')
           editScope.saveDialog = function() {
             definition.title = editScope.definition.title;
             angular.extend(definition.config, editScope.definition.config);
+            $rootScope.$broadcast('widgetDialogSaved');
             editScope.closeDialog();
           };
         };
