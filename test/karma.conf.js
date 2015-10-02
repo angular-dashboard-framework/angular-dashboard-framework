@@ -44,6 +44,7 @@ module.exports = function(config) {
             'sample/components/Sortable/Sortable.js',
             'sample/components/bootstrap/dist/js/bootstrap.js',
             'sample/components/angular-local-storage/dist/angular-local-storage.js',
+            'sample/scripts/sample.js',
 
             'src/**/*.js',
             '.tmp/*.js',

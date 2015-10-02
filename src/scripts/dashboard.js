@@ -42,6 +42,8 @@
  * @param {string=} structure the default structure of the dashboard.
  * @param {object=} adfModel model object of the dashboard.
  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
+ * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
+ *                   events during edit mode not reset it if edit mode is exited.
  */
 
 angular.module('adf')
@@ -176,8 +178,9 @@ angular.module('adf')
      *
      * @param dashboard model
      * @param widget to add to model
+     * @param name name of the dashboard
      */
-    function addNewWidgetToModel(model, widget){
+    function addNewWidgetToModel(model, widget, name){
       if (model){
         var column = findFirstWidgetColumn(model);
         if (column){
@@ -185,6 +188,7 @@ angular.module('adf')
             column.widgets = [];
           }
           column.widgets.unshift(widget);
+          $rootScope.$broadcast('adfWidgetAdded', name, model, widget);
         } else {
           $log.error('could not find first widget column');
         }
@@ -202,6 +206,8 @@ angular.module('adf')
         name: '@',
         collapsible: '@',
         editable: '@',
+        editMode: '@',
+        continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
         adfWidgetFilter: '='
@@ -255,7 +261,9 @@ angular.module('adf')
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
           if ($scope.editMode){
-            $scope.modelCopy = angular.copy($scope.adfModel, {});
+            if (!$scope.continuousEditMode) {
+              $scope.modelCopy = angular.copy($scope.adfModel, {});
+            }
           }
 
           if (!$scope.editMode){
@@ -269,7 +277,9 @@ angular.module('adf')
 
         $scope.cancelEditMode = function(){
           $scope.editMode = false;
-          $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          if (!$scope.continuousEditMode) {
+            $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          }
           $rootScope.$broadcast('adfDashboardEditsCancelled');
         };
 
@@ -336,8 +346,7 @@ angular.module('adf')
               type: widget,
               config: createConfiguration(widget)
             };
-            addNewWidgetToModel(model, w);
-            $rootScope.$broadcast('adfWidgetAdded', name, model, w);
+            addNewWidgetToModel(model, w, name);
             // close and destroy
             instance.close();
             addScope.$destroy();
@@ -348,6 +357,8 @@ angular.module('adf')
             addScope.$destroy();
           };
         };
+
+        $scope.addNewWidgetToModel = addNewWidgetToModel;
       },
       link: function ($scope, $element, $attr) {
         // pass options to scope

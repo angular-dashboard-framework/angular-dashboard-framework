@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidget', function($log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfWidget', function($log, $modal, $rootScope, dashboard, adfTemplatePath) {
 
     function preLink($scope) {
       var definition = $scope.definition;
@@ -97,6 +97,7 @@ angular.module('adf')
             }
           }
           $element.remove();
+          $rootScope.$broadcast('adfWidgetRemovedFromColumn');
         };
 
         $scope.remove = function() {

@@ -25,7 +25,7 @@
 
 /* global angular */
 angular.module('adf')
-  .directive('adfDashboardColumn', function ($log, $compile, adfTemplatePath, rowTemplate, dashboard) {
+  .directive('adfDashboardColumn', function ($log, $compile, $rootScope, adfTemplatePath, rowTemplate, dashboard) {
     'use strict';
 
     /**
@@ -36,6 +36,7 @@ angular.module('adf')
       // move widget and apply to scope
       $scope.$apply(function(){
         widgets.splice(evt.newIndex, 0, widgets.splice(evt.oldIndex, 1)[0]);
+        $rootScope.$broadcast('adfWidgetMovedInColumn');
       });
     }
 
@@ -105,6 +106,8 @@ angular.module('adf')
       				targetColumn.widgets = [];
       			}
             targetColumn.widgets.splice(evt.newIndex, 0, widget);
+
+            $rootScope.$broadcast('adfWidgetAddedToColumn');
           });
         } else {
           $log.warn('could not find widget with id ' + wid);
@@ -121,6 +124,7 @@ angular.module('adf')
       // remove old item and apply to scope
       $scope.$apply(function(){
         column.widgets.splice(evt.oldIndex, 1);
+        $rootScope.$broadcast('adfWidgetRemovedFromColumn');
       });
     }
 
@@ -158,6 +162,7 @@ angular.module('adf')
       scope: {
         column: '=',
         editMode: '=',
+        continuousEditMode: '=',
         adfModel: '=',
         options: '='
       },

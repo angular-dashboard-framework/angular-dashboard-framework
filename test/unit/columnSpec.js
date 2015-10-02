@@ -93,4 +93,64 @@ describe('column directive tests', function() {
       expect(element.find(".row").length).toBe(1);
   });
 
+    it('should create the sortable', function () {
+        spyOn(Sortable, 'create');
+
+        var element = compileTemplate(directive);
+        $scope.$digest();
+
+        expect(Sortable.create).toHaveBeenCalled();
+    });
+
+  describe('applySortable', function () {
+    var fromElement, itemElement, sourceColumn, desinationColumn, event, element, onAdd, onRemove, onUpdate;
+
+    beforeEach(function () {
+      spyOn(Sortable, 'create')
+      .and.callFake(function (element, options) {
+        onAdd = options.onAdd;
+        onRemove = options.onRemove;
+        onUpdate = options.onUpdate;
+      });
+
+      spyOn($rootScope, '$broadcast').and.callThrough();
+
+      fromElement = angular.element("<div adf-id='1'>")[0];
+      itemElement = angular.element("<div adf-id='2'>")[0];
+      sourceColumn = {cid: 1, widgets: [{wid: 2, type: 'test'}]};
+      desinationColumn = {cid: 2, widgets: []};
+
+      $scope.adfModel.rows = [
+        {
+          columns: [sourceColumn]
+        }
+      ];
+
+      $scope.column = desinationColumn;
+
+      event = {
+        from: fromElement,
+        item: itemElement
+      };
+
+      element = compileTemplate(directive);
+      $scope.$digest();
+    });
+
+    it('should broadcast an event after adding the widget to the column', function () {
+
+      onAdd(event);
+
+      expect(Sortable.create).toHaveBeenCalled();
+      expect($rootScope.$broadcast).toHaveBeenCalled();
+    });
+
+    it('should broadcast an event after removing the widget from the column', function () {
+
+      onRemove(event);
+
+      expect(Sortable.create).toHaveBeenCalled();
+      expect($rootScope.$broadcast).toHaveBeenCalled();
+    });
+  });
 });
