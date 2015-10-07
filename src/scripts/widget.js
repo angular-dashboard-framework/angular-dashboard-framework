@@ -72,7 +72,7 @@ angular.module('adf')
           // collapse exposed $scope.widgetState property
           if (!$scope.widgetState) {
             $scope.widgetState = {};
-            $scope.widgetState.isCollapsed = false;
+            $scope.widgetState.isCollapsed= (w.collapsed === true) ? w.collapsed : false;
           }
 
         } else {
