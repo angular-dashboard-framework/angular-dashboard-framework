@@ -47,7 +47,7 @@
  */
 
 angular.module('adf')
-  .directive('adfDashboard', function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', function ($rootScope, $log, $timeout, $modal, dashboard, adfTemplatePath) {
     'use strict';
 
     function stringToBoolean(string){
@@ -188,6 +188,8 @@ angular.module('adf')
             column.widgets = [];
           }
           column.widgets.unshift(widget);
+
+          // broadcast added event
           $rootScope.$broadcast('adfWidgetAdded', name, model, widget);
         } else {
           $log.error('could not find first widget column');
@@ -195,6 +197,29 @@ angular.module('adf')
       } else {
         $log.error('model is undefined');
       }
+    }
+
+    /**
+     * Checks if the edit mode of the widget should be opened immediately.
+     *
+     * @param widget type
+     */
+    function isEditModeImmediate(type){
+      var widget = dashboard.widgets[type];
+      return widget && widget.edit && widget.edit.immediate;
+    }
+
+    /**
+     * Opens the edit mode of the specified widget.
+     *
+     * @param dashboard scope
+     * @param widget
+     */
+    function openEditMode($scope, widget){
+      // wait some time before fire enter edit mode event
+      $timeout(function(){
+        $scope.$broadcast('adfWidgetEnterEditMode', widget);
+      }, 200);
     }
 
     return {
@@ -329,8 +354,7 @@ angular.module('adf')
           addScope.widgets = widgets;
 
           var adfAddTemplatePath = adfTemplatePath + 'widget-add.html';
-          if(model.addTemplateUrl)
-          {
+          if(model.addTemplateUrl) {
             adfAddTemplatePath = model.addTemplateUrl;
           }
 
@@ -350,6 +374,11 @@ angular.module('adf')
             // close and destroy
             instance.close();
             addScope.$destroy();
+
+            // check for open edit mode immediately
+            if (isEditModeImmediate(widget)){
+              openEditMode($scope, w);
+            }
           };
           addScope.closeDialog = function(){
             // close and destroy

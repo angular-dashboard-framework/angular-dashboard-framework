@@ -28,27 +28,42 @@ describe('widget directive tests', function() {
 
   var $compile,
       $rootScope,
+      $modal,
       $scope,
       directive,
       dashboard;
 
   // Load the myApp module, which contains the directive
-  beforeEach(module('adf'));
+  beforeEach(function(){
+    var modalMock = {
+      opts: null,
+      open: function(opts){
+        this.opts = opts;
+      }
+    };
+
+    module('adf')
+    module({
+      $modal: modalMock
+    })
+  });
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
-  beforeEach(inject(function(_$compile_, _$rootScope_, _dashboard_){
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$modal_, _dashboard_){
       // The injector unwraps the underscores (_) from around the parameter names when matching
       $compile = _$compile_;
       $rootScope = _$rootScope_;
+      $modal = _$modal_;
       dashboard = _dashboard_;
       dashboard.widgets = [];
 
       $scope = $rootScope.$new();
-      directive = '<adf-widget definition="definition" column="column" options="options" edit-mode="editMode" />';
+      directive = '<adf-widget definition="definition" column="column" options="options" edit-mode="editMode" widget-state="widgetState" />';
 
       $scope.definition = {};
       $scope.column = {};
+      $scope.widgetState = {};
       $scope.options = {};
       $scope.editMode = false;
   }));
@@ -91,6 +106,42 @@ describe('widget directive tests', function() {
 
       expect($scope.column.widgets.length).toBe(1);
       expect($scope.column.widgets[0].type).toBe('tesa');
+  });
+
+  it('should set isCollapsed to true', function() {
+    dashboard.widgets['test'] = {
+      template: '<div class="hello">Hello World</div>'
+    };
+    $scope.definition = {
+      type: 'test'
+    };
+    compileTemplate(directive);
+    expect($scope.widgetState.isCollapsed).toBeUndefined();
+    $rootScope.$broadcast('adfDashboardCollapseExapand', {
+      collapseExpandStatus: true
+    });
+    $scope.$digest();
+    expect($scope.widgetState.isCollapsed).toBe(true);
+  });
+
+  it('should open the edit mode', function() {
+    dashboard.widgets['test'] = {
+      wid: 1,
+      template: '<div class="hello">Hello World</div>',
+      edit: {
+        immediate: true
+      }
+    };
+    $scope.definition = {
+      type: 'test'
+    };
+    compileTemplate(directive);
+    $rootScope.$broadcast('adfWidgetEnterEditMode', dashboard.widgets['test']);
+
+    // check for edit mode template
+    expect($modal.opts.templateUrl).toBe('../src/templates/widget-edit.html');
+    // check for correct widget in edit scope
+    expect($modal.opts.scope.definition.wid).toBe(1);
   });
 
 });

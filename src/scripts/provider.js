@@ -92,13 +92,17 @@ angular.module('adf.provider', [])
     *      - `resolve` - `{Object.<string, function>=}` - Same as above, but for the edit mode of the widget.
     *      - `reload` - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
     *        Default is true.
+    *      - `immediate` - {boolean} - The widget enters the edit mode immediately after creation. Default is false.
     *
     * @returns {Object} self
     */
     this.widget = function(name, widget){
       var w = angular.extend({reload: false, frameless: false}, widget);
       if ( w.edit ){
-        var edit = {reload: true};
+        var edit = {
+          reload: true,
+          immediate: false
+        };
         angular.extend(edit, w.edit);
         w.edit = edit;
       }

@@ -187,6 +187,12 @@ angular.module('adf')
           $scope.widgetState.isCollapsed = args.collapseExpandStatus;
         });
 
+        $scope.$on('adfWidgetEnterEditMode', function(event, widget){
+          if ($scope.definition.wid === widget.wid){
+            $scope.edit();
+          }
+        });
+
         $scope.openFullScreen = function() {
           var definition = $scope.definition;
           var fullScreenScope = $scope.$new();
