@@ -152,7 +152,11 @@ angular.module('adf')
 
       // destroy sortable on column destroy event
       $element.on('$destroy', function () {
-        sortable.destroy();
+        // check sortable element, before calling destroy
+        // see https://github.com/sdorra/angular-dashboard-framework/issues/118
+        if (sortable.el){
+          sortable.destroy();
+        }
       });
     }
 
