@@ -1,6 +1,8 @@
 {
   "name": "angular-dashboard-framework",
   "version": "0.11.0-SNAPSHOT",
+  "license": "MIT",
+  "authors": "Sebastian Sdorra",
   "devDependencies": {
     "connect-modrewrite": "^0.8.2",
     "del": "^2.0.2",
