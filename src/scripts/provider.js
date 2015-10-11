@@ -150,6 +150,8 @@ angular.module('adf.provider', [])
     *     - `styleClass` - `{string}` - CSS Class of the row.
     *     - `columns` - `{Array.<Object>}` - Columns of the row.
     *       - `styleClass` - `{string}` - CSS Class of the column.
+    *       - `widgets` - `{Array.<Object>}` - Array of objects that represent which widgets to show on init
+    *         - `type` - `{string}` - Type (Name) of the widget
     *
     * @returns {Object} self
     */
