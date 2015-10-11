@@ -10,22 +10,24 @@
     "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
+    ".git",
     ".tmp",
     "dist/docs",
+    "dist/reports",
     "dist/sample",
-    "e2e",
     "node_modules",
     "sample",
     "src",
+    "test",
     ".bowerrc",
     ".editorconfig",
     ".gitignore",
     ".gitmodules",
     ".jshintrc",
+    ".travis.yml",
     "bower.json",
     "gulpfile.js",
-    "package.json",
-    "protractor.conf.js"
+    "package.json"
   ],
   "keywords": [
     "dashboard",
