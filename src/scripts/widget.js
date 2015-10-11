@@ -183,7 +183,7 @@ angular.module('adf')
       },
       controller: function($scope) {
 
-        $scope.$on('adfDashboardCollapseExapand', function(event, args) {
+        $scope.$on('adfDashboardCollapseExpand', function(event, args) {
           $scope.widgetState.isCollapsed = args.collapseExpandStatus;
         });
 

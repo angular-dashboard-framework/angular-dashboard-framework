@@ -117,7 +117,7 @@ describe('widget directive tests', function() {
     };
     compileTemplate(directive);
     expect($scope.widgetState.isCollapsed).toBeUndefined();
-    $rootScope.$broadcast('adfDashboardCollapseExapand', {
+    $rootScope.$broadcast('adfDashboardCollapseExpand', {
       collapseExpandStatus: true
     });
     $scope.$digest();

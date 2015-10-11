@@ -145,7 +145,7 @@ describe('Dashboard Directive tests', function () {
 
         // Enable edit mode
         isolatedScope.collapseAll(1);
-        expect($rootScope.$broadcast).toHaveBeenCalledWith('adfDashboardCollapseExapand', {collapseExpandStatus: 1});
+        expect($rootScope.$broadcast).toHaveBeenCalledWith('adfDashboardCollapseExpand', {collapseExpandStatus: 1});
     });
 
     it('should not copy the model, if the directive is in continuous edit mode', function () {
