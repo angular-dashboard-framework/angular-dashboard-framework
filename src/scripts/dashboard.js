@@ -318,9 +318,14 @@ angular.module('adf')
           };
           editDashboardScope.structures = dashboard.structures;
 
+          var adfEditTemplatePath = adfTemplatePath + 'dashboard-edit.html';
+          if(model.editTemplateUrl)
+          {
+            adfEditTemplatePath = model.editTemplateUrl;
+          }
           var instance = $modal.open({
             scope: editDashboardScope,
-            templateUrl: adfTemplatePath + 'dashboard-edit.html',
+            templateUrl: adfEditTemplatePath,
             backdrop: 'static'
           });
           $scope.changeStructure = function(name, structure){
