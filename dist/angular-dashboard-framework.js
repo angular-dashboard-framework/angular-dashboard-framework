@@ -58,7 +58,7 @@ angular.module('adf', ['adf.provider', 'ui.bootstrap'])
 
 /* global angular */
 angular.module('adf')
-  .directive('adfDashboardColumn', ["$log", "$compile", "adfTemplatePath", "rowTemplate", "dashboard", function ($log, $compile, adfTemplatePath, rowTemplate, dashboard) {
+  .directive('adfDashboardColumn', ["$log", "$compile", "$rootScope", "adfTemplatePath", "rowTemplate", "dashboard", function ($log, $compile, $rootScope, adfTemplatePath, rowTemplate, dashboard) {
     
 
     /**
@@ -69,6 +69,7 @@ angular.module('adf')
       // move widget and apply to scope
       $scope.$apply(function(){
         widgets.splice(evt.newIndex, 0, widgets.splice(evt.oldIndex, 1)[0]);
+        $rootScope.$broadcast('adfWidgetMovedInColumn');
       });
     }
 
@@ -138,6 +139,8 @@ angular.module('adf')
       				targetColumn.widgets = [];
       			}
             targetColumn.widgets.splice(evt.newIndex, 0, widget);
+
+            $rootScope.$broadcast('adfWidgetAddedToColumn');
           });
         } else {
           $log.warn('could not find widget with id ' + wid);
@@ -154,6 +157,7 @@ angular.module('adf')
       // remove old item and apply to scope
       $scope.$apply(function(){
         column.widgets.splice(evt.oldIndex, 1);
+        $rootScope.$broadcast('adfWidgetRemovedFromColumn');
       });
     }
 
@@ -181,7 +185,11 @@ angular.module('adf')
 
       // destroy sortable on column destroy event
       $element.on('$destroy', function () {
-        sortable.destroy();
+        // check sortable element, before calling destroy
+        // see https://github.com/sdorra/angular-dashboard-framework/issues/118
+        if (sortable.el){
+          sortable.destroy();
+        }
       });
     }
 
@@ -191,6 +199,7 @@ angular.module('adf')
       scope: {
         column: '=',
         editMode: '=',
+        continuousEditMode: '=',
         adfModel: '=',
         options: '='
       },
@@ -259,10 +268,12 @@ angular.module('adf')
  * @param {string=} structure the default structure of the dashboard.
  * @param {object=} adfModel model object of the dashboard.
  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
+ * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
+ *                   events during edit mode not reset it if edit mode is exited.
  */
 
 angular.module('adf')
-  .directive('adfDashboard', ["$rootScope", "$log", "$modal", "dashboard", "adfTemplatePath", function ($rootScope, $log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', ["$rootScope", "$log", "$timeout", "$modal", "dashboard", "adfTemplatePath", function ($rootScope, $log, $timeout, $modal, dashboard, adfTemplatePath) {
     
 
     function stringToBoolean(string){
@@ -393,8 +404,9 @@ angular.module('adf')
      *
      * @param dashboard model
      * @param widget to add to model
+     * @param name name of the dashboard
      */
-    function addNewWidgetToModel(model, widget){
+    function addNewWidgetToModel(model, widget, name){
       if (model){
         var column = findFirstWidgetColumn(model);
         if (column){
@@ -402,12 +414,38 @@ angular.module('adf')
             column.widgets = [];
           }
           column.widgets.unshift(widget);
+
+          // broadcast added event
+          $rootScope.$broadcast('adfWidgetAdded', name, model, widget);
         } else {
           $log.error('could not find first widget column');
         }
       } else {
         $log.error('model is undefined');
       }
+    }
+
+    /**
+     * Checks if the edit mode of the widget should be opened immediately.
+     *
+     * @param widget type
+     */
+    function isEditModeImmediate(type){
+      var widget = dashboard.widgets[type];
+      return widget && widget.edit && widget.edit.immediate;
+    }
+
+    /**
+     * Opens the edit mode of the specified widget.
+     *
+     * @param dashboard scope
+     * @param widget
+     */
+    function openEditMode($scope, widget){
+      // wait some time before fire enter edit mode event
+      $timeout(function(){
+        $scope.$broadcast('adfWidgetEnterEditMode', widget);
+      }, 200);
     }
 
     return {
@@ -419,6 +457,8 @@ angular.module('adf')
         name: '@',
         collapsible: '@',
         editable: '@',
+        editMode: '@',
+        continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
         adfWidgetFilter: '='
@@ -472,7 +512,9 @@ angular.module('adf')
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
           if ($scope.editMode){
-            $scope.modelCopy = angular.copy($scope.adfModel, {});
+            if (!$scope.continuousEditMode) {
+              $scope.modelCopy = angular.copy($scope.adfModel, {});
+            }
           }
 
           if (!$scope.editMode){
@@ -481,12 +523,14 @@ angular.module('adf')
         };
 
         $scope.collapseAll = function(collapseExpandStatus){
-          $rootScope.$broadcast('adfDashboardCollapseExapand',{collapseExpandStatus : collapseExpandStatus});
+          $rootScope.$broadcast('adfDashboardCollapseExpand',{collapseExpandStatus : collapseExpandStatus});
         };
 
         $scope.cancelEditMode = function(){
           $scope.editMode = false;
-          $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          if (!$scope.continuousEditMode) {
+            $scope.modelCopy = angular.copy($scope.modelCopy, $scope.adfModel);
+          }
           $rootScope.$broadcast('adfDashboardEditsCancelled');
         };
 
@@ -500,9 +544,14 @@ angular.module('adf')
           };
           editDashboardScope.structures = dashboard.structures;
 
+          var adfEditTemplatePath = adfTemplatePath + 'dashboard-edit.html';
+          if(model.editTemplateUrl)
+          {
+            adfEditTemplatePath = model.editTemplateUrl;
+          }
           var instance = $modal.open({
             scope: editDashboardScope,
-            templateUrl: adfTemplatePath + 'dashboard-edit.html',
+            templateUrl: adfEditTemplatePath,
             backdrop: 'static'
           });
           $scope.changeStructure = function(name, structure){
@@ -536,8 +585,7 @@ angular.module('adf')
           addScope.widgets = widgets;
 
           var adfAddTemplatePath = adfTemplatePath + 'widget-add.html';
-          if(model.addTemplateUrl)
-          {
+          if(model.addTemplateUrl) {
             adfAddTemplatePath = model.addTemplateUrl;
           }
 
@@ -553,11 +601,15 @@ angular.module('adf')
               type: widget,
               config: createConfiguration(widget)
             };
-            addNewWidgetToModel(model, w);
-            $rootScope.$broadcast('adfWidgetAdded', name, model, w);
+            addNewWidgetToModel(model, w, name);
             // close and destroy
             instance.close();
             addScope.$destroy();
+
+            // check for open edit mode immediately
+            if (isEditModeImmediate(widget)){
+              openEditMode($scope, w);
+            }
           };
           addScope.closeDialog = function(){
             // close and destroy
@@ -565,6 +617,8 @@ angular.module('adf')
             addScope.$destroy();
           };
         };
+
+        $scope.addNewWidgetToModel = addNewWidgetToModel;
       }],
       link: function ($scope, $element, $attr) {
         // pass options to scope
@@ -678,13 +732,17 @@ angular.module('adf.provider', [])
     *      - `resolve` - `{Object.<string, function>=}` - Same as above, but for the edit mode of the widget.
     *      - `reload` - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
     *        Default is true.
+    *      - `immediate` - {boolean} - The widget enters the edit mode immediately after creation. Default is false.
     *
     * @returns {Object} self
     */
     this.widget = function(name, widget){
       var w = angular.extend({reload: false, frameless: false}, widget);
       if ( w.edit ){
-        var edit = {reload: true};
+        var edit = {
+          reload: true,
+          immediate: false
+        };
         angular.extend(edit, w.edit);
         w.edit = edit;
       }
@@ -854,6 +912,7 @@ angular.module('adf')
         row: '=',
         adfModel: '=',
         editMode: '=',
+        continuousEditMode: '=',
         options: '='
       },
       templateUrl: adfTemplatePath + 'dashboard-row.html',
@@ -1054,7 +1113,7 @@ angular.module('adf')
 
 
 angular.module('adf')
-  .directive('adfWidget', ["$log", "$modal", "dashboard", "adfTemplatePath", function($log, $modal, dashboard, adfTemplatePath) {
+  .directive('adfWidget', ["$log", "$modal", "$rootScope", "dashboard", "adfTemplatePath", function($log, $modal, $rootScope, dashboard, adfTemplatePath) {
 
     function preLink($scope) {
       var definition = $scope.definition;
@@ -1126,6 +1185,7 @@ angular.module('adf')
             }
           }
           $element.remove();
+          $rootScope.$broadcast('adfWidgetRemovedFromColumn');
         };
 
         $scope.remove = function() {
@@ -1180,16 +1240,15 @@ angular.module('adf')
           editScope.closeDialog = function() {
             instance.close();
             editScope.$destroy();
-
-            var widget = $scope.widget;
-            if (widget.edit && widget.edit.reload) {
-              // reload content after edit dialog is closed
-              $scope.$broadcast('widgetConfigChanged');
-            }
           };
           editScope.saveDialog = function() {
             definition.title = editScope.definition.title;
             angular.extend(definition.config, editScope.definition.config);
+            var widget = $scope.widget;
+            if (widget.edit && widget.edit.reload) {
+                // reload content after edit dialog is closed
+                $scope.$broadcast('widgetConfigChanged');
+            }
             editScope.closeDialog();
           };
         };
@@ -1212,8 +1271,14 @@ angular.module('adf')
       },
       controller: ["$scope", function($scope) {
 
-        $scope.$on('adfDashboardCollapseExapand', function(event, args) {
+        $scope.$on('adfDashboardCollapseExpand', function(event, args) {
           $scope.widgetState.isCollapsed = args.collapseExpandStatus;
+        });
+
+        $scope.$on('adfWidgetEnterEditMode', function(event, widget){
+          if ($scope.definition.wid === widget.wid){
+            $scope.edit();
+          }
         });
 
         $scope.openFullScreen = function() {
@@ -1253,7 +1318,7 @@ angular.module("adf").run(["$templateCache", function($templateCache) {$template
 $templateCache.put("../src/templates/dashboard-edit.html","<div class=modal-header> <button type=button class=close ng-click=closeDialog() aria-hidden=true>&times;</button> <h4 class=modal-title>Edit Dashboard</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=dashboardTitle>Title</label> <input type=text class=form-control id=dashboardTitle ng-model=copy.title required> </div> <div class=form-group> <label>Structure</label> <div class=radio ng-repeat=\"(key, structure) in structures\"> <label> <input type=radio value={{key}} ng-model=model.structure ng-change=\"changeStructure(key, structure)\"> {{key}} </label> </div> </div> </form> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=closeDialog()>Close</button> </div> ");
 $templateCache.put("../src/templates/dashboard-row.html","<div class=row ng-class=row.styleClass>  </div> ");
 $templateCache.put("../src/templates/dashboard-title.html","<h1> {{model.title}} <span style=\"font-size: 16px\" class=pull-right> <a href ng-if=editMode title=\"add new widget\" ng-click=addWidgetDialog()> <i class=\"glyphicon glyphicon-plus-sign\"></i> </a> <a href ng-if=editMode title=\"edit dashboard\" ng-click=editDashboardDialog()> <i class=\"glyphicon glyphicon-cog\"></i> </a> <a href ng-if=options.editable title=\"{{editMode ? \'save changes\' : \'enable edit mode\'}}\" ng-click=toggleEditMode()> <i class=glyphicon x-ng-class=\"{\'glyphicon-edit\' : !editMode, \'glyphicon-save\' : editMode}\"></i> </a> <a href ng-if=editMode title=\"undo changes\" ng-click=cancelEditMode()> <i class=\"glyphicon glyphicon-repeat adf-flip\"></i> </a> </span> </h1> ");
-$templateCache.put("../src/templates/dashboard.html","<div class=dashboard-container> <div ng-include src=model.titleTemplateUrl></div> <div class=dashboard x-ng-class=\"{\'edit\' : editMode}\"> <adf-dashboard-row row=row adf-model=model options=options ng-repeat=\"row in model.rows\" edit-mode=editMode> </adf-dashboard-row></div> </div> ");
+$templateCache.put("../src/templates/dashboard.html","<div class=dashboard-container> <div ng-include src=model.titleTemplateUrl></div> <div class=dashboard x-ng-class=\"{\'edit\' : editMode}\"> <adf-dashboard-row row=row adf-model=model options=options ng-repeat=\"row in model.rows\" edit-mode=editMode continuous-edit-mode=continuousEditMode> </adf-dashboard-row></div> </div> ");
 $templateCache.put("../src/templates/widget-add.html","<div class=modal-header> <button type=button class=close ng-click=closeDialog() aria-hidden=true>&times;</button> <h4 class=modal-title>Add new widget</h4> </div> <div class=modal-body> <div style=\"display: inline-block;\"> <dl class=dl-horizontal> <dt ng-repeat-start=\"(key, widget) in widgets\"> <a href ng-click=addWidget(key)> {{widget.title}} </a> </dt> <dd ng-repeat-end ng-if=widget.description> {{widget.description}} </dd> </dl> </div> </div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=closeDialog()>Close</button> </div>");
 $templateCache.put("../src/templates/widget-delete.html","<div class=modal-header> <h4 class=modal-title>Delete {{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>Are you sure you want to delete this widget ?</label> </div> </form> </div> <div class=modal-footer> <button type=button class=\"btn btn-default\" ng-click=closeDialog()>Close</button> <button type=button class=\"btn btn-primary\" ng-click=deleteDialog()>Delete</button> </div> ");
 $templateCache.put("../src/templates/widget-edit.html","<div class=modal-header> <button type=button class=close ng-click=closeDialog() aria-hidden=true>&times;</button> <h4 class=modal-title>{{widget.title}}</h4> </div> <div class=modal-body> <form role=form> <div class=form-group> <label for=widgetTitle>Title</label> <input type=text class=form-control id=widgetTitle ng-model=definition.title placeholder=\"Enter title\" required> </div> </form> <div ng-if=widget.edit> <adf-widget-content model=definition content=widget.edit> </adf-widget-content></div> </div> <div class=modal-footer> <button type=button class=\"btn btn-default\" ng-click=closeDialog()>Cancel</button> <button type=button class=\"btn btn-primary\" ng-click=saveDialog()>Apply</button> </div> ");
