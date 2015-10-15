@@ -94,7 +94,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
                         {
                           "type": "githubHistory",
                           "config": {
-                            "path": "sdorra/angular-dashboard-framework"
+                            "path": "angular-dashboard-framework/angular-dashboard-framework"
                           },
                           "title": "Github History"
                         }
