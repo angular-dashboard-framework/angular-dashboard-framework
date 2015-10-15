@@ -1,18 +1,18 @@
 # angular-dashboard-framework
 
-[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/sdorra/angular-dashboard-framework/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/sdorra/angular-dashboard-framework.svg?branch=master)](https://travis-ci.org/sdorra/angular-dashboard-framework) [![Dependency Status](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a) [![Join the chat at https://gitter.im/sdorra/angular-dashboard-framework](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sdorra/angular-dashboard-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/angular-dashboard-framework/angular-dashboard-framework/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/angular-dashboard-framework/angular-dashboard-framework.svg?branch=master)](https://travis-ci.org/angular-dashboard-framework/angular-dashboard-framework) [![Dependency Status](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55f54a4a3ed894001700031a) [![Join the chat at https://gitter.im/sdorra/angular-dashboard-framework](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/angular-dashboard-framework/angular-dashboard-framework?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Dashboard framework with Angular.js and Twitter Bootstrap.
 
-The api of angular-dashboard-framework (adf) is documented [here](http://sdorra.github.io/angular-dashboard-framework/docs/). A getting
-started guide can be found [here](https://github.com/sdorra/angular-dashboard-framework/wiki/Getting-started).
+The api of angular-dashboard-framework (adf) is documented [here](http://angular-dashboard-framework.github.io/angular-dashboard-framework/docs/). A getting
+started guide can be found [here](https://github.com/angular-dashboard-framework/angular-dashboard-framework/wiki/Getting-started).
 Follow me ([@ssdorra](https://twitter.com/ssdorra)) on twitter for latest updates and news about adf.
 
 ## Demo
 
-A live demo of the adf can be viewed [here](http://sdorra.github.io/angular-dashboard-framework/). The demo uses html5 localStorage to store the state of the dashboard. The source of the demo can be found [here](https://github.com/sdorra/angular-dashboard-framework/tree/master/sample).
+A live demo of the adf can be viewed [here](http://angular-dashboard-framework.github.io/angular-dashboard-framework/). The demo uses html5 localStorage to store the state of the dashboard. The source of the demo can be found [here](https://github.com/angular-dashboard-framework/angular-dashboard-framework/tree/master/sample).
 
-A more dynamic example can be found [here](https://github.com/sdorra/adf-dynamic-example).
+A more dynamic example can be found [here](https://github.com/angular-dashboard-framework/adf-dynamic-example).
 
 ## Build from source
 
@@ -26,7 +26,7 @@ npm install -g gulp
 Clone the repository:
 
 ```bash
-git clone https://github.com/sdorra/angular-dashboard-framework
+git clone https://github.com/angular-dashboard-framework/angular-dashboard-framework
 cd angular-dashboard-framework
 ```
 
