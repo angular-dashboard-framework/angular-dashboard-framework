@@ -50,6 +50,7 @@ describe('Dashboard Provider tests', function() {
 
     var widget2 = provider.$get().widgets['test-2'];
     expect(widget2.edit.reload).toBe(true);
+    expect(widget2.edit.immediate).toBe(false);
   }));
 
   it('should store widget path', inject(function(){

@@ -35,6 +35,7 @@ angular.module('adf')
         row: '=',
         adfModel: '=',
         editMode: '=',
+        continuousEditMode: '=',
         options: '='
       },
       templateUrl: adfTemplatePath + 'dashboard-row.html',

@@ -1,27 +1,33 @@
 {
   "name": "angular-dashboard-framework",
   "version": "0.11.0-SNAPSHOT",
+  "license": "MIT",
+  "authors": [
+    "Sebastian Sdorra"
+  ],
   "main": [
     "dist/angular-dashboard-framework.js",
     "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
+    ".git",
     ".tmp",
     "dist/docs",
+    "dist/reports",
     "dist/sample",
-    "e2e",
     "node_modules",
     "sample",
     "src",
+    "test",
     ".bowerrc",
     ".editorconfig",
     ".gitignore",
     ".gitmodules",
     ".jshintrc",
+    ".travis.yml",
     "bower.json",
     "gulpfile.js",
-    "package.json",
-    "protractor.conf.js"
+    "package.json"
   ],
   "keywords": [
     "dashboard",

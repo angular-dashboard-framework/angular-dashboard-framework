@@ -1,0 +1,13 @@
+<div>
+    Events:
+    <ul>
+        <li ng-repeat="event in eventsFired">{{ event.name }}</li>
+    </ul>
+    <adf-dashboard
+            name="{{ name }}"
+            collapsible="{{ collapsible }}"
+            maximizable="{{ maximizable }}"
+            structure="4-8"
+            adf-model="model"
+            continuous-edit-mode="true"/>
+</div>
