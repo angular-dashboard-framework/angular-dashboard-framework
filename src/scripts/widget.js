@@ -26,7 +26,7 @@
 
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, $rootScope, dashboard, adfTemplatePath) {
-    
+
     function preLink($scope) {
       var definition = $scope.definition;
       if (definition) {
