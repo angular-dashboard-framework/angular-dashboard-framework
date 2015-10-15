@@ -26,6 +26,7 @@
 
 angular.module('adf')
   .directive('adfWidget', function($log, $modal, $rootScope, dashboard, adfTemplatePath) {
+    
     function preLink($scope) {
       var definition = $scope.definition;
       if (definition) {
@@ -155,15 +156,11 @@ angular.module('adf')
           editScope.saveDialog = function() {
             definition.title = editScope.definition.title;
             angular.extend(definition.config, editScope.definition.config);
-<<<<<<< HEAD
-            $rootScope.$broadcast('widgetDialogSaved');
-=======
             var widget = $scope.widget;
             if (widget.edit && widget.edit.reload) {
                 // reload content after edit dialog is closed
                 $scope.$broadcast('widgetConfigChanged');
             }
->>>>>>> fa5533856fb197cb4843b73758a59934016ea1ff
             editScope.closeDialog();
           };
         };
