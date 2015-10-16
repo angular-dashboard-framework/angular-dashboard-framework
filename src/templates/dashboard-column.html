@@ -1,10 +1,17 @@
 <div adf-id="{{column.cid}}" class="column" ng-class="column.styleClass" ng-model="column.widgets">
-    <adf-widget ng-repeat="definition in column.widgets"
-                definition="definition"
-                column="column"
-                edit-mode="editMode"
-                options="options"
-                widget-state="widgetState"
-    />
+
+  <div ng-sortable="sortableConfig" class="adf-widgets" ng-class="{'disabled-placeholder':hasNestedRows()}">
+
+      <adf-widget ng-repeat="definition in column.widgets"
+                    definition="definition"
+                    column="column"
+                    edit-mode="editMode"
+                    options="options"
+                    widget-state="widgetState"
+        />
+
+  </div>
+
     <!-- If present, a new row will be injected here -->
 </div>
+

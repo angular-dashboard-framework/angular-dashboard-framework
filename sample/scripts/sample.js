@@ -30,7 +30,7 @@ angular.module('sample', [
   'adf.widget.github', 'adf.widget.version',
   'adf.widget.clock', 'LocalStorageModule',
   'sample-01', 'sample-02', 'sample-03',
-  'sample-04', 'sample-05', 'ngRoute'
+  'sample-04', 'sample-05', 'ngRoute', 'ng-sortable'
 ])
 .config(function(dashboardProvider, $routeProvider, localStorageServiceProvider){
   dashboardProvider.widgetsPath('widgets/');
