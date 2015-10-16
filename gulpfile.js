@@ -82,8 +82,12 @@ gulp.task('clean', function(cb){
 
 /** build **/
 
-gulp.task('css', function(){
-  gulp.src('src/styles/*.css')
+gulp.task('styles', function(){
+  gulp.src(['src/styles/**/*.scss'])
+      .pipe($.sass({
+        precision: 10,
+        outputStyle: 'expanded'
+      }).on('error', $.sass.logError))
       .pipe($.concat(name + '.css'))
       .pipe(gulp.dest('dist/'))
       .pipe($.rename(name + '.min.css'))
@@ -108,7 +112,7 @@ gulp.task('js', function(){
       .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('build', ['css', 'js']);
+gulp.task('build', ['styles', 'js']);
 
 /** build docs **/
 
@@ -185,7 +189,7 @@ gulp.task('sample', ['widget-templates', 'sample-templates', 'dashboard-template
 gulp.task('watch', function(){
   var paths = [
     'src/scripts/*.js',
-    'src/styles/*.css',
+    'src/styles/*.scss',
     'src/templates/*.html',
     'sample/*.html',
     'sample/scripts/*.js',
