@@ -41,6 +41,14 @@
   border-radius: 5px;
 }
 
+.edit .adf-widgets {
+  min-height: 90px;
+}
+
+.edit .disabled-placeholder {
+  min-height: 0;
+}
+
 pre.edit {
   margin-top: 15px;
 }
