@@ -288,6 +288,7 @@ angular.module('adf')
           if ($scope.editMode){
             if (!$scope.continuousEditMode) {
               $scope.modelCopy = angular.copy($scope.adfModel, {});
+              $rootScope.$broadcast('adfIsEditMode');
             }
           }
 
