@@ -126,13 +126,14 @@ describe('widget directive tests', function() {
 
   it('should open the edit mode', function() {
     dashboard.widgets['test'] = {
-      wid: 1,
+      wid: '1',
       template: '<div class="hello">Hello World</div>',
       edit: {
         immediate: true
       }
     };
     $scope.definition = {
+      wid: '1',
       type: 'test'
     };
     compileTemplate(directive);
@@ -141,7 +142,7 @@ describe('widget directive tests', function() {
     // check for edit mode template
     expect($modal.opts.templateUrl).toBe('../src/templates/widget-edit.html');
     // check for correct widget in edit scope
-    expect($modal.opts.scope.definition.wid).toBe(1);
+    expect($modal.opts.scope.definition.wid).toBe('1');
   });
 
 });

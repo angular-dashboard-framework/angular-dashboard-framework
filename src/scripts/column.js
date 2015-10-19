@@ -47,7 +47,7 @@ angular.module('adf')
       var widget = null;
       for (var i=0; i<column.widgets.length; i++){
         var w = column.widgets[i];
-        if (w.wid === index){
+        if (dashboard.idEquals(w.wid,index)){
           widget = w;
           break;
         }
@@ -64,7 +64,7 @@ angular.module('adf')
         var r = model.rows[i];
         for (var j=0; j<r.columns.length; j++){
           var c = r.columns[j];
-          if ( c.cid === index ){
+          if (dashboard.idEquals(c.cid, index)){
             column = c;
             break;
           } else if (c.rows){
@@ -83,7 +83,7 @@ angular.module('adf')
      */
     function getId(el){
       var id = el.getAttribute('adf-id');
-      return id ? parseInt(id) : -1;
+      return id ? id : '-1';
     }
 
     /**
