@@ -90,8 +90,10 @@ gulp.task('styles', function(){
       }).on('error', $.sass.logError))
       .pipe($.concat(name + '.css'))
       .pipe(gulp.dest('dist/'))
+      .pipe(gulp.dest('src/styles'))
       .pipe($.rename(name + '.min.css'))
       .pipe($.minifyCss())
+      .pipe(gulp.dest('src/styles'))
       .pipe(gulp.dest('dist/'));
 });
 
