@@ -117,8 +117,8 @@ describe('column directive tests', function() {
 
       fromElement = angular.element("<div adf-id='1'>")[0];
       itemElement = angular.element("<div adf-id='2'>")[0];
-      sourceColumn = {cid: 1, widgets: [{wid: 2, type: 'test'}]};
-      desinationColumn = {cid: 2, widgets: []};
+      sourceColumn = {cid: '1', widgets: [{wid: '2', type: 'test'}]};
+      desinationColumn = {cid: '2', widgets: []};
 
       $scope.adfModel.rows = [
         {

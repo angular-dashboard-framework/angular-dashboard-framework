@@ -228,11 +228,20 @@ gulp.task('serve', ['webserver', 'watch']);
 
 gulp.task('test', ['dashboard-templates', 'karma']);
 
+/** run karma */
+function runKarma(done, singleRun){
+  new karmaServer({
+      configFile : __dirname +'/test/karma.conf.js',
+      singleRun: singleRun
+  }, done).start();
+}
+
 gulp.task('karma', ['dashboard-templates'], function(done) {
-    new karmaServer({
-        configFile : __dirname +'/test/karma.conf.js',
-        singleRun: true
-    }, done).start();
+  runKarma(done, true);
+});
+
+gulp.task('karma-debug', ['dashboard-templates'], function(done) {
+  runKarma(done, false);
 });
 
 gulp.task('coverall', ['test'], function() {

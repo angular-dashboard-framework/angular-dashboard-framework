@@ -87,9 +87,20 @@ describe('Dashboard Provider tests', function() {
   it('should increase the id', inject(function(){
     var dashboard = provider.$get();
 
-    expect(dashboard.id()).toBe(1);
-    expect(dashboard.id()).toBe(2);
-    expect(dashboard.id()).toBe(3);
+    var ids = [];
+    for (var i=0; i<1000; i++){
+      var id = dashboard.id();
+      expect(ids).not.toContain(id);
+      ids[i] = id;
+    }
+  }));
+
+  it('ids should be equals', inject(function(){
+    var dashboard = provider.$get();
+    expect(dashboard.idEquals('1', '1')).toBe(true);
+    expect(dashboard.idEquals('1', 1)).toBe(true);
+    expect(dashboard.idEquals(1, '1')).toBe(true);
+    expect(dashboard.idEquals(1, 1)).toBe(true);
   }));
 
 });

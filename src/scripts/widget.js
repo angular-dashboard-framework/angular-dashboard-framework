@@ -188,7 +188,7 @@ angular.module('adf')
         });
 
         $scope.$on('adfWidgetEnterEditMode', function(event, widget){
-          if ($scope.definition.wid === widget.wid){
+          if (dashboard.idEquals($scope.definition.wid, widget.wid)){
             $scope.edit();
           }
         });
