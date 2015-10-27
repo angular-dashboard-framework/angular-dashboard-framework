@@ -10,6 +10,7 @@
 /dist/docs/
 /dist/sample/
 /dist/reports/
+/src/styles/*.css
 
 # netbeans
 /nbproject/
