@@ -86,8 +86,10 @@ gulp.task('css', function(){
   gulp.src('src/styles/*.css')
       .pipe($.concat(name + '.css'))
       .pipe(gulp.dest('dist/'))
+      .pipe(gulp.dest('src/styles'))
       .pipe($.rename(name + '.min.css'))
       .pipe($.minifyCss())
+      .pipe(gulp.dest('src/styles'))
       .pipe(gulp.dest('dist/'));
 });
 
