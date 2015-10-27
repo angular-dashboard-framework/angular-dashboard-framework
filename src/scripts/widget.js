@@ -48,6 +48,10 @@ angular.module('adf')
             definition.frameless = w.frameless;
           }
 
+          if (!definition.styleClass) {
+             definition.styleClass = w.styleClass;
+          }
+
           // set id for sortable
           if (!definition.wid) {
             definition.wid = dashboard.id();
@@ -72,7 +76,7 @@ angular.module('adf')
           // collapse exposed $scope.widgetState property
           if (!$scope.widgetState) {
             $scope.widgetState = {};
-            $scope.widgetState.isCollapsed = false;
+           $scope.widgetState.isCollapsed= (w.collapsed === true) ? w.collapsed : false;
           }
 
         } else {
