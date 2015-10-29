@@ -181,4 +181,18 @@ describe('Dashboard Directive tests', function () {
         expect(isolatedScope.modelCopy).not.toBe(isolatedScope.adfModel);
     });
 
+    it('should toggle the edit mode on the adfToggleEditMode event', function() {
+
+        var element = compileTemplate(directive);
+        expect(element.controller).not.toBeUndefined();
+        expect($scope).not.toBeUndefined();
+
+        var isolatedScope = element.isolateScope();
+
+        isolatedScope.toggleEditMode = jasmine.createSpy('toggleEditMode');
+
+        isolatedScope.$broadcast('adfToggleEditMode');
+
+        expect(isolatedScope.toggleEditMode).toHaveBeenCalled();
+    });
 });
