@@ -16,7 +16,7 @@ A more dynamic example can be found [here](https://github.com/angular-dashboard-
 
 ## Build from source
 
-Install bower and grunt:
+Install bower and gulp:
 
 ```bash
 npm install -g bower
