@@ -47,7 +47,7 @@
  */
 
 angular.module('adf')
-  .directive('adfDashboard', function ($rootScope, $log, $timeout, $modal, dashboard, adfTemplatePath) {
+  .directive('adfDashboard', function ($rootScope, $log, $timeout, $uibModal, dashboard, adfTemplatePath) {
     'use strict';
 
     function stringToBoolean(string){
@@ -319,7 +319,7 @@ angular.module('adf')
           };
           editDashboardScope.structures = dashboard.structures;
 
-          var instance = $modal.open({
+          var instance = $uibModal.open({
             scope: editDashboardScope,
             templateUrl: adfTemplatePath + 'dashboard-edit.html',
             backdrop: 'static'
@@ -365,7 +365,7 @@ angular.module('adf')
             backdrop: 'static'
           };
 
-          var instance = $modal.open(opts);
+          var instance = $uibModal.open(opts);
           addScope.addWidget = function(widget){
             var w = {
               type: widget,

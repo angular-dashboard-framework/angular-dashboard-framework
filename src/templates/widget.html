@@ -2,7 +2,7 @@
   <div class="panel-heading clearfix" ng-if="!widget.frameless || editMode">
     <div ng-include src="definition.titleTemplateUrl"></div>
   </div>
-  <div ng-class="{'panel-body':!widget.frameless || editMode}" collapse="widgetState.isCollapsed">
+  <div ng-class="{'panel-body':!widget.frameless || editMode}" uib-collapse="widgetState.isCollapsed">
     <adf-widget-content model="definition" content="widget" />
   </div>
 </div>

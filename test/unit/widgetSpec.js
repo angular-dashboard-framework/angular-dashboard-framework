@@ -28,7 +28,7 @@ describe('widget directive tests', function() {
 
   var $compile,
       $rootScope,
-      $modal,
+      $uibModal,
       $scope,
       directive,
       dashboard;
@@ -44,17 +44,17 @@ describe('widget directive tests', function() {
 
     module('adf')
     module({
-      $modal: modalMock
+      $uibModal: modalMock
     })
   });
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$modal_, _dashboard_){
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$uibModal_, _dashboard_){
       // The injector unwraps the underscores (_) from around the parameter names when matching
       $compile = _$compile_;
       $rootScope = _$rootScope_;
-      $modal = _$modal_;
+      $uibModal = _$uibModal_;
       dashboard = _dashboard_;
       dashboard.widgets = [];
 
@@ -140,9 +140,9 @@ describe('widget directive tests', function() {
     $rootScope.$broadcast('adfWidgetEnterEditMode', dashboard.widgets['test']);
 
     // check for edit mode template
-    expect($modal.opts.templateUrl).toBe('../src/templates/widget-edit.html');
+    expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-edit.html');
     // check for correct widget in edit scope
-    expect($modal.opts.scope.definition.wid).toBe('1');
+    expect($uibModal.opts.scope.definition.wid).toBe('1');
   });
 
 });

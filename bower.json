@@ -38,7 +38,7 @@
   ],
   "dependencies": {
     "angular": ">=1.2",
-    "angular-bootstrap": "^0.13.3",
+    "angular-bootstrap": "^0.14.3",
     "bootstrap": "3.3.5",
     "Sortable": "1.2.1"
   },
