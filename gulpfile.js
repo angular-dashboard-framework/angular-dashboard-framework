@@ -90,7 +90,6 @@ gulp.task('styles', function(){
       }).on('error', $.sass.logError))
       .pipe($.concat(name + '.css'))
       .pipe(gulp.dest('dist/'))
-      .pipe(gulp.dest('src/styles'))
       .pipe($.rename(name + '.min.css'))
       .pipe($.minifyCss())
       .pipe(gulp.dest('src/styles'))
@@ -188,10 +187,19 @@ gulp.task('sample', ['widget-templates', 'sample-templates', 'dashboard-template
 
 /** livereload **/
 
-gulp.task('watch', function(){
+gulp.task('reload', function(){
+  gulp.src('sample/*.html')
+      .pipe(connect.reload());
+})
+
+gulp.task('watch-styles', function(){
+  gulp.watch('src/styles/*.scss', ['styles', 'reload']);
+})
+
+gulp.task('watch', ['watch-styles'], function(){
   var paths = [
     'src/scripts/*.js',
-    'src/styles/*.scss',
+    'src/styles/*.css',
     'src/templates/*.html',
     'sample/*.html',
     'sample/scripts/*.js',
@@ -203,10 +211,7 @@ gulp.task('watch', function(){
     'sample/widgets/*/src/*.css',
     'sample/widgets/*/src/*.html'
   ];
-  gulp.watch(paths).on('change', function(file){
-    gulp.src(file.path)
-        .pipe(connect.reload());
-  });
+  gulp.watch(paths, ['reload']);
 });
 
 gulp.task('webserver', ['install-widgets'], function(){
@@ -224,7 +229,7 @@ gulp.task('webserver', ['install-widgets'], function(){
   });
 });
 
-gulp.task('serve', ['webserver', 'watch']);
+gulp.task('serve', ['webserver', 'styles', 'watch']);
 
 /** unit tests */
 
