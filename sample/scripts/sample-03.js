@@ -33,6 +33,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
       title: "Sample 03",
       addTemplateUrl : "partials/custom-dashboard-addwidget.html",      
       titleTemplateUrl : "partials/custom-dashboard-title.html",
+      editTemplateUrl: "partials/custom-dashboard-edit.html",
       structure: "6-6",
       rows: [{
         columns: [{
