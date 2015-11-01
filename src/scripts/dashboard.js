@@ -297,6 +297,10 @@ angular.module('adf')
           }
         };
 
+        $scope.$on('adfToggleEditMode', function() {
+            $scope.toggleEditMode();
+        });
+
         $scope.collapseAll = function(collapseExpandStatus){
           $rootScope.$broadcast('adfDashboardCollapseExpand',{collapseExpandStatus : collapseExpandStatus});
         };
