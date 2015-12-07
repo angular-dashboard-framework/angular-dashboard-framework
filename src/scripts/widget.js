@@ -25,7 +25,7 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidget', function($log, $uibModal, $rootScope, dashboard, adfTemplatePath) {
+  .directive('adfWidget', function($injector, $q, $log, $uibModal, $rootScope, dashboard, adfTemplatePath) {
 
     function preLink($scope) {
       var definition = $scope.definition;
@@ -153,20 +153,61 @@ angular.module('adf')
           };
 
           var instance = $uibModal.open(opts);
+
           editScope.closeDialog = function() {
             instance.close();
             editScope.$destroy();
           };
+
+          // TODO create util method
+          function createApplyPromise(result){
+            var promise;
+            if (typeof result === 'boolean'){
+              var deferred = $q.defer();
+              if (result){
+                deferred.resolve();
+              } else {
+                deferred.reject();
+              }
+              promise = deferred.promise;
+            } else {
+              promise = $q.when(result);
+            }
+            return promise;
+          }
+
           editScope.saveDialog = function() {
-            definition.title = editScope.definition.title;
-            angular.extend(definition.config, editScope.definition.config);
+            // clear validation error
+            editScope.validationError = null;
+
+            // build injection locals
             var widget = $scope.widget;
-            if (widget.edit && widget.edit.reload) {
+            var applyFn = widget.edit.apply;
+            var locals = {
+              widget: widget,
+              definition: editScope.definition,
+              config: editScope.definition.config
+            };
+
+            // invoke apply function and apply if success
+            var result = $injector.invoke(applyFn, applyFn, locals);
+            createApplyPromise(result).then(function(){
+              definition.title = editScope.definition.title;
+              angular.extend(definition.config, editScope.definition.config);
+              if (widget.edit && widget.edit.reload) {
                 // reload content after edit dialog is closed
                 $scope.$broadcast('widgetConfigChanged');
-            }
-            editScope.closeDialog();
+              }
+              editScope.closeDialog();
+            }, function(err){
+              if (err){
+                editScope.validationError = err;
+              } else {
+                editScope.validationError = 'Validation durring apply failed';
+              }
+            });
           };
+
         };
       } else {
         $log.debug('widget not found');

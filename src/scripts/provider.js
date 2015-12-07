@@ -45,6 +45,11 @@ angular.module('adf.provider', [])
         </div>\n\
       </div>';
 
+    // default apply function of widget.edit.apply
+    var defaultApplyFunction = function(){
+      return true;
+    };
+
    /**
     * @ngdoc method
     * @name adf.dashboardProvider#widget
@@ -95,6 +100,9 @@ angular.module('adf.provider', [])
     *      - `reload` - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
     *        Default is true.
     *      - `immediate` - {boolean} - The widget enters the edit mode immediately after creation. Default is false.
+    *      - `apply` - `{function()=}` - The apply function is called, before the widget is saved.
+    *        The function have to return a boolean or an promise which can be resolved to a boolean.
+    *        The function can use injection.
     *
     * @returns {Object} self
     */
@@ -103,7 +111,8 @@ angular.module('adf.provider', [])
       if ( w.edit ){
         var edit = {
           reload: true,
-          immediate: false
+          immediate: false,
+          apply: defaultApplyFunction
         };
         angular.extend(edit, w.edit);
         w.edit = edit;
