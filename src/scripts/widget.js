@@ -48,10 +48,6 @@ angular.module('adf')
             definition.frameless = w.frameless;
           }
 
-          if (!definition.styleClass) {
-            definition.styleClass = w.styleClass;
-          }
-
           // set id for sortable
           if (!definition.wid) {
             definition.wid = dashboard.id();
