@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "adf",
       "shortDescription": "The dashboard holds all options, structures and widgets.",
-      "keywords": "adf adf-dashboard-page api array class columns create creates dashboard default holds ids loading loadingtemplate messages messagetemplate method numeric ongoing options path registered service structures template widget widgets widgetspath"
+      "keywords": "adf adf-dashboard-page api array checks class column columns create creates dashboard default equal holds idequal ids loading loadingtemplate messages messagetemplate method numeric ongoing options path registered service structures template widget widgets widgetspath"
     },
     {
       "section": "api",
@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "object",
       "moduleName": "adf",
       "shortDescription": "The dashboardProvider can be used to register structures and widgets.",
-      "keywords": "$injector adf alias angularjs api associated cached changes class closed column columns config configuration configured controller controlleras created css dashboard dashboardprovider default dependencies dependency description directory displayed edit factory false fn function html http injected instantiated invoke key loaded loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path placeholder predefined promise promises properties published register registered registers rejected reload reloaded replaced resolve resolved resources result return row rows scope service sets string structure structures styleclass template templateurl title treated true unmodified values wait widget widgetpaths widgets widgetspath"
+      "keywords": "$injector adf alias angularjs api apply associated boolean bound cached called changes class classes closed collapsed column columns config configuration configured controller controlleras created creation css dashboard dashboardprovider default delimited dependencies dependency description directory displayed edit enters factory false fn frameless function html http injected injection instantiated invoke key loaded loading loadingtemplate long map messages messagetemplate method mode module modus newly object optional org passed path placeholder predefined promise promises properties published register registered registers rejected reload reloaded replaced resolve resolved resources result return row rows saved scope service sets space string structure structures styleclass template templateurl title treated true unmodified values wait widget widgetpaths widgets widgetspath"
     },
     {
       "section": "api",
@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "adf",
       "shortDescription": "adfDashboard is a directive which renders the dashboard with all its",
-      "keywords": "add adf adfdashboard adfmodel adfwidgetfilter api attribute button collapsible components dashboard default dialog directive disable div ea editable editmode enableconfirmdelete false filter function large maximizable modal model object open panel remove renders required requires store structure true widget widgets"
+      "keywords": "add adf adfdashboard adfmodel adfwidgetfilter api attribute button collapsible components continuous continuouseditmode dashboard default dialog directive disable div ea edit editable editmode enable enableconfirmdelete events exited false filter fire function large maximizable modal mode model object open panel remove renders required requires reset store structure true widget widgets"
     }
   ],
   "apis": {

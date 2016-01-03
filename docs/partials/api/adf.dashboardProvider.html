@@ -7,10 +7,10 @@
 <div class="description"><div class="adf-dashboardprovider-page"><p>The dashboardProvider can be used to register structures and widgets.</p>
 </div></div>
 <div class="member method"><h2 id="methods">Methods</h2>
-<ul class="methods"><li><h3 id="methods_loadingtemplate">loadingTemplate(loading)</h3>
+<ul class="methods"><li><h3 id="methods_loadingtemplate">loadingTemplate(template)</h3>
 <div class="loadingtemplate"><div class="adf-dashboardprovider-loadingtemplate-page"><p>Changes the template which is displayed as
 long as the widget resources are not resolved.</p>
-</div><h5 id="methods_loadingtemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>loading</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>template</p>
+</div><h5 id="methods_loadingtemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>template</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>loading template</p>
 </div></td></tr></tbody></table><h5 id="methods_loadingtemplate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>self</p>
 </div></td></tr></table></div>
 </li>
@@ -46,6 +46,7 @@ long as the widget resources are not resolved.</p>
 <ul>
 <li><code>title</code> - <code>{string=}</code> - The title of the widget.</li>
 <li><code>description</code> - <code>{string=}</code> - Description of the widget.</li>
+<li><code>collapsed</code> - <code>{boolean=}</code> - true if the widget should be in collapsed state. Default is false.</li>
 <li><code>config</code> - <code>{object}</code> - Predefined widget configuration.</li>
 <li><code>controller</code> - <code>{string=|function()=}</code> - Controller fn that should be
  associated with newly created scope of the widget or the name of a
@@ -53,6 +54,8 @@ long as the widget resources are not resolved.</p>
  if passed as a string.</li>
 <li><code>controllerAs</code> - <code>{string=}</code> - A controller alias name. If present the controller will be
  published to scope under the <code>controllerAs</code> name.</li>
+<li><code>frameless</code> - <code>{boolean=}</code> - false if the widget should be shown in frameless mode. The default is false.</li>
+<li><code>styleClass</code> - <code>{object}</code> - space delimited string or map of classes bound to the widget.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - html template as a string.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - path to an html template.</li>
 <li><code>reload</code> - <code>{boolean=}</code> - true if the widget could be reloaded. The default is false.</li>
@@ -73,11 +76,16 @@ resolved before its value is injected into the controller.</li>
 </li>
 <li><code>edit</code> - <code>{object}</code> - Edit modus of the widget.<ul>
 <li><code>controller</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
+<li><code>controllerAs</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>reload</code> - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
 Default is true.</li>
+<li><code>immediate</code> - {boolean} - The widget enters the edit mode immediately after creation. Default is false.</li>
+<li><code>apply</code> - <code>{function()=}</code> - The apply function is called, before the widget is saved.
+The function have to return a boolean or an promise which can be resolved to a boolean.
+The function can use injection.</li>
 </ul>
 </li>
 </ul>
