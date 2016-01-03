@@ -332,7 +332,7 @@ angular.module('adf')
             templateUrl: adfEditTemplatePath,
             backdrop: 'static'
           });
-          $scope.changeStructure = function(name, structure){
+          editDashboardScope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
             changeStructure(model, structure);
           };
