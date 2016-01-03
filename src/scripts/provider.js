@@ -246,11 +246,12 @@ angular.module('adf.provider', [])
          * @ngdoc method
          * @name adf.dashboard#idEqual
          * @methodOf adf.dashboard
-         * @param {string} id
-         * @param {string} other id
          * @description
          *
          * Checks if the given ids are equal.
+         *
+         * @param {string} id widget or column id
+         * @param {string} other widget or column id
          */
          idEquals: function(id, other){
            // use toString, because old ids are numbers
