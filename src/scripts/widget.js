@@ -198,10 +198,7 @@ angular.module('adf')
         });
 
         $scope.widgetClasses = function(w, definition){
-          var classes = '';
-          if (!definition.styleClass) {
-            classes = w.styleClass || '';
-          }
+          var classes = definition.styleClass || '';
           if (!w.frameless || $scope.editMode){
             classes += ' panel panel-default';
           }

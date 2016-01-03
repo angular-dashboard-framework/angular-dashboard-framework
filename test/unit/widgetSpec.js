@@ -145,4 +145,35 @@ describe('widget directive tests', function() {
     expect($uibModal.opts.scope.definition.wid).toBe('1');
   });
 
+  it('should render the widget with classes', function() {
+      dashboard.widgets['test'] = {
+        template: '<div class="hello">Hello World</div>'
+      };
+      $scope.definition = {
+        type: 'test',
+        styleClass: 'sample'
+      };
+      var element = compileTemplate(directive);
+      expect(element.attr('class').indexOf('panel') !== -1).toBe(true);
+      expect(element.attr('class').indexOf('panel-default') !== -1).toBe(true);
+      expect(element.attr('class').indexOf('widget') !== -1).toBe(true);
+      expect(element.attr('class').indexOf('sample') !== -1).toBe(true);
+  });
+
+  it('should render the widget without default classes in frameless mode', function() {
+      dashboard.widgets['test'] = {
+        template: '<div class="hello">Hello World</div>',
+        frameless: true
+      };
+      $scope.definition = {
+        type: 'test',
+        styleClass: 'sample'
+      };
+      var element = compileTemplate(directive);
+      expect(element.attr('class').indexOf('panel') !== -1).toBe(false);
+      expect(element.attr('class').indexOf('panel-default') !== -1).toBe(false);
+      expect(element.attr('class').indexOf('widget') !== -1).toBe(true);
+      expect(element.attr('class').indexOf('sample') !== -1).toBe(true);
+  });
+
 });
