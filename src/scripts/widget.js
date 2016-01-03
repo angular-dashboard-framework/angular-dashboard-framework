@@ -197,6 +197,17 @@ angular.module('adf')
           }
         });
 
+        $scope.widgetClasses = function(w, definition){
+          var classes = '';
+          if (!definition.styleClass) {
+            classes = w.styleClass || '';
+          }
+          if (!w.frameless || $scope.editMode){
+            classes += ' panel panel-default';
+          }
+          return classes;
+        };
+
         $scope.openFullScreen = function() {
           var definition = $scope.definition;
           var fullScreenScope = $scope.$new();

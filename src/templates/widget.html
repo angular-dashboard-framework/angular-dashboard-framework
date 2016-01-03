@@ -1,4 +1,4 @@
-<div adf-id="{{definition.wid}}" adf-widget-type="{{definition.type}}" ng-class="[{'panel panel-default':!widget.frameless || editMode},definition.styleClass]" class="widget">
+<div adf-id="{{definition.wid}}" adf-widget-type="{{definition.type}}" ng-class="widgetClasses(widget, definition)" class="widget">
   <div class="panel-heading clearfix" ng-if="!widget.frameless || editMode">
     <div ng-include src="definition.titleTemplateUrl"></div>
   </div>
