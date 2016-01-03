@@ -69,7 +69,6 @@ angular.module('adf.provider', [])
     *   - `controllerAs` - `{string=}` - A controller alias name. If present the controller will be
     *      published to scope under the `controllerAs` name.
     *   - `frameless` - `{boolean=}` - false if the widget should be shown in frameless mode. The default is false.
-    *   - `styleClass` - `{object}` - space delimited string or map of classes bound to the widget.
     *   - `template` - `{string=|function()=}` - html template as a string.
     *   - `templateUrl` - `{string=}` - path to an html template.
     *   - `reload` - `{boolean=}` - true if the widget could be reloaded. The default is false.
