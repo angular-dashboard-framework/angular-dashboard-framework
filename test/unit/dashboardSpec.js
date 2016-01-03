@@ -29,36 +29,62 @@ describe('Dashboard Directive tests', function () {
     var $compile,
         $rootScope,
         $scope,
-        directive;
+        directive,
+        $uibModal,
+        $uibModalInstance,
+        dashboard;
 
     // Load the myApp module, which contains the directive
-    beforeEach(module('adf'));
+    beforeEach(function(){
+      $uibModalInstance = {
+        closed: false,
+        close: function(){
+          this.closed = true;
+        }
+      };
+
+      var modalMock = {
+        opts: null,
+        open: function(opts){
+          this.opts = opts;
+          return $uibModalInstance;
+        }
+      };
+
+      module('adf')
+      module({
+        $uibModal: modalMock
+      })
+    });
 
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
-    beforeEach(inject(function (_$compile_, _$rootScope_) {
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $scope = $rootScope.$new();
-        directive = '<adf-dashboard name="{{name}}" collapsible="{{collapsible}}" maximizable="{{maximizable}}" continuous-edit-mode="continuousEditMode" structure="4-8" adf-model="model" />';
+    beforeEach(inject(function (_$compile_, _$rootScope_, _$uibModal_,_dashboard_) {
+      // The injector unwraps the underscores (_) from around the parameter names when matching
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+      $uibModal = _$uibModal_;
+      $scope = $rootScope.$new();
+      dashboard = _dashboard_;
+      directive = '<adf-dashboard name="{{name}}" collapsible="{{collapsible}}" maximizable="{{maximizable}}" continuous-edit-mode="continuousEditMode" structure="4-8" adf-model="model" />';
 
-
-        $scope.name = 'sample-01';
-        $scope.model = {
-            title: "Sample 01",
-            structure: "4-8",
-            rows: [{
-                columns: [{
-                    styleClass: "col-md-4",
-                    widgets: []
-                }]
-            }]
-        };
-        $scope.collapsible = false;
-        $scope.maximizable = false;
-        $scope.continuousEditMode = false;
-
+      $scope.name = 'sample-01';
+      $scope.model = {
+          title: "Sample 01",
+          structure: "4-8",
+          rows: [{
+              columns: [{
+                  styleClass: "col-md-4",
+                  widgets: []
+              },{
+                styleClass: "col-md-8",
+                widgets: []
+              }]
+          }]
+      };
+      $scope.collapsible = false;
+      $scope.maximizable = false;
+      $scope.continuousEditMode = false;
     }));
 
     function compileTemplate(template) {
@@ -194,5 +220,134 @@ describe('Dashboard Directive tests', function () {
         isolatedScope.$broadcast('adfToggleEditMode');
 
         expect(isolatedScope.toggleEditMode).toHaveBeenCalled();
+    });
+
+    it('should open edit dialog', function(){
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.editDashboardDialog();
+      expect($uibModal.opts.templateUrl).toBe('../src/templates/dashboard-edit.html');
+    });
+
+    it('should open edit dialog with custom template', function(){
+      $scope.model.editTemplateUrl = '../src/templates/widget-edit.html';
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.editDashboardDialog();
+      expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-edit.html');
+    });
+
+    it('should close edit dialog', function(){
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.editDashboardDialog();
+      expect($uibModalInstance.closed).toBeFalsy();
+      $uibModal.opts.scope.closeDialog();
+      expect($uibModalInstance.closed).toBeTruthy();
+    });
+
+    it('should open add widget dialog', function(){
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.addWidgetDialog();
+
+      expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-add.html');
+    });
+
+    it('should close add widget dialog', function(){
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.addWidgetDialog();
+      expect($uibModalInstance.closed).toBeFalsy();
+      $uibModal.opts.scope.closeDialog();
+      expect($uibModalInstance.closed).toBeTruthy();
+    });
+
+    it('should add a new widget to the dashboard', function(){
+      // add widgets to dashboard
+      dashboard.widgets['one'] = {
+        template: '<div class="hello">Hello World</div>',
+        config: {
+          a: 'b'
+        }
+      };
+
+      // open add widget dialog
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.addWidgetDialog();
+
+      // call add widget on dialog scope
+      $uibModal.opts.scope.addWidget('one');
+      var widget = $scope.model.rows[0].columns[0].widgets[0];
+      expect(widget.type).toBe('one');
+      // check for copied config
+      expect(widget.config.a).toBe('b');
+    });
+
+    describe('change structure', function(){
+
+      beforeEach(function(){
+        // add widgets to dashboard
+        dashboard.widgets['one'] = {
+          template: '<div class="hello">Hello from One</div>'
+        };
+        dashboard.widgets['two'] = {
+          template: '<div class="hello">Hello from Two</div>'
+        };
+
+        // add structures to dashboard
+        dashboard.structures['4-8'] = {
+          rows: [{
+              columns: [{
+                  styleClass: "col-md-4",
+                  widgets: []
+              },{
+                styleClass: "col-md-8",
+                widgets: []
+              }]
+          }]
+        };
+        dashboard.structures['12'] = {
+          rows: [{
+              columns: [{
+                  styleClass: "col-md-12",
+                  widgets: []
+              }]
+          }]
+        };
+      });
+
+      it('should change the dashboard structure', function(){
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+        // model shoule have two column in 4-8 structure
+        expect($scope.model.rows[0].columns.length).toBe(2);
+
+        isolatedScope.editDashboardDialog();
+        $uibModal.opts.scope.changeStructure('12', dashboard.structures['12']);
+
+        // model shoule have two column in 12 structure
+        expect($scope.model.rows[0].columns.length).toBe(1);
+      });
+
+      it('should change the dashboard structure and move widgets', function(){
+        $scope.model.rows[0].columns[0].widgets.push({
+          type: 'one'
+        });
+        $scope.model.rows[0].columns[1].widgets.push({
+          type: 'two'
+        });
+
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+
+        isolatedScope.editDashboardDialog();
+        $uibModal.opts.scope.changeStructure('12', dashboard.structures['12']);
+
+        // column should contain two widgets
+        expect($scope.model.rows[0].columns[0].widgets.length).toBe(2);
+      });
+
     });
 });
