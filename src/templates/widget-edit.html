@@ -4,6 +4,9 @@
     <h4 class="modal-title">{{widget.title}}</h4>
   </div>
   <div class="modal-body">
+    <div class="alert alert-danger" role="alert" ng-show="validationError">
+      <strong>Apply error:</strong> {{validationError}}
+    </div>
     <div class="form-group">
       <label for="widgetTitle">Title</label>
       <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title" placeholder="Enter title" required="">
