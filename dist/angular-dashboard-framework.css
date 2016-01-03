@@ -21,8 +21,6 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
 */
-
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -75,9 +73,10 @@ pre.edit {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
+
 /*
  modal dialog in fullscreen
 */
 .dashboard-modal.widget-fullscreen .modal-dialog {
- width: 98%;
+  width: 98%;
 }
