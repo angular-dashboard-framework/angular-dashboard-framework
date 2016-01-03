@@ -222,6 +222,28 @@ describe('Dashboard Directive tests', function () {
         expect(isolatedScope.toggleEditMode).toHaveBeenCalled();
     });
 
+    it('should create a fresh model', function(){
+      dashboard.structures['4-8'] = {
+        rows: [{
+            columns: [{
+              styleClass: "col-md-4"
+            },{
+              styleClass: "col-md-8"
+            }]
+        }]
+      };
+
+      $scope.model = {};
+      compileTemplate(directive);
+
+      // default title
+      expect($scope.model.title).toBe('Dashboard');
+
+      // structure copy
+      expect($scope.model.rows.length).toBe(1);
+      expect($scope.model.rows[0].columns.length).toBe(2);
+    });
+
     it('should open edit dialog', function(){
       var element = compileTemplate(directive);
       var isolatedScope = element.isolateScope();
@@ -246,43 +268,75 @@ describe('Dashboard Directive tests', function () {
       expect($uibModalInstance.closed).toBeTruthy();
     });
 
-    it('should open add widget dialog', function(){
-      var element = compileTemplate(directive);
-      var isolatedScope = element.isolateScope();
-      isolatedScope.addWidgetDialog();
+    describe('add widget functions', function(){
 
-      expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-add.html');
-    });
+      var $timeout;
 
-    it('should close add widget dialog', function(){
-      var element = compileTemplate(directive);
-      var isolatedScope = element.isolateScope();
-      isolatedScope.addWidgetDialog();
-      expect($uibModalInstance.closed).toBeFalsy();
-      $uibModal.opts.scope.closeDialog();
-      expect($uibModalInstance.closed).toBeTruthy();
-    });
+      beforeEach(inject(function(_$timeout_){
+        $timeout = _$timeout_;
+        // add widgets to dashboard
+        dashboard.widgets['one'] = {
+          template: '<div class="hello">Hello World</div>',
+          config: {
+            a: 'b'
+          }
+        };
+      }));
 
-    it('should add a new widget to the dashboard', function(){
-      // add widgets to dashboard
-      dashboard.widgets['one'] = {
-        template: '<div class="hello">Hello World</div>',
-        config: {
-          a: 'b'
-        }
-      };
+      it('should open add widget dialog', function(){
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+        isolatedScope.addWidgetDialog();
 
-      // open add widget dialog
-      var element = compileTemplate(directive);
-      var isolatedScope = element.isolateScope();
-      isolatedScope.addWidgetDialog();
+        expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-add.html');
+      });
 
-      // call add widget on dialog scope
-      $uibModal.opts.scope.addWidget('one');
-      var widget = $scope.model.rows[0].columns[0].widgets[0];
-      expect(widget.type).toBe('one');
-      // check for copied config
-      expect(widget.config.a).toBe('b');
+      it('should close add widget dialog', function(){
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+        isolatedScope.addWidgetDialog();
+        expect($uibModalInstance.closed).toBeFalsy();
+        $uibModal.opts.scope.closeDialog();
+        expect($uibModalInstance.closed).toBeTruthy();
+      });
+
+      it('should add a new widget to the dashboard', function(){
+        // open add widget dialog
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+        isolatedScope.addWidgetDialog();
+
+        // call add widget on dialog scope
+        $uibModal.opts.scope.addWidget('one');
+        var widget = $scope.model.rows[0].columns[0].widgets[0];
+        expect(widget.type).toBe('one');
+        // check for copied config
+        expect(widget.config.a).toBe('b');
+      });
+
+      it('should add a new widget and open edit mode immediately', function(){
+        dashboard.widgets['one'].edit = {
+          immediate: true
+        };
+        // open add widget dialog
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+        isolatedScope.addWidgetDialog();
+
+        // add widget
+        $uibModal.opts.scope.addWidget('one');
+
+        // flush timeout and check for event
+        var event, widget;
+        spyOn(isolatedScope, '$broadcast').and.callFake(function(e, w){
+          event = e;
+          widget = w;
+        });
+        $timeout.flush();
+        expect(event).toBe('adfWidgetEnterEditMode');
+        expect(widget.type).toBe('one');
+      });
+
     });
 
     describe('change structure', function(){
