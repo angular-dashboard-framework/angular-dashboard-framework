@@ -30,7 +30,8 @@ angular.module('sample', [
   'adf.widget.github', 'adf.widget.version',
   'adf.widget.clock', 'LocalStorageModule',
   'sample-01', 'sample-02', 'sample-03',
-  'sample-04', 'sample-05', 'ngRoute'
+  'sample-04', 'sample-05', 'sample-06',
+  'ngRoute'
 ])
 .config(function(dashboardProvider, $routeProvider, localStorageServiceProvider){
   dashboardProvider.widgetsPath('widgets/');
@@ -55,6 +56,10 @@ angular.module('sample', [
   .when('/sample/05', {
     templateUrl: 'partials/sample5.html',
     controller: 'sample05Ctrl'
+  })
+  .when('/sample/06', {
+      templateUrl: 'partials/sample6scroll.html',
+      controller: 'sample06Ctrl'
   })
   .otherwise({
     redirectTo: '/sample/01'

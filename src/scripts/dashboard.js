@@ -235,7 +235,8 @@ angular.module('adf')
         continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
-        adfWidgetFilter: '='
+        adfWidgetFilter: '=',
+        sortable: '='
       },
       controller: function($scope){
         var model = {};
@@ -405,7 +406,8 @@ angular.module('adf')
           editable: true,
           enableConfirmDelete: stringToBoolean($attr.enableconfirmdelete),
           maximizable: stringToBoolean($attr.maximizable),
-          collapsible: stringToBoolean($attr.collapsible)
+          collapsible: stringToBoolean($attr.collapsible),
+          sortable: $scope.sortable
         };
         if (angular.isDefined($attr.editable)){
           options.editable = stringToBoolean($attr.editable);

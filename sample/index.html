@@ -70,6 +70,11 @@
         /* some fixes appear to use this, too: */
         position: fixed;
       }
+      .scroll {
+        height: 400px;
+        overflow-y: scroll;
+        overflow-x: hidden
+      }
     </style>
   </head>
 
@@ -102,6 +107,9 @@
             </li>
             <li ng-class="navClass('sample/05')">
               <a href="#/sample/05">Sample 05</a>
+            </li>
+            <li ng-class="navClass('sample/06')">
+              <a href="#/sample/06">Sample 06</a>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -149,6 +157,7 @@
     <script type="text/javascript" src="scripts/sample-03.js"></script>
     <script type="text/javascript" src="scripts/sample-04.js"></script>
     <script type="text/javascript" src="scripts/sample-05.js"></script>
+    <script type="text/javascript" src="scripts/sample-06.js"></script>
 
     <!-- structures -->
     <script type="text/javascript" src="structures/base/src/base.js"></script>

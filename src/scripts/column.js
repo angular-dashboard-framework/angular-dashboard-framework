@@ -132,23 +132,34 @@ angular.module('adf')
      * enable sortable
      */
     function applySortable($scope, $element, model, column){
-      // enable drag and drop
-      var el = $element[0];
-      var sortable = Sortable.create(el, {
-        group: 'widgets',
-        handle: '.adf-move',
-        ghostClass: 'placeholder',
-        animation: 150,
-        onAdd: function(evt){
-          addWidgetToColumn($scope, model, column, evt);
-        },
-        onRemove: function(evt){
-          removeWidgetFromColumn($scope, column, evt);
-        },
-        onUpdate: function(evt){
-          moveWidgetInColumn($scope, column, evt);
+        // enable drag and drop
+        var el = $element[0];
+
+        var sortableParams = $scope.options.sortable || {};
+
+        if ('scrollClass' in sortableParams) {
+            var result = document.getElementsByClassName(sortableParams.scrollClass);
+            sortableParams.scroll = angular.element(result)[0];
         }
-      });
+        var defaultParams = {
+            group: 'widgets',
+            handle: '.adf-move',
+            ghostClass: 'placeholder',
+            animation: 150,
+            onAdd: function(evt){
+                addWidgetToColumn($scope, model, column, evt);
+            },
+            onRemove: function(evt){
+                removeWidgetFromColumn($scope, column, evt);
+            },
+            onUpdate: function(evt){
+                moveWidgetInColumn($scope, column, evt);
+            }
+        };
+
+        var params = angular.extend(defaultParams, $scope.options.sortable);
+
+        var sortable = Sortable.create(el, params);
 
       // destroy sortable on column destroy event
       $element.on('$destroy', function () {

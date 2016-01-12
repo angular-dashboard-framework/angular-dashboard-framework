@@ -29,7 +29,7 @@ angular.module('adf', ['adf.provider', 'ui.bootstrap'])
   .value('adfTemplatePath', '../src/templates/')
   .value('rowTemplate', '<adf-dashboard-row row="row" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="row in column.rows" />')
   .value('columnTemplate', '<adf-dashboard-column column="column" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="column in row.columns" />')
-  .value('adfVersion', '0.11.0');
+  .value('adfVersion', '0.12.0-SNAPSHOT');
 
 /*
 * The MIT License
@@ -165,32 +165,40 @@ angular.module('adf')
      * enable sortable
      */
     function applySortable($scope, $element, model, column){
-      // enable drag and drop
-      var el = $element[0];
-      var sortable = Sortable.create(el, {
-        group: 'widgets',
-        handle: '.adf-move',
-        ghostClass: 'placeholder',
-        animation: 150,
-        onAdd: function(evt){
-          addWidgetToColumn($scope, model, column, evt);
-        },
-        onRemove: function(evt){
-          removeWidgetFromColumn($scope, column, evt);
-        },
-        onUpdate: function(evt){
-          moveWidgetInColumn($scope, column, evt);
-        }
-      });
+        // enable drag and drop
+        var el = $element[0];
 
-      // destroy sortable on column destroy event
-      $element.on('$destroy', function () {
-        // check sortable element, before calling destroy
-        // see https://github.com/sdorra/angular-dashboard-framework/issues/118
-        if (sortable.el){
-          sortable.destroy();
+        var sortableParams = $scope.options.sortable || {};
+
+        if ('scrollClass' in sortableParams) {
+            var result = document.getElementsByClassName(sortableParams.scrollClass);
+            sortableParams.scroll = angular.element(result)[0];
         }
-      });
+        var defaultParams = {
+            group: 'widgets',
+            handle: '.adf-move',
+            ghostClass: 'placeholder',
+            animation: 150,
+            onAdd: function(evt){
+                addWidgetToColumn($scope, model, column, evt);
+            },
+            onRemove: function(evt){
+                removeWidgetFromColumn($scope, column, evt);
+            },
+            onUpdate: function(evt){
+                moveWidgetInColumn($scope, column, evt);
+            }
+        };
+
+
+        var params = angular.extend(defaultParams, $scope.options.sortable);
+
+        var sortable = Sortable.create(el, params);
+
+        // destroy sortable on column destroy event
+        $element.on('$destroy', function () {
+            sortable.destroy();
+        });
     }
 
     return {
@@ -461,7 +469,8 @@ angular.module('adf')
         continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
-        adfWidgetFilter: '='
+        adfWidgetFilter: '=',
+        sortable: '='
       },
       controller: ["$scope", function($scope){
         var model = {};
@@ -631,7 +640,8 @@ angular.module('adf')
           editable: true,
           enableConfirmDelete: stringToBoolean($attr.enableconfirmdelete),
           maximizable: stringToBoolean($attr.maximizable),
-          collapsible: stringToBoolean($attr.collapsible)
+          collapsible: stringToBoolean($attr.collapsible),
+          sortable: $scope.sortable
         };
         if (angular.isDefined($attr.editable)){
           options.editable = stringToBoolean($attr.editable);
