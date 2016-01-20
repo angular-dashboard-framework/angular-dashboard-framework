@@ -1,27 +1,27 @@
 [submodule "sample/widgets/clock"]
 	path = sample/widgets/clock
-	url = https://github.com/sdorra/adf-widget-clock
+	url = https://github.com/angular-dashboard-framework/adf-widget-clock
 [submodule "sample/widgets/github"]
 	path = sample/widgets/github
-	url = https://github.com/sdorra/adf-widget-github
+	url = https://github.com/angular-dashboard-framework/adf-widget-github
 [submodule "sample/widgets/linklist"]
 	path = sample/widgets/linklist
-	url = https://github.com/sdorra/adf-widget-linklist
+	url = https://github.com/angular-dashboard-framework/adf-widget-linklist
 [submodule "sample/widgets/markdown"]
 	path = sample/widgets/markdown
-	url = https://github.com/sdorra/adf-widget-markdown
+	url = https://github.com/angular-dashboard-framework/adf-widget-markdown
 [submodule "sample/widgets/news"]
 	path = sample/widgets/news
-	url = https://github.com/sdorra/adf-widget-news
+	url = https://github.com/angular-dashboard-framework/adf-widget-news
 [submodule "sample/widgets/randommsg"]
 	path = sample/widgets/randommsg
-	url = https://github.com/sdorra/adf-widget-randommsg
+	url = https://github.com/angular-dashboard-framework/adf-widget-randommsg
 [submodule "sample/widgets/version"]
 	path = sample/widgets/version
-	url = https://github.com/sdorra/adf-widget-version
+	url = https://github.com/angular-dashboard-framework/adf-widget-version
 [submodule "sample/widgets/weather"]
 	path = sample/widgets/weather
-	url = https://github.com/sdorra/adf-widget-weather
+	url = https://github.com/angular-dashboard-framework/adf-widget-weather
 [submodule "sample/structures/base"]
 	path = sample/structures/base
-	url = https://github.com/sdorra/adf-structures-base
+	url = https://github.com/angular-dashboard-framework/adf-structures-base

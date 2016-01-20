@@ -25,7 +25,7 @@
 
 /* global angular */
 angular.module('adf')
-  .directive('adfDashboardColumn', function ($log, $compile, adfTemplatePath, rowTemplate, dashboard) {
+  .directive('adfDashboardColumn', function ($log, $compile, $rootScope, adfTemplatePath, rowTemplate, dashboard) {
     'use strict';
 
     /**
@@ -36,6 +36,7 @@ angular.module('adf')
       // move widget and apply to scope
       $scope.$apply(function(){
         widgets.splice(evt.newIndex, 0, widgets.splice(evt.oldIndex, 1)[0]);
+        $rootScope.$broadcast('adfWidgetMovedInColumn');
       });
     }
 
@@ -46,7 +47,7 @@ angular.module('adf')
       var widget = null;
       for (var i=0; i<column.widgets.length; i++){
         var w = column.widgets[i];
-        if (w.wid === index){
+        if (dashboard.idEquals(w.wid,index)){
           widget = w;
           break;
         }
@@ -63,7 +64,7 @@ angular.module('adf')
         var r = model.rows[i];
         for (var j=0; j<r.columns.length; j++){
           var c = r.columns[j];
-          if ( c.cid === index ){
+          if (dashboard.idEquals(c.cid, index)){
             column = c;
             break;
           } else if (c.rows){
@@ -82,7 +83,7 @@ angular.module('adf')
      */
     function getId(el){
       var id = el.getAttribute('adf-id');
-      return id ? parseInt(id) : -1;
+      return id ? id : '-1';
     }
 
     /**
@@ -101,7 +102,12 @@ angular.module('adf')
         if (widget){
           // add new item and apply to scope
           $scope.$apply(function(){
+      			if (!targetColumn.widgets) {
+      				targetColumn.widgets = [];
+      			}
             targetColumn.widgets.splice(evt.newIndex, 0, widget);
+
+            $rootScope.$broadcast('adfWidgetAddedToColumn');
           });
         } else {
           $log.warn('could not find widget with id ' + wid);
@@ -118,6 +124,7 @@ angular.module('adf')
       // remove old item and apply to scope
       $scope.$apply(function(){
         column.widgets.splice(evt.oldIndex, 1);
+        $rootScope.$broadcast('adfWidgetRemovedFromColumn');
       });
     }
 
@@ -145,7 +152,11 @@ angular.module('adf')
 
       // destroy sortable on column destroy event
       $element.on('$destroy', function () {
-        sortable.destroy();
+        // check sortable element, before calling destroy
+        // see https://github.com/sdorra/angular-dashboard-framework/issues/118
+        if (sortable.el){
+          sortable.destroy();
+        }
       });
     }
 
@@ -155,6 +166,7 @@ angular.module('adf')
       scope: {
         column: '=',
         editMode: '=',
+        continuousEditMode: '=',
         adfModel: '=',
         options: '='
       },

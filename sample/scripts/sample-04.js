@@ -35,7 +35,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
       rows: [{
           "columns": [
             {
-              "styleClass": "medium-3",
+              "styleClass": "col-md-3",
               "widgets": [
                 {
                   "type": "weather",
@@ -68,12 +68,12 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
               ]
             },
             {
-              "styleClass": "medium-9",
+              "styleClass": "col-md-9",
               "rows": [
                 {
                   "columns": [
                     {
-                      "styleClass": "medium-12",
+                      "styleClass": "col-md-12",
                       "widgets": [
                         {
                           "type": "markdown",
@@ -89,19 +89,19 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
                 {
                   "columns": [
                     {
-                      "styleClass": "medium-6",
+                      "styleClass": "col-md-6",
                       "widgets": [
                         {
                           "type": "githubHistory",
                           "config": {
-                            "path": "sdorra/angular-dashboard-framework"
+                            "path": "angular-dashboard-framework/angular-dashboard-framework"
                           },
                           "title": "Github History"
                         }
                       ]
                     },
                     {
-                      "styleClass": "medium-6",
+                      "styleClass": "col-md-6",
                       "widgets": [
                         {
                           "type": "githubAuthor",

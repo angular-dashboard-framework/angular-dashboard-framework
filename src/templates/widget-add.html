@@ -1,25 +1,30 @@
 <div class="modal-header">
-  <a class="close-reveal-modal" ng-click="closeDialog()" aria-hidden="true" aria-label="Close">&#215;</a>
+  <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
   <h4 class="modal-title">Widget hinzufügen</h4>
 </div>
 <div class="modal-body" class="row">
-  <div class="columns">
-      <accordion close-others="true">
-          <accordion-group ng-repeat="(category, widgets) in categories" is-open="isopen">
-              <accordion-heading>
-                  {{category}}<i class="right" ng-class="{'fa fa-chevron-down': isopen, 'fa fa-chevron-right': !isopen}"></i>
-              </accordion-heading>
-              <dl class="dl-horizontal content active" id="#panel{{category}}">
-                  <dt ng-repeat-start="(key, widget) in widgets">
-                      <a href="" ng-click="addWidget(key)">
-                          {{widget.title}} <i class="fa fa-spinner fa-spin" ng-show="recentlyAdded.indexOf(key) > -1"></i>
-                      </a>
-                  </dt>
-                  <dd ng-repeat-end ng-if="widget.description">
-                      {{widget.description}}
-                  </dd>
-              </dl>
-          </accordion-group>
-      </accordion>
-  </div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default" ng-repeat="(category, widgets) in categories" is-open="isopen">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        {{category}}
+                    </a>
+                </h4>
+            </div>
+            <div id="#panel{{category}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="(key, widget) in widgets">
+                        <a href="" ng-click="addWidget(key)">{{widget.title}} <i class="fa fa-spinner fa-spin" ng-show="recentlyAdded.indexOf(key) > -1"></i></a>
+                        <p>
+                            <small ng-if="widget.description">{{widget.description}}</small>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="closeDialog()">Schließen</button>
 </div>

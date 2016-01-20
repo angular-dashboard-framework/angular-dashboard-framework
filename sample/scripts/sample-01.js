@@ -35,7 +35,7 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
       structure: "4-8",
       rows: [{
         columns: [{
-          styleClass: "medium-4",
+          styleClass: "col-md-4",
           widgets: [{
             type: "linklist",
             config: {
@@ -74,7 +74,7 @@ angular.module('sample-01', ['adf', 'LocalStorageModule'])
             title: "Weather"
           }]
         }, {
-          styleClass: "medium-8",
+          styleClass: "col-md-8",
           widgets: [{
             type: "randommsg",
             config: {},

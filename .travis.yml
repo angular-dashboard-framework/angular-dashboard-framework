@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "0.12"
+before_install:
+  - git submodule update --init
+before_script:
+  - npm install -g bower gulp
+  - npm install
+  - bower install
+script: gulp travis

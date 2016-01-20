@@ -1,9 +1,59 @@
+# 2.0.0
+
+## Using Twitter Bootstrap
+
+* use angular 1.4.
+* Merge with base (https://github.com/angular-dashboard-framework/angular-dashboard-framework)
+
 # 1.0.0
 
 ## Using Foundation
 
 * use foundation css
 * use angular 1.4.*
+
+# 0.11.0
+
+## Enhancements
+
+* enable form validation for widget edit dialog
+* custom apply function for edit dialog [#152](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issues/152)
+* add event to toggle editMode
+* adding styleClass to widget definition to bind custom css styles [#171](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/171)
+* broadcast when dashboard is in edit mode [#168](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/168)
+* added support for SCSS syntax in styles [#167](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/167)
+* custom add edit templates [#120](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/120)
+* added unit test support for angular-dashboard-framework [#137](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/137)
+* support for frameless widgets [#134](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/134)
+
+## Bug fixes
+
+* fix incompatibility with angular 1.2 and 1.3, see issue [#187](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issues/187)
+* check for sortable element before destroy, fix issue #118
+* added immediate option to widget config, to fix issue #155
+* fix typo rename event adfDashboardCollapseExapand to adfDashboardCollapseExpand, to fix issue #141
+* edit widget cancel shouldn't cause the 'widgetConfigChanged' event [#140](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/140)
+* added missing documentation for controllerAs of widget edit mode
+* fix for widget title being overwritten [#139](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/139)
+
+
+# 0.10.0
+
+## Enhancements
+
+* update Sortable to version 1.2.1
+* update bootstrap to version 3.3.5
+* use angular dependency >=1.2 instead of 1.2.28
+* Ok-cancel prompt for edit widget [#127](https://github.com/sdorra/angular-dashboard-framework/pull/127)
+* Added enableConfirmDelete option for prompt before widget delete [#128](https://github.com/sdorra/angular-dashboard-framework/pull/128)
+* Collapse and expand all widgets [#121](https://github.com/sdorra/angular-dashboard-framework/pull/121)
+* Add adf-widget-type attribute to panel div [#117](https://github.com/sdorra/angular-dashboard-framework/pull/117)
+* Added the ability to customize the dashboard and widget title templates [#116](https://github.com/sdorra/angular-dashboard-framework/pull/116)
+* Added adfDashboardEditsCancelled broadcast message to cancelEditMode() [#114](https://github.com/sdorra/angular-dashboard-framework/pull/114)
+
+## Bug fixes
+
+* Fixed error when moving widget to empty column [#119](https://github.com/sdorra/angular-dashboard-framework/pull/119)
 
 # 0.9.0
 

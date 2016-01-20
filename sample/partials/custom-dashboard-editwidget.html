@@ -1,0 +1,19 @@
+<form name="widgetEditForm" novalidate role="form" ng-submit="saveDialog()">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">{{widget.title}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="widgetTitle">Custom Title</label>
+      <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title" placeholder="Enter title" required="">
+    </div>
+    <div ng-if="widget.edit">
+      <adf-widget-content model="definition" content="widget.edit" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
+    <input type="submit" class="btn btn-primary" ng-disabled="widgetEditForm.$invalid" value="Apply" />
+  </div>
+</form>

@@ -23,7 +23,7 @@
  THE SOFTWARE.
 -->
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,23 +33,23 @@
     <title>Dashboard</title>
 
     <!-- build:css css/sample.min.css -->
-    <!-- Foundation core CSS -->
-    <link href="components/foundation/css/foundation.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
-    <link href="components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- dashboard style -->
-    <link href="../src/styles/main.css" rel="stylesheet">
+    <link href="components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../dist/angular-dashboard-framework.css" rel="stylesheet">
     <link href="widgets/clock/src/style.css" rel="stylesheet">
     <!-- endbuild -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
     <!--[if lte IE 8]>
-      <script>
+    <script>
         document.createElement('adf-dashboard');
         document.createElement('adf-widget');
         document.createElement('adf-widget-content');
@@ -57,133 +57,139 @@
         document.createElement('adf-dashboard-column');
 
         document.createElement('highchart');
-      </script>
+    </script>
     <![endif]-->
 
     <!-- inlince css -->
     <style type="text/css">
-      body {
-        padding-top: 60px;
-      }
-      /* fixe for modal-backdrop*/
-      .modal-backdrop {
-        bottom: 0;
-        /* some fixes appear to use this, too: */
-        position: fixed;
-      }
+        body {
+            padding-top: 60px;
+        }
+        /* fixe for modal-backdrop*/
+        .modal-backdrop {
+            bottom: 0;
+            /* some fixes appear to use this, too: */
+            position: fixed;
+        }
     </style>
-  </head>
+</head>
 
-  <body ng-app="sample">
+<body ng-app="sample">
 
-    <div class="top-bar" role="navigation" ng-controller="navigationCtrl">
-
-        <ul class="title-area">
-            <li class="name">
-                <h1><a href="#">ADF</a></h1>
-            </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-
-          <section class="top-bar-section">
-              <ul class="left">
-                  <li ng-class="navClass('sample/01')">
-                      <a href="#/sample/01">Sample 01</a>
-                  </li>
-                  <li ng-class="navClass('sample/02')">
-                      <a href="#/sample/02">Sample 02</a>
-                  </li>
-                  <li ng-class="navClass('sample/03')">
-                      <a href="#/sample/03">Sample 03</a>
-                  </li>
-                  <li ng-class="navClass('sample/04')">
-                      <a href="#/sample/04">Sample 04</a>
-                  </li>
-              </ul>
-          </section>
-    </div>
-
-    <div class="row">
-        <div class="large-12 large-centered columns">
-            <div ng-view />
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container" ng-controller="navigationCtrl">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="toggleNav()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/sample-01">ADF</a>
         </div>
+        <div uib-collapse="navCollapsed" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-class="navClass('sample/01')">
+                    <a href="#/sample/01">Sample 01</a>
+                </li>
+                <li ng-class="navClass('sample/02')">
+                    <a href="#/sample/02">Sample 02</a>
+                </li>
+                <li ng-class="navClass('sample/03')">
+                    <a href="#/sample/03">Sample 03</a>
+                </li>
+                <li ng-class="navClass('sample/04')">
+                    <a href="#/sample/04">Sample 04</a>
+                </li>
+                <li ng-class="navClass('sample/05')">
+                    <a href="#/sample/05">Sample 05</a>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
+</div>
 
-    <!-- build:js js/angular.min.js -->
-    <script type="text/javascript" src="components/angular/angular.js"></script>
-    <!-- endbuild -->
+<div class="container">
 
-    <!-- build:js js/angular-route.min.js -->
-    <script type="text/javascript" src="components/angular-route/angular-route.js"></script>
-    <!-- endbuild -->
+    <div ng-view />
 
-    <!-- build:js js/sample.min.js -->
-    <!-- Sortable -->
-    <script type="text/javascript" src="components/Sortable/Sortable.js"></script>
+</div>
 
-    <!-- angular-foundation -->
-    <script type="text/javascript" src="components/angular-foundation/mm-foundation.min.js"></script>
-    <script type="text/javascript" src="components/angular-foundation/mm-foundation-tpls.min.js"></script>
+<!-- build:js js/angular.min.js -->
+<script type="text/javascript" src="components/angular/angular.js"></script>
+<!-- endbuild -->
 
-    <!-- scripts -->
-    <script type="text/javascript" src="../src/scripts/adf.js"></script>
-    <script type="text/javascript" src="../src/scripts/provider.js"></script>
-    <script type="text/javascript" src="../src/scripts/widget-content.js"></script>
-    <script type="text/javascript" src="../src/scripts/widget.js"></script>
-    <script type="text/javascript" src="../src/scripts/dashboard.js"></script>
-    <script type="text/javascript" src="../src/scripts/column.js"></script>
-    <script type="text/javascript" src="../src/scripts/row.js"></script>
+<!-- build:js js/angular-route.min.js -->
+<script type="text/javascript" src="components/angular-route/angular-route.js"></script>
+<!-- endbuild -->
 
-    <!-- local storage -->
-    <script type="text/javascript" src="components/angular-local-storage/dist/angular-local-storage.js"></script>
+<!-- build:js js/sample.min.js -->
+<!-- Sortable -->
+<script type="text/javascript" src="components/Sortable/Sortable.js"></script>
 
-    <!-- sample -->
-    <script type="text/javascript" src="scripts/sample.js"></script>
-    <script type="text/javascript" src="scripts/sample-01.js"></script>
-    <script type="text/javascript" src="scripts/sample-02.js"></script>
-    <script type="text/javascript" src="scripts/sample-03.js"></script>
-    <script type="text/javascript" src="scripts/sample-04.js"></script>
+<!-- angular-bootstrap -->
+<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap.js"></script>
+<script type="text/javascript" src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
-    <!-- structures -->
-    <script type="text/javascript" src="structures/base/src/base.js"></script>
+<!-- scripts -->
+<script type="text/javascript" src="../src/scripts/adf.js"></script>
+<script type="text/javascript" src="../src/scripts/provider.js"></script>
+<script type="text/javascript" src="../src/scripts/widget-content.js"></script>
+<script type="text/javascript" src="../src/scripts/widget.js"></script>
+<script type="text/javascript" src="../src/scripts/dashboard.js"></script>
+<script type="text/javascript" src="../src/scripts/column.js"></script>
+<script type="text/javascript" src="../src/scripts/row.js"></script>
 
-    <!-- news widget -->
-    <script type="text/javascript" src="widgets/news/src/news.js"></script>
+<!-- local storage -->
+<script type="text/javascript" src="components/angular-local-storage/dist/angular-local-storage.js"></script>
 
-    <!-- weather widget -->
-    <script type="text/javascript" src="widgets/weather/src/weather.js"></script>
+<!-- sample -->
+<script type="text/javascript" src="scripts/sample.js"></script>
+<script type="text/javascript" src="scripts/sample-01.js"></script>
+<script type="text/javascript" src="scripts/sample-02.js"></script>
+<script type="text/javascript" src="scripts/sample-03.js"></script>
+<script type="text/javascript" src="scripts/sample-04.js"></script>
+<script type="text/javascript" src="scripts/sample-05.js"></script>
 
-    <!-- linklist widget -->
-    <script type="text/javascript" src="widgets/linklist/src/linklist.js"></script>
+<!-- structures -->
+<script type="text/javascript" src="structures/base/src/base.js"></script>
 
-    <!-- markdown widget -->
-    <script type="text/javascript" src="widgets/markdown/components/showdown/src/showdown.js"></script>
-    <script type="text/javascript" src="widgets/markdown/components/angular-markdown-directive/markdown.js"></script>
-    <script type="text/javascript" src="widgets/markdown/src/markdown.js"></script>
+<!-- news widget -->
+<script type="text/javascript" src="widgets/news/src/news.js"></script>
 
-    <!-- randommsg widget -->
-    <script type="text/javascript" src="widgets/randommsg/src/randommsg.js"></script>
+<!-- weather widget -->
+<script type="text/javascript" src="widgets/weather/src/weather.js"></script>
 
-    <!-- github widget -->
-    <script type="text/javascript" src="widgets/github/components/highcharts/adapters/standalone-framework.src.js"></script>
-    <script type="text/javascript" src="widgets/github/components/highcharts/highcharts.js"></script>
-    <script type="text/javascript" src="widgets/github/components/highcharts-ng/dist/highcharts-ng.js"></script>
-    <script type="text/javascript" src="widgets/github/src/github.js"></script>
-    <script type="text/javascript" src="widgets/github/src/service.js"></script>
-    <script type="text/javascript" src="widgets/github/src/authorController.js"></script>
-    <script type="text/javascript" src="widgets/github/src/historyController.js"></script>
+<!-- linklist widget -->
+<script type="text/javascript" src="widgets/linklist/src/linklist.js"></script>
 
-    <!-- version widget -->
-    <script type="text/javascript" src="widgets/version/src/version.js"></script>
+<!-- markdown widget -->
+<script type="text/javascript" src="widgets/markdown/components/showdown/src/showdown.js"></script>
+<script type="text/javascript" src="widgets/markdown/components/angular-markdown-directive/markdown.js"></script>
+<script type="text/javascript" src="widgets/markdown/src/markdown.js"></script>
 
-    <!-- clock widget -->
-    <script type="text/javascript" src="widgets/clock/components/moment/moment.js"></script>
-    <script type="text/javascript" src="widgets/clock/src/clock.js"></script>
+<!-- randommsg widget -->
+<script type="text/javascript" src="widgets/randommsg/src/randommsg.js"></script>
 
-    <!-- inject:js -->
-    <!-- endinject -->
+<!-- github widget -->
+<script type="text/javascript" src="widgets/github/components/highcharts/adapters/standalone-framework.src.js"></script>
+<script type="text/javascript" src="widgets/github/components/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="widgets/github/components/highcharts-ng/dist/highcharts-ng.js"></script>
+<script type="text/javascript" src="widgets/github/src/github.js"></script>
+<script type="text/javascript" src="widgets/github/src/service.js"></script>
+<script type="text/javascript" src="widgets/github/src/authorController.js"></script>
+<script type="text/javascript" src="widgets/github/src/historyController.js"></script>
 
-    <!-- endbuild -->
-  </body>
+<!-- version widget -->
+<script type="text/javascript" src="widgets/version/src/version.js"></script>
+
+<!-- clock widget -->
+<script type="text/javascript" src="widgets/clock/components/moment/moment.js"></script>
+<script type="text/javascript" src="widgets/clock/src/clock.js"></script>
+
+<!-- inject:js -->
+<!-- endinject -->
+
+<!-- endbuild -->
+</body>
 </html>

@@ -1,0 +1,32 @@
+<div ng-if="editMode" class="alert alert-info">Currently in edit mode. Save or undo your changes when you are done.</div>
+<h1>
+  {{model.title}}
+  <div class="dropdown pull-right" uib-dropdown>
+    <button class="btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle>
+      <i class="glyphicon glyphicon-option-vertical"></i>
+    </button>
+    <ul class="dropdown-menu">
+      <li ng-if="editMode" ng-click="addWidgetDialog()">
+        <a href="">Add widget</a>
+      </li>
+      <li ng-if="editMode" ng-click="editDashboardDialog()">
+        <a href="">Dashboard settings</a>
+      </li>
+      <li ng-if="options.editable && !editMode" ng-click="toggleEditMode()">
+        <a href="">Edit dashboard</a>
+      </li>
+      <li ng-if="options.editable && editMode" ng-click="toggleEditMode()">
+        <a href="">Save changes</a>
+      </li>
+      <li ng-if="options.editable && editMode" ng-click="collapseAll(true)">
+        <a href="">Collapse All</a>
+      </li>
+      <li ng-if="options.editable && editMode" ng-click="collapseAll(false)">
+        <a href="">Expand All</a>
+      </li>
+      <li ng-if="editMode" ng-click="cancelEditMode()">
+        <a href="">Undo changes</a>
+      </li>
+    </ul>
+  </div>
+</h1>

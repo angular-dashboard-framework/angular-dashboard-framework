@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+  <h4 class="modal-title">Dashboard Configuration</h4>
+</div>
+<div class="modal-body">
+  <form role="form" class="form-horizontal">
+    <div class="form-group">
+      <label for="dashboardTitle" class="col-md-2 control-label">Title</label>
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="dashboardTitle" ng-model="copy.title" required="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2 control-label">Structure</label>
+      <div class="col-md-4">
+        <div class="radio" ng-repeat="(key, structure) in structures">
+          <label>
+            <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)"> {{key}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
+</div>

@@ -45,6 +45,11 @@ angular.module('adf.provider', [])
         </div>\n\
       </div>';
 
+    // default apply function of widget.edit.apply
+    var defaultApplyFunction = function(){
+      return true;
+    };
+
    /**
     * @ngdoc method
     * @name adf.dashboardProvider#widget
@@ -60,6 +65,7 @@ angular.module('adf.provider', [])
     *
     *   - `title` - `{string=}` - The title of the widget.
     *   - `description` - `{string=}` - Description of the widget.
+    *   - `collapsed` - `{boolean=}` - true if the widget should be in collapsed state. Default is false.
     *   - `config` - `{object}` - Predefined widget configuration.
     *   - `controller` - `{string=|function()=}` - Controller fn that should be
     *      associated with newly created scope of the widget or the name of a
@@ -67,6 +73,8 @@ angular.module('adf.provider', [])
     *      if passed as a string.
     *   - `controllerAs` - `{string=}` - A controller alias name. If present the controller will be
     *      published to scope under the `controllerAs` name.
+    *   - `frameless` - `{boolean=}` - false if the widget should be shown in frameless mode. The default is false.
+    *   - `styleClass` - `{object}` - space delimited string or map of classes bound to the widget.
     *   - `template` - `{string=|function()=}` - html template as a string.
     *   - `templateUrl` - `{string=}` - path to an html template.
     *   - `reload` - `{boolean=}` - true if the widget could be reloaded. The default is false.
@@ -85,18 +93,27 @@ angular.module('adf.provider', [])
     *        resolved before its value is injected into the controller.
     *   - `edit` - `{object}` - Edit modus of the widget.
     *      - `controller` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
+    *      - `controllerAs` - `{string=}` - Same as above, but for the edit mode of the widget.
     *      - `template` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
     *      - `templateUrl` - `{string=}` - Same as above, but for the edit mode of the widget.
     *      - `resolve` - `{Object.<string, function>=}` - Same as above, but for the edit mode of the widget.
     *      - `reload` - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
     *        Default is true.
+    *      - `immediate` - {boolean} - The widget enters the edit mode immediately after creation. Default is false.
+    *      - `apply` - `{function()=}` - The apply function is called, before the widget is saved.
+    *        The function have to return a boolean or an promise which can be resolved to a boolean.
+    *        The function can use injection.
     *
     * @returns {Object} self
     */
     this.widget = function(name, widget){
-      var w = angular.extend({reload: false}, widget);
+      var w = angular.extend({reload: false, frameless: false}, widget);
       if ( w.edit ){
-        var edit = {reload: true};
+        var edit = {
+          reload: true,
+          immediate: false,
+          apply: defaultApplyFunction
+        };
         angular.extend(edit, w.edit);
         w.edit = edit;
       }
@@ -178,7 +195,7 @@ angular.module('adf.provider', [])
     * Changes the template which is displayed as
     * long as the widget resources are not resolved.
     *
-    * @param {string} loading template
+    * @param {string} template loading template
     *
     * @returns {Object} self
     */
@@ -222,8 +239,24 @@ angular.module('adf.provider', [])
          * columns and widgets in the dashboard.
          */
         id: function(){
-          return ++cid;
-        }
+          return new Date().getTime() + '-' + (++cid);
+        },
+
+        /**
+         * @ngdoc method
+         * @name adf.dashboard#idEqual
+         * @methodOf adf.dashboard
+         * @description
+         *
+         * Checks if the given ids are equal.
+         *
+         * @param {string} id widget or column id
+         * @param {string} other widget or column id
+         */
+         idEquals: function(id, other){
+           // use toString, because old ids are numbers
+           return ((id) && (other)) && (id.toString() === other.toString());
+         }
       };
     };
 

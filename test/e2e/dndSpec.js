@@ -26,13 +26,13 @@
 'use strict';
 
 // disable dnd tests, because selenium and protractor does not have
-// support for html5 drag and drop: 
+// support for html5 drag and drop:
 // https://github.com/angular/protractor/issues/583
 // https://code.google.com/p/selenium/issues/detail?id=3604
 xdescribe('Drag and drop tests', function(){
 
   beforeEach(function(){
-    browser.get('http://localhost:9003/sample/index.html#/sample/03');
+    browser.get('http://localhost:9003/sample/index.html#/sample/02');
     browser.executeScript('window.localStorage.clear();');
   });
 
@@ -57,8 +57,8 @@ xdescribe('Drag and drop tests', function(){
       .perform();
 
     // verifiy dnd result
-    expect(sourceCol.all(by.css('.widget')).count()).toBe(0);
-    expect(targetCol.all(by.css('.widget')).count()).toBe(2);
+    expect(sourceCol.all(by.css('.widget')).count()).toBe(1);
+    expect(targetCol.all(by.css('.widget')).count()).toBe(3);
   });
 
 });

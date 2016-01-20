@@ -31,21 +31,27 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
     // set default model for demo purposes
     model = {
       title: "Sample 03",
+      addTemplateUrl : "partials/custom-dashboard-addwidget.html",      
+      titleTemplateUrl : "partials/custom-dashboard-title.html",
+      editTemplateUrl: "partials/custom-dashboard-edit.html",
       structure: "6-6",
       rows: [{
         columns: [{
-          styleClass: "medium-6",
+          styleClass: "col-md-6",
           widgets: [{
             title: 'Description',
+            titleTemplateUrl: 'partials/custom-widget-title.html',
+            editTemplateUrl: "partials/custom-dashboard-editwidget.html",
             type: 'markdown',
             config: {
-              content: 'This sample uses a widget filter, to restrict the widget selection on the "add dialog".'
+              content: 'This sample uses a widget filter, to restrict the widget selection on the "add dialog".\n\nIt also shows the ability to use custom templates for the dashboard title and widget title.'
             }
           }]
         }, {
-          styleClass: "medium-6",
+          styleClass: "col-md-6",
           widgets: [{
             title: 'Restangular',
+            titleTemplateUrl: 'partials/custom-widget-title.html',
             type: 'githubAuthor',
             config: {
               path: 'mgonto/restangular'
@@ -57,13 +63,19 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
   }
   $scope.name = name;
   $scope.model = model;
-  $scope.collapsible = false;
+  $scope.collapsible = true;
   $scope.maximizable = false;
+  $scope.enableConfirmDelete = true;
 
   // only allow github widgets
   $scope.widgetFilter = function(widget, type){
     return type.indexOf('github') >= 0 || type === 'markdown' || type === 'version';
   };
+
+  // set our custom widget title template when widgets are added
+   $scope.$on('adfWidgetAdded',function(event,name,model,widget){
+     widget.titleTemplateUrl="partials/custom-widget-title.html";
+   });
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);

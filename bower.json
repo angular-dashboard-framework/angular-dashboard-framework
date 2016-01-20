@@ -1,27 +1,33 @@
 {
   "name": "angular-dashboard-framework",
-  "version": "1.0.0",
+  "version": "2.0.0",
+  "license": "MIT",
+  "authors": [
+    "Traperto, fork from Sebastian Sdorra"
+  ],
   "main": [
     "dist/angular-dashboard-framework.js",
     "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
+    ".git",
     ".tmp",
     "dist/docs",
+    "dist/reports",
     "dist/sample",
-    "e2e",
     "node_modules",
     "sample",
     "src",
+    "test",
     ".bowerrc",
     ".editorconfig",
     ".gitignore",
     ".gitmodules",
     ".jshintrc",
+    ".travis.yml",
     "bower.json",
     "gulpfile.js",
-    "package.json",
-    "protractor.conf.js"
+    "package.json"
   ],
   "keywords": [
     "dashboard",
@@ -31,17 +37,20 @@
     "adf"
   ],
   "dependencies": {
-    "angular": "1.4.*",
-    "angular-foundation": "*",
-    "foundation": "5.5.x",
+    "angular": ">=1.4",
+    "angular-bootstrap": "^0.14.3",
+    "bootstrap": "^3.3.6",
     "components-font-awesome": "*",
-    "Sortable": "1.1.1"
+    "Sortable": "^1.2.1"
   },
   "devDependencies": {
-    "angular-mocks": "1.4.*",
-    "angular-scenario": "1.4.*",
-    "angular-route": "1.4.*",
-    "angular-local-storage": "0.1.5",
-    "es5-shim": "~2.0.8"
+    "angular-mocks": ">=1.2",
+    "angular-scenario": ">=1.2",
+    "angular-route": ">=1.2",
+    "angular-local-storage": ">=0.2",
+    "es5-shim": ">=4.1"
+  },
+  "resolutions": {
+    "angular": ">=1.4"
   }
 }

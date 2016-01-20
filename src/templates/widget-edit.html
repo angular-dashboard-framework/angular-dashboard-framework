@@ -1,20 +1,22 @@
-<div class="modal-header">
-  <a class="close-reveal-modal" ng-click="closeDialog()" aria-hidden="true" aria-label="Close">&#215;</a>
-  <h4 class="modal-title">{{widget.title}}</h4>
-</div>
-<div class="modal-body">
-    <form>
-        <div class="row">
-            <div class="small-2 columns">
-                <label for="widgetTitle" class="inline widgetTitle">Titel</label>
-            </div>
-            <div class="small-10 columns">
-                <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title">
-            </div>
-        </div>
-    </form>
-
-  <div ng-if="widget.edit" class="widget-settings">
-    <adf-widget-content model="definition" content="widget.edit" />
+<form name="widgetEditForm" novalidate role="form" ng-submit="saveDialog()">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">{{widget.title}}</h4>
   </div>
-</div>
+  <div class="modal-body">
+    <div class="alert alert-danger" role="alert" ng-show="validationError">
+      <strong>Fehler:</strong> {{validationError}}
+    </div>
+    <div class="form-group">
+      <label for="widgetTitle">Title</label>
+      <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title" placeholder="Titel eingeben" required="">
+    </div>
+    <div ng-if="widget.edit">
+      <adf-widget-content model="definition" content="widget.edit" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="closeDialog()">Abbrechen</button>
+    <input type="submit" class="btn btn-primary" ng-disabled="widgetEditForm.$invalid" value="Speichern" />
+  </div>
+</form>

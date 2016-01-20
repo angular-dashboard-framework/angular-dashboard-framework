@@ -61,20 +61,6 @@ pre.edit {
 
 .widget.panel {
     background-color: #FFF;
-    padding: 0rem;
-    border: 0;
-}
-
-.widget .panel-heading {
-    padding: 20px 20px;
-}
-
-.widget .panel-title {
-    margin-top: 0px;
-    font-size: 16px;
-}
-.widget .panel-title {
-    margin-bottom: 0px;
 }
 
 .widget .h1,
@@ -102,6 +88,8 @@ pre.edit {
 
 .dashboard-container h1 a {
   text-decoration: none;
+  padding: 0 2px;
+  font-size: 18px;
 }
 
 .padding-bottom {

@@ -1,7 +1,17 @@
-<a class="close-reveal-modal" ng-click="closeDialog()" aria-hidden="true" aria-label="Close">&#215;</a>
 <div class="modal-header">
+  <div class="pull-right widget-icons">
+    <a href="" title="Reload Widget Content" ng-if="widget.reload" ng-click="reload()">
+      <i class="fa fa-refresh"></i>
+    </a>
+    <a href="" title="close" ng-click="closeDialog()">
+      <i class="fa fa-times"></i>
+    </a>
+  </div>
   <h4 class="modal-title">{{definition.title}}</h4>
 </div>
 <div class="modal-body">
   <adf-widget-content model="definition" content="widget" />
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" ng-click="closeDialog()">Schließen</button>
 </div>

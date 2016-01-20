@@ -1,0 +1,27 @@
+<h3 class="panel-title" ng-class="editMode ? 'adf-move' : ''">
+{{definition.title}}
+  <span class="pull-right">
+    <a href="" title="Daten neu laden" ng-if="widget.reload" ng-click="reload()">
+      <i class="fa fa-refresh"></i>
+    </a>
+    <!-- collapse -->
+    <a href="" title="zuklappen" ng-show="options.collapsible && !widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
+      <i class="fa fa-minus"></i>
+    </a>
+    <!-- expand -->
+    <a href="" title="aufklappen" ng-show="options.collapsible && widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
+      <i class="fa fa-plus"></i>
+    </a>
+    <!-- open edit mode -->
+    <a href="" title="konfigurieren" ng-click="edit()" ng-if="editMode">
+      <i class="fa fa-cog"></i>
+    </a>
+    <a href="" title="fullscreen" ng-click="openFullScreen()" ng-if="options.maximizable">
+      <i class="fa fa-arrows"></i>
+    </a>
+    <!-- remove widget -->
+    <a href="" title="remove widget" ng-click="remove()" ng-if="editMode">
+      <i class="fa fa-remove"></i>
+    </a>
+  </span>
+</h3>

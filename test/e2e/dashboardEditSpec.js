@@ -30,13 +30,13 @@ var helper = require('./helper.js')
 describe('dashboard edit tests', function(){
 
   beforeEach(function(){
-    browser.get('http://localhost:9003/sample/index.html#/sample/03');
+    browser.get('http://localhost:9003/sample/index.html#/sample/02');
     browser.executeScript('window.localStorage.clear();');
   });
 
-  it('should have Sample 01 as default title', function(){
+  it('should have Sample 02 as default title', function(){
     var title = element(by.css('h1')).getText();
-    expect(title).toEqual('Sample 03');
+    expect(title).toEqual('Sample 02');
   });
 
   it('title should be changeable', function(){
@@ -54,7 +54,7 @@ describe('dashboard edit tests', function(){
     var title = element(by.css('h1'));
 
     // title should only change after the dialog is closed
-    expect(title.getText()).toEqual('Sample 03');
+    expect(title.getText()).toEqual('Sample 02');
 
     // close dialog
     element(by.css('button.close')).click();
@@ -90,7 +90,7 @@ describe('dashboard edit tests', function(){
     var columns = element.all(by.css('.column'));
     expect(columns.count()).toEqual(4);
     expect(columns.first().all(by.css('.widget')).count()).toEqual(1);
-    expect(columns.get(1).all(by.css('.widget')).count()).toEqual(1);
+    expect(columns.get(1).all(by.css('.widget')).count()).toEqual(2);
   });
 
 });

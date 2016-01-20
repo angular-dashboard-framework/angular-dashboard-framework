@@ -21,8 +21,6 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
 */
-
-
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -60,21 +58,7 @@ pre.edit {
 }
 
 .widget.panel {
-    background-color: #FFF;
-    padding: 0rem;
-    border: 0;
-}
-
-.widget .panel-heading {
-    padding: 20px 20px;
-}
-
-.widget .panel-title {
-    margin-top: 0px;
-    font-size: 16px;
-}
-.widget .panel-title {
-    margin-bottom: 0px;
+  background-color: #FFF;
 }
 
 .widget .h1,
@@ -88,20 +72,21 @@ pre.edit {
 .widget h3,
 .widget h4,
 .widget h5,
-.widget h6
-{
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.1;
-    color: inherit;
+.widget h6 {
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
 }
 
 .widget .panel-body {
-    padding: 15px;
+  padding: 15px;
 }
 
 .dashboard-container h1 a {
   text-decoration: none;
+  padding: 0 2px;
+  font-size: 18px;
 }
 
 .padding-bottom {
@@ -116,13 +101,14 @@ pre.edit {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
+
 /*
  modal dialog in fullscreen
 */
 .dashboard-modal.widget-fullscreen .modal-dialog {
- width: 98%;
+  width: 98%;
 }
 
 body {
-    background: url("../images/traperto-dashboard-bg.png");
+  background: url("../images/traperto-dashboard-bg.png");
 }

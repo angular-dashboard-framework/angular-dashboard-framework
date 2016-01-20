@@ -24,8 +24,24 @@
 
 'use strict';
 
-angular.module('adf', ['adf.provider', 'ui.bootstrap'])
-  .value('adfTemplatePath', '../src/templates/')
-  .value('rowTemplate', '<adf-dashboard-row row="row" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="row in column.rows" />')
-  .value('columnTemplate', '<adf-dashboard-column column="column" adf-model="adfModel" options="options" edit-mode="editMode" ng-repeat="column in row.columns" />')
-  .value('adfVersion', '<<adfVersion>>');
+// An example configuration file.
+exports.config = {
+  // The address of a running selenium server.
+  //seleniumAddress: 'http://localhost:4444/wd/hub',
+  //seleniumServerJar: deprecated, this should be set on node_modules/protractor/config.json
+
+  // Capabilities to be passed to the webdriver instance.
+  capabilities: {
+    'browserName': 'chrome'
+  },
+
+  // Spec patterns are relative to the current working directly when
+  // protractor is called.
+  specs: ['../test/e2e/*Spec.js'],
+
+  // Options to be passed to Jasmine-node.
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 30000
+  }
+};
