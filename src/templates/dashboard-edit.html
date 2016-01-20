@@ -12,11 +12,14 @@
         <div class="form-group">
             <label>Struktur</label>
             <div class="radio" ng-repeat="(key, structure) in structures">
-                <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)"> <label>{{key}}</label>
+                <label>
+                    <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
+                    {{key}}
+                </label>
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="closeDialog()">Schließen</button>
+    <button type="button" class="btn btn-default" ng-click="closeDialog()"><i class="fa fa-times"></i> Schließen</button>
 </div>
