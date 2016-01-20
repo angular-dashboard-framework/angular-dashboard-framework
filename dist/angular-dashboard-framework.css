@@ -32,8 +32,7 @@
 
 .edit .column {
   min-height: 120px;
-  border: 1px #ccc dashed;
-  padding-top: 15px;
+  border: 1px dashed #777;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
