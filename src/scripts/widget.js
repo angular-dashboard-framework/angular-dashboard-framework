@@ -182,7 +182,20 @@ angular.module('adf')
 
             // build injection locals
             var widget = $scope.widget;
-            var applyFn = widget.edit.apply;
+
+            // create a default apply method for widgets
+            // without edit mode
+            // see issue https://goo.gl/KHPQLZ
+            var applyFn;
+            if (widget.edit){
+              applyFn = widget.edit.apply;
+            } else {
+              applyFn = function(){
+                return true;
+              };
+            }
+
+            // injection locals
             var locals = {
               widget: widget,
               definition: editScope.definition,
