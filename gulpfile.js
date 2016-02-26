@@ -96,24 +96,33 @@ gulp.task('styles', function(){
       .pipe(gulp.dest('dist/'));
 });
 
+function processScripts(sources, filename){
+  sources.pipe($.sourcemaps.init())
+    .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
+    .pipe($.if('*.js', $.replace(/'use strict';/g, '')))
+    .pipe($.concat(filename + '.js'))
+    .pipe($.headerfooter('(function(window, undefined) {\'use strict\';\n', '\n})(window);'))
+    .pipe($.ngAnnotate(annotateOptions))
+    .pipe(gulp.dest('dist/'))
+    .pipe($.rename(filename + '.min.js'))
+    .pipe($.uglify())
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('dist/'));
+}
+
 gulp.task('js', function(){
-  gulp.src(['src/scripts/*.js', 'src/templates/*.html'])
-      .pipe($.if('*.html', $.minifyHtml(minifyHtmlOptions)))
-      .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
-      .pipe($.sourcemaps.init())
-      .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
-      .pipe($.if('*.js', $.replace(/'use strict';/g, '')))
-      .pipe($.concat(name + '.js'))
-      .pipe($.headerfooter('(function(window, undefined) {\'use strict\';\n', '})(window);'))
-      .pipe($.ngAnnotate(annotateOptions))
-      .pipe(gulp.dest('dist/'))
-      .pipe($.rename(name + '.min.js'))
-      .pipe($.uglify())
-      .pipe($.sourcemaps.write('.'))
-      .pipe(gulp.dest('dist/'));
+  var sources = gulp.src(['src/scripts/*.js']);
+  processScripts(sources, name);
 });
 
-gulp.task('build', ['styles', 'js']);
+gulp.task('js-with-tpls', function(){
+  var sources = gulp.src(['src/scripts/*.js', 'src/templates/*.html'])
+    .pipe($.if('*.html', $.minifyHtml(minifyHtmlOptions)))
+    .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
+  processScripts(sources, name + '-tpls');
+});
+
+gulp.task('build', ['styles', 'js', 'js-with-tpls']);
 
 /** build docs **/
 

@@ -6,7 +6,7 @@
     "Sebastian Sdorra"
   ],
   "main": [
-    "dist/angular-dashboard-framework.js",
+    "dist/angular-dashboard-framework-tpls.js",
     "dist/angular-dashboard-framework.css"
   ],
   "ignore": [
