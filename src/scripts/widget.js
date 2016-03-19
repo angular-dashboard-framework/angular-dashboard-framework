@@ -44,6 +44,13 @@ angular.module('adf')
             }
           }
 
+          if (!definition.editTemplateUrl) {
+            definition.editTemplateUrl = adfTemplatePath + 'widget-edit.html';
+            if (w.editTemplateUrl) {
+              definition.editTemplateUrl = w.editTemplateUrl;
+            }
+          }
+
           if (!definition.titleTemplateUrl) {
             definition.frameless = w.frameless;
           }
