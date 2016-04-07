@@ -75,6 +75,16 @@ pre.edit {
   filter: FlipH;
   -ms-filter: "FlipH";
 }
+
+.preview .column {
+    min-height: 60px;
+    border: 1px dashed #ccc;
+    padding-top: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 /*
  modal dialog in fullscreen
 */
