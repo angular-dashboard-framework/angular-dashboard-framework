@@ -10,12 +10,19 @@
     </div>
     <div class="form-group">
       <label>Structure</label>
-      <div class="radio" ng-repeat="(key, structure) in structures">
-        <label>
-          <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)"> {{key}}
-        </label>
-      </div>
-    </div>
+	   <div class="row">
+            <div class="col-xs-3">
+			  <div class="radio" ng-repeat="(key, structure) in structures">
+				<label>
+				  <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)"> {{key}}
+				</label>
+			  </div>
+			</div>
+            <div class="col-xs-9">
+                <adf-dashboard-preview structure="model"></adf-dashboard-preview>
+            </div>
+		</div>
+	</div>
   </form>
 </div>
 <div class="modal-footer">
