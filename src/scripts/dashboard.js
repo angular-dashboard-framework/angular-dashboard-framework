@@ -222,6 +222,25 @@ angular.module('adf')
       }, 200);
     }
 
+    /**
+     * Splits an object into an array with two objects inside.
+     *
+     * @param object source object
+     */
+    function split(object) {
+      var arr = [{}, {}];
+      var i=0;
+      angular.forEach(object, function(value, key){
+        if (i % 2 === 0){
+          arr[0][key] = value;
+        } else {
+          arr[1][key] = value;
+        }
+        i++;
+      });
+      return arr;
+    }
+
     return {
       replace: true,
       restrict: 'EA',
@@ -321,7 +340,9 @@ angular.module('adf')
           editDashboardScope.copy = {
             title: model.title
           };
-          editDashboardScope.structures = dashboard.structures;
+
+          // split structures to create two columns
+          editDashboardScope.structures = split(dashboard.structures);
 
           var adfEditTemplatePath = adfTemplatePath + 'dashboard-edit.html';
           if(model.editTemplateUrl) {
