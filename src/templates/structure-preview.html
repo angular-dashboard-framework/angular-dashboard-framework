@@ -1,6 +1,4 @@
 <div class="structure-preview">
-  <!--h4>{{name}}</h4-->
-  <div class="row" ng-repeat="row in structure.rows" ng-class="row.styleClass">
-      <div class="column" ng-repeat="column in row.columns" ng-class="column.styleClass"></div>
-  </div>
+  <h4>{{name}}</h4>
+  <adf-dashboard-row ng-repeat="row in preview.rows" row="row" />
 </div>
