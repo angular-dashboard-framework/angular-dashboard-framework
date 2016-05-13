@@ -86,20 +86,33 @@ pre.edit {
 .structure-preview {
   height: 5em;
   width: 10em;
+  line-height: 5em;
+  display: table;
+  position: relative;
 
   h4 {
     position: absolute;
     text-align: center;
-    z-index: 100;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    margin: auto;
+    z-index: 10000;
   }
 
   .row {
-    height: 100%;
+    display: table-row;
+    position: relative;
   }
 
   .column {
+    position: relative;
+    display: table-column;
     border: 1px #ccc dashed;
-    min-height: 1em;
+    min-height: 0.25em;
     height: 100%;
+    background-color: #eee;
   }
 }
