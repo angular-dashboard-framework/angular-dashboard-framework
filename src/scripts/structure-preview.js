@@ -56,7 +56,8 @@ angular.module('adf')
       replace: true,
       scope: {
         name: '=',
-        structure: '='
+        structure: '=',
+        selected: '='
       },
       templateUrl: adfTemplatePath + 'structure-preview.html',
       link: prepareStructure

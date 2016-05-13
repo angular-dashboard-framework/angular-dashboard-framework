@@ -23,8 +23,8 @@
 */
 
 .structure-preview {
-  height: 125px;
-  width: 175px;
+  height: 150px;
+  width: 200px;
   position: relative;
 
   .column {
@@ -44,5 +44,17 @@
     right: 0;
     height: 30%;
     margin: auto;
+  }
+}
+
+.structure-preview:hover,
+.structure-preview.selected {
+
+  .column {
+    border: 1px #337ab7 dashed;
+  }
+
+  h4 {
+    color: #337ab7;
   }
 }

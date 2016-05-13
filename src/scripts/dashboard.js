@@ -223,20 +223,20 @@ angular.module('adf')
     }
 
     /**
-     * Splits an object into an array with two objects inside.
+     * Splits an object into an array multiple objects inside.
      *
      * @param object source object
+     * @param size size of array
      */
-    function split(object) {
-      var arr = [{}, {}];
-      var i=0;
+    function split(object, size) {
+      var arr = [];
+      var i = 0;
       angular.forEach(object, function(value, key){
-        if (i % 2 === 0){
-          arr[0][key] = value;
-        } else {
-          arr[1][key] = value;
+        var index = i++ % size;
+        if (!arr[index]){
+          arr[index] = {};
         }
-        i++;
+        arr[index][key] = value;
       });
       return arr;
     }
@@ -342,7 +342,7 @@ angular.module('adf')
           };
 
           // split structures to create two columns
-          editDashboardScope.structures = split(dashboard.structures);
+          editDashboardScope.structures = split(dashboard.structures, 3);
 
           var adfEditTemplatePath = adfTemplatePath + 'dashboard-edit.html';
           if(model.editTemplateUrl) {
@@ -351,11 +351,15 @@ angular.module('adf')
           var instance = $uibModal.open({
             scope: editDashboardScope,
             templateUrl: adfEditTemplatePath,
-            backdrop: 'static'
+            backdrop: 'static',
+            size: 'lg'
           });
           editDashboardScope.changeStructure = function(name, structure){
             $log.info('change structure to ' + name);
             changeStructure(model, structure);
+            if (model.structure !== name){
+              model.structure = name;
+            }
           };
           editDashboardScope.closeDialog = function(){
             // copy the new title back to the model

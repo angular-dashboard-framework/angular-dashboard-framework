@@ -11,16 +11,20 @@
     <div class="form-group">
       <label>Structure</label>
       <div class="row">
-        <div class="col-xs-6" ng-repeat="structureColumn in structures">
+        <div class="col-lg-4" ng-repeat="structureColumn in structures">
           <div class="radio" ng-repeat="(key, structure) in structureColumn">
             <div class="row">
-              <div class="col-xs-1">
+              <div class="col-sm-2">
                 <label>
                   <input type="radio" value="{{key}}" ng-model="model.structure" ng-change="changeStructure(key, structure)">
                 </label>
               </div>
-              <div class="col-xs-10">
-                  <adf-structure-preview name="key" structure="structure"></adf-structure-preview>
+              <div class="col-sm-9" ng-click="changeStructure(key, structure)">
+                  <adf-structure-preview
+                    name="key"
+                    structure="structure"
+                    selected="model.structure == key">
+                  </adf-structure-preview>
               </div>
             </div>
           </div>
