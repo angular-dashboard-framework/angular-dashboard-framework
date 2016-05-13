@@ -25,47 +25,8 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidgetContent', function($log, $q, $sce, $http, $templateCache,
+  .directive('adfWidgetContent', function($log, $q, widgetService,
           $compile, $controller, $injector, dashboard) {
-
-    function parseUrl(url) {
-      var parsedUrl = url;
-      if (url.indexOf('{widgetsPath}') >= 0) {
-        parsedUrl = url.replace('{widgetsPath}', dashboard.widgetsPath)
-                .replace('//', '/');
-        if (parsedUrl.indexOf('/') === 0) {
-          parsedUrl = parsedUrl.substring(1);
-        }
-      }
-      return parsedUrl;
-    }
-
-    function getTemplate(widget) {
-      var deferred = $q.defer();
-
-      if (widget.template) {
-        deferred.resolve(widget.template);
-      } else if (widget.templateUrl) {
-        // try to fetch template from cache
-        var tpl = $templateCache.get(widget.templateUrl);
-        if (tpl) {
-          deferred.resolve(tpl);
-        } else {
-          var url = $sce.getTrustedResourceUrl(parseUrl(widget.templateUrl));
-          $http.get(url)
-               .success(function(response) {
-                 // put response to cache, with unmodified url as key
-                 $templateCache.put(widget.templateUrl, response);
-                 deferred.resolve(response);
-               })
-               .error(function() {
-                 deferred.reject('could not load template');
-               });
-        }
-      }
-
-      return deferred.promise;
-    }
 
     function compileWidget($scope, $element, currentScope) {
       var model = $scope.model;
@@ -93,7 +54,7 @@ angular.module('adf')
 
       // get resolve promises from content object
       var resolvers = {};
-      resolvers.$tpl = getTemplate(content);
+      resolvers.$tpl = widgetService.getTemplate(content);
       if (content.resolve) {
         angular.forEach(content.resolve, function(promise, key) {
           if (angular.isString(promise)) {
