@@ -28,7 +28,6 @@ var connect = require('gulp-connect');
 var modRewrite = require('connect-modrewrite');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
-var jsReporter = require('jshint-stylish');
 var pkg = require('./package.json');
 var karmaServer = require('karma').Server;
 var name = pkg.name;
