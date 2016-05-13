@@ -1,0 +1,6 @@
+{
+  "globals": {
+    "Sortable": true
+  },
+  "extends": ["eslint:recommended", "angular"]
+}

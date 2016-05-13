@@ -68,8 +68,9 @@ gulp.task('csslint', function(){
 
 gulp.task('jslint', function(){
   gulp.src('src/scripts/*.js')
-      .pipe($.jshint())
-      .pipe($.jshint.reporter(jsReporter));
+      .pipe($.eslint())
+      .pipe($.eslint.format())
+      .pipe($.eslint.failAfterError());
 });
 
 gulp.task('lint', ['csslint', 'jslint']);
