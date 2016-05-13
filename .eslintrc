@@ -1,6 +1,16 @@
 {
-  "globals": {
-    "Sortable": true
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "protractor": true
   },
-  "extends": ["eslint:recommended", "angular"]
+  "globals": {
+    "Sortable": true,
+    "module": false,
+    "inject": false
+  },
+  "extends": [
+    "eslint:recommended",
+    "angular"
+  ]
 }
