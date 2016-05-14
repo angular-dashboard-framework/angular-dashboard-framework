@@ -3,12 +3,30 @@
   <h4 class="modal-title">Add new widget</h4>
 </div>
 <div class="modal-body">
-  <div style="display: inline-block;">
+  <!-- dashboard categories enabled -->
+  <div ng-if="createCategories">
+    <uib-accordion close-others="oneAtATime" ng-init="categorized = createCategories(widgets)">
+      <uib-accordion-group heading="{{category}}" ng-repeat="(category, widgets) in categorized">
+        <dl class="dl-horizontal">
+          <dt ng-repeat-start="(key, widget) in widgets">
+            <a href="" ng-click="addWidget(key)">
+              {{widget.title}}
+            </a>
+          </dt>
+          <dd ng-repeat-end ng-if="widget.description">
+            {{widget.description}}
+          </dd>
+        </dl>
+      </uib-accordion-group>
+    </uib-accordion>
+  </div>
+  <!-- dashboard categories disabled -->
+  <div style="display: inline-block;" ng-if="!createCategories">
     <dl class="dl-horizontal">
       <dt ng-repeat-start="(key, widget) in widgets">
         <a href="" ng-click="addWidget(key)">
           {{widget.title}}
-        </a>      
+        </a>
       </dt>
       <dd ng-repeat-end ng-if="widget.description">
         {{widget.description}}

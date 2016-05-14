@@ -66,7 +66,7 @@ describe('Dashboard Directive tests', function () {
       $uibModal = _$uibModal_;
       $scope = $rootScope.$new();
       dashboard = _dashboard_;
-      directive = '<adf-dashboard name="{{name}}" collapsible="{{collapsible}}" maximizable="{{maximizable}}" continuous-edit-mode="continuousEditMode" structure="4-8" adf-model="model" />';
+      directive = '<adf-dashboard name="{{name}}" collapsible="{{collapsible}}" maximizable="{{maximizable}}" categories="{{categories}}" continuous-edit-mode="continuousEditMode" structure="4-8" adf-model="model" />';
 
       $scope.name = 'sample-01';
       $scope.model = {
@@ -84,6 +84,7 @@ describe('Dashboard Directive tests', function () {
       };
       $scope.collapsible = false;
       $scope.maximizable = false;
+      $scope.categories = false;
       $scope.continuousEditMode = false;
     }));
 
@@ -309,6 +310,39 @@ describe('Dashboard Directive tests', function () {
         isolatedScope.addWidgetDialog();
 
         expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-add.html');
+      });
+
+      it('should create categories from widgets', function(){
+        // enabled categories
+        $scope.categories = true;
+
+        // render directive
+        var element = compileTemplate(directive);
+
+        // get dialog scope
+        var isolatedScope = element.isolateScope();
+        isolatedScope.addWidgetDialog();
+        var scope = $uibModal.opts.scope;
+
+        // create sample widgets
+        var widgets = [{
+          title: '1',
+          category: 'a'
+        },{
+          title: '2',
+          category: 'a'
+        }, {
+          title: '3',
+          category: 'b'
+        }, {
+          title: '4'
+        }];
+
+        // create categories and test
+        var categories = scope.createCategories(widgets);
+        expect(categories.a.length).toBe(2);
+        expect(categories.b.length).toBe(1);
+        expect(categories.Miscellaneous.length).toBe(1);
       });
 
       it('should close add widget dialog', function(){

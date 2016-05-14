@@ -31,7 +31,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
     // set default model for demo purposes
     model = {
       title: "Sample 03",
-      addTemplateUrl : "partials/custom-dashboard-addwidget.html",      
+      addTemplateUrl : "partials/custom-dashboard-addwidget.html",
       titleTemplateUrl : "partials/custom-dashboard-title.html",
       editTemplateUrl: "partials/custom-dashboard-edit.html",
       structure: "6-6",
@@ -66,6 +66,7 @@ angular.module('sample-03', ['adf', 'LocalStorageModule'])
   $scope.collapsible = true;
   $scope.maximizable = false;
   $scope.enableConfirmDelete = true;
+  $scope.categories = false;
 
   // only allow github widgets
   $scope.widgetFilter = function(widget, type){

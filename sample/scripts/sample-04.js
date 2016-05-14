@@ -126,6 +126,7 @@ angular.module('sample-04', ['adf', 'LocalStorageModule'])
   $scope.model = model;
   $scope.collapsible = false;
   $scope.maximizable = false;
+  $scope.categories = false;
 
   $scope.$on('adfDashboardChanged', function(event, name, model) {
     localStorageService.set(name, model);

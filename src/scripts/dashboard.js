@@ -44,6 +44,7 @@
  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
  * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
  *                   events during edit mode not reset it if edit mode is exited.
+ * @param {boolean=} categories enable categories for the add widget dialog.
  */
 
 angular.module('adf')
@@ -227,6 +228,8 @@ angular.module('adf')
      *
      * @param object source object
      * @param size size of array
+     *
+     * @return array of splitted objects
      */
     function split(object, size) {
       var arr = [];
@@ -239,6 +242,30 @@ angular.module('adf')
         arr[index][key] = value;
       });
       return arr;
+    }
+
+    /**
+     * Creates object with the category name as key and an array of widgets as value.
+     *
+     * @param widgets array of widgets
+     *
+     * @return array of categories
+     */
+    function createCategories(widgets){
+      var categories = {};
+      angular.forEach(widgets, function(widget){
+        var category = widget.category;
+        // if the widget has no category use a default one
+        if (!category){
+          category = 'Miscellaneous';
+        }
+        // push widget to category array
+        if (!categories[category]){
+          categories[category] = [];
+        }
+        categories[category].push(widget);
+      });
+      return categories;
     }
 
     return {
@@ -254,7 +281,8 @@ angular.module('adf')
         continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
-        adfWidgetFilter: '='
+        adfWidgetFilter: '=',
+        categories: '@'
       },
       controller: function($scope){
         var model = {};
@@ -390,6 +418,11 @@ angular.module('adf')
           }
           addScope.widgets = widgets;
 
+          // pass createCategories function to scope, if categories option is enabled
+          if ($scope.options.categories){
+            $scope.createCategories = createCategories;
+          }
+
           var adfAddTemplatePath = adfTemplatePath + 'widget-add.html';
           if(model.addTemplateUrl) {
             adfAddTemplatePath = model.addTemplateUrl;
@@ -433,7 +466,8 @@ angular.module('adf')
           editable: true,
           enableConfirmDelete: stringToBoolean($attr.enableconfirmdelete),
           maximizable: stringToBoolean($attr.maximizable),
-          collapsible: stringToBoolean($attr.collapsible)
+          collapsible: stringToBoolean($attr.collapsible),
+          categories: stringToBoolean($attr.categories)
         };
         if (angular.isDefined($attr.editable)){
           options.editable = stringToBoolean($attr.editable);

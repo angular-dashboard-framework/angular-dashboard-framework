@@ -65,6 +65,7 @@ angular.module('sample-05', ['adf', 'LocalStorageModule'])
     $scope.model = model;
     $scope.collapsible = false;
     $scope.maximizable = false;
+    $scope.categories = false;
     $scope.eventsFired = [];
 
     var eventFired = function (event, name, model) {
