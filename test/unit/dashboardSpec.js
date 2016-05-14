@@ -251,6 +251,26 @@ describe('Dashboard Directive tests', function () {
       expect($uibModal.opts.templateUrl).toBe('../src/templates/dashboard-edit.html');
     });
 
+    it('should split the structures into an array', function(){
+      var element = compileTemplate(directive);
+      var isolatedScope = element.isolateScope();
+      isolatedScope.editDashboardDialog();
+      var scope = $uibModal.opts.scope;
+
+      var structures = {
+        a: '1',
+        b: '2',
+        c: '3',
+        d: '4'
+      };
+
+      var splitted = scope.split(structures, 2);
+      expect(splitted[0].a).toBe('1');
+      expect(splitted[0].c).toBe('3');
+      expect(splitted[1].b).toBe('2');
+      expect(splitted[1].d).toBe('4');
+    });
+
     it('should open edit dialog with custom template', function(){
       $scope.model.editTemplateUrl = '../src/templates/widget-edit.html';
       var element = compileTemplate(directive);
