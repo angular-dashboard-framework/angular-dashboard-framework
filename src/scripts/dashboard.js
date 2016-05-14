@@ -341,8 +341,11 @@ angular.module('adf')
             title: model.title
           };
 
-          // split structures to create two columns
-          editDashboardScope.structures = split(dashboard.structures, 3);
+          // pass dashboard structure to scope
+          editDashboardScope.structures = dashboard.structures;
+
+          // pass split function to scope, to be able to display structures in multiple columns
+          editDashboardScope.split = split;
 
           var adfEditTemplatePath = adfTemplatePath + 'dashboard-edit.html';
           if(model.editTemplateUrl) {
