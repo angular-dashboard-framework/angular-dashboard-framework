@@ -5,7 +5,7 @@
 <div class="modal-body">
   <!-- dashboard categories enabled -->
   <div ng-if="createCategories">
-    <uib-accordion close-others="oneAtATime" ng-init="categorized = createCategories(widgets)">
+    <uib-accordion ng-init="categorized = createCategories(widgets)">
       <uib-accordion-group heading="{{category}}" ng-repeat="(category, widgets) in categorized">
         <dl class="dl-horizontal">
           <dt ng-repeat-start="(key, widget) in widgets">
