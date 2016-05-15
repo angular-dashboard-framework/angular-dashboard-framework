@@ -25,3 +25,6 @@
 [submodule "sample/structures/base"]
 	path = sample/structures/base
 	url = https://github.com/angular-dashboard-framework/adf-structures-base
+[submodule "sample/widgets/travis"]
+	path = sample/widgets/travis
+	url = https://github.com/angular-dashboard-framework/adf-widget-travis

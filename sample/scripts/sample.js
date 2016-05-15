@@ -28,7 +28,8 @@ angular.module('sample', [
   'adf.widget.randommsg', 'adf.widget.weather',
   'adf.widget.markdown', 'adf.widget.linklist',
   'adf.widget.github', 'adf.widget.version',
-  'adf.widget.clock', 'LocalStorageModule',
+  'adf.widget.clock', 'adf.widget.travis',
+  'LocalStorageModule',
   'sample-01', 'sample-02', 'sample-03',
   'sample-04', 'sample-05', 'ngRoute'
 ])
