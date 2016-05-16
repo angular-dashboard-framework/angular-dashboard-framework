@@ -52,6 +52,7 @@ describe('Dashboard Provider tests', function() {
     expect(widget2.edit.reload).toBe(true);
     expect(widget2.edit.immediate).toBe(false);
     expect(widget2.edit.apply).toBeDefined();
+    expect(widget2.edit.apply()).toBeTruthy();
   }));
 
   it('should store widget path', inject(function(){
