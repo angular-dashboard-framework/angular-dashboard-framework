@@ -25,6 +25,48 @@
   display: none !important;
 }
 
+.widget h3 a {
+  text-decoration: none;
+}
+
+.dashboard-container h1 a {
+  text-decoration: none;
+}
+
+.padding-bottom {
+  padding-bottom: 5px;
+}
+
+/*
+ modal dialog in fullscreen
+*/
+.dashboard-modal.widget-fullscreen .modal-dialog {
+  width: 98%;
+}
+
+/**
+ The MIT License
+
+ Copyright (c) 2015, Sebastian Sdorra
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+*/
 .adf-move {
   cursor: move;
   cursor: -webkit-grabbing;
@@ -53,18 +95,6 @@ pre.edit {
   border-radius: 5px;
 }
 
-.widget h3 a {
-  text-decoration: none;
-}
-
-.dashboard-container h1 a {
-  text-decoration: none;
-}
-
-.padding-bottom {
-  padding-bottom: 5px;
-}
-
 .adf-flip {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
@@ -74,9 +104,60 @@ pre.edit {
   -ms-filter: "FlipH";
 }
 
-/*
- modal dialog in fullscreen
+/**
+ The MIT License
+
+ Copyright (c) 2015, Sebastian Sdorra
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
 */
-.dashboard-modal.widget-fullscreen .modal-dialog {
-  width: 98%;
+.structure-preview {
+  height: 150px;
+  width: 200px;
+  position: relative;
+}
+
+.structure-preview .column {
+  border: 1px #ccc dashed;
+  background-color: #eee;
+  height: 100%;
+}
+
+.structure-preview h4 {
+  position: absolute;
+  text-align: center;
+  color: #aaa;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+  margin: auto;
+}
+
+.structure-preview:hover .column,
+.structure-preview.selected .column {
+  border: 1px #337ab7 dashed;
+}
+
+.structure-preview:hover h4,
+.structure-preview.selected h4 {
+  color: #337ab7;
 }
