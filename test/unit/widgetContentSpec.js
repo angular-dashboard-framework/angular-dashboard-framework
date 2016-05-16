@@ -130,6 +130,19 @@ describe('widget-content directive tests', function() {
       expect(element.find("div.test-widget").text()).toBe('Hello World');
   });
 
+  it('should resolve string to a defined value and pass it to the scope', function() {
+      $scope.widget = {
+        template: '<div class="test-widget">{{vm.prop}}</div>',
+        resolve: {
+          prop: 'adfTemplatePath'
+        },
+        resolveAs: 'vm'
+      };
+
+      var element = compileTemplate(directive);
+      expect(element.find("div.test-widget").text()).toBe('../src/templates/');
+  });
+
   it('should render a widget with a templateUrl', function() {
       $templateCache.put('src/test.js', '<div class="test-widget">Hello World</div>');
       $scope.widget = {
