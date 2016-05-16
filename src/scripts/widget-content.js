@@ -69,6 +69,11 @@ angular.module('adf')
       $q.all(resolvers).then(function(locals) {
         angular.extend(locals, base);
 
+        // pass resolve map to template scope as defined in resolveAs
+        if (content.resolveAs){
+          templateScope[content.resolveAs] = locals;
+        }
+
         // compile & render template
         var template = locals.$tpl;
         $element.html(template);

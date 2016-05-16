@@ -115,6 +115,21 @@ describe('widget-content directive tests', function() {
       expect(element.find("div.test-widget").text()).toBe('Hello World');
   });
 
+  it('should pass the resolve map to widget scope', function() {
+      $scope.widget = {
+        template: '<div class="test-widget">{{vm.prop}}</div>',
+        resolve: {
+          prop: function(){
+            return $q.when('Hello World');
+          }
+        },
+        resolveAs: 'vm'
+      };
+
+      var element = compileTemplate(directive);
+      expect(element.find("div.test-widget").text()).toBe('Hello World');
+  });
+
   it('should render a widget with a templateUrl', function() {
       $templateCache.put('src/test.js', '<div class="test-widget">Hello World</div>');
       $scope.widget = {

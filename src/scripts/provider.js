@@ -92,12 +92,16 @@ angular.module('adf.provider', [])
     *        Otherwise if function, then it is {@link http://docs.angularjs.org/api/AUTO.$injector#invoke injected}
     *        and the return value is treated as the dependency. If the result is a promise, it is
     *        resolved before its value is injected into the controller.
+    *   - `resolveAs` - `{string=}` - The name under which the resolve map will be available
+    *      on the scope of the widget.
     *   - `edit` - `{object}` - Edit modus of the widget.
     *      - `controller` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
     *      - `controllerAs` - `{string=}` - Same as above, but for the edit mode of the widget.
     *      - `template` - `{string=|function()=}` - Same as above, but for the edit mode of the widget.
     *      - `templateUrl` - `{string=}` - Same as above, but for the edit mode of the widget.
     *      - `resolve` - `{Object.<string, function>=}` - Same as above, but for the edit mode of the widget.
+    *      - `resolveAs` - `{string=}` - The name under which the resolve map will be available
+    *        on the scope of the widget.
     *      - `reload` - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
     *        Default is true.
     *      - `immediate` - {boolean} - The widget enters the edit mode immediately after creation. Default is false.
