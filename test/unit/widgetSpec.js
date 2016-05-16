@@ -135,7 +135,7 @@ describe('widget directive tests', function() {
       var element = compileTemplate(directive);
       element.find('.glyphicon-remove').click();
       $scope.$digest();
-    };
+    }
 
     it('should remove the widget from dashboard', function() {
         removeWidget();
@@ -246,7 +246,7 @@ describe('widget directive tests', function() {
       expect($uibModal.opts.templateUrl).toBe('../src/templates/widget-edit.html');
       // check for correct widget in edit scope
       expect($uibModal.opts.scope.definition.wid).toBe('1');
-    };
+    }
 
     function checkApplyFunction(apply, check){
       dashboard.widgets['test'].edit.apply = apply;
@@ -259,7 +259,7 @@ describe('widget directive tests', function() {
       // TODO find better way as timeout
       $scope.$digest();
       check();
-    };
+    }
 
     it('should open the edit mode', openEditMode);
 

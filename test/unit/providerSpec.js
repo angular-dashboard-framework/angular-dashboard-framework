@@ -70,7 +70,7 @@ describe('Dashboard Provider tests', function() {
     var structure = dashboard.structures['test'];
     expect(structure.name).toBe('test');
 
-    var structure = dashboard.structures['test-2'];
+    structure = dashboard.structures['test-2'];
     expect(structure.name).toBe('test-2')
   }));
 
