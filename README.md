@@ -30,11 +30,10 @@ git clone https://github.com/angular-dashboard-framework/angular-dashboard-frame
 cd angular-dashboard-framework
 ```
 
-Install npm and bower dependencies:
+Install dependencies:
 
 ```bash
 npm install
-bower install
 ```
 
 Checkout git submodule widgets:
