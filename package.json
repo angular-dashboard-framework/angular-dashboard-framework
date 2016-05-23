@@ -1,9 +1,6 @@
 {
   "name": "angular-dashboard-framework",
   "version": "0.12.0-SNAPSHOT",
-  "scripts": {
-    "postinstall": "bower cache clean && bower install"
-  },  
   "license": "MIT",
   "authors": "Sebastian Sdorra",
   "devDependencies": {

@@ -34,6 +34,7 @@ Install dependencies:
 
 ```bash
 npm install
+bower install
 ```
 
 Checkout git submodule widgets:
