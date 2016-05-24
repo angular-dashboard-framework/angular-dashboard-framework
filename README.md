@@ -59,6 +59,19 @@ gulp all
 ```
 The sample and the final build of angular-dashboard-framework are now in the dist directory.
 
+## Custom widget wrapper template
+You can now use your own template instead of the default bootstrap panel layout. Override the default template by specifying your custom template path via the dashboardProvider in the config phase.
+
+```javascript
+angular
+    .module('adfWidgetSample', ['adf', 'LocalStorageModule'])
+    .config(function(dashboardProvider, localStorageServiceProvider){
+       localStorageServiceProvider.setPrefix('adf.my-custom-chart');
+       dashboardProvider.customWidgetTemplate = 'src/custom-tmpl/view.html'
+    }
+```
+
+
 ## Contributing
 
 Please do not commit changes to the dist folder. The dist folder is only generated for releases.
