@@ -30,7 +30,7 @@ git clone https://github.com/angular-dashboard-framework/angular-dashboard-frame
 cd angular-dashboard-framework
 ```
 
-Install npm and bower dependencies:
+Install dependencies:
 
 ```bash
 npm install
@@ -58,6 +58,19 @@ Or you can create a release build of angular-dashboard-framework and the samples
 gulp all
 ```
 The sample and the final build of angular-dashboard-framework are now in the dist directory.
+
+## Custom widget wrapper template
+You can now use your own template instead of the default bootstrap panel layout. Override the default template by specifying your custom template path via the dashboardProvider in the config phase.
+
+```javascript
+angular
+    .module('adfWidgetSample', ['adf', 'LocalStorageModule'])
+    .config(function(dashboardProvider, localStorageServiceProvider){
+       localStorageServiceProvider.setPrefix('adf.my-custom-chart');
+       dashboardProvider.customWidgetTemplate = 'src/custom-tmpl/view.html'
+    }
+```
+
 
 ## Contributing
 

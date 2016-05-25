@@ -32,7 +32,8 @@ describe('widget directive tests', function() {
       $uibModalInstance,
       $scope,
       directive,
-      dashboard;
+      dashboard,
+      $templateCache;
 
   // Load the myApp module, which contains the directive
   beforeEach(function(){
@@ -59,13 +60,14 @@ describe('widget directive tests', function() {
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
-  beforeEach(inject(function(_$compile_, _$rootScope_, _$uibModal_, _dashboard_){
+  beforeEach(inject(function(_$compile_, _$rootScope_, _$uibModal_, _dashboard_, _$templateCache_){
       // The injector unwraps the underscores (_) from around the parameter names when matching
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $uibModal = _$uibModal_;
       dashboard = _dashboard_;
       dashboard.widgets = [];
+      $templateCache = _$templateCache_;
 
       $scope = $rootScope.$new();
       directive = '<adf-widget definition="definition" column="column" options="options" edit-mode="editMode" widget-state="widgetState" />';
@@ -112,6 +114,33 @@ describe('widget directive tests', function() {
     expect(counter).toBe(1);
     element.find('.glyphicon-refresh').click();
     expect(counter).toBe(2);
+  });
+
+  it('should load the default widget template', function(){
+    dashboard.widgets['test'] = {
+      template: '<div class="hello">Hello World</div>',
+    };
+    $scope.definition = {
+      type: 'test'
+    };
+
+    spyOn($templateCache, 'get').and.returnValue('<div></div>');
+    var element = compileTemplate(directive);
+    expect($templateCache.get).toHaveBeenCalledWith('../src/templates/widget.html');
+  });
+
+  it('should load a custom widget template', function(){
+    dashboard.widgets['test'] = {
+      template: '<div class="hello">Hello World</div>',
+    };
+    $scope.definition = {
+      type: 'test'
+    };
+    
+    spyOn($templateCache, 'get').and.returnValue('<div></div>');
+    dashboard.widgetCustomTemplateUrl = '..src/templates/customWidget.html';
+    var element = compileTemplate(directive);
+    expect($templateCache.get).toHaveBeenCalledWith(dashboard.widgetCustomTemplateUrl);
   });
 
   describe('delete functions', function(){
