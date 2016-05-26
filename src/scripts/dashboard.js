@@ -330,6 +330,16 @@ angular.module('adf')
         $scope.editMode = false;
         $scope.editClass = '';
 
+        //passs translate function from dashboard so we can translate labels inside html templates
+        $scope.translate = dashboard.translate;
+
+        function getNewModalScope() {
+          var scope = $scope.$new();
+          //pass translate function to the new scope so we can translate the labels inside the modal dialog
+          scope.translate = dashboard.translate;
+          return scope;
+        }
+
         $scope.toggleEditMode = function(){
           $scope.editMode = ! $scope.editMode;
           if ($scope.editMode){
@@ -362,7 +372,7 @@ angular.module('adf')
 
         // edit dashboard settings
         $scope.editDashboardDialog = function(){
-          var editDashboardScope = $scope.$new();
+          var editDashboardScope = getNewModalScope();
           // create a copy of the title, to avoid changing the title to
           // "dashboard" if the field is empty
           editDashboardScope.copy = {
@@ -403,7 +413,7 @@ angular.module('adf')
 
         // add widget dialog
         $scope.addWidgetDialog = function(){
-          var addScope = $scope.$new();
+          var addScope = getNewModalScope();
           var model = $scope.model;
           var widgets;
           if (angular.isFunction(widgetFilter)){
@@ -417,6 +427,9 @@ angular.module('adf')
             widgets = dashboard.widgets;
           }
           addScope.widgets = widgets;
+
+          //pass translate function to the new scope so we can translate the labels inside the modal dialog
+          addScope.translate = $scope.translate;
 
           // pass createCategories function to scope, if categories option is enabled
           if ($scope.options.categories){

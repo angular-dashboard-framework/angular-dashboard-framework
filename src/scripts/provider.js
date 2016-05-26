@@ -31,8 +31,8 @@
  *
  * The dashboardProvider can be used to register structures and widgets.
  */
-angular.module('adf.provider', [])
-  .provider('dashboard', function(){
+angular.module('adf.provider', ['adf.culture'])
+  .provider('dashboard', function(adfCulture){
 
     var widgets = {};
     var widgetsPath = '';
@@ -49,6 +49,22 @@ angular.module('adf.provider', [])
     var defaultApplyFunction = function(){
       return true;
     };
+
+    var activeCulture = adfCulture.defaultCulture;
+    var cultures = adfCulture.frameworkCultures;
+
+    function getAllCultures() {
+      return cultures;
+    }
+
+    function getActiveCulture() {
+      return activeCulture;
+    }
+
+    function translate(label) {
+      var translation = cultures[activeCulture][label];
+      return translation ? translation : label;
+    }
 
    /**
     * @ngdoc method
@@ -209,6 +225,53 @@ angular.module('adf.provider', [])
       return this;
     };
 
+    /**
+     * @ngdoc method
+     * @name adf.dashboardProvider#setCulture
+     * @methodOf adf.dashboardProvider
+     * @description
+     *
+     * Changes the culture setting of adf
+     *
+     * @param {string} ISO culture code
+     *
+     * @returns {Object} self
+     */
+     this.setCulture = function(cultureCode){
+       if(cultures[cultureCode]) {
+         activeCulture = cultureCode;
+       } else {
+         throw new Error('Cannot set culture: ' + cultureCode + '. Culture is not defined.');
+       }
+       return this;
+     };
+
+     /**
+      * @ngdoc method
+      * @name adf.dashboardProvider#addCulture
+      * @methodOf adf.dashboardProvider
+      * @description
+      *
+      * Adds a new culture to adf
+      *
+      * @param {string} ISO culture code for the new culture
+      * @param {object} translations for the culture.
+      *
+      * @returns {Object} self
+      */
+      this.addCulture = function(cultureCode, translations){
+        if(!angular.isString(cultureCode)) {
+          throw new Error('cultureCode must be an string');
+        }
+
+        if(!angular.isObject(translations)) {
+          throw new Error('translations must be an object');
+        }
+
+        cultures[cultureCode] = translations;
+        return this;
+      };
+
    /**
     * @ngdoc service
     * @name adf.dashboard
@@ -233,6 +296,10 @@ angular.module('adf.provider', [])
         structures: structures,
         messageTemplate: messageTemplate,
         loadingTemplate: loadingTemplate,
+        setCulture: this.setCulture,
+        cultures: getAllCultures,
+        activeCulture: getActiveCulture,
+        translate: translate,
 
         /**
          * @ngdoc method

@@ -30,7 +30,7 @@ git clone https://github.com/angular-dashboard-framework/angular-dashboard-frame
 cd angular-dashboard-framework
 ```
 
-Install npm and bower dependencies:
+Install dependencies:
 
 ```bash
 npm install
@@ -58,6 +58,66 @@ Or you can create a release build of angular-dashboard-framework and the samples
 gulp all
 ```
 The sample and the final build of angular-dashboard-framework are now in the dist directory.
+
+## Multi-language support
+These languages are supported out of the box in angular-dashboard-framework.
+
+| Language        | ISO Code      | Default  |
+| -------------   |-------------  | -----|
+| English         | en-GB         | Yes  |
+| Swedish         | sv-SE         | No   |
+
+You can change the culture via the dashboardProvider in the config phase
+```javascript
+angular
+    .module('adfWidgetSample', ['adf'])
+    .config(function(dashboardProvider){
+       dashboardProvider.setCulture('sv-SE');
+    }
+```
+... or in your controller like this.
+
+```javascript
+angular
+      .module('adfWidgetSample')
+      .controller('SampleController', SampleController);
+
+  SampleController.$inject = [
+      '$rootScope',
+      'dashboard'
+  ];
+  /* @ngInject */
+  function DashboardController($rootScope, dashboard) {
+    $rootScope.$on('languageChange', function(cultureCode)) {
+      dashboard.setCulture(cultureCode);  
+    });
+  }
+```
+
+### Add non existent language
+Need support for another language? No problems! You can also add your own culture to the framework.
+
+```javascript
+angular
+    .module('adfWidgetSample', ['adf'])
+    .config(function(dashboardProvider){
+       dashboardProvider.addCulture('de-DE',
+         {
+           ADF_COMMON_CLOSE: 'Schließen',
+           ADF_COMMON_DELETE: 'Löschen'
+           ...
+         }
+       );
+    }
+```
+
+#### Translation table
+
+```javascript
+{
+}
+```
+
 
 ## Contributing
 

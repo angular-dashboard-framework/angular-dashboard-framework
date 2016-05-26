@@ -8,7 +8,7 @@
       <strong>Apply error:</strong> {{validationError}}
     </div>
     <div class="form-group">
-      <label for="widgetTitle">Title</label>
+      <label for="widgetTitle" ng-bind="translate('ADF_COMMON_TITLE')">Title</label>
       <input type="text" class="form-control" id="widgetTitle" ng-model="definition.title" placeholder="Enter title" required="">
     </div>
     <div ng-if="widget.edit">
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="closeDialog()">Cancel</button>
-    <input type="submit" class="btn btn-primary" ng-disabled="widgetEditForm.$invalid" value="Apply" />
+    <button type="button" class="btn btn-default" ng-click="closeDialog()" ng-bind="translate('ADF_COMMON_CANCEL')">Cancel</button>
+    <input type="submit" class="btn btn-primary" ng-disabled="widgetEditForm.$invalid" ng-value="translate('ADF_COMMON_APPLY')" />
   </div>
 </form>
