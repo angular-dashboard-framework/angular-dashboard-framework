@@ -209,6 +209,19 @@ angular.module('adf.provider', [])
       return this;
     };
 
+    /**
+     * @ngdoc property
+     * @name adf.dashboardProvider#widgetCustomTemplatePath
+     * @propertyOf adf.dashboardProvider
+     * @description
+     *
+     * Changes the container template for the widgets
+     *
+     * @param {string} template loading template
+     *
+     */
+    this.widgetCustomTemplateUrl = null;
+
    /**
     * @ngdoc service
     * @name adf.dashboard
@@ -233,6 +246,7 @@ angular.module('adf.provider', [])
         structures: structures,
         messageTemplate: messageTemplate,
         loadingTemplate: loadingTemplate,
+        widgetCustomTemplateUrl: this.widgetCustomTemplateUrl,
 
         /**
          * @ngdoc method
