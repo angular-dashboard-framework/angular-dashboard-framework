@@ -106,10 +106,10 @@ describe('Dashboard Provider tests', function() {
   }));
 
   it('should set custom widget template url', function() {
-    var widgetCustomTemplateUrl = '/app/templates/customWidget.html';
-    provider.widgetCustomTemplateUrl = widgetCustomTemplateUrl
+    var customWidgetTemplatePath = '/app/templates/customWidget.html';
+    provider.customWidgetTemplatePath(customWidgetTemplatePath);
     var dashboard = provider.$get();
-    expect(dashboard.widgetCustomTemplateUrl).toBe(widgetCustomTemplateUrl);
+    expect(dashboard.customWidgetTemplatePath).toBe(customWidgetTemplatePath);
   });
 
 });
