@@ -29,6 +29,10 @@ angular.module('adf')
 
     function preLink($scope) {
       var definition = $scope.definition;
+
+      //passs translate function from dashboard so we can translate labels inside html templates
+      $scope.translate = dashboard.translate;
+
       if (definition) {
         var w = dashboard.widgets[definition.type];
         if (w) {
@@ -114,6 +118,8 @@ angular.module('adf')
         $scope.remove = function() {
           if ($scope.options.enableConfirmDelete) {
             var deleteScope = $scope.$new();
+            deleteScope.translate = dashboard.translate;
+
             var deleteTemplateUrl = adfTemplatePath + 'widget-delete.html';
             if (definition.deleteTemplateUrl) {
               deleteTemplateUrl = definition.deleteTemplateUrl;
@@ -146,6 +152,7 @@ angular.module('adf')
         // bind edit function
         $scope.edit = function() {
           var editScope = $scope.$new();
+          editScope.translate = dashboard.translate;
           editScope.definition = angular.copy(definition);
 
           var adfEditTemplatePath = adfTemplatePath + 'widget-edit.html';

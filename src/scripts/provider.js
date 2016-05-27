@@ -31,8 +31,8 @@
  *
  * The dashboardProvider can be used to register structures and widgets.
  */
-angular.module('adf.provider', [])
-  .provider('dashboard', function(){
+angular.module('adf.provider', ['adf.locale'])
+  .provider('dashboard', function(adfLocale){
 
     var widgets = {};
     var widgetsPath = '';
@@ -49,6 +49,22 @@ angular.module('adf.provider', [])
     var defaultApplyFunction = function(){
       return true;
     };
+
+    var activeLocale = adfLocale.defaultLocale;
+    var locales = adfLocale.frameworkLocales;
+
+    function getLocales() {
+      return locales;
+    }
+
+    function getActiveLocale() {
+      return activeLocale;
+    }
+
+    function translate(label) {
+      var translation = locales[activeLocale][label];
+      return translation ? translation : label;
+    }
 
    /**
     * @ngdoc method
@@ -209,6 +225,53 @@ angular.module('adf.provider', [])
       return this;
     };
 
+    /**
+     * @ngdoc method
+     * @name adf.dashboardProvider#setLocale
+     * @methodOf adf.dashboardProvider
+     * @description
+     *
+     * Changes the locale setting of adf
+     *
+     * @param {string} ISO Language Code
+     *
+     * @returns {Object} self
+     */
+     this.setLocale = function(locale){
+       if(locales[locale]) {
+         activeLocale = locale;
+       } else {
+         throw new Error('Cannot set locale: ' + locale + '. Locale is not defined.');
+       }
+       return this;
+     };
+
+     /**
+      * @ngdoc method
+      * @name adf.dashboardProvider#addLocale
+      * @methodOf adf.dashboardProvider
+      * @description
+      *
+      * Adds a new locale to adf
+      *
+      * @param {string} ISO Language Code for the new locale
+      * @param {object} translations for the locale.
+      *
+      * @returns {Object} self
+      */
+      this.addLocale = function(locale, translations){
+        if(!angular.isString(locale)) {
+          throw new Error('locale must be an string');
+        }
+
+        if(!angular.isObject(translations)) {
+          throw new Error('translations must be an object');
+        }
+
+        locales[locale] = translations;
+        return this;
+      };
+
    /**
     * @ngdoc service
     * @name adf.dashboard
@@ -221,6 +284,10 @@ angular.module('adf.provider', [])
     * @property {Array.<Object>} structures Array of registered structures.
     * @property {string} messageTemplate Template for messages.
     * @property {string} loadingTemplate Template for widget loading.
+    * @property {method} sets locale of adf.
+    * @property {Array.<Object>} hold all of the locale translations.
+    * @property {string} the active locale setting.
+    * @property {method} translation function passed to templates.
     *
     * @returns {Object} self
     */
@@ -233,6 +300,10 @@ angular.module('adf.provider', [])
         structures: structures,
         messageTemplate: messageTemplate,
         loadingTemplate: loadingTemplate,
+        setLocale: this.setLocale,
+        locales: getLocales,
+        activeLocale: getActiveLocale,
+        translate: translate,
 
         /**
          * @ngdoc method

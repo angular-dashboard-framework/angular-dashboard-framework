@@ -1,14 +1,14 @@
 <div class="modal-header">
-  <h4 class="modal-title">Delete {{widget.title}}</h4>
+  <h4 class="modal-title"><span ng-bind="translate('ADF_COMMON_DELETE')">Delete</span> {{widget.title}}</h4>
 </div>
 <div class="modal-body">
   <form role="form">
     <div class="form-group">
-      <label for="widgetTitle">Are you sure you want to delete this widget ?</label>
+      <label for="widgetTitle" ng-bind="translate('ADF_WIDGET_DELETE_CONFIRM_MESSAGE')">Are you sure you want to delete this widget ?</label>
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" ng-click="closeDialog()">Close</button>
-  <button type="button" class="btn btn-primary" ng-click="deleteDialog()">Delete</button>
+  <button type="button" class="btn btn-default" ng-click="closeDialog()" ng-bind="translate('ADF_COMMON_CLOSE')">Close</button>
+  <button type="button" class="btn btn-primary" ng-click="deleteDialog()" ng-bind="translate('ADF_COMMON_DELETE')">Delete</button>
 </div>

@@ -169,6 +169,9 @@ describe('widget directive tests', function() {
 
       // expect widget is not removed
       expect($scope.column.widgets.length).toBe(2);
+
+      //expect dashboards translate function to be attatched to the scope
+      expect($uibModal.opts.scope.translate).toEqual(dashboard.translate);
     });
 
     it('should delete the widget when confirmation dialog is applied', function(){
@@ -181,7 +184,6 @@ describe('widget directive tests', function() {
       // expect widget is not removed
       expect($scope.column.widgets.length).toBe(1);
     });
-
   });
 
   it('should open and close full screen dialog', function() {
@@ -308,6 +310,11 @@ describe('widget directive tests', function() {
         expect($uibModal.opts.scope.validationError).not.toBeNull();
       });
       expect($uibModalInstance.closed).toBeFalsy();
+    });
+
+    it('should have dashboards translate function attatched to the scope', function() {
+      openEditMode();
+      expect($uibModal.opts.scope.translate).toEqual(dashboard.translate);
     });
 
   });

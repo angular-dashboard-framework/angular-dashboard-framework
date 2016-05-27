@@ -105,4 +105,64 @@ describe('Dashboard Provider tests', function() {
     expect(dashboard.idEquals(1, 1)).toBe(true);
   }));
 
+  describe('locale', function() {
+
+    it('should default to en-GB', function() {
+      var dashboard = provider.$get();
+      expect(dashboard.activeLocale()).toBe('en-GB');
+    });
+
+    it('should change locale', function() {
+      var dashboard = provider.$get();
+      var newLocale = 'sv-SE';
+
+      provider.setLocale(newLocale);
+      expect(dashboard.activeLocale()).toBe(newLocale);
+      expect(dashboard.translate('ADF_COMMON_CLOSE')).toBe('Stäng');
+    });
+
+    it('should throw an exception if locale doesnt exist', function() {
+      var func = function() {
+        provider.setLocale('af-ZA');
+      };
+
+      expect(func).toThrowError('Cannot set locale: af-ZA. Locale is not defined.');
+    });
+
+    it('should add a new locale', function() {
+      var dashboard = provider.$get();
+      var locale = 'af-ZA';
+      var translations = {
+        'ADF_COMMON_CLOSE': 'Naby'
+      };
+
+      provider.addLocale(locale, translations);
+      expect(dashboard.locales()[locale]).toBe(translations);
+
+      provider.setLocale(locale);
+      expect(dashboard.translate('ADF_COMMON_CLOSE')).toBe('Naby');
+    });
+
+    it('should throw an exception when adding locale without a locale code or translation', function() {
+      var dashboard = provider.$get();
+      var call1 = function() {
+          provider.addLocale(null, null);
+      };
+      var call2 = function() {
+          provider.addLocale('af-AZ', null);
+      };
+
+      expect(call1).toThrowError('locale must be an string');
+      expect(call2).toThrowError('translations must be an object');
+    });
+
+    it('should return the label value if translation doesn´t exists', function() {
+      var dashboard = provider.$get();
+      var nonExistenceLabelKey = 'MY_FAKE_LABEL';
+      var translation = dashboard.translate(nonExistenceLabelKey);
+      expect(translation).toBe(nonExistenceLabelKey);
+    });
+
+  });
+
 });

@@ -1,6 +1,6 @@
 <div class="modal-header">
   <button type="button" class="close" ng-click="closeDialog()" aria-hidden="true">&times;</button>
-  <h4 class="modal-title">Add new widget</h4>
+  <h4 class="modal-title" ng-bind="translate('ADF_WIDGET_ADD_HEADER')">Add new widget</h4>
 </div>
 <div class="modal-body">
   <!-- dashboard categories enabled -->
@@ -35,5 +35,5 @@
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-primary" ng-click="closeDialog()">Close</button>
+  <button type="button" class="btn btn-primary" ng-click="closeDialog()" ng-bind="translate('ADF_COMMON_CLOSE')">Close</button>
 </div>
