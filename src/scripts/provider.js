@@ -44,6 +44,7 @@ angular.module('adf.provider', ['adf.locale'])
           <span class="sr-only">loading ...</span>\n\
         </div>\n\
       </div>';
+    var customWidgetTemplatePath = null;
 
     // default apply function of widget.edit.apply
     var defaultApplyFunction = function(){
@@ -227,6 +228,23 @@ angular.module('adf.provider', ['adf.locale'])
 
     /**
      * @ngdoc method
+     * @name adf.dashboardProvider#customWidgetTemplatePath
+     * @propertyOf adf.dashboardProvider
+     * @description
+     *
+     * Changes the container template for the widgets
+     *
+     * @param {string} path to the custom widget template
+     *
+     * @returns {Object} self
+     */
+    this.customWidgetTemplatePath = function(templatePath) {
+      customWidgetTemplatePath = templatePath;
+      return this;
+    };
+
+    /**
+     * @ngdoc method
      * @name adf.dashboardProvider#setLocale
      * @methodOf adf.dashboardProvider
      * @description
@@ -304,6 +322,7 @@ angular.module('adf.provider', ['adf.locale'])
         locales: getLocales,
         activeLocale: getActiveLocale,
         translate: translate,
+        customWidgetTemplatePath: customWidgetTemplatePath,
 
         /**
          * @ngdoc method
