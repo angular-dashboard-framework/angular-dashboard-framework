@@ -138,9 +138,10 @@ describe('widget directive tests', function() {
     };
 
     spyOn($templateCache, 'get').and.returnValue('<div></div>');
-    dashboard.widgetCustomTemplateUrl = '..src/templates/customWidget.html';
+    var customWidgetTemplatePath = null;
+    dashboard.customWidgetTemplatePath = '..src/templates/customWidget.html';
     var element = compileTemplate(directive);
-    expect($templateCache.get).toHaveBeenCalledWith(dashboard.widgetCustomTemplateUrl);
+    expect($templateCache.get).toHaveBeenCalledWith(dashboard.customWidgetTemplatePath);
   });
 
   describe('delete functions', function(){
