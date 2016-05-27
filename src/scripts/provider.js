@@ -31,8 +31,8 @@
  *
  * The dashboardProvider can be used to register structures and widgets.
  */
-angular.module('adf.provider', ['adf.culture'])
-  .provider('dashboard', function(adfCulture){
+angular.module('adf.provider', ['adf.locale'])
+  .provider('dashboard', function(adfLocale){
 
     var widgets = {};
     var widgetsPath = '';
@@ -50,19 +50,19 @@ angular.module('adf.provider', ['adf.culture'])
       return true;
     };
 
-    var activeCulture = adfCulture.defaultCulture;
-    var cultures = adfCulture.frameworkCultures;
+    var activeLocale = adfLocale.defaultLocale;
+    var locales = adfLocale.frameworkLocales;
 
-    function getAllCultures() {
-      return cultures;
+    function getLocales() {
+      return locales;
     }
 
-    function getActiveCulture() {
-      return activeCulture;
+    function getActiveLocale() {
+      return activeLocale;
     }
 
     function translate(label) {
-      var translation = cultures[activeCulture][label];
+      var translation = locales[activeLocale][label];
       return translation ? translation : label;
     }
 
@@ -227,48 +227,48 @@ angular.module('adf.provider', ['adf.culture'])
 
     /**
      * @ngdoc method
-     * @name adf.dashboardProvider#setCulture
+     * @name adf.dashboardProvider#setLocale
      * @methodOf adf.dashboardProvider
      * @description
      *
-     * Changes the culture setting of adf
+     * Changes the locale setting of adf
      *
-     * @param {string} ISO culture code
+     * @param {string} ISO Language Code
      *
      * @returns {Object} self
      */
-     this.setCulture = function(cultureCode){
-       if(cultures[cultureCode]) {
-         activeCulture = cultureCode;
+     this.setLocale = function(locale){
+       if(locales[locale]) {
+         activeLocale = locale;
        } else {
-         throw new Error('Cannot set culture: ' + cultureCode + '. Culture is not defined.');
+         throw new Error('Cannot set locale: ' + locale + '. Locale is not defined.');
        }
        return this;
      };
 
      /**
       * @ngdoc method
-      * @name adf.dashboardProvider#addCulture
+      * @name adf.dashboardProvider#addLocale
       * @methodOf adf.dashboardProvider
       * @description
       *
-      * Adds a new culture to adf
+      * Adds a new locale to adf
       *
-      * @param {string} ISO culture code for the new culture
-      * @param {object} translations for the culture.
+      * @param {string} ISO Language Code for the new locale
+      * @param {object} translations for the locale.
       *
       * @returns {Object} self
       */
-      this.addCulture = function(cultureCode, translations){
-        if(!angular.isString(cultureCode)) {
-          throw new Error('cultureCode must be an string');
+      this.addLocale = function(locale, translations){
+        if(!angular.isString(locale)) {
+          throw new Error('locale must be an string');
         }
 
         if(!angular.isObject(translations)) {
           throw new Error('translations must be an object');
         }
 
-        cultures[cultureCode] = translations;
+        locales[locale] = translations;
         return this;
       };
 
@@ -284,6 +284,10 @@ angular.module('adf.provider', ['adf.culture'])
     * @property {Array.<Object>} structures Array of registered structures.
     * @property {string} messageTemplate Template for messages.
     * @property {string} loadingTemplate Template for widget loading.
+    * @property {method} sets locale of adf.
+    * @property {Array.<Object>} hold all of the locale translations.
+    * @property {string} the active locale setting.
+    * @property {method} translation function passed to templates.
     *
     * @returns {Object} self
     */
@@ -296,9 +300,9 @@ angular.module('adf.provider', ['adf.culture'])
         structures: structures,
         messageTemplate: messageTemplate,
         loadingTemplate: loadingTemplate,
-        setCulture: this.setCulture,
-        cultures: getAllCultures,
-        activeCulture: getActiveCulture,
+        setLocale: this.setLocale,
+        locales: getLocales,
+        activeLocale: getActiveLocale,
         translate: translate,
 
         /**

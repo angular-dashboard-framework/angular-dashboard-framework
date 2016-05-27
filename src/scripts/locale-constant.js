@@ -26,16 +26,16 @@
 
 /**
 * @ngdoc object
-* @name adf.culture
+* @name adf.locale#adfLocale
 * @description
 *
-* Holds the supported languages
+* Holds settings and values for framework supported locales
 */
-angular.module('adf.culture')
-.constant('adfCulture',
+angular.module('adf.locale')
+.constant('adfLocale',
   {
-    defaultCulture: 'en-GB',
-    frameworkCultures: {
+    defaultLocale: 'en-GB',
+    frameworkLocales: {
       'en-GB': {
         ADF_COMMON_CLOSE: 'Close',
         ADF_COMMON_DELETE: 'Delete',
@@ -50,7 +50,7 @@ angular.module('adf.culture')
         ADF_DASHBOARD_TITLE_TOOLTIP_UNDO: 'Undo changes',
         ADF_WIDGET_ADD_HEADER: 'Add new widget',
         ADF_WIDGET_DELETE_CONFIRM_MESSAGE: 'Are you sure you want to delete this widget ?',
-        ADF_WIDGET_TOOLTIP_REFRESH: 'Reload Widget Content',
+        ADF_WIDGET_TOOLTIP_REFRESH: 'Reload widget Content',
         ADF_WIDGET_TOOLTIP_MOVE: 'Change widget location',
         ADF_WIDGET_TOOLTIP_COLLAPSE: 'Collapse widget',
         ADF_WIDGET_TOOLTIP_EXPAND: 'Expand widget',

@@ -24,4 +24,4 @@
 
 'use strict';
 
-angular.module('adf.culture', [])
+angular.module('adf.locale', [])

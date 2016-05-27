@@ -105,56 +105,54 @@ describe('Dashboard Provider tests', function() {
     expect(dashboard.idEquals(1, 1)).toBe(true);
   }));
 
-  describe('culture', function() {
+  describe('locale', function() {
 
     it('should default to en-GB', function() {
       var dashboard = provider.$get();
-      expect(dashboard.activeCulture()).toBe('en-GB');
+      expect(dashboard.activeLocale()).toBe('en-GB');
     });
 
-    it('should set the culture', function() {
+    it('should change locale', function() {
       var dashboard = provider.$get();
-      var newCulture = 'sv-SE';
+      var newLocale = 'sv-SE';
 
-      provider.setCulture(newCulture);
-      expect(dashboard.activeCulture()).toBe(newCulture);
+      provider.setLocale(newLocale);
+      expect(dashboard.activeLocale()).toBe(newLocale);
       expect(dashboard.translate('ADF_COMMON_CLOSE')).toBe('Stäng');
     });
 
-    it('should throw an exception if culture doesnt exist', function() {
+    it('should throw an exception if locale doesnt exist', function() {
       var func = function() {
-        provider.setCulture('af-ZA');
+        provider.setLocale('af-ZA');
       };
 
-      expect(func).toThrowError('Cannot set culture: af-ZA. Culture is not defined.');
+      expect(func).toThrowError('Cannot set locale: af-ZA. Locale is not defined.');
     });
 
-    it('should add a culture', function() {
+    it('should add a new locale', function() {
       var dashboard = provider.$get();
-      var culture = 'af-ZA';
+      var locale = 'af-ZA';
       var translations = {
         'ADF_COMMON_CLOSE': 'Naby'
       };
 
-      provider.addCulture(culture, translations);
-      expect(dashboard.cultures()[culture]).toBe(translations);
+      provider.addLocale(locale, translations);
+      expect(dashboard.locales()[locale]).toBe(translations);
 
-      provider.setCulture(culture);
+      provider.setLocale(locale);
       expect(dashboard.translate('ADF_COMMON_CLOSE')).toBe('Naby');
     });
 
-    it('should throw an exception when adding culture without a culture code or translation', function() {
+    it('should throw an exception when adding locale without a locale code or translation', function() {
       var dashboard = provider.$get();
-      var culture = null;
-      var translations = [];
       var call1 = function() {
-          provider.addCulture(null, null);
+          provider.addLocale(null, null);
       };
       var call2 = function() {
-          provider.addCulture('af-AZ', null);
+          provider.addLocale('af-AZ', null);
       };
 
-      expect(call1).toThrowError('cultureCode must be an string');
+      expect(call1).toThrowError('locale must be an string');
       expect(call2).toThrowError('translations must be an object');
     });
 
@@ -164,7 +162,7 @@ describe('Dashboard Provider tests', function() {
       var translation = dashboard.translate(nonExistenceLabelKey);
       expect(translation).toBe(nonExistenceLabelKey);
     });
-    
+
   });
 
 });
