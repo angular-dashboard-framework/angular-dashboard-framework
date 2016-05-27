@@ -477,7 +477,7 @@ angular.module('adf')
         var options = {
           name: $attr.name,
           editable: true,
-          enableConfirmDelete: stringToBoolean($attr.enableconfirmdelete),
+          enableConfirmDelete: stringToBoolean($attr.enableConfirmDelete),
           maximizable: stringToBoolean($attr.maximizable),
           collapsible: stringToBoolean($attr.collapsible),
           categories: stringToBoolean($attr.categories)
