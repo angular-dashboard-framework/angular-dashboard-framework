@@ -27,15 +27,6 @@
 angular.module('adf')
   .directive('adfWidget', function($injector, $q, $log, $uibModal, $rootScope, dashboard, adfTemplatePath) {
 
-    function getWidgetTemplateUrl() {
-        var templateUrl = adfTemplatePath + 'widget.html';
-        if (dashboard.widgetCustomTemplateUrl) {
-            templateUrl = dashboard.widgetCustomTemplateUrl;
-        }
-
-        return templateUrl;
-    }
-
     function preLink($scope) {
       var definition = $scope.definition;
       if (definition) {
@@ -247,7 +238,7 @@ angular.module('adf')
       replace: true,
       restrict: 'EA',
       transclude: false,
-      templateUrl: getWidgetTemplateUrl(),
+      templateUrl: dashboard.customWidgetTemplatePath ? dashboard.customWidgetTemplatePath : adfTemplatePath + 'widget.html',
       scope: {
         definition: '=',
         col: '=column',
