@@ -224,4 +224,19 @@ describe('widget-content directive tests', function() {
       expect(element.find("div.test-widget").text()).toBe('2');
   });
 
+  it('should render an warn message, about missing content', function(){
+    $scope.widget = undefined;
+    var element = compileTemplate(directive);
+    expect(element.text()).toContain('widget content is undefined');
+  });
+
+  it('should render an warn message, about missing model', function(){
+    $scope.widget = {
+      template: '<div class="test-widget">Hello World</div>'
+    };
+    $scope.definition = undefined;
+    var element = compileTemplate(directive);
+    expect(element.text()).toContain('model is undefined');
+  });
+
 });

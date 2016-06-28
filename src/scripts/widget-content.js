@@ -28,10 +28,25 @@ angular.module('adf')
   .directive('adfWidgetContent', function($log, $q, widgetService,
           $compile, $controller, $injector, dashboard) {
 
+    function renderError($element, msg){
+        $log.warn(msg);
+        $element.html(dashboard.messageTemplate.replace(/{}/g, msg));
+    }
+
     function compileWidget($scope, $element, currentScope) {
       var model = $scope.model;
       var content = $scope.content;
+      if (!model){
+        renderError($element, 'model is undefined')
+      } else if (!content){
+        var msg = 'widget content is undefined, please have a look at your browser log';
+        renderError($element, msg);
+      } else {
+        renderWidget($scope, $element, currentScope, model, content);
+      }
+    }
 
+    function renderWidget($scope, $element, currentScope, model, content) {
       // display loading template
       $element.html(dashboard.loadingTemplate);
 
@@ -91,8 +106,7 @@ angular.module('adf')
         if (reason) {
           msg += ': ' + reason;
         }
-        $log.warn(msg);
-        $element.html(dashboard.messageTemplate.replace(/{}/g, msg));
+        renderError($element, msg);
       });
 
       // destroy old scope

@@ -267,7 +267,9 @@ angular.module('adf')
 
         $scope.widgetClasses = function(w, definition){
           var classes = definition.styleClass || '';
-          if (!w.frameless || $scope.editMode){
+          // w is undefined, if the type of the widget is unknown
+          // see issue #216
+          if (!w || !w.frameless || $scope.editMode){
             classes += ' panel panel-default';
           }
           return classes;
