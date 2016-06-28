@@ -7,7 +7,7 @@
 * added optional categories for the widget add dialog
 * order widgets in widget add dialog
 * implemented resolveAs to pass resolve map to widget scope. This change should make passing only controllers superfluous.
-* added support for custom widget template [247](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/247)
+* added support for custom widget template [#247](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/247)
 * added support for custom widget edit template [#224](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/224)
 * option enableConfirmDelete is now configurable via attribute to adf-dashboard [#248](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/248)
 * added multi-language support [#249](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/249)
