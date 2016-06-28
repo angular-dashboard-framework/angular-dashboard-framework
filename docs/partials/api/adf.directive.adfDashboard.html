@@ -18,7 +18,8 @@ dashboard can be used to store the model.</p>
        [structure="{string}"]
        [adf-model="{object}"]
        [adf-widget-filter="{function}"]
-       [continuous-edit-mode="{boolean}"]&gt;
+       [continuous-edit-mode="{boolean}"]
+       [categories="{boolean}"]&gt;
 &lt;/adf-dashboard&gt;</pre>
 as attribute<pre class="prettyprint linenums">&lt;div adf-dashboard
      name="{string}"
@@ -29,7 +30,8 @@ as attribute<pre class="prettyprint linenums">&lt;div adf-dashboard
      [structure="{string}"]
      [adf-model="{object}"]
      [adf-widget-filter="{function}"]
-     [continuous-edit-mode="{boolean}"]&gt;
+     [continuous-edit-mode="{boolean}"]
+     [categories="{boolean}"]&gt;
    ...
 &lt;/div&gt;</pre>
 <h3 id="usage_directive-info">Directive info</h3>
@@ -46,5 +48,6 @@ as attribute<pre class="prettyprint linenums">&lt;div adf-dashboard
 </div></td></tr><tr><td>adfWidgetFilter <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>function to filter widgets on the add dialog.</p>
 </div></td></tr><tr><td>continuousEditMode <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>enable continuous edit mode, to fire add/change/remove
 events during edit mode not reset it if edit mode is exited.</p>
+</div></td></tr><tr><td>categories <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="adf-directive-page adf-directive-adfdashboard-page"><p>enable categories for the add widget dialog.</p>
 </div></td></tr></tbody></table></div>
 </div>

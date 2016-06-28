@@ -7,7 +7,14 @@
 <div class="description"><div class="adf-dashboardprovider-page"><p>The dashboardProvider can be used to register structures and widgets.</p>
 </div></div>
 <div class="member method"><h2 id="methods">Methods</h2>
-<ul class="methods"><li><h3 id="methods_loadingtemplate">loadingTemplate(template)</h3>
+<ul class="methods"><li><h3 id="methods_addlocale">addLocale(ISO, translations)</h3>
+<div class="addlocale"><div class="adf-dashboardprovider-addlocale-page"><p>Adds a new locale to adf</p>
+</div><h5 id="methods_addlocale_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ISO</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-addlocale-page"><p>Language Code for the new locale</p>
+</div></td></tr><tr><td>translations</td><td><a href="" class="label type-hint type-hint-object">object</a></td><td><div class="adf-dashboardprovider-addlocale-page"><p>for the locale.</p>
+</div></td></tr></tbody></table><h5 id="methods_addlocale_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-addlocale-page"><p>self</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_loadingtemplate">loadingTemplate(template)</h3>
 <div class="loadingtemplate"><div class="adf-dashboardprovider-loadingtemplate-page"><p>Changes the template which is displayed as
 long as the widget resources are not resolved.</p>
 </div><h5 id="methods_loadingtemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>template</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-loadingtemplate-page"><p>loading template</p>
@@ -18,6 +25,12 @@ long as the widget resources are not resolved.</p>
 <div class="messagetemplate"><div class="adf-dashboardprovider-messagetemplate-page"><p>Changes the template for messages.</p>
 </div><h5 id="methods_messagetemplate_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>template</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-messagetemplate-page"><p>for messages.</p>
 </div></td></tr></tbody></table><h5 id="methods_messagetemplate_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-messagetemplate-page"><p>self</p>
+</div></td></tr></table></div>
+</li>
+<li><h3 id="methods_setlocale">setLocale(ISO)</h3>
+<div class="setlocale"><div class="adf-dashboardprovider-setlocale-page"><p>Changes the locale setting of adf</p>
+</div><h5 id="methods_setlocale_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>ISO</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-setlocale-page"><p>Language Code</p>
+</div></td></tr></tbody></table><h5 id="methods_setlocale_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-setlocale-page"><p>self</p>
 </div></td></tr></table></div>
 </li>
 <li><h3 id="methods_structure">structure(name, structure)</h3>
@@ -46,6 +59,7 @@ long as the widget resources are not resolved.</p>
 <ul>
 <li><code>title</code> - <code>{string=}</code> - The title of the widget.</li>
 <li><code>description</code> - <code>{string=}</code> - Description of the widget.</li>
+<li><code>category</code> - <code>{string=}</code> - Category of the widget.</li>
 <li><code>collapsed</code> - <code>{boolean=}</code> - true if the widget should be in collapsed state. Default is false.</li>
 <li><code>config</code> - <code>{object}</code> - Predefined widget configuration.</li>
 <li><code>controller</code> - <code>{string=|function()=}</code> - Controller fn that should be
@@ -74,12 +88,16 @@ and the return value is treated as the dependency. If the result is a promise, i
 resolved before its value is injected into the controller.</li>
 </ul>
 </li>
+<li><code>resolveAs</code> - <code>{string=}</code> - The name under which the resolve map will be available
+ on the scope of the widget.</li>
 <li><code>edit</code> - <code>{object}</code> - Edit modus of the widget.<ul>
 <li><code>controller</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>controllerAs</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>template</code> - <code>{string=|function()=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>templateUrl</code> - <code>{string=}</code> - Same as above, but for the edit mode of the widget.</li>
 <li><code>resolve</code> - <code>{Object.&lt;string, function&gt;=}</code> - Same as above, but for the edit mode of the widget.</li>
+<li><code>resolveAs</code> - <code>{string=}</code> - The name under which the resolve map will be available
+on the scope of the widget.</li>
 <li><code>reload</code> - {boolean} - true if the widget should be reloaded, after the edit mode is closed.
 Default is true.</li>
 <li><code>immediate</code> - {boolean} - The widget enters the edit mode immediately after creation. Default is false.</li>
@@ -101,6 +119,14 @@ cached with the unmodified templateUrl (e.g.: {widgetPath}/src/widgets).
 The default value of widgetPaths is &#39;&#39;.</p>
 </div><h5 id="methods_widgetspath_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>path</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="adf-dashboardprovider-widgetspath-page"><p>to the directory which contains the widgets</p>
 </div></td></tr></tbody></table><h5 id="methods_widgetspath_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-widgetspath-page"><p>self</p>
+</div></td></tr></table></div>
+</li>
+</ul>
+</div>
+<div class="member property"><h2 id="properties">Properties</h2>
+<ul class="properties"><li><h3 id="properties_customwidgettemplatepath">customWidgetTemplatePath</h3>
+<div class="customwidgettemplatepath"><div class="adf-dashboardprovider-customwidgettemplatepath-page"><p>Changes the container template for the widgets</p>
+</div><h5 id="properties_customwidgettemplatepath_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="adf-dashboardprovider-customwidgettemplatepath-page"><p>self</p>
 </div></td></tr></table></div>
 </li>
 </ul>
