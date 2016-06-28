@@ -1,3 +1,22 @@
+# 0.12.0
+
+## Enhancements
+* build separate script files without templates [#203](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issue/203)
+* added a structure preview to dashboard edit dialog
+* added seperate widgetService to handle template resolving outside of the directive
+* added optional categories for the widget add dialog
+* order widgets in widget add dialog
+* implemented resolveAs to pass resolve map to widget scope. This change should make passing only controllers superfluous.
+* added support for custom widget template [247](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/247)
+* added support for custom widget edit template [#224](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/224)
+* option enableConfirmDelete is now configurable via attribute to adf-dashboard [#248](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/248)
+* added multi-language support [#249](https://github.com/angular-dashboard-framework/angular-dashboard-framework/pull/249)
+
+## Bug fixes
+* fix edit mode for widgets without edit section [#211](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issue/211)
+* display error message, if a widget type could not be resolved [#216](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issue/216)
+
+
 # 0.11.0
 
 ## Enhancements
