@@ -340,9 +340,9 @@ describe('Dashboard Directive tests', function () {
 
         // create categories and test
         var categories = scope.createCategories(widgets);
-        expect(categories.a.length).toBe(2);
-        expect(categories.b.length).toBe(1);
-        expect(categories.Miscellaneous.length).toBe(1);
+        expect(Object.keys(categories.a.widgets).length).toBe(2);
+        expect(Object.keys(categories.b.widgets).length).toBe(1);
+        expect(Object.keys(categories.Miscellaneous.widgets).length).toBe(1);
       });
 
       it('should close add widget dialog', function(){
