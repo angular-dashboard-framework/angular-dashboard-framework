@@ -79,6 +79,28 @@ angular.module('adf.locale')
         ADF_WIDGET_TOOLTIP_EDIT: 'Ändra widget konfigurering',
         ADF_WIDGET_TOOLTIP_FULLSCREEN: 'Visa widget i fullskärm',
         ADF_WIDGET_TOOLTIP_REMOVE: 'Ta bort widget'
+      },
+      'ru-RU': {
+        ADF_COMMON_CLOSE: 'Закрыть',
+        ADF_COMMON_DELETE: 'Удалить',
+        ADF_COMMON_TITLE: 'Заголовок',
+        ADF_COMMON_CANCEL: 'Отмена',
+        ADF_COMMON_APPLY: 'Применить',
+        ADF_COMMON_EDIT_DASHBOARD: 'Редактировать дашборд',
+        ADF_EDIT_DASHBOARD_STRUCTURE_LABEL: 'Структура',
+        ADF_DASHBOARD_TITLE_TOOLTIP_ADD: 'Добавить новый виджет',
+        ADF_DASHBOARD_TITLE_TOOLTIP_SAVE: 'Сохранить изменения',
+        ADF_DASHBOARD_TITLE_TOOLTIP_EDIT_MODE: 'Включить режим редактирования',
+        ADF_DASHBOARD_TITLE_TOOLTIP_UNDO: 'Отменить изменения',
+        ADF_WIDGET_ADD_HEADER: 'Добавить новый виджет',
+        ADF_WIDGET_DELETE_CONFIRM_MESSAGE: 'Вы действительно хотите удалить этот виджет?',
+        ADF_WIDGET_TOOLTIP_REFRESH: 'Обновить содержимое виджета',
+        ADF_WIDGET_TOOLTIP_MOVE: 'Поменять положение виджета',
+        ADF_WIDGET_TOOLTIP_COLLAPSE: 'Свернуть виджет',
+        ADF_WIDGET_TOOLTIP_EXPAND: 'Развернуть виджет',
+        ADF_WIDGET_TOOLTIP_EDIT: 'Редактировать настройки виджета',
+        ADF_WIDGET_TOOLTIP_FULLSCREEN: 'Виджет во весь экран',
+        ADF_WIDGET_TOOLTIP_REMOVE: 'Удалить виджет'
       }
     }
   }
