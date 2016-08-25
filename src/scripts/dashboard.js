@@ -350,7 +350,7 @@ angular.module('adf')
           }
 
           if (!$scope.editMode){
-            $rootScope.$broadcast('adfDashboardChanged', name, model);
+            $rootScope.$broadcast('adfDashboardChanged', $scope.name, model);
           }
         };
 
