@@ -46,9 +46,16 @@ module.exports = function(config) {
             'sample/components/angular-local-storage/dist/angular-local-storage.js',
             'sample/scripts/sample.js',
 
-            'src/**/*.js',
+            'src/scripts/adf.module.js',
+            'src/scripts/adf.locale.module.js',
+            'src/scripts/adf.locale.constants.js',
+            'src/scripts/dashboard.provider.js',
+            'src/scripts/services/*.js',
+            'src/scripts/filters/*.js',
+            'src/scripts/directives/*.js',
+
             '.tmp/*.js',
-            'test/unit/**/*Spec.js'
+            'test/unit/**/*.spec.js'
         ],
 
         // List of files to exclude
