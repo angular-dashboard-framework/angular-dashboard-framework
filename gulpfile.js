@@ -66,7 +66,7 @@ gulp.task('csslint', function(){
 });
 
 gulp.task('jslint', function(){
-  gulp.src('src/scripts/*.js')
+  gulp.src('src/scripts/**/*.js')
       .pipe($.eslint())
       .pipe($.eslint.format())
       .pipe($.eslint.failAfterError());
@@ -111,12 +111,12 @@ function processScripts(sources, filename){
 }
 
 gulp.task('js', function(){
-  var sources = gulp.src(['src/scripts/*.js']);
+  var sources = gulp.src(['src/scripts/**/*.js']);
   processScripts(sources, name);
 });
 
 gulp.task('js-with-tpls', function(){
-  var sources = gulp.src(['src/scripts/*.js', 'src/templates/*.html'])
+  var sources = gulp.src(['src/scripts/**/*.js', 'src/templates/*.html'])
     .pipe($.if('*.html', $.minifyHtml(minifyHtmlOptions)))
     .pipe($.if('*.html', $.angularTemplatecache(name + '.tpl.js', templateOptions)))
   processScripts(sources, name + '-tpls');
@@ -127,7 +127,7 @@ gulp.task('build', ['styles', 'js', 'js-with-tpls']);
 /** build docs **/
 
 gulp.task('docs', function(){
-  return gulp.src('src/scripts/*.js')
+  return gulp.src('src/scripts/**/*.js')
     .pipe($.ngdocs.process(ngdocOptions))
     .pipe(gulp.dest('./dist/docs'));
 });
@@ -207,7 +207,7 @@ gulp.task('watch-styles', function(){
 
 gulp.task('watch', ['watch-styles'], function(){
   var paths = [
-    'src/scripts/*.js',
+    'src/scripts/**/*.js',
     'src/styles/*.css',
     'src/templates/*.html',
     'sample/*.html',
@@ -293,7 +293,7 @@ gulp.task('e2e-server', ['install-widgets'], function(){
 
 // Setting up the test task
 gulp.task('e2e', ['e2e-server', 'webdriver_update'], function(cb) {
-  gulp.src('test/e2e/*Spec.js')
+  gulp.src('test/e2e/**/*.spec.js')
       .pipe(protractor(protractorOptions))
       .on('error', function(e) {
         // stop webserver
