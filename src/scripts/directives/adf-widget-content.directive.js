@@ -67,7 +67,8 @@ angular.module('adf')
       var base = {
         $scope: templateScope,
         widget: model,
-        config: model.config
+        config: model.config,
+        definition: $scope.$parent.definition
       };
 
       // get resolve promises from content object
