@@ -22,28 +22,42 @@
  * SOFTWARE.
  */
 
-'use strict';
-
-/* global angular */
 angular.module('adf')
-  .directive('adfStructurePreview', function(adfTemplatePath, adfStructurePreviewService) {
+  .factory('adfUtilsService', function () {
+    'use strict';
 
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        name: '=',
-        structure: '=',
-        selected: '='
-      },
-      templateUrl: adfTemplatePath + 'structure-preview.html',
-      link: link
+    var service = {
+      stringToBoolean: stringToBoolean,
+      split: split
     };
+    return service;
 
-    function link($scope){
-      var structure = angular.copy($scope.structure);
-      adfStructurePreviewService.adjustRowHeight(structure);
-      $scope.preview = structure;
+    function stringToBoolean(string){
+      switch(angular.isString(string) ? string.toLowerCase() : null){
+        case 'true': case 'yes': case '1': return true;
+        case 'false': case 'no': case '0': case null: return false;
+        default: return Boolean(string);
+      }
     }
 
+    /**
+     * Splits an object into an array multiple objects inside.
+     *
+     * @param object source object
+     * @param size size of array
+     *
+     * @return array of splitted objects
+     */
+    function split(object, size) {
+      var arr = [];
+      var i = 0;
+      angular.forEach(object, function(value, key){
+        var index = i++ % size;
+        if (!arr[index]){
+          arr[index] = {};
+        }
+        arr[index][key] = value;
+      });
+      return arr;
+    }
   });

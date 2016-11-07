@@ -25,8 +25,18 @@
 'use strict';
 
 angular.module('adf')
-  .directive('adfWidgetContent', function($log, $q, widgetService,
-          $compile, $controller, $injector, dashboard) {
+  .directive('adfWidgetContent', function($log, $q, widgetService, $compile, $controller, $injector, dashboard) {
+
+    return {
+      replace: true,
+      restrict: 'EA',
+      transclude: false,
+      scope: {
+        model: '=',
+        content: '='
+      },
+      link: link
+    };
 
     function renderError($element, msg){
         $log.warn(msg);
@@ -120,23 +130,14 @@ angular.module('adf')
       return templateScope;
     }
 
-    return {
-      replace: true,
-      restrict: 'EA',
-      transclude: false,
-      scope: {
-        model: '=',
-        content: '='
-      },
-      link: function($scope, $element) {
-        var currentScope = compileWidget($scope, $element, null);
-        $scope.$on('widgetConfigChanged', function() {
-          currentScope = compileWidget($scope, $element, currentScope);
-        });
-        $scope.$on('widgetReload', function() {
-          currentScope = compileWidget($scope, $element, currentScope);
-        });
-      }
-    };
+    function link($scope, $element) {
+      var currentScope = compileWidget($scope, $element, null);
+      $scope.$on('widgetConfigChanged', function() {
+        currentScope = compileWidget($scope, $element, currentScope);
+      });
+      $scope.$on('widgetReload', function() {
+        currentScope = compileWidget($scope, $element, currentScope);
+      });
+    }
 
   });

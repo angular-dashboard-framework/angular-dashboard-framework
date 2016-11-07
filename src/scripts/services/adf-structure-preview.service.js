@@ -22,28 +22,29 @@
  * SOFTWARE.
  */
 
-'use strict';
-
-/* global angular */
 angular.module('adf')
-  .directive('adfStructurePreview', function(adfTemplatePath, adfStructurePreviewService) {
+  .factory('adfStructurePreviewService', function () {
+    'use strict';
 
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        name: '=',
-        structure: '=',
-        selected: '='
-      },
-      templateUrl: adfTemplatePath + 'structure-preview.html',
-      link: link
+    var service = {
+      adjustRowHeight: adjustRowHeight
     };
+    return service;
 
-    function link($scope){
-      var structure = angular.copy($scope.structure);
-      adfStructurePreviewService.adjustRowHeight(structure);
-      $scope.preview = structure;
+    function adjustRowHeight(container){
+      if (container.rows && container.rows.length > 0){
+        var height = 100 / container.rows.length;
+        angular.forEach(container.rows, function(row){
+          row.style = {
+            height: height + '%'
+          }
+
+          if (row.columns){
+            angular.forEach(row.columns, function(column){
+              adjustRowHeight(column);
+            });
+          }
+        });
+      }
     }
-
   });

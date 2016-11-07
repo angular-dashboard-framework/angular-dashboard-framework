@@ -28,6 +28,20 @@ angular.module('adf')
   .directive('adfDashboardColumn', function ($log, $compile, $rootScope, adfTemplatePath, rowTemplate, dashboard) {
     'use strict';
 
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+        column: '=',
+        editMode: '=',
+        continuousEditMode: '=',
+        adfModel: '=',
+        options: '='
+      },
+      templateUrl: adfTemplatePath + 'dashboard-column.html',
+      link: link
+    };
+
     /**
      * moves a widget in between a column
      */
@@ -160,33 +174,22 @@ angular.module('adf')
       });
     }
 
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        column: '=',
-        editMode: '=',
-        continuousEditMode: '=',
-        adfModel: '=',
-        options: '='
-      },
-      templateUrl: adfTemplatePath + 'dashboard-column.html',
-      link: function ($scope, $element) {
-        // set id
-        var col = $scope.column;
-        if (!col.cid){
-          col.cid = dashboard.id();
-        }
-
-        if (angular.isDefined(col.rows) && angular.isArray(col.rows)) {
-          // be sure to tell Angular about the injected directive and push the new row directive to the column
-          $compile(rowTemplate)($scope, function(cloned) {
-            $element.append(cloned);
-          });
-        } else {
-          // enable drag and drop for widget only columns
-          applySortable($scope, $element, $scope.adfModel, col);
-        }
+    function link($scope, $element) {
+      // set id
+      var col = $scope.column;
+      if (!col.cid){
+        col.cid = dashboard.id();
       }
-    };
+
+      if (angular.isDefined(col.rows) && angular.isArray(col.rows)) {
+        // be sure to tell Angular about the injected directive and push the new row directive to the column
+        $compile(rowTemplate)($scope, function(cloned) {
+          $element.append(cloned);
+        });
+      } else {
+        // enable drag and drop for widget only columns
+        applySortable($scope, $element, $scope.adfModel, col);
+      }
+    }
+
   });

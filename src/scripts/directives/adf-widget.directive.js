@@ -27,6 +27,32 @@
 angular.module('adf')
   .directive('adfWidget', function($injector, $q, $log, $uibModal, $rootScope, dashboard, adfTemplatePath) {
 
+    return {
+      replace: true,
+      restrict: 'EA',
+      transclude: false,
+      templateUrl: dashboard.customWidgetTemplatePath ? dashboard.customWidgetTemplatePath : adfTemplatePath + 'widget.html',
+      scope: {
+        definition: '=',
+        col: '=column',
+        editMode: '=',
+        options: '=',
+        widgetState: '='
+      },
+      controller: controller,
+      compile: function() {
+
+        /**
+         * use pre link, because link of widget-content
+         * is executed before post link widget
+         */
+        return {
+          pre: preLink,
+          post: postLink
+        };
+      }
+    };
+
     function preLink($scope) {
       var definition = $scope.definition;
 
@@ -241,69 +267,45 @@ angular.module('adf')
       }
     }
 
-    return {
-      replace: true,
-      restrict: 'EA',
-      transclude: false,
-      templateUrl: dashboard.customWidgetTemplatePath ? dashboard.customWidgetTemplatePath : adfTemplatePath + 'widget.html',
-      scope: {
-        definition: '=',
-        col: '=column',
-        editMode: '=',
-        options: '=',
-        widgetState: '='
-      },
-      controller: function($scope) {
+    function controller($scope){
 
-        $scope.$on('adfDashboardCollapseExpand', function(event, args) {
-          $scope.widgetState.isCollapsed = args.collapseExpandStatus;
-        });
+      $scope.$on('adfDashboardCollapseExpand', function(event, args) {
+        $scope.widgetState.isCollapsed = args.collapseExpandStatus;
+      });
 
-        $scope.$on('adfWidgetEnterEditMode', function(event, widget){
-          if (dashboard.idEquals($scope.definition.wid, widget.wid)){
-            $scope.edit();
-          }
-        });
+      $scope.$on('adfWidgetEnterEditMode', function(event, widget){
+        if (dashboard.idEquals($scope.definition.wid, widget.wid)){
+          $scope.edit();
+        }
+      });
 
-        $scope.widgetClasses = function(w, definition){
-          var classes = definition.styleClass || '';
-          // w is undefined, if the type of the widget is unknown
-          // see issue #216
-          if (!w || !w.frameless || $scope.editMode){
-            classes += ' panel panel-default';
-          }
-          return classes;
+      $scope.widgetClasses = function(w, definition){
+        var classes = definition.styleClass || '';
+        // w is undefined, if the type of the widget is unknown
+        // see issue #216
+        if (!w || !w.frameless || $scope.editMode){
+          classes += ' panel panel-default';
+        }
+        return classes;
+      };
+
+      $scope.openFullScreen = function() {
+        var definition = $scope.definition;
+        var fullScreenScope = $scope.$new();
+        var opts = {
+          scope: fullScreenScope,
+          templateUrl: adfTemplatePath + 'widget-fullscreen.html',
+          size: definition.modalSize || 'lg', // 'sm', 'lg'
+          backdrop: 'static',
+          windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
         };
 
-        $scope.openFullScreen = function() {
-          var definition = $scope.definition;
-          var fullScreenScope = $scope.$new();
-          var opts = {
-            scope: fullScreenScope,
-            templateUrl: adfTemplatePath + 'widget-fullscreen.html',
-            size: definition.modalSize || 'lg', // 'sm', 'lg'
-            backdrop: 'static',
-            windowClass: (definition.fullScreen) ? 'dashboard-modal widget-fullscreen' : 'dashboard-modal'
-          };
-
-          var instance = $uibModal.open(opts);
-          fullScreenScope.closeDialog = function() {
-            instance.close();
-            fullScreenScope.$destroy();
-          };
+        var instance = $uibModal.open(opts);
+        fullScreenScope.closeDialog = function() {
+          instance.close();
+          fullScreenScope.$destroy();
         };
-      },
-      compile: function() {
-
-        /**
-         * use pre link, because link of widget-content
-         * is executed before post link widget
-         */
-        return {
-          pre: preLink,
-          post: postLink
-        };
-      }
-    };
+      };
+    }
 
   });
