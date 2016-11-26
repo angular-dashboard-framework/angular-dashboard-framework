@@ -214,6 +214,16 @@ describe('widget directive tests', function() {
       // expect widget is not removed
       expect($scope.column.widgets.length).toBe(1);
     });
+
+    it('should broadcast event with the definition of the deleted', function() {
+      spyOn($rootScope, '$broadcast').and.returnValue({preventDefault: true});
+      $scope.options.enableConfirmDelete = false;
+      removeWidget();
+
+      var definition = jasmine.objectContaining($scope.column.widgets[0]);
+      expect($rootScope.$broadcast).toHaveBeenCalledWith('adfWidgetRemovedFromColumn', definition);
+    });
+
   });
 
   it('should open and close full screen dialog', function() {
