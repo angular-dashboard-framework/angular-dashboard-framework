@@ -247,6 +247,7 @@ angular.module('adf')
       transclude: false,
       templateUrl: dashboard.customWidgetTemplatePath ? dashboard.customWidgetTemplatePath : adfTemplatePath + 'widget.html',
       scope: {
+        adfModel: '=',
         definition: '=',
         col: '=column',
         editMode: '=',
