@@ -393,6 +393,7 @@ angular.module('adf')
             scope: editDashboardScope,
             templateUrl: adfEditTemplatePath,
             backdrop: 'static',
+            windowClass: 'adf-edit-dashboard-modal',
             size: 'lg'
           });
           editDashboardScope.changeStructure = function(name, structure){
@@ -444,6 +445,7 @@ angular.module('adf')
           var opts = {
             scope: addScope,
             templateUrl: adfAddTemplatePath,
+            windowClass: 'adf-add-widget-modal',
             backdrop: 'static'
           };
 
