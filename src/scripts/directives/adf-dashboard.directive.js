@@ -115,7 +115,9 @@ angular.module('adf')
       if (angular.isDefined(root.rows)) {
         angular.forEach(root.rows, function (row) {
           angular.forEach(row.columns, function (col) {
-            columns.push(col);
+            if (!col.hasOwnProperty('rows')) {
+              columns.push(col);
+            }
             // keep reading columns until we can't any more
             readColumns(col, columns);
           });
@@ -329,6 +331,9 @@ angular.module('adf')
         // edit mode
         $scope.editMode = false;
         $scope.editClass = '';
+
+        // expose readColumns function in $scope in order to test the interface
+        $scope.readColumns = readColumns;
 
         //passs translate function from dashboard so we can translate labels inside html templates
         $scope.translate = dashboard.translate;
