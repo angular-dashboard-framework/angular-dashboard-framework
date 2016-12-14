@@ -1,5 +1,6 @@
 <div adf-id="{{column.cid}}" class="column" ng-class="column.styleClass" ng-model="column.widgets">
     <adf-widget ng-repeat="definition in column.widgets"
+                adf-model="adfModel"
                 definition="definition"
                 column="column"
                 edit-mode="editMode"

@@ -31,6 +31,7 @@ describe('widget directive tests', function() {
       $uibModal,
       $uibModalInstance,
       $scope,
+      adfModel,
       directive,
       dashboard,
       $templateCache;
@@ -70,8 +71,9 @@ describe('widget directive tests', function() {
       $templateCache = _$templateCache_;
 
       $scope = $rootScope.$new();
-      directive = '<adf-widget definition="definition" column="column" options="options" edit-mode="editMode" widget-state="widgetState" />';
+      directive = '<adf-widget adf-model="model" definition="definition" column="column" options="options" edit-mode="editMode" widget-state="widgetState" />';
 
+      $scope.model = { foo: 'bar' };
       $scope.definition = {};
       $scope.column = {};
       $scope.widgetState = {};
@@ -96,6 +98,17 @@ describe('widget directive tests', function() {
       var element = compileTemplate(directive);
       expect(element.attr('adf-widget-type')).toBe('test');
       expect(element.find('.hello').text()).toBe('Hello World');
+  });
+
+  it('should be able to access adfModel in adf-widget scope', function() {
+      dashboard.widgets['test'] = {
+        template: '<div class="hello">{{adfModel.foo}}</div>'
+      };
+      $scope.definition = {
+        type: 'test'
+      };
+      var element = compileTemplate(directive);
+      expect(element.find('.hello').text()).toBe('bar');
   });
 
   it('should rerender the widget on refresh', function(){
