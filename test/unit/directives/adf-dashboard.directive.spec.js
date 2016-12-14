@@ -424,6 +424,28 @@ describe('Dashboard Directive tests', function () {
               }]
           }]
         };
+
+        dashboard.structures['3-9 (12/6-6)'] = {
+          rows: [{
+            columns: [{
+              styleClass: 'col-md-3'
+            }, {
+              styleClass: 'col-md-9',
+              rows: [{
+                columns: [{
+                  styleClass: 'col-md-12'
+                }]
+              }, {
+                columns: [{
+                  styleClass: 'col-md-6'
+                }, {
+                  styleClass: 'col-md-6'
+                }]
+              }]
+            }]
+          }]
+        };
+
       });
 
       it('should change the dashboard structure', function(){
@@ -437,6 +459,16 @@ describe('Dashboard Directive tests', function () {
 
         // model shoule have two column in 12 structure
         expect($scope.model.rows[0].columns.length).toBe(1);
+      });
+
+      it('should read the correct number of columns in a structure', function(){
+        var element = compileTemplate(directive);
+        var isolatedScope = element.isolateScope();
+
+        isolatedScope.editDashboardDialog();
+        $uibModal.opts.scope.changeStructure('3-9 (12/6-6)', dashboard.structures['3-9 (12/6-6)']);
+
+        expect(isolatedScope.readColumns($scope.model).length).toBe(4);
       });
 
       it('should change the dashboard structure and move widgets', function(){
