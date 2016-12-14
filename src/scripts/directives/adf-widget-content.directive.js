@@ -32,6 +32,7 @@ angular.module('adf')
       restrict: 'EA',
       transclude: false,
       scope: {
+        adfModel: '=',
         model: '=',
         content: '='
       },

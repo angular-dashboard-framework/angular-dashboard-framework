@@ -91,7 +91,9 @@ angular.module('adf')
       if (angular.isDefined(root.rows)) {
         angular.forEach(root.rows, function (row) {
           angular.forEach(row.columns, function (col) {
-            columns.push(col);
+            if (!col.hasOwnProperty('rows')) {
+              columns.push(col);
+            }
             // keep reading columns until we can't any more
             _readColumns(col, columns);
           });

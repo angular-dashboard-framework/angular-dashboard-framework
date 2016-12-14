@@ -33,6 +33,7 @@ angular.module('adf')
       transclude: false,
       templateUrl: dashboard.customWidgetTemplatePath ? dashboard.customWidgetTemplatePath : adfTemplatePath + 'widget.html',
       scope: {
+        adfModel: '=',
         definition: '=',
         col: '=column',
         editMode: '=',
@@ -138,7 +139,7 @@ angular.module('adf')
             }
           }
           $element.remove();
-          $rootScope.$broadcast('adfWidgetRemovedFromColumn');
+          $rootScope.$broadcast('adfWidgetRemovedFromColumn', definition);
         };
 
         $scope.remove = function() {
@@ -153,6 +154,7 @@ angular.module('adf')
             var opts = {
               scope: deleteScope,
               templateUrl: deleteTemplateUrl,
+              windowClass: 'adf-remove-widget-modal',
               backdrop: 'static'
             };
             var instance = $uibModal.open(opts);
@@ -189,6 +191,7 @@ angular.module('adf')
           var opts = {
             scope: editScope,
             templateUrl: adfEditTemplatePath,
+            windowClass: 'adf-edit-widget-modal',
             backdrop: 'static'
           };
 

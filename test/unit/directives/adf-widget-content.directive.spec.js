@@ -49,8 +49,9 @@ describe('widget-content directive tests', function() {
       $httpBackend = _$httpBackend_;
       dashboard = _dashboard_;
       $scope = $rootScope.$new();
-      directive = '<adf-widget-content model="definition" content="widget" />';
+      directive = '<adf-widget-content adf-model="model" model="definition" content="widget" />';
 
+      $scope.model = { foo: 'baz' };
       $scope.definition = {};
       $scope.widget = {};
   }));
@@ -69,6 +70,14 @@ describe('widget-content directive tests', function() {
 
       var element = compileTemplate(directive);
       expect(element.find("div.test-widget").text()).toBe('Hello World');
+  });
+
+  it('should be able to access adfModel in adf-widget-content scope', function() {
+      $scope.widget = {
+        template: '<div class="test-widget">{{adfModel.foo}}</div>'
+      };
+      var element = compileTemplate(directive);
+      expect(element.find("div.test-widget").text()).toBe('baz');
   });
 
   it('should render a widget with a controller', function() {
