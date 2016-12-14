@@ -37,14 +37,14 @@ describe('widgetService tests', function() {
 
   // Store references to $rootScope and $compile
   // so they are available to all tests in this describe block
-  beforeEach(inject(function(_$rootScope_, _$templateCache_, _$httpBackend_, _dashboard_, widgetService){
+  beforeEach(inject(function(_$rootScope_, _$templateCache_, _$httpBackend_, _dashboard_, _widgetService_){
     // The injector unwraps the underscores (_) from around the parameter names when matching
     $rootScope = _$rootScope_;
     $templateCache = _$templateCache_;
     $httpBackend = _$httpBackend_;
     dashboard = _dashboard_;
     // inject the real service for testing
-    this.widgetService = widgetService;
+    widgetService = _widgetService_;
 
     // configure widgets path for {widgetsPath} placeholder
     dashboard.widgetsPath = 'views';
@@ -55,7 +55,7 @@ describe('widgetService tests', function() {
       template: '<h1>Hello</h1>'
     };
 
-    var promise = this.widgetService.getTemplate(widget);
+    var promise = widgetService.getTemplate(widget);
     expect(promise).toBeDefined();
 
     var template;
@@ -74,7 +74,7 @@ describe('widgetService tests', function() {
       templateUrl: 'views/hello.html'
     };
 
-    var promise = this.widgetService.getTemplate(widget);
+    var promise = widgetService.getTemplate(widget);
     expect(promise).toBeDefined();
 
     $httpBackend.flush();
@@ -94,7 +94,7 @@ describe('widgetService tests', function() {
       templateUrl: 'views/cache.html'
     };
 
-    var promise = this.widgetService.getTemplate(widget);
+    var promise = widgetService.getTemplate(widget);
     expect(promise).toBeDefined();
 
     var template;
@@ -112,15 +112,13 @@ describe('widgetService tests', function() {
       templateUrl: 'views/error.html'
     };
 
-    var promise = this.widgetService.getTemplate(widget);
+    var message;
+    var promise = widgetService.getTemplate(widget).catch(function(msg){
+        message = msg;
+    });
     expect(promise).toBeDefined();
 
     $httpBackend.flush();
-
-    var message;
-    promise.catch(function(msg){
-      message = msg;
-    });
     $rootScope.$apply();
 
     expect(message).toBe('could not load template');
@@ -133,7 +131,7 @@ describe('widgetService tests', function() {
       templateUrl: '{widgetsPath}/ph.html'
     };
 
-    var promise = this.widgetService.getTemplate(widget);
+    var promise = widgetService.getTemplate(widget);
     expect(promise).toBeDefined();
 
     $httpBackend.flush();

@@ -31,7 +31,13 @@ angular.module('adf')
       createConfiguration: createConfiguration,
       addNewWidgetToModel: addNewWidgetToModel,
       isEditModeImmediate: isEditModeImmediate,
-      createCategories: createCategories
+      createCategories: createCategories,
+
+      // expose internal functions for testing purposes
+      // TODO find a nicer way
+      _tests: {
+        _readColumns: _readColumns
+      }
     };
     return service;
 

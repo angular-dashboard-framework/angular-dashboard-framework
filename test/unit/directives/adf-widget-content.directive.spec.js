@@ -171,6 +171,7 @@ describe('widget-content directive tests', function() {
 
       var element = compileTemplate(directive);
       $httpBackend.flush();
+
       expect(element.find("div.test-widget").text()).toBe('Hello World');
   });
 

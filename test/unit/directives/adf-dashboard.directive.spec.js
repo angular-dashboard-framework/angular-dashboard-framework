@@ -461,16 +461,6 @@ describe('Dashboard Directive tests', function () {
         expect($scope.model.rows[0].columns.length).toBe(1);
       });
 
-      it('should read the correct number of columns in a structure', function(){
-        var element = compileTemplate(directive);
-        var isolatedScope = element.isolateScope();
-
-        isolatedScope.editDashboardDialog();
-        $uibModal.opts.scope.changeStructure('3-9 (12/6-6)', dashboard.structures['3-9 (12/6-6)']);
-
-        expect(isolatedScope.readColumns($scope.model).length).toBe(4);
-      });
-
       it('should change the dashboard structure and move widgets', function(){
         $scope.model.rows[0].columns[0].widgets.push({
           type: 'one'

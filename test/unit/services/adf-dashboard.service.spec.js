@@ -24,7 +24,7 @@
 
 'use strict';
 
-describe('adfUtils Service tests', function() {
+describe('adf dashboard service tests', function() {
 
   var adfDashboardService;
 
@@ -38,7 +38,7 @@ describe('adfUtils Service tests', function() {
     adfDashboardService = _adfDashboardService_;
   }));
 
-  describe('createCategory function tests', function() {
+  describe('create category function tests', function() {
 
     it('should split categories a and b into different objects', function() {
       var input = {
@@ -72,7 +72,7 @@ describe('adfUtils Service tests', function() {
 
     it('should group widgets with no category into "Miscellaneous" category', function() {
       var input = {
-        '1': { rows: '1'},
+        '1': { rows: '1'}
       };
 
       var output = {
@@ -86,6 +86,62 @@ describe('adfUtils Service tests', function() {
       expect(adfDashboardService.createCategories(input)).toEqual(output);
     });
 
-  })
+  });
+
+  describe('structure related tests', function(){
+
+        var modelTwelve = {
+          rows: [{
+              columns: [{
+                  styleClass: "col-md-12",
+                  widgets: []
+              }]
+          }]
+        };
+
+        var modelFourEight = {
+          rows: [{
+              columns: [{
+                  styleClass: "col-md-4",
+                  widgets: []
+              },{
+                styleClass: "col-md-8",
+                widgets: []
+              }]
+          }]
+        };
+
+        var modelThreeNineEtc = {
+          rows: [{
+            columns: [{
+              styleClass: 'col-md-3'
+            }, {
+              styleClass: 'col-md-9',
+              rows: [{
+                columns: [{
+                  styleClass: 'col-md-12'
+                }]
+              }, {
+                columns: [{
+                  styleClass: 'col-md-6'
+                }, {
+                  styleClass: 'col-md-6'
+                }]
+              }]
+            }]
+          }]
+        };
+
+      it('should read the correct number of columns in a structure', function(){
+        function readColumns(model) {
+          return adfDashboardService._tests._readColumns(model, []).length;
+        }
+
+        expect(readColumns(modelTwelve)).toBe(1);
+        expect(readColumns(modelFourEight)).toBe(2);
+        expect(readColumns(modelThreeNineEtc)).toBe(4);
+      });
+
+  });
 
 });
