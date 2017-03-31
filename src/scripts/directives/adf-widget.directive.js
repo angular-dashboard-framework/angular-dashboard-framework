@@ -272,6 +272,14 @@ angular.module('adf')
 
     function controller($scope){
 
+      $scope.$watch(function(scope) {
+        return scope.widgetState.isCollapsed;
+      }, function(newVal, oldVal) {
+        if (newVal === false) {
+          window.dispatchEvent(new Event('resize'));
+        }
+      });
+
       $scope.$on('adfDashboardCollapseExpand', function(event, args) {
         $scope.widgetState.isCollapsed = args.collapseExpandStatus;
       });
