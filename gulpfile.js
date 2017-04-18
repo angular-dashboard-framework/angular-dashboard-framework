@@ -98,6 +98,7 @@ gulp.task('styles', function(){
 
 function processScripts(sources, filename){
   sources.pipe($.sourcemaps.init())
+    .pipe($.if('*.js', $.angularFilesort()))
     .pipe($.if('*.js', $.replace('<<adfVersion>>', pkg.version)))
     .pipe($.if('*.js', $.replace(/'use strict';/g, '')))
     .pipe($.concat(filename + '.js'))

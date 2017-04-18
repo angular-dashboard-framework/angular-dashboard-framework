@@ -10,6 +10,7 @@
     "eslint-config-angular": "^0.5.0",
     "eslint-plugin-angular": "^1.0.1",
     "gulp": "^3.9.0",
+    "gulp-angular-filesort": "^1.1.1",
     "gulp-angular-templatecache": "^1.7.0",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^2.2.0",
