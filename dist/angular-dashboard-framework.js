@@ -447,6 +447,46 @@ angular.module('adf')
   }]);
 
 /*
+* The MIT License
+*
+* Copyright (c) 2015, Sebastian Sdorra
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
+
+/* global angular */
+angular.module('adf')
+  .filter('adfOrderByObjectKey', ["$filter", function($filter) {
+    
+
+    return function(item, key){
+      var array = [];
+      angular.forEach(item, function(value, objectKey){
+        value[key] = objectKey;
+        array.push(value);
+      });
+      return $filter('orderBy')(array, key);
+    };
+  }]);
+
+/*
  * The MIT License
  *
  * Copyright (c) 2015, Sebastian Sdorra
@@ -1000,6 +1040,7 @@ angular.module('adf')
  * @param {boolean=} enableConfirmDelete true to ask before remove an widget from the dashboard.
  * @param {string=} structure the default structure of the dashboard.
  * @param {object=} adfModel model object of the dashboard.
+ * @param {object=} adfAddWidgetModalOptions options to provide to the add-widget modal
  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
  * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
  *                   events during edit mode not reset it if edit mode is exited.
@@ -1024,6 +1065,7 @@ angular.module('adf')
         continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
+        adfAddWidgetModalOptions: '=',
         adfWidgetFilter: '=',
         categories: '@'
       },
@@ -1214,6 +1256,10 @@ angular.module('adf')
          windowClass: 'adf-add-widget-modal',
          backdrop: 'static'
        };
+
+       if (angular.isDefined($scope.adfAddWidgetModalOptions)) {
+          opts = angular.merge(opts, $scope.adfAddWidgetModalOptions);
+       }
 
        var instance = $uibModal.open(opts);
        addScope.addWidget = function(widget){
@@ -1512,46 +1558,6 @@ angular.module('adf')
       }
     }
 
-  }]);
-
-/*
-* The MIT License
-*
-* Copyright (c) 2015, Sebastian Sdorra
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
-
-
-/* global angular */
-angular.module('adf')
-  .filter('adfOrderByObjectKey', ["$filter", function($filter) {
-    
-
-    return function(item, key){
-      var array = [];
-      angular.forEach(item, function(value, objectKey){
-        value[key] = objectKey;
-        array.push(value);
-      });
-      return $filter('orderBy')(array, key);
-    };
   }]);
 
 /*
