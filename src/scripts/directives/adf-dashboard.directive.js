@@ -98,7 +98,7 @@ angular.module('adf')
       var name = $scope.name;
 
       // Watching for changes on adfModel
-      $scope.$watch('adfModel', function(oldVal, newVal) {
+      $scope.$watch('adfModel', function(newVal, oldVal) {
        // has model changed or is the model attribute not set
        if (newVal !== null || (oldVal === null && newVal === null)) {
          model = $scope.adfModel;
