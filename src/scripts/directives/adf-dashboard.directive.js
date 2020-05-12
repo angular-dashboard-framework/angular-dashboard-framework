@@ -210,6 +210,7 @@ angular.module('adf')
          if (model.structure !== name){
            model.structure = name;
          }
+         $rootScope.$broadcast('adfDashboardStructureChange');
        };
        editDashboardScope.closeDialog = function(){
          // copy the new title back to the model
