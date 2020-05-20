@@ -1,5 +1,8 @@
 <h1>
   {{model.title}}
+  <a ng-if="model.titleLink" ng-href="{{model.titleLink}}" target="_blank">
+    <small title="Open dashboard in separate tab"><i class="glyphicon glyphicon-new-window"></i></small>
+  </a>
   <span style="font-size: 16px" class="pull-right">
     <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}" ng-click="addWidgetDialog()">
       <i class="glyphicon glyphicon-plus-sign"></i>
@@ -8,7 +11,7 @@
       <i class="glyphicon glyphicon-cog"></i>
     </a>
     <a href="" ng-if="options.editable" title="{{editMode ? translate('ADF_DASHBOARD_TITLE_TOOLTIP_SAVE') : translate('ADF_DASHBOARD_TITLE_TOOLTIP_EDIT_MODE') }}" ng-click="toggleEditMode()">
-      <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}"></i>
+      <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}">{{!editMode ? 'Edit' : 'Save' }}</i>
     </a>
     <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_UNDO') }}" ng-click="cancelEditMode()">
       <i class="glyphicon glyphicon-repeat adf-flip"></i>

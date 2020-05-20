@@ -41,6 +41,7 @@
  * @param {boolean=} enableConfirmDelete true to ask before remove an widget from the dashboard.
  * @param {string=} structure the default structure of the dashboard.
  * @param {object=} adfModel model object of the dashboard.
+ * @param {object=} adfAddWidgetModalOptions options to provide to the add-widget modal
  * @param {function=} adfWidgetFilter function to filter widgets on the add dialog.
  * @param {boolean=} continuousEditMode enable continuous edit mode, to fire add/change/remove
  *                   events during edit mode not reset it if edit mode is exited.
@@ -64,6 +65,7 @@ angular.module('adf')
         continuousEditMode: '=',
         maximizable: '@',
         adfModel: '=',
+        adfAddWidgetModalOptions: '=',
         adfWidgetFilter: '=',
         categories: '@'
       },
@@ -208,6 +210,7 @@ angular.module('adf')
          if (model.structure !== name){
            model.structure = name;
          }
+         $rootScope.$broadcast('adfDashboardStructureChange');
        };
        editDashboardScope.closeDialog = function(){
          // copy the new title back to the model
@@ -254,6 +257,10 @@ angular.module('adf')
          windowClass: 'adf-add-widget-modal',
          backdrop: 'static'
        };
+
+       if (angular.isDefined($scope.adfAddWidgetModalOptions)) {
+          opts = angular.merge(opts, $scope.adfAddWidgetModalOptions);
+       }
 
        var instance = $uibModal.open(opts);
        addScope.addWidget = function(widget){
