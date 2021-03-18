@@ -1,17 +1,21 @@
 <h1>
   {{model.title}}
   <span style="font-size: 16px" class="pull-right">
-    <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}" ng-click="addWidgetDialog()">
-      <i class="glyphicon glyphicon-plus-sign"></i>
-    </a>
-    <a href="" ng-if="editMode" title="{{ translate('ADF_COMMON_EDIT_DASHBOARD') }}" ng-click="editDashboardDialog()">
-      <i class="glyphicon glyphicon-cog"></i>
-    </a>
-    <a href="" ng-if="options.editable" title="{{editMode ? translate('ADF_DASHBOARD_TITLE_TOOLTIP_SAVE') : translate('ADF_DASHBOARD_TITLE_TOOLTIP_EDIT_MODE') }}" ng-click="toggleEditMode()">
-      <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}"></i>
-    </a>
-    <a href="" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_UNDO') }}" ng-click="cancelEditMode()">
-      <i class="glyphicon glyphicon-repeat adf-flip"></i>
-    </a>
+    <button class="btn-wo-border" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}" ng-click="addWidgetDialog()">
+      <span class="sr-only">{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}</span>
+      <i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
+    </button>
+    <button class="btn-wo-border" ng-if="editMode" title="{{ translate('ADF_COMMON_EDIT_DASHBOARD') }}" ng-click="editDashboardDialog()">
+      <span class="sr-only">{{ translate('ADF_COMMON_EDIT_DASHBOARD') }}</span>
+      <i class="glyphicon glyphicon-cog " aria-hidden="true"></i>
+    </button>
+    <button class="btn-wo-border" ng-if="options.editable" title="{{editMode ? translate('ADF_DASHBOARD_TITLE_TOOLTIP_SAVE') : translate('ADF_DASHBOARD_TITLE_TOOLTIP_EDIT_MODE') }}" ng-click="toggleEditMode()">
+      <span class="sr-only">{{editMode ? translate('ADF_DASHBOARD_TITLE_TOOLTIP_SAVE') : translate('ADF_DASHBOARD_TITLE_TOOLTIP_EDIT_MODE') }}</span>
+      <i class="glyphicon" x-ng-class="{'glyphicon-edit' : !editMode, 'glyphicon-save' : editMode}" aria-hidden="true"></i>
+    </button>
+    <button class="btn-wo-border" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_UNDO') }}" ng-click="cancelEditMode()">
+      <span class="sr-only">{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_UNDO') }}</span>
+      <i class="glyphicon glyphicon-repeat adf-flip" aria-hidden="true"></i>
+    </button>
   </span>
 </h1>

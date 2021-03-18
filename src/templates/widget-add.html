@@ -9,9 +9,9 @@
       <uib-accordion-group heading="{{category.name}}" ng-repeat="category in categorized | adfOrderByObjectKey: 'name'">
         <dl class="dl-horizontal">
           <dt ng-repeat-start="widget in category.widgets | adfOrderByObjectKey: 'key'">
-            <a href="" ng-click="addWidget(widget.key)">
+            <button class="btn-wo-border" ng-click="addWidget(widget.key)">
               {{widget.title}}
-            </a>
+            </button>
           </dt>
           <dd ng-repeat-end ng-if="widget.description">
             {{widget.description}}
@@ -24,9 +24,9 @@
   <div style="display: inline-block;" ng-if="!createCategories">
     <dl class="dl-horizontal">
       <dt ng-repeat-start="widget in widgets | adfOrderByObjectKey: 'key'">
-        <a href="" ng-click="addWidget(widget.key)">
+        <button class="btn-wo-border" ng-click="addWidget(widget.key)">
           {{widget.title}}
-        </a>
+        </button>
       </dt>
       <dd ng-repeat-end ng-if="widget.description">
         {{widget.description}}

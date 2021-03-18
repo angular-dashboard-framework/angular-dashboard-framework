@@ -1,32 +1,33 @@
 <div ng-if="editMode" class="alert alert-info">Currently in edit mode. Save or undo your changes when you are done.</div>
 <h1>
   {{model.title}}
-  <div class="dropdown pull-right" uib-dropdown>
-    <button class="btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle>
-      <i class="glyphicon glyphicon-option-vertical"></i>
+  <span class="dropdown pull-right" uib-dropdown>
+    <button class="btn-wo-border btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle>
+      <span class="sr-only">options for dashboard</span>
+      <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i>
     </button>
     <ul class="dropdown-menu">
       <li ng-if="editMode" ng-click="addWidgetDialog()">
-        <a href="">Add widget</a>
+        <button class="btn-wo-border">Add widget</button>
       </li>
       <li ng-if="editMode" ng-click="editDashboardDialog()">
-        <a href="">Dashboard settings</a>
+        <button class="btn-wo-border">Dashboard settings</button>
       </li>
       <li ng-if="options.editable && !editMode" ng-click="toggleEditMode()">
-        <a href="">Edit dashboard</a>
+        <button class="btn-wo-border">Edit dashboard</button>
       </li>
       <li ng-if="options.editable && editMode" ng-click="toggleEditMode()">
-        <a href="">Save changes</a>
+        <button class="btn-wo-border">Save changes</button>
       </li>
       <li ng-if="options.editable && editMode" ng-click="collapseAll(true)">
-        <a href="">Collapse All</a>
+        <button class="btn-wo-border">Collapse All</button>
       </li>
       <li ng-if="options.editable && editMode" ng-click="collapseAll(false)">
-        <a href="">Expand All</a>
+        <button class="btn-wo-border">Expand All</button>
       </li>
       <li ng-if="editMode" ng-click="cancelEditMode()">
-        <a href="">Undo changes</a>
+        <button class="btn-wo-border">Undo changes</button>
       </li>
     </ul>
-  </div>
+  </span>
 </h1>
