@@ -2,31 +2,38 @@
   <i class="glyphicon glyphicon-star"></i>
   {{definition.title}}
   <span class="pull-right">
-    <a href="" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
-      <i class="glyphicon glyphicon-refresh"></i>
-    </a>
+    <button class="btn-wo-border" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
+      <span class="sr-only">reload widget content</span>
+      <i class="glyphicon glyphicon-refresh" aria-hidden="true"></i>
+    </button>
     <!-- collapse -->
-    <a href="" title="collapse widget" ng-show="options.collapsible && !widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
-      <i class="glyphicon glyphicon-minus"></i>
-    </a>
+    <button class="btn-wo-border" title="collapse widget" ng-show="options.collapsible && !widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
+      <span class="sr-only">collapse widget</span>
+      <i class="glyphicon glyphicon-minus" aria-hidden="true"></i>
+    </button>
     <!-- expand -->
-    <a href="" title="expand widget" ng-show="options.collapsible && widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
-      <i class="glyphicon glyphicon-plus"></i>
-    </a>
+    <button class="btn-wo-border" title="expand widget" ng-show="options.collapsible && widgetState.isCollapsed" ng-click="widgetState.isCollapsed = !widgetState.isCollapsed">
+      <span class="sr-only">expand widget</span>
+      <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+    </button>
     <!-- change widget location -->
-    <a href="" title="change widget location" class="adf-move" ng-if="editMode">
-      <i class="glyphicon glyphicon-move"></i>
-    </a>
+    <button title="change widget location" class="btn-wo-border adf-move" ng-if="editMode">
+      <span class="sr-only">change widget location</span>
+      <i class="glyphicon glyphicon-move" aria-hidden="true"></i>
+    </button>
     <!-- open edit mode -->
-    <a href="" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
-      <i class="glyphicon glyphicon-cog"></i>
-    </a>
-    <a href="" title="fullscreen widget" ng-click="openFullScreen()" ng-show="options.maximizable">
-     <i class="glyphicon glyphicon-fullscreen"></i>
-   </a>
+    <button class="btn-wo-border" title="edit widget configuration" ng-click="edit()" ng-if="editMode">
+      <span class="sr-only">edit widget configuration</span>
+      <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+    </button>
+    <button class="btn-wo-border" title="fullscreen widget" ng-click="openFullScreen()" ng-show="options.maximizable">
+     <span class="sr-only">fullscreen widget</span>
+      <i class="glyphicon glyphicon-fullscreen" aria-hidden="true"></i>
+   </button>
     <!-- remove widget -->
-    <a href="" title="remove widget" ng-click="remove()" ng-if="editMode">
-      <i class="glyphicon glyphicon-remove"></i>
-    </a>
+    <button class="btn-wo-border" title="remove widget" ng-click="remove()" ng-if="editMode">
+      <span class="sr-only">remove widget</span>
+      <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+    </button>
   </span>
 </h3>

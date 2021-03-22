@@ -1,11 +1,13 @@
 <div class="modal-header">
   <div class="pull-right widget-icons">
-    <a href="" title="{{ translate('ADF_WIDGET_TOOLTIP_REFRESH') }}" ng-if="widget.reload" ng-click="reload()">
-      <i class="glyphicon glyphicon-refresh"></i>
-    </a>
-    <a href="" title="close" ng-click="closeDialog()">
-      <i class="glyphicon glyphicon-remove"></i>
-    </a>
+    <button class="btn-wo-border" title="{{ translate('ADF_WIDGET_TOOLTIP_REFRESH') }}" ng-if="widget.reload" ng-click="reload()">
+      <span class="sr-only">{{ translate('ADF_WIDGET_TOOLTIP_REFRESH') }}</span>
+      <i class="glyphicon glyphicon-refresh" aria-hidden="true"></i>
+    </button>
+    <button class="btn-wo-border" title="close" ng-click="closeDialog()">
+      <span class="sr-only">close</span>
+      <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
+    </button>
   </div>
   <h4 class="modal-title">{{definition.title}}</h4>
 </div>
