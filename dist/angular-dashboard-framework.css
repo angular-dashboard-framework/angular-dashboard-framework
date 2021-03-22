@@ -44,6 +44,14 @@
   width: 98%;
 }
 
+/*
+buttons without borders
+ */
+.btn-wo-border {
+  border: none;
+  background-color: transparent;
+}
+
 /**
  The MIT License
 
