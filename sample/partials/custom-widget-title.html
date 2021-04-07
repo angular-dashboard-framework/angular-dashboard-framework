@@ -1,7 +1,6 @@
-<h3 class="panel-title">
-  <i class="glyphicon glyphicon-star"></i>
-  {{definition.title}}
-  <span class="pull-right">
+<div class="panel-title widget-title">
+  <h3> <i class="glyphicon glyphicon-star"></i>{{definition.title}}</h3>
+  <span class="edit-mode">
     <button class="btn-wo-border" title="reload widget content" ng-if="widget.reload" ng-click="reload()">
       <span class="sr-only">reload widget content</span>
       <i class="glyphicon glyphicon-refresh" aria-hidden="true"></i>
@@ -36,4 +35,4 @@
       <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
     </button>
   </span>
-</h3>
+</div>
