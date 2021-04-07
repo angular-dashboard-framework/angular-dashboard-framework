@@ -54,5 +54,17 @@ buttons without borders
   background-color: transparent;
 }
 
+/*
+
+ */
+.dashboard-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-mode {
+  align-self: center;
+}
+
 @import "edit";
 @import "structure-preview";

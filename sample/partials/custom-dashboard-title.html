@@ -1,7 +1,7 @@
 <div ng-if="editMode" class="alert alert-info">Currently in edit mode. Save or undo your changes when you are done.</div>
-<h1>
-  {{model.title}}
-  <span class="dropdown pull-right" uib-dropdown>
+<div class="dashboard-title">
+  <h1>{{model.title}}</h1>
+  <span class="dropdown edit-mode" uib-dropdown>
     <button class="btn-wo-border btn btn-default btn-sm dropdown-toggle" uib-dropdown-toggle>
       <span class="sr-only">options for dashboard</span>
       <i class="glyphicon glyphicon-option-vertical" aria-hidden="true"></i>
@@ -30,4 +30,4 @@
       </li>
     </ul>
   </span>
-</h1>
+</div>
