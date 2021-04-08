@@ -52,6 +52,25 @@ buttons without borders
   background-color: transparent;
 }
 
+/*
+
+ */
+.dashboard-title, .widget-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-mode {
+  align-self: center;
+}
+
+.panel-title h3 {
+  font-size: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+  align-self: center;
+}
+
 /**
  The MIT License
 
@@ -137,7 +156,7 @@ pre.edit {
 */
 .structure-preview {
   height: 150px;
-  width: 200px;
+  width: 100%;
   position: relative;
 }
 
@@ -160,6 +179,36 @@ pre.edit {
   margin: auto;
 }
 
+.structure-preview > .row {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.structure-preview .col-md-3 {
+  width: 25%;
+  float: left;
+}
+
+.structure-preview .col-md-4 {
+  width: 33.33333333%;
+  float: left;
+}
+
+.structure-preview .col-md-6 {
+  width: 50%;
+  float: left;
+}
+
+.structure-preview .col-md-8 {
+  width: 66.66666666%;
+  float: left;
+}
+
+.structure-preview .col-md-9 {
+  width: 75%;
+  float: left;
+}
+
 .structure-preview:hover .column,
 .structure-preview.selected .column {
   border: 1px #337ab7 dashed;
@@ -168,4 +217,11 @@ pre.edit {
 .structure-preview:hover h4,
 .structure-preview.selected h4 {
   color: #337ab7;
+}
+
+@media screen and (min-width: 768px) {
+  .structure-preview {
+    width: 200px;
+    position: relative;
+  }
 }

@@ -1,8 +1,13 @@
 # [Unreleased]
 
+# 0.12.2
+
+## Enhancements
+* improve accessibility [#339](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issues/339)
+
 # 0.12.1
 
-##Enhancements
+## Enhancements
 * improve accessibility [#336](https://github.com/angular-dashboard-framework/angular-dashboard-framework/issues/336)
 
 # 0.12.0
