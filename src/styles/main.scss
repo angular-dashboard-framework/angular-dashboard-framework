@@ -66,5 +66,10 @@ buttons without borders
   align-self: center;
 }
 
+.panel-title h3{
+  font-size:inherit;
+  margin-top: 0;
+  margin-bottom:0;
+}
 @import "edit";
 @import "structure-preview";
