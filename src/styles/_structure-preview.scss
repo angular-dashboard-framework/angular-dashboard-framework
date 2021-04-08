@@ -24,7 +24,7 @@
 
 .structure-preview {
   height: 150px;
-  width: 200px;
+  width: 100%;
   position: relative;
 
   .column {
@@ -45,6 +45,32 @@
     height: 15%;
     margin: auto;
   }
+
+  >.row {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .col-md-3 {
+    width: 25%;
+    float: left;
+  }
+  .col-md-4 {
+    width: 33.33333333%;
+    float: left;
+  }
+  .col-md-6 {
+    width: 50%;
+    float: left;
+  }
+  .col-md-8 {
+    width: 66.66666666%;
+    float: left;
+  }
+  .col-md-9 {
+    width: 75%;
+    float: left;
+  }
 }
 
 .structure-preview:hover,
@@ -56,5 +82,11 @@
 
   h4 {
     color: #337ab7;
+  }
+}
+@media screen and (min-width: 768px) {
+  .structure-preview {
+    width: 200px;
+    position: relative;
   }
 }

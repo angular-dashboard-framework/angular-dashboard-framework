@@ -1,6 +1,6 @@
-<h1>
-  {{model.title}}
-  <span style="font-size: 16px" class="pull-right">
+<div class="dashboard-title">
+  <h1>{{model.title}}</h1>
+  <span style="font-size: 16px" class="edit-mode">
     <button class="btn-wo-border" ng-if="editMode" title="{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}" ng-click="addWidgetDialog()">
       <span class="sr-only">{{ translate('ADF_DASHBOARD_TITLE_TOOLTIP_ADD') }}</span>
       <i class="glyphicon glyphicon-plus-sign" aria-hidden="true"></i>
@@ -18,4 +18,4 @@
       <i class="glyphicon glyphicon-repeat adf-flip" aria-hidden="true"></i>
     </button>
   </span>
-</h1>
+</div>

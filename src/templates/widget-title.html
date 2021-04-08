@@ -1,6 +1,6 @@
-<h3 class="panel-title">
-{{definition.title}}
-  <span class="pull-right">
+<div class="panel-title widget-title">
+  <h3>{{definition.title}}</h3>
+  <span class="edit-mode">
     <button class="btn-wo-border" title="{{ translate('ADF_WIDGET_TOOLTIP_REFRESH') }}" ng-if="widget.reload" ng-click="reload()">
       <span class="sr-only">{{ translate('ADF_WIDGET_TOOLTIP_REFRESH') }}</span>
       <i class="glyphicon glyphicon-refresh" aria-hidden="true"></i>
@@ -35,4 +35,4 @@
       <i class="glyphicon glyphicon-remove" aria-hidden="true"></i>
     </button>
   </span>
-</h3>
+</div>
