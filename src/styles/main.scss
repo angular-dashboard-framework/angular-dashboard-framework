@@ -66,11 +66,12 @@ buttons without borders
   align-self: center;
 }
 
-.panel-title h3{
+.panel-title h2{
   font-size:inherit;
   margin-top: 0;
   margin-bottom:0;
   align-self: center;
+  font-size: 16px;
 }
 @import "edit";
 @import "structure-preview";
