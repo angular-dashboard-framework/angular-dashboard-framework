@@ -43,6 +43,46 @@ $templateCache.put("../src/templates/widget-edit.html","<form name=widgetEditFor
 $templateCache.put("../src/templates/widget-fullscreen.html","<div class=modal-header> <div class=\"pull-right widget-icons\"> <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_REFRESH\') }}\" ng-if=widget.reload ng-click=reload()> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_REFRESH\') }}</span> <i class=\"glyphicon glyphicon-refresh\" aria-hidden=true></i> </button> <button class=btn-wo-border title=close ng-click=closeDialog()> <span class=sr-only>close</span> <i class=\"glyphicon glyphicon-remove\" aria-hidden=true></i> </button> </div> <h4 class=modal-title>{{definition.title}}</h4> </div> <div class=modal-body> <adf-widget-content adf-model=adfModel model=definition content=widget> </adf-widget-content></div> <div class=modal-footer> <button type=button class=\"btn btn-primary\" ng-click=closeDialog() ng-bind=\"translate(\'ADF_COMMON_CLOSE\')\">Close</button> </div> ");
 $templateCache.put("../src/templates/widget-title.html","<div class=\"panel-title widget-title\"> <h2>{{definition.title}}</h2> <span class=edit-mode> <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_REFRESH\') }}\" ng-if=widget.reload ng-click=reload()> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_REFRESH\') }}</span> <i class=\"glyphicon glyphicon-refresh\" aria-hidden=true></i> </button>  <button title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_MOVE\') }}\" class=\"adf-move btn-wo-border\" ng-if=editMode> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_MOVE\') }}</span> <i class=\"glyphicon glyphicon-move\" aria-hidden=true></i> </button>  <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_COLLAPSE\') }}\" ng-show=\"options.collapsible && !widgetState.isCollapsed\" ng-click=\"widgetState.isCollapsed = !widgetState.isCollapsed\"> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_COLLAPSE\') }}</span> <i class=\"glyphicon glyphicon-minus\" aria-hidden=true></i> </button>  <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_EXPAND\') }}\" ng-show=\"options.collapsible && widgetState.isCollapsed\" ng-click=\"widgetState.isCollapsed = !widgetState.isCollapsed\"> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_EXPAND\') }}</span> <i class=\"glyphicon glyphicon-plus\" aria-hidden=true></i> </button>  <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_EDIT\') }}\" ng-click=edit() ng-if=editMode> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_EDIT\') }}</span> <i class=\"glyphicon glyphicon-cog\" aria-hidden=true></i> </button> <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_FULLSCREEN\') }}\" ng-click=openFullScreen() ng-show=options.maximizable> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_FULLSCREEN\') }}</span> <i class=\"glyphicon glyphicon-fullscreen\" aria-hidden=true></i> </button>  <button class=btn-wo-border title=\"{{ translate(\'ADF_WIDGET_TOOLTIP_REMOVE\') }}\" ng-click=remove() ng-if=editMode> <span class=sr-only>{{ translate(\'ADF_WIDGET_TOOLTIP_REMOVE\') }}</span> <i class=\"glyphicon glyphicon-remove\" aria-hidden=true></i> </button> </span> </div> ");
 $templateCache.put("../src/templates/widget.html","<div adf-id={{definition.wid}} adf-widget-type={{definition.type}} ng-class=\"widgetClasses(widget, definition)\" class=widget> <div class=\"panel-heading clearfix\" ng-if=\"!widget.frameless || editMode\"> <div ng-include src=definition.titleTemplateUrl></div> </div> <div ng-class=\"{\'panel-body\':!widget.frameless || editMode}\" uib-collapse=widgetState.isCollapsed> <adf-widget-content adf-model=adfModel model=definition content=widget> </adf-widget-content></div> </div> ");}]);
+/*
+* The MIT License
+*
+* Copyright (c) 2015, Sebastian Sdorra
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*/
+
+
+/* global angular */
+angular.module('adf')
+  .filter('adfOrderByObjectKey', ["$filter", function($filter) {
+    
+
+    return function(item, key){
+      var array = [];
+      angular.forEach(item, function(value, objectKey){
+        value[key] = objectKey;
+        array.push(value);
+      });
+      return $filter('orderBy')(array, key);
+    };
+  }]);
+
 
 /*
  * The MIT License
@@ -456,46 +496,6 @@ angular.module('adf')
       });
       return categories;
     }
-  }]);
-
-/*
-* The MIT License
-*
-* Copyright (c) 2015, Sebastian Sdorra
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
-
-
-/* global angular */
-angular.module('adf')
-  .filter('adfOrderByObjectKey', ["$filter", function($filter) {
-    
-
-    return function(item, key){
-      var array = [];
-      angular.forEach(item, function(value, objectKey){
-        value[key] = objectKey;
-        array.push(value);
-      });
-      return $filter('orderBy')(array, key);
-    };
   }]);
 
 /*
