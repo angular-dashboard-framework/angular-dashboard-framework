@@ -133,7 +133,7 @@ angular.module('adf')
         var deleteWidget = function() {
           var column = $scope.col;
           if (column) {
-            var index = column.widgets.indexOf(definition);
+            var index = column.widgets.map(function(x) { return x.wid; }).indexOf(definition.wid);
             if (index >= 0) {
               column.widgets.splice(index, 1);
             }
