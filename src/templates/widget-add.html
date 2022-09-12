@@ -7,7 +7,7 @@
   <div ng-if="createCategories">
     <uib-accordion ng-init="categorized = createCategories(widgets)">
       <uib-accordion-group heading="{{category.name}}" ng-repeat="category in categorized | adfOrderByObjectKey: 'name'">
-        <dl class="dl-horizontal">
+        <dl>
           <dt ng-repeat-start="widget in category.widgets | adfOrderByObjectKey: 'key'">
             <button class="btn-wo-border" ng-click="addWidget(widget.key)">
               {{widget.title}}
@@ -22,7 +22,7 @@
   </div>
   <!-- dashboard categories disabled -->
   <div style="display: inline-block;" ng-if="!createCategories">
-    <dl class="dl-horizontal">
+    <dl>
       <dt ng-repeat-start="widget in widgets | adfOrderByObjectKey: 'key'">
         <button class="btn-wo-border" ng-click="addWidget(widget.key)">
           {{widget.title}}

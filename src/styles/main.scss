@@ -57,6 +57,19 @@ buttons without borders
 /*
 
  */
+@media screen and (min-width:768px){
+  dt button{
+    padding-left: 0;
+  }
+  dd{
+    line-height: 1.42857143;
+    margin-bottom: 1rem;
+  }
+  dd:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .dashboard-title, .widget-title {
   display: flex;
   justify-content: space-between;
