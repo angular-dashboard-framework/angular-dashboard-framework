@@ -26,7 +26,7 @@ npm install -g gulp
 Clone the repository:
 
 ```bash
-git clone https://github.com/angular-dashboard-framework/angular-dashboard-framework
+git clone https://github.com/cloudogu/angular-dashboard-framework
 cd angular-dashboard-framework
 ```
 
